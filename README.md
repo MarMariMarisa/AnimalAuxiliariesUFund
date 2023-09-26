@@ -7,9 +7,8 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 
 - Chase Balmer
 - Tszfai Choy
-- MEMBER3
-- MEMBER4
-
+- Marisa Ortiz
+- Tyler Combs
 
 ## Prerequisites
 
