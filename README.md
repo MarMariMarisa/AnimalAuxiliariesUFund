@@ -6,7 +6,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 ## Team
 
 - Chase Balmer
-- MEMBER2
+- Tszfai Choy
 - MEMBER3
 - MEMBER4
 
