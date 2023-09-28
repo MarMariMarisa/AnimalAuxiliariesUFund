@@ -10,9 +10,6 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Marisa Ortiz
 - Tyler Combs
 - Sarah Payne
-- MEMBER4
-
->>>>>>> 3fe25c06cdb0d43007cd34232302440ef9d19b53
 
 ## Prerequisites
 
