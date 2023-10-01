@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 85%;
+  margin: auto;
+}
+textarea {
+  resize: none;
+}
+.needItem {
+  text-align: center;
+  border: black;
+  padding-top: 1rem;
+}
+.funded {
+  border: 1px solid;
+  padding: 0.5rem;
+  width: 25%;
+  margin: auto;
+  position: relative;
+}
+#changeForm {
+  display: grid;
+  place-items: center;
+}
+#changeForm > * {
+  margin: 0.5rem;
+}
+.successful {
+  background: green;
+}
+.unsuccessful {
+  background: red;
+}
