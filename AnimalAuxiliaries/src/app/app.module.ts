@@ -12,3 +12,23 @@ import { NeedsFormComponent } from './needs-form/needs-form.component';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+const fundButton = document.getElementById('fundButton');
+if (fundButton) {
+  fundButton.addEventListener('onclick', (e) => {
+    console.log('hello');
+    let funding = <HTMLInputElement>document.getElementById('fundingRecipient');
+    if (funding) {
+      let target = `isFunded${funding.value}`;
+      const isNeedFunded = document.getElementById(target);
+      if (isNeedFunded) {
+        isNeedFunded.classList.toggle('successful');
+        isNeedFunded.classList.toggle('unsuccessful');
+        if (isNeedFunded.classList.contains('successful')) {
+          isNeedFunded.textContent = 'Funded!';
+        } else {
+          isNeedFunded.textContent = 'Not Funded!';
+        }
+      }
+    }
+  });
+}

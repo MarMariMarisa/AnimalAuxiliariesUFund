@@ -9,7 +9,6 @@ export class NeedsFormComponent {
   needsData: any = {};
 
   onSubmit() {
-    console.log(this.needsData);
     const needsSection = document.getElementById('needs');
     if (needsSection) {
       let current = needsSection.innerHTML;
@@ -21,7 +20,7 @@ export class NeedsFormComponent {
         <p class="amount">Amount Required: $${this.needsData.amount}</p>
         <div class="isFunded${
           document.querySelectorAll('.needItem').length + 1
-        } notFunded"></div>
+        } notFunded funded unsuccessful">Not Funded!</div>
       </div>
       `;
       needsSection.innerHTML = current;

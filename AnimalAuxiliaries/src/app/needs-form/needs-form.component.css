@@ -1,0 +1,22 @@
+.needsForm {
+  display: flex;
+  flex-direction: column;
+}
+.needsForm > section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formSection {
+  width: 33%;
+  display: flex;
+  align-items: center;
+  height: 5rem;
+}
+.rightAlign {
+  justify-content: right;
+}
+.funded {
+  text-align: center;
+  border: black;
+}
