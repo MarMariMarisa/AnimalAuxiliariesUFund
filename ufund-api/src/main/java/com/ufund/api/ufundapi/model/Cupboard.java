@@ -55,12 +55,13 @@ public class Cupboard {
 
     /**
      * getEntireCupboard
-     * Description: The function returns the entire contents of the current cupboard as a map of strings to Need objects.
+     * Description: The function returns the entire contents of the current cupboard as a map list of need objects.
      * 
-     * @return A map of strings to objects of type Need is being returned.
+     * @return A list of objects of type Need is being returned.
      */
-    public Map<String, Need> getEntireCupboard(){
-        return this.currentNeeds;
+    public List<Need> getEntireCupboard(){
+        List<Need> list = new ArrayList<Need>(currentNeeds.values());
+        return list;
     }
 
     /**

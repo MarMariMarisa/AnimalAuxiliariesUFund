@@ -14,9 +14,12 @@ public class Need {
     private double amount;
     private boolean isInBasket;
     private boolean isFunded;
+    private String id;
+
 
     // Constructor
-    public Need(String name, String description, String type, double amount, boolean isInBasket, boolean isFunded) {
+    public Need(String id,String name, String description, String type, double amount, boolean isInBasket, boolean isFunded) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
@@ -43,6 +46,9 @@ public class Need {
     // Getter & Setters
     public String getName() {
         return name;
+    }
+    public String getId() {
+        return id;
     }
     public void setName(String name) {
         this.name = name;

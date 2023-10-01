@@ -2,6 +2,8 @@ package com.ufund.api.ufundapi.controller;
 
 import com.ufund.api.ufundapi.model.Cupboard;
 import com.ufund.api.ufundapi.model.Need;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * SearchController.java
@@ -20,13 +22,17 @@ public class SearchController {
      * @param cupboard
      * @return
      */
-    public Need findNeedType(String type, Cupboard cupboard){
-        for(Need need : cupboard.getEntireCupboard().values()){
+    public List<Need> findNeedType(String type, Cupboard cupboard){
+        List<Need> toReturn = new ArrayList<>();
+        for(Need need : cupboard.getEntireCupboard()){
             if(need.getType() == type){
-                return need;
+                toReturn.add(need);
             }
         }
-        return null;
+        if(toReturn.size() == 0){
+            return null;
+        }
+        return toReturn;
     }
 
     /**
@@ -37,13 +43,17 @@ public class SearchController {
      * @param cupboard the cupboard being searched
      * @return retunrs the first need found matching the name. otherwise returns nothing
      */
-    public Need findNeedName(String name, Cupboard cupboard){
-        for(Need need : cupboard.getEntireCupboard().values()){
-            if(need.getName() == name){
-                return need;
+    public List<Need> findNeedName(String name, Cupboard cupboard){
+        List<Need> toReturn = new ArrayList<>();
+        for(Need need : cupboard.getEntireCupboard()){
+            if(need.getName().contains(name)){
+                toReturn.add(need);
             }
         }
-        return null;
+         if(toReturn.size() == 0){
+            return null;
+        }
+        return toReturn;
     }
 
     /**
@@ -54,13 +64,14 @@ public class SearchController {
      * @param cupboard
      * @return
      */
-    public Need findNeedAmount(double amount, Cupboard cupboard){
-        for(Need need : cupboard.getEntireCupboard().values()){
+    public List<Need> findNeedAmount(double amount, Cupboard cupboard){
+        List<Need> toReturn = new ArrayList<>();
+        for(Need need : cupboard.getEntireCupboard()){
             if(need.getAmount() == amount){
-                return need;
+                toReturn.add(need);
             }
         }
-        return null;
+        return toReturn;
     }
 
     /**
@@ -71,12 +82,16 @@ public class SearchController {
      * @param cupboard 
      * @return
      */
-    public Need findNeedStatus(boolean status, Cupboard cupboard){
-        for(Need need : cupboard.getEntireCupboard().values()){
+    public List<Need> findNeedStatus(boolean status, Cupboard cupboard){
+        List<Need> toReturn = new ArrayList<>();
+        for(Need need : cupboard.getEntireCupboard()){
             if(need.isInBasket() == status){
-                return need;
+                toReturn.add(need);
             }
         }
-        return null;
+        if(toReturn.size() == 0){
+            return null;
+        }
+        return toReturn;
     }
 }

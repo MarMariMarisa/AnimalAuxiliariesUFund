@@ -23,8 +23,8 @@ import com.ufund.api.ufundapi.model.Cupboard;
      * @param isFunded
      * @param cupboard
      */
-    public void createNeed(String name, String description, String type, double amount, boolean isInBasket, boolean isFunded, Cupboard cupboard) {
-        Need need = new Need(name, description, type, amount, isInBasket, isFunded); 
+    public void createNeed(String id,String name, String description, String type, double amount, boolean isInBasket, boolean isFunded, Cupboard cupboard) {
+        Need need = new Need(id,name, description, type, amount, isInBasket, isFunded); 
         cupboard.addNeed(need); 
     }
 
@@ -41,9 +41,13 @@ import com.ufund.api.ufundapi.model.Cupboard;
      * @param isFunded
      * @param cupboard
      */
-    public void updateNeed(String ogName, String name, String description, String type, double amount, boolean isInBasket, boolean isFunded, Cupboard cupboard) {
-        cupboard.removeNeed(ogName); 
-        cupboard.addNeed(new Need(name, description, type, amount, isInBasket, isFunded));        
+    public void updateNeed(Need need, String name, String description, String type, double amount, boolean isInBasket, boolean isFunded) {
+        need.setName(name);
+        need.setDescription(description);
+        need.setType(type);
+        need.setAmount(amount);
+        need.setInBasket(isInBasket);
+        need.setFunded(isFunded);  
     }
 
 
