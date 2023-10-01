@@ -47,10 +47,10 @@ public class SearchController {
     }
 
     /**
-     * findNeedAmmount
-     * Description: Searches entire cupboard and returns need matching the ammount specified
+     * findNeedAmount
+     * Description: Searches entire cupboard and returns need matching the amount specified
      * 
-     * @param ammount double value associated with the cost of a need to be searched for
+     * @param amount double value associated with the cost of a need to be searched for
      * @param cupboard
      * @return
      */
