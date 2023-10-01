@@ -54,9 +54,9 @@ public class SearchController {
      * @param cupboard
      * @return
      */
-    public Need findNeedAmmount(double ammount, Cupboard cupboard){
+    public Need findNeedAmount(double amount, Cupboard cupboard){
         for(Need need : cupboard.getEntireCupboard().values()){
-            if(need.getAmount() == ammount){
+            if(need.getAmount() == amount){
                 return need;
             }
         }
