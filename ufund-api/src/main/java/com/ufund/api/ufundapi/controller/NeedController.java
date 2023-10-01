@@ -28,18 +28,6 @@ import com.ufund.api.ufundapi.model.Cupboard;
         cupboard.addNeed(need); 
     }
 
-    /**
-     * gets the specified need from the specified cupboard
-     * 
-     * @param wantedNeed
-     * @param cupboard
-     * @return returns the Need object or Null if it does not exist in the given cupboard
-     */
-    //TO-DO decide if this is necessary in this class or if this should be reserved for the searchController class
-    public Need getNeed(Need wantedNeed, Cupboard cupboard) {
-        return cupboard.getNeed(wantedNeed);
-    }
-
     //TO-DO: I just feel like this could be implemented a little better 
     /**
      * updates the descriped Need in the given Cupboard 
@@ -53,8 +41,8 @@ import com.ufund.api.ufundapi.model.Cupboard;
      * @param isFunded
      * @param cupboard
      */
-    public void updateNeed(String name, String description, String type, double amount, boolean isInBasket, boolean isFunded, Cupboard cupboard) {
-        cupboard.removeNeed(name); 
+    public void updateNeed(String ogName, String name, String description, String type, double amount, boolean isInBasket, boolean isFunded, Cupboard cupboard) {
+        cupboard.removeNeed(ogName); 
         cupboard.addNeed(new Need(name, description, type, amount, isInBasket, isFunded));        
     }
 
