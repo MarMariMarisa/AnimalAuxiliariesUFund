@@ -107,7 +107,7 @@ public class NeedController {
      */
     @GetMapping("")
     public ResponseEntity<Need[]> getNeeds() {
-        LOG.info("GET /needes");
+        LOG.info("GET /needs");
 
         try{
             Need[] needs = needDao.getNeeds();
@@ -137,7 +137,7 @@ public class NeedController {
      */
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
-        LOG.info("POST /needes " + need);
+        LOG.info("POST /needs " + need);
         try{
             if(needDao.containsNeed(need.getName()) == false){
                 needDao.createNeed(need);
