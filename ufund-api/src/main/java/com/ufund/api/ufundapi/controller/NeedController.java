@@ -2,14 +2,12 @@ package com.ufund.api.ufundapi.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ufund.api.ufundapi.model.Need;
@@ -20,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 
 
 @RestController
@@ -51,7 +48,7 @@ public class NeedController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Need> getNeed(@PathVariable int id) {
-        LOG.info("GET /needes/" + id);
+        LOG.info("GET /needs/" + id);
         try {
             Need need = needDao.getNeed(id);
             if (need != null)
@@ -186,30 +183,5 @@ public class NeedController {
         }
     }
 
-    /**
-     * Deletes a {@linkplain Need need} with the given id
-     * 
-     * @param id The id of the {@link Need need} to deleted
-     * 
-     * @return ResponseEntity HTTP status of OK if deleted<br>
-     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
-     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
-     */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteNeed(@PathVariable int id) {
-        LOG.info("DELETE /needs/" + id);
-        try{
-        if(needDao.getNeed(id) != null){
-            needDao.deleteNeed(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+
 }
