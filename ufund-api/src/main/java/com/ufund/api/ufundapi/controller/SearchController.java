@@ -73,10 +73,10 @@ public class SearchController {
      * @param cupboard 
      * @return
      */
-    public List<Need> findNeedStatus(boolean status, Cupboard cupboard){
+    public List<Need> findNeedStatus(String status, Cupboard cupboard){
         List<Need> toReturn = new ArrayList<>();
         for(Need need : cupboard.getEntireCupboard()){
-            if(need.isInBasket() == status){
+            if(need.getInBasket() == status){
                 toReturn.add(need);
             }
         }

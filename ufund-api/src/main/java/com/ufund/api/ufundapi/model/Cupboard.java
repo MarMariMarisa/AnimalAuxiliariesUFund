@@ -41,6 +41,10 @@ public class Cupboard {
         return null;
     }
 
+    public boolean isEmpty(){
+        return currentNeeds.values().size() == 0;
+    }
+
     /**
      * getNeedsOnName
      * Description: The function returns a list of needs whose names contain the given text

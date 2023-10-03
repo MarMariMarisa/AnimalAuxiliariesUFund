@@ -214,9 +214,11 @@ public class NeedFileDAO implements NeedDAO {
     @Override
     public boolean containsNeed(String name){
         for(int key : needs.keySet()){
-
+            if(needs.get(key).getName() == name){
+                return true;
+            }
+        }
+        return false;
         }
 
-        }
     }
-}
