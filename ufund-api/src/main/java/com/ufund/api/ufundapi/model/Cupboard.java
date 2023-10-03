@@ -29,9 +29,9 @@ public class Cupboard {
     * @param wantedNeed requested need
     * @return returns wanted need from the cupboard
     */
-    public Need getNeed(Need wantedNeed){
-        if(wantedNeed != null && wantedNeed.getName() != null){
-            return currentNeeds.get(wantedNeed.getName());
+    public Need getNeed(String name){
+        if(name != null){
+            return currentNeeds.get(name);
         }
         return null;
     }
@@ -47,7 +47,9 @@ public class Cupboard {
         List<Need> matchingNeeds = new ArrayList<>();
         if(goalText != null){
             for(Need need : currentNeeds.values()){
-                matchingNeeds.add(need);
+                if(need.nameContains(goalText)){
+                    matchingNeeds.add(need);
+                }              
             }
         }
         return matchingNeeds;
@@ -60,8 +62,7 @@ public class Cupboard {
      * @return A list of objects of type Need is being returned.
      */
     public List<Need> getEntireCupboard(){
-        List<Need> list = new ArrayList<Need>(currentNeeds.values());
-        return list;
+        return new ArrayList<Need>(currentNeeds.values());
     }
 
     /**

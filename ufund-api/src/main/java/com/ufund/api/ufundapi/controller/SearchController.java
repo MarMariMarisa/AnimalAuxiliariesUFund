@@ -44,16 +44,7 @@ public class SearchController {
      * @return retunrs the first need found matching the name. otherwise returns nothing
      */
     public List<Need> findNeedName(String name, Cupboard cupboard){
-        List<Need> toReturn = new ArrayList<>();
-        for(Need need : cupboard.getEntireCupboard()){
-            if(need.getName().contains(name)){
-                toReturn.add(need);
-            }
-        }
-         if(toReturn.size() == 0){
-            return null;
-        }
-        return toReturn;
+        return cupboard.getNeedsOnName(name);
     }
 
     /**
@@ -93,5 +84,9 @@ public class SearchController {
             return null;
         }
         return toReturn;
+    }
+
+    public List<Need> getEntireCupboard(Cupboard cupboard){
+        return cupboard.getEntireCupboard();
     }
 }

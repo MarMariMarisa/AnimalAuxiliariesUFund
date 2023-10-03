@@ -83,4 +83,13 @@ public class Need {
     public void setFunded(boolean isFunded) {
         this.isFunded = isFunded;
     }
+
+    public String toString() {
+        return "Need: " + name +
+                "\n\tDescription='" + description + '\'' +
+                "\n\tType='" + type + '\'' +
+                "\n\tAmount=" + amount +
+                "\n\tIsInBasket=" + isInBasket +
+                "\n\tIsFunded=" + isFunded;
+    }
 }

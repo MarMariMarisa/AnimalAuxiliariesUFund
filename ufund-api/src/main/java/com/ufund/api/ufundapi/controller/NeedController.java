@@ -12,6 +12,9 @@ import com.ufund.api.ufundapi.model.Cupboard;
 
  public class NeedController {
 
+    public NeedController(){
+
+    }
     /**
      * Creates a need and adds it to the given cupboard
      * 
@@ -41,13 +44,15 @@ import com.ufund.api.ufundapi.model.Cupboard;
      * @param isFunded
      * @param cupboard
      */
-    public void updateNeed(Need need, String name, String description, String type, double amount, boolean isInBasket, boolean isFunded) {
+    public void updateNeed(String originalName, String name, String description, String type, double amount, boolean isInBasket, boolean isFunded, Cupboard cupboard) {
+        Need need = cupboard.getNeed(originalName);
         need.setName(name);
         need.setDescription(description);
         need.setType(type);
         need.setAmount(amount);
         need.setInBasket(isInBasket);
         need.setFunded(isFunded);  
+        cupboard.addNeed(need);
     }
 
 
@@ -55,13 +60,13 @@ import com.ufund.api.ufundapi.model.Cupboard;
     //TO-DO cannot implement because the cupboard class does not have a retired needs data structure 
     
     /**
-     * destroys the given Need from the given Cupboard 
+     * removes the given Need from the given Cupboard 
      * 
      * @param needName
      * @param cupboard
      * @return true if the Need is sucessful removed, false if the Need does not exist in the specified Cupboard
      */
-    public boolean destroyNeed(String needName, Cupboard cupboard) {
+    public boolean removeNeed(String needName, Cupboard cupboard) {
         return cupboard.removeNeed(needName); 
     }
 
