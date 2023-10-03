@@ -70,6 +70,8 @@ To run tests on all the tiers in isolation do this:
 4. ...
 5. ...
 
+## Design Principles 
+We are championing the principles of single responsibility and controllers 
 ## License
 
 MIT License

@@ -9,12 +9,13 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
-* Team name: TEAMNAME
+* Team name: 2231-swen-261-05-2b-animal-auxiliaries
 * Team members
-  * MEMBER1
-  * MEMBER2
-  * MEMBER3
-  * MEMBER4
+  * Chase Balmer
+  * Sarah Payne
+  * Marisa Ortiz
+  * Tyler Combs 
+  * Tszfai Choy
 
 ## Executive Summary
 
