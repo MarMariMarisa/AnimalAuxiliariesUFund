@@ -41,19 +41,19 @@ class UfundApiApplicationTests {
     public void testCupboard(){
         cupboard.addNeed(needOne);
         cupboard.addNeed(needTwo);
-        //assertEquals(cupboard.getNeed(needOne), needOne);
-        //assertEquals(cupboard.getNeed(needTwo),needTwo);
+        assertEquals(cupboard.getNeed(needOne.getName()), needOne);
+        assertEquals(cupboard.getNeed(needTwo.getName()),needTwo);
 
         List<Need> actualNeeds = new ArrayList<>();
         actualNeeds.add(needOne);
         actualNeeds.add(needTwo);
 
-        // assertEquals(cupboard.getEntireCupboard(),actualNeeds);
-        // controller.updateNeed(needOne,"New Name!!", description, type, amount, isInBasket, isFunded);
-        // assertEquals(cupboard.getNeed(needOne).getName(),"New Name!!");
+        assertEquals(cupboard.getEntireCupboard(),actualNeeds);
+        controller.updateNeed(needOne.getName(),"New Name!!", description, type, amount, isInBasket, isFunded);
+        assertEquals(cupboard.getNeed(needOne.getName()).getName(),"New Name!!");
 
-        // cupboard.removeNeed("New Name!!");
-        // assertEquals(cupboard.getNeed(needOne),null);
+        cupboard.removeNeed("New Name!!");
+        assertEquals(cupboard.getNeed(needOne),null);
 
 
     }
