@@ -76,17 +76,17 @@ public class NeedController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * <p>
      * Example: Find all needes that contain the text "ma"
-     * GET http://localhost:8080/needes/?name=ma
+     * GET http://localhost:8080/needs/?name=ma
      */
     @GetMapping("/?name={name}")
-    public ResponseEntity<Need[]> searchNeedes(@PathVariable String name) {
+    public ResponseEntity<Need[]> searchNeeds(@PathVariable String name) {
         LOG.info("GET /?name="+name);
         try{
             Need[] needs = needDao.getNeeds();
             List<Need> needsList = new ArrayList<Need>();
             for(int i = 0;i< needs.length;i++){
                if(needs[i].getName().contains(name)){
-                    // needsList.add(needs[i]);   
+                    needsList.add(needs[i]);   
                }
             }
             if (needsList.isEmpty() != true){
@@ -109,7 +109,7 @@ public class NeedController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Need[]> getNeedes() {
+    public ResponseEntity<Need[]> getNeeds() {
         LOG.info("GET /needes");
 
         try{
@@ -142,8 +142,11 @@ public class NeedController {
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /needes " + need);
         try{
-            needDao.createNeed(need);
-            return new ResponseEntity<Need>(need,HttpStatus.OK);
+            if(needDao.containsNeed(need.getName()) == false){
+                needDao.createNeed(need);
+                return new ResponseEntity<Need>(need,HttpStatus.CREATED);
+            }
+            return new ResponseEntity<Need>(need,HttpStatus.CONFLICT);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -161,11 +164,16 @@ public class NeedController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
-        LOG.info("PUT /needes " + need);
+    public ResponseEntity<Need> updateNeed(@RequestBody Need need,@RequestBody Need updatedNeed) {
+        LOG.info("PUT /needs " + need);
         try{
         if(needDao.getNeed(need.getId()) != null){
-            needDao.getNeed(need.getId()).setName(need.getName());
+            needDao.getNeed(need.getId()).setName(updatedNeed.getName());
+            needDao.getNeed(need.getId()).setDescription(updatedNeed.getDescription());
+            needDao.getNeed(need.getId()).setType(updatedNeed.getType());
+            needDao.getNeed(need.getId()).setAmount(updatedNeed.getAmount());
+            needDao.getNeed(need.getId()).setIsFunded(updatedNeed.getIsFunded());
+            needDao.getNeed(need.getId()).setIsInBasket(updatedNeed.getInBasket());
             return new ResponseEntity<Need>(needDao.getNeed(need.getId()),HttpStatus.OK);
         }
         else{
@@ -189,7 +197,7 @@ public class NeedController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteNeed(@PathVariable int id) {
-        LOG.info("DELETE /needes/" + id);
+        LOG.info("DELETE /needs/" + id);
         try{
         if(needDao.getNeed(id) != null){
             needDao.deleteNeed(id);

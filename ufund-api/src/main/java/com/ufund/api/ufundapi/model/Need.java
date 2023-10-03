@@ -2,11 +2,6 @@ package com.ufund.api.ufundapi.model;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-/**
- * Represents a Hero entity
- * 
- * @author SWEN Faculty
- */
 public class Need {
     private static final Logger LOG = Logger.getLogger(Need.class.getName());
 

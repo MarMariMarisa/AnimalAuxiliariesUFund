@@ -76,4 +76,6 @@ public interface NeedDAO {
      * @throws IOException if underlying storage cannot be accessed
      */
     boolean deleteNeed(int id) throws IOException;
+
+    boolean containsNeed(String name);
 }

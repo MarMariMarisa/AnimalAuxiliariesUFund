@@ -1,5 +1,10 @@
 package com.ufund.api.ufundapi.model;
 
+package com.ufund.api.ufundapi.model;
+import java.util.logging.Logger;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +18,7 @@ import java.util.Map;
  */
 public class Cupboard {
     // Private State
-    private Map<String, Need> currentNeeds;     /*Needs that are not yet funded */
+    @JsonProperty("currentNeeds") private Map<String,Need> currentNeeds;    /*Needs that are not yet funded */
     private final int INITIAL_SIZE = 45;
 
     // Constructor 
@@ -47,7 +52,7 @@ public class Cupboard {
         List<Need> matchingNeeds = new ArrayList<>();
         if(goalText != null){
             for(Need need : currentNeeds.values()){
-                if(need.nameContains(goalText)){
+                if(need.getName().contains(goalText)){
                     matchingNeeds.add(need);
                 }              
             }
