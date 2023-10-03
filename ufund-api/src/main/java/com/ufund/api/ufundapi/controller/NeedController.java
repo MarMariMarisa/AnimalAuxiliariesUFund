@@ -134,21 +134,7 @@ public class NeedController {
      * ResponseEntity with HTTP status of CONFLICT if {@link Need need} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @PostMapping("")
-    public ResponseEntity<Need> createNeed(@RequestBody Need need) {
-        LOG.info("POST /needs " + need);
-        try{
-            if(needDao.containsNeed(need.getName()) == false){
-                needDao.createNeed(need);
-                return new ResponseEntity<Need>(need,HttpStatus.CREATED);
-            }
-            return new ResponseEntity<Need>(need,HttpStatus.CONFLICT);
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+    
 
     /**
      * Updates the {@linkplain Need need} with the provided {@linkplain Need need} object, if it exists
@@ -159,28 +145,5 @@ public class NeedController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @PutMapping("")
-    public ResponseEntity<Need> updateNeed(@RequestBody Need need,@RequestBody Need updatedNeed) {
-        LOG.info("PUT /needs " + need);
-        try{
-        if(needDao.getNeed(need.getId()) != null){
-            needDao.getNeed(need.getId()).setName(updatedNeed.getName());
-            needDao.getNeed(need.getId()).setDescription(updatedNeed.getDescription());
-            needDao.getNeed(need.getId()).setType(updatedNeed.getType());
-            needDao.getNeed(need.getId()).setAmount(updatedNeed.getAmount());
-            needDao.getNeed(need.getId()).setIsFunded(updatedNeed.getIsFunded());
-            needDao.getNeed(need.getId()).setIsInBasket(updatedNeed.getInBasket());
-            return new ResponseEntity<Need>(needDao.getNeed(need.getId()),HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 
 }

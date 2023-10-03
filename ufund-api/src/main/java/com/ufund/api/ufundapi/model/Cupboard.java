@@ -94,6 +94,16 @@ public class Cupboard {
         return false;
     }
 
+    public boolean updateNeed(Need need){
+        if(currentNeeds.containsKey(need.getName())){
+            currentNeeds.put(need.getName(), need);
+            return true;
+        }
+        return false;
+    }
+
+
+
     /**
      * This function removes a need from a collection of needs and returns true if the need was
      * successfully removed.

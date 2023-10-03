@@ -26,6 +26,10 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 4.  _add any other steps required or examples of how to use/run_
 
 ## Known bugs and disclaimers
+
+Deleting a need from the cupboard only works if the need name has no spaces in it. 
+Updating a need works for all values except for the name. 
+
 (It may be the case that your implementation is not perfect.)
 
 Document any known bug or nuisance.
