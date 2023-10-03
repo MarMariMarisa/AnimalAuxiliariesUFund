@@ -1,8 +1,8 @@
 // package com.ufund.api.ufundapi;
 
-// import java.util.ArrayList;
-// import java.util.List;
-// import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 // import com.ufund.api.ufundapi.controller.NeedController;
 // import com.ufund.api.ufundapi.controller.SearchController;
@@ -84,13 +84,13 @@
 //         System.out.print("\033[H\033[2J");  
 //         System.out.flush();  
 
-//         // Update a need 
-//         needController.updateNeed(nameThree, nameThree, descriptionThree, typeTwo, 500, isInBasket, isFunded, cupboard);
-//         System.out.println("Here is the entire cupboard after updating cat toys:");
-//         printCupboard(cupboard, searchController);
-//         reader.nextLine();
-//         System.out.print("\033[H\033[2J");  
-//         System.out.flush();  
+        // Update a need 
+        needController.updateNeed(nameThree, nameThree, descriptionThree, typeTwo, 500, isInBasket, isFunded, cupboard);
+        System.out.println("Here is the entire cupboard after updating cat toys:");
+        printCupboard(cupboard, searchController);
+        reader.nextLine();
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
 
 
 //     }
