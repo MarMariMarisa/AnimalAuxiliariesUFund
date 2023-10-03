@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ufund.api.ufundapi.model.Need;
@@ -75,9 +76,9 @@ public class NeedController {
      * Example: Find all needes that contain the text "ma"
      * GET http://localhost:8080/needs/?name=ma
      */
-    @GetMapping("/?name={name}")
-    public ResponseEntity<Need[]> searchNeeds(@PathVariable String name) {
-        LOG.info("GET /?name="+name);
+    @GetMapping("/")
+    public ResponseEntity<Need[]> searchNeeds(@RequestParam String name) {
+        LOG.info("GET /?name=" + name);
         try{
             Need[] needs = needDao.getNeeds();
             List<Need> needsList = new ArrayList<Need>();
@@ -107,7 +108,7 @@ public class NeedController {
      */
     @GetMapping("")
     public ResponseEntity<Need[]> getNeeds() {
-        LOG.info("GET /needes");
+        LOG.info("GET /needs");
 
         try{
             Need[] needs = needDao.getNeeds();
@@ -124,20 +125,18 @@ public class NeedController {
         }
     }
 
-   
-
     /**
      * Creates a {@linkplain Need need} with the provided need object
      * 
      * @param need - The {@link Need need} to create
      * 
-     * @return ResponseEntity with created {@link Need need} object and HTTP status of CREATED<br>
+     * @return ResponseEntity with createds {@link Need need} object and HTTP status of CREATED<br>
      * ResponseEntity with HTTP status of CONFLICT if {@link Need need} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
-        LOG.info("POST /needes " + need);
+        LOG.info("POST /needs " + need);
         try{
             if(needDao.containsNeed(need.getName()) == false){
                 needDao.createNeed(need);

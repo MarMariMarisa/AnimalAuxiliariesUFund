@@ -26,28 +26,28 @@ public class CupboardController {
         this.cupboard = cupboard;
     }
 
-    @GetMapping("/inventory")
+    @GetMapping("")
     public ResponseEntity<List<Need>> getEntireCupboard() {
-        LOG.info("GET /inventory");
+        LOG.info("GET /cupboard");
             if (cupboard.isEmpty() == false){
                 return new ResponseEntity<List<Need>>(cupboard.getEntireCupboard(),HttpStatus.OK);
             }   
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    @GetMapping("/search/?type={type}")
+    @GetMapping("/search/?type=")
      public ResponseEntity<List<Need>> findNeedType(@PathVariable String type) {
-        LOG.info("GET /?type="+type);
+        LOG.info("GET search/?type="+type);
         return new ResponseEntity<List<Need>>(searchController.findNeedType(type, cupboard),HttpStatus.OK);
     }
-    @GetMapping("/search/?name={name}")
+    @GetMapping("/search/?name=")
      public ResponseEntity<List<Need>> findNeedName(@PathVariable String name) {
-        LOG.info("GET /?name="+name);
+        LOG.info("GET search/?name="+name);
         return new ResponseEntity<List<Need>>(searchController.findNeedName(name, cupboard),HttpStatus.OK);
     }
-    @GetMapping("/search/?amount={amount}")
+    @GetMapping("/search/?amount=")
      public ResponseEntity<List<Need>> findNeedAmount(@PathVariable double amount) {
-        LOG.info("GET /?amount="+amount);
+        LOG.info("GET search/?amount="+amount);
         return new ResponseEntity<List<Need>>(searchController.findNeedAmount(amount, cupboard),HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
