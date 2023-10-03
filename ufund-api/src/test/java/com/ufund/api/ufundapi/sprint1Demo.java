@@ -1,6 +1,5 @@
 package com.ufund.api.ufundapi;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -91,6 +90,7 @@ public class sprint1Demo {
         reader.nextLine();
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
+        reader.close();
 
 
     }
