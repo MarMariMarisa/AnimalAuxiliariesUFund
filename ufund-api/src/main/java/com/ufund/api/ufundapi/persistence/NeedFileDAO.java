@@ -137,7 +137,7 @@ public class NeedFileDAO implements NeedDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Need[] getNeeds() {
+    public Need[] getNeeds() throws IOException {
         synchronized(needs) {
             return getNeedsArray();
         }
@@ -147,7 +147,7 @@ public class NeedFileDAO implements NeedDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Need[] findNeeds(String containsText) {
+    public Need[] findNeeds(String containsText) throws IOException{
         synchronized(needs) {
             return getNeedsArray(containsText);
         }
@@ -157,7 +157,7 @@ public class NeedFileDAO implements NeedDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Need getNeed(int id) {
+    public Need getNeed(int id) throws IOException{
         synchronized(needs) {
             if (needs.containsKey(id))
                 return needs.get(id);
@@ -212,7 +212,7 @@ public class NeedFileDAO implements NeedDAO {
     }
 
     @Override
-    public boolean containsNeed(String name){
+    public boolean containsNeed(String name) {
         for(int key : needs.keySet()){
             if(needs.get(key).getName() == name){
                 return true;
