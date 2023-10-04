@@ -26,17 +26,19 @@ public class CupboardControllerTest {
     @BeforeEach
     public void setupCupboardController() throws IOException{
         mockNeedDAO = mock(NeedFileDAO.class);
-        cupboardController = new CupboardController(cupboard, mockNeedDAO);
+        cupboardController = mock(CupboardController.class);
     }
 
     @Test
     public void testGetEntireCupboard() throws IOException{
         // Setup
 
+
         // Invoke
-        
+        ResponseEntity<List<Need>> response = cupboardController.getEntireCupboard();
 
         // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
     }
     @Test
     public void testSearchOnName(){
