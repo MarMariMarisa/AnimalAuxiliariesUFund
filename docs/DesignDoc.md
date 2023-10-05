@@ -55,7 +55,7 @@ This section describes the features of the application.
 
 This section describes the application domain.
 
-![Domain Model](domain-model-placeholder.png)
+![Domain Model](domain-model.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
@@ -71,7 +71,7 @@ This section describes the application architecture.
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
 **NOTE**: detailed diagrams are required in later sections of this document. (_When requested, replace this diagram with your **own** rendition and representations of sample classes of your system_.) 
 
-![The Tiers & Layers of the Architecture](architecture-tiers-and-layers.png)
+![The Tiers & Layers of the Architecture](architecture-tiers-layers.png)
 
 The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
