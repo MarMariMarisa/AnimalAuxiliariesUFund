@@ -11,6 +11,9 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Tyler Combs
 - Sarah Payne
 
+# Changes / Improvements 
+Taking advantage of the granted extensions, we have updated our readMe and designDoc. In the 1st extension, we updated some logic around our cupboardController to bolster against mishandling of "less than perfect" inputs.
+
 ## Prerequisites
 
 - Java 11=>17 (Make sure to have correct JAVA_HOME setup in your environment)
@@ -27,13 +30,9 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 
 ## Known bugs and disclaimers
 
-Deleting a need from the cupboard only works if the need name has no spaces in it. 
-Updating a need works for all values except for the name. 
+Needs names should be created without spaces in order for delete to work correctly.
+Need names are not updatable. 
 
-(It may be the case that your implementation is not perfect.)
-
-Document any known bug or nuisance.
-If any shortcomings, make clear what these are and where they are located.
 
 ## How to test it
 
@@ -75,9 +74,10 @@ To run tests on all the tiers in isolation do this:
 5. ...
 
 ## Design Principles 
-We are championing the principles of single responsibility and controllers 
+We are championing the principles of single responsibility and controllers. 
+The controller principle is applied in our design by separating the user interface from the business logic of the application. Controllers handle user input/actions and interact with the models and views. They facilitate communication between the user interface and the underlying system components. An example of this in our system is our cupboardController, the took handling adding/removing/edting needs in the cupboard. 
+The single responsibility principle is implemented in our design through the means of keeping classes as small as possible. Every class or object we create should only do one thing, it should only have one responsibility. An example of this could be our cupboard controller, its only job is manipulating the needs in the cupboard. It does not hold the logic for doing these things, its only responsibility is to call the correct methods to make the manipulations happen.
+
 ## License
-
 MIT License
-
 See LICENSE for details.
