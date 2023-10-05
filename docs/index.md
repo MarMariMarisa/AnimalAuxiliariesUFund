@@ -1,11 +1,13 @@
-# PROJECT Home
+# U-Fund Project Home
 
-Welcome to the PROJECT Project!
+Welcome to the U-Fund Project!
 
 ## Team
-
-* MEMBER1
-* MEMBER2
+  * Chase Balmer
+  * Sarah Payne
+  * Marisa Ortiz
+  * Tyler Combs 
+  * Tszfai Choy
 
 ## [Design Documentation](DesignDoc)
 
