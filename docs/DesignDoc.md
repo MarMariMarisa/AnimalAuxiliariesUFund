@@ -71,7 +71,7 @@ This section describes the application architecture.
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
 **NOTE**: detailed diagrams are required in later sections of this document. (_When requested, replace this diagram with your **own** rendition and representations of sample classes of your system_.) 
 
-![The Tiers & Layers of the Architecture](architecture-tiers-layers.png)
+![The Tiers & Layers of the Architecture](architecutre-tiers-layers.png)
 
 The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
