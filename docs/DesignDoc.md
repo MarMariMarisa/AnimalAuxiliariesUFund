@@ -19,7 +19,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This is a summary of the project.
+This project is a U-Fund website that is to be used by a local animal shelter/humane society. This website provides tools for a welcoming and supportive community with the purpose of helping homeless animals. Managers run the needs page, indicating the current needs of the organization. This may include funding equipment purchases, purchasing food, etc. Helpers may view these needs and contribute through funding. We hope that our product will enable members of our community to help these innocent animals and provide them with the things they need, or even a home. The websites backend is built in Java-Spring, the frontend with Angular. 
 
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
@@ -34,8 +34,26 @@ This is a summary of the project.
 
 
 ## Requirements
+Webpage displaying and enabling all of the following things:
 
-This section describes the features of the application.
+Authentication for Helper/U-fund Manager login & logout will enable necessary privledges for a user. 
+
+Helpers have the following abilities:
+  Helper can see list of needs
+  Helper can search for a need
+  Helper can add/remove an need to their funding basket
+  Helper can proceed to check-out and fund all needs they are supporting
+
+Managers have the following abilities:
+  Manager(s) can add, remove and edit the data of all their needs stored in their needs cupboard
+  U-fund Manager cannot see contents of funding basket(s)
+
+Data Persistence
+  The system saves all information to files so that changes are reflected for all users. 
+
+Your 10% additional feature enchantment(s)
+  Adoption Site 
+  Community Board
 
 > _In this section you do not need to be exhaustive and list every
 > story.  Focus on top-level features from the Vision document and
@@ -63,7 +81,7 @@ This section describes the application domain.
 
 
 ## Architecture and Design
-
+TODO!!!
 This section describes the application architecture.
 
 ### Summary
