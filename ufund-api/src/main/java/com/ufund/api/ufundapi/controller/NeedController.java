@@ -4,9 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -81,12 +78,14 @@ public class NeedController {
         LOG.info("GET /?name=" + name);
         try{
             Need[] needs = needDao.getNeeds();
+            if(needs==null) return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             List<Need> needsList = new ArrayList<Need>();
             for(int i = 0;i< needs.length;i++){
                if(needs[i].getName().contains(name)){
                     needsList.add(needs[i]);   
                }
             }
+            
             if (needsList.isEmpty() != true){
                 Need[] arr1 = needsList.toArray(new Need[needsList.size()]); 
                 return new ResponseEntity<Need[]>(arr1,HttpStatus.OK);
