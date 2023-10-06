@@ -12,7 +12,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Sarah Payne
 
 # Changes / Improvements 
-Release 1.3
+Release 1.2
 Taking advantage of the granted extensions, we have updated our readMe and designDoc. In the 1st extension, we updated some logic around our cupboardController to bolster against mishandling of "less than perfect" inputs.
 
 ## Prerequisites
