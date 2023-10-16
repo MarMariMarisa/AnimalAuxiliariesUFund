@@ -1,5 +1,6 @@
 package com.ufund.api.ufundapi.model;
 import java.util.logging.Logger;
+import java.util.UUID; 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 public class Need {
@@ -8,42 +9,92 @@ public class Need {
     // Package private for tests
     static final String STRING_FORMAT = "Need [id=%d, name=%s,description=%s,type=%s,amount=%d,isInBasket=%s,isFunded=%s]";
 
-    @JsonProperty("id") private int id;
+    @JsonProperty("id") private String id;
     @JsonProperty("name") private String name;
     @JsonProperty("description") private String description;
     @JsonProperty("type") private String type;
-    @JsonProperty("amount") private int amount;
-    @JsonProperty("isInBasket") private String isInBasket;
-    @JsonProperty("isFunded") private String isFunded;
+    @JsonProperty("amount") private float price;
+    //number of this need to be listed as available
+    @JsonProperty("quantity") private int quantity; 
+    @JsonProperty("numInBaskets") private int numInBaskets;
+    @JsonProperty("isFunded") private int quantityFunded;
+
+    private static final String DEFAULT_NAME = "Need"; 
+    private static final String DEFAULT_DESCRIPTION = ""; 
+    private static final String DEFAULT_TYPE = "equiptment"; 
+    private static final float DEFAULT_PRICE = 1; 
+    private static final int DEFAULT_QUANTITY = 1; 
+    private static final int DEFAULT_NUM_IN_BASKETS = 0; 
+    private static final int DEFAULT_QUANTITY_FUNDED = 0; 
 
     /**
-     * Create a need with the given id,name,description,type,and amount
-     * @param id The id of the need
+     * Create a need with all default values 
+     */
+    public Need() {
+        this.id = UUID.randomUUID().toString(); 
+        this.name = DEFAULT_NAME; 
+        this.description = DEFAULT_DESCRIPTION; 
+        this.type = DEFAULT_TYPE; 
+        this.price = DEFAULT_PRICE; 
+        this.quantity = DEFAULT_QUANTITY; 
+        this.numInBaskets = DEFAULT_NUM_IN_BASKETS; 
+        this.quantityFunded = DEFAULT_QUANTITY_FUNDED; 
+    }
+
+
+    /**
+     * Create a need with the given name,description,type, price, and quantity 
      * @param name The name of the need
      * @param description
      * @param type
-     * @param amount
+     * @param price
+     * @param quantity
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Need(@JsonProperty("id") int id, @JsonProperty("name") String name,@JsonProperty("description") String description,@JsonProperty("type") String type,@JsonProperty("amount") int amount) {
-        this.id = id;
-        this.name = name;
+    public Need(@JsonProperty("name") String name,@JsonProperty("description") String description,@JsonProperty("type") String type,@JsonProperty("price") float price, @JsonProperty("quantity") int quantity) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name; s
         this.description = description;
         this.type = type;
-        this.amount = amount;
-        this.isFunded = "False";
-        this.isInBasket = "False";
+        this.price = price;
+        this.quantity = quantity; 
+        this.numInBaskets = DEFAULT_NUM_IN_BASKETS; 
+        this.quantityFunded = DEFAULT_QUANTITY_FUNDED; 
     }
-
+    /**
+     * Retrieves the decimal ratio of how many of the needs have been funded out of the total quantity needed 
+     * @return the percentage of the available quantity of needs that have been funded 
+     */
+    public float getPercentFunded() {
+        return (float)quantityFunded/(float)quantity; 
+    }
+    /**
+     * Returns true if the full quantity of needs have been placed in a Helper basket, false if not 
+     * @return boolean
+     */
+    public boolean getAllInBasket() {
+        if(quantity == numInBaskets)
+            return true; 
+        return false; 
+    }
+    /**
+     * Returns true if the full quantity of needs has been funded, false otherwise 
+     * @return boolean
+     */
+    public boolean getAllFunded() {
+        if(quantity == quantityFunded) 
+            return true; 
+        return false; 
+    }
     /**
      * Retrieves the id of the need
      * @return The id of the need
      */
-    public int getId(){
+    public String getId(){
         return id;
     }
     /**
@@ -68,27 +119,33 @@ public class Need {
         return type;
     }
     /**
-     * Retrieves the amount of the need
-     * @return The amount of the need
+     * Retrieves the price of the need
+     * @return The price of the need
      */
-    public int getAmount(){
-        return amount;
+    public float getPrice(){
+        return price;
     }
     /**
-     * Retrieves the is funded of the need
-     * @return The is funded of the need
+     * Retrieves the quantity of the nees
+     * @return The quantity of the need
      */
-    public String getIsFunded(){
-        return isFunded;
+    public int getQuantity() {
+        return quantity;
     }
     /**
-     * Retrieves the in basket state of the need
-     * @return The in basket state of the need
+     * Retrieves the number of Helper baskets that the need is placed in 
+     * @return the number of Helper baskets that the need is placed in 
      */
-    public String getInBasket(){
-        return isInBasket;
+    public int getNumInBaskets() {
+        return numInBaskets; 
     }
-
+    /**
+     * Retreives the number of times that the need has been funded/bought
+     * @return the number of times that the need has been funded/bought 
+     */
+    public int getQuantityFunded() {
+        return quantityFunded; 
+    }
     public void setName(String name){
         this.name = name;
     }
@@ -98,22 +155,23 @@ public class Need {
     public void setType(String type){
         this.type = type;
     }
-    public void setAmount(int amount){
-        this.amount = amount;
+    public void setPrice(float price){
+        this.price = price;
     }
-    public void setIsFunded(String isFunded){
-        this.isFunded = isFunded;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity; 
     }
-    public void setIsInBasket(String isInBasket){
-        this.isInBasket = isInBasket;
+    public void setNumInBaskets(int numInBaskets) {
+        this.numInBaskets = numInBaskets; 
     }
-    
-
+    public void setQuantityFunded(int quantityFunded) {
+        this.quantityFunded = quantityFunded; 
+    }
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name,description,type,amount,isFunded,isInBasket);
+        return String.format(STRING_FORMAT,id,name,description,type,price,quantity,numInBaskets,quantityFunded);
     }
 }
