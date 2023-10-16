@@ -57,7 +57,7 @@ public class Need {
      */
     public Need(@JsonProperty("name") String name,@JsonProperty("description") String description,@JsonProperty("type") String type,@JsonProperty("price") float price, @JsonProperty("quantity") int quantity) {
         this.id = UUID.randomUUID().toString();
-        this.name = name; s
+        this.name = name; 
         this.description = description;
         this.type = type;
         this.price = price;
