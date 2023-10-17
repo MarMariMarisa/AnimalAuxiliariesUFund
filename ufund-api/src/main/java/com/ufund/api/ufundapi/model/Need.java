@@ -25,7 +25,7 @@ public class Need {
     @JsonProperty("type")
     private String type;
     @JsonProperty("amount")
-    private float price;
+    private double price;
     // number of this need to be listed as available
     @JsonProperty("quantity")
     private int quantity;
@@ -90,7 +90,7 @@ public class Need {
      *         funded
      */
     public float getPercentFunded() {
-        return (float) quantityFunded / (float) quantity;
+        return ((float) quantityFunded / (float) quantity)*100;
     }
 
     /**
@@ -157,7 +157,7 @@ public class Need {
      * 
      * @return The price of the need
      */
-    public float getPrice() {
+    public double getPrice() {
         return this.price;
     }
 
