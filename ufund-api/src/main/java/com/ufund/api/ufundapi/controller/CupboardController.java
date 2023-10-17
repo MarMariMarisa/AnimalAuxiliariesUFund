@@ -22,9 +22,8 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping("cupboard")
 public class CupboardController {
-    private static final Logger LOG = Logger.getLogger(NeedController.class.getName());
+    private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
     private Cupboard cupboard;
-    private SearchController searchController = new SearchController();
     private NeedFileDAO needDAO;
 
     public CupboardController(Cupboard cupboard, NeedFileDAO needDAO) throws IOException {
@@ -48,7 +47,7 @@ public class CupboardController {
     @GetMapping("/")
     public ResponseEntity<List<Need>> searchOnName(@RequestParam String name) {
         LOG.info("GET /?name=" + name);
-            return new ResponseEntity<List<Need>>(searchController.findNeedName(name, cupboard), HttpStatus.OK);
+            return new ResponseEntity<List<Need>>(cupboard.getNeedsOnName(name), HttpStatus.OK);
     }
 
     @PutMapping("")
@@ -70,10 +69,10 @@ public class CupboardController {
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/")
-    public ResponseEntity<HttpStatus> deleteNeed(@RequestParam String name) {
-        LOG.info("DELETE /?name=" + name);
-        if (cupboard.getNeed(name) != null) {
-            if(cupboard.removeNeed(name))
+    public ResponseEntity<HttpStatus> deleteNeed(@RequestParam String id) {
+        LOG.info("DELETE /?name=" + id);
+        if (cupboard.getNeedOnID(id) != null) {
+            if(cupboard.removeNeed(id))
                 return new ResponseEntity<>(HttpStatus.OK);
         } 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -83,7 +82,7 @@ public class CupboardController {
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need);
-            if (cupboard.getNeed(need.getName()) == null) {
+            if (cupboard.getNeedOnID(need.getId()) == null) {
                 if(cupboard.addNeed(need)){
                     return new ResponseEntity<Need>(need, HttpStatus.CREATED);
                 }
