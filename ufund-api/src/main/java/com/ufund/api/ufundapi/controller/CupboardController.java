@@ -69,10 +69,10 @@ public class CupboardController {
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/")
-    public ResponseEntity<HttpStatus> deleteNeed(@RequestParam String id) {
-        LOG.info("DELETE /?name=" + id);
-        if (cupboard.getNeedOnID(id) != null) {
-            if(cupboard.removeNeed(id))
+    public ResponseEntity<HttpStatus> deleteNeed(@RequestParam String name) {
+        LOG.info("DELETE /?name=" + name);
+        if (cupboard.getNeedsOnName(name) != null) {
+            if(cupboard.removeNeed(name))
                 return new ResponseEntity<>(HttpStatus.OK);
         } 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -86,7 +86,6 @@ public class CupboardController {
                 if(cupboard.addNeed(need)){
                     return new ResponseEntity<Need>(need, HttpStatus.CREATED);
                 }
-                    
             }
             return new ResponseEntity<Need>(need, HttpStatus.CONFLICT);
     }
