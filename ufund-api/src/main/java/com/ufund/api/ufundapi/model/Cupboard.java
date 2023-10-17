@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Cupboard {
-    private static final Logger LOG = Logger.getLogger(Cupboard.class.getName());
 
     // Private State
     @JsonProperty("currentNeeds")
@@ -28,6 +26,7 @@ public class Cupboard {
     // Constructor
     public Cupboard() {
         currentNeeds = new HashMap<>(INITIAL_MAP_SIZE);
+        retiredNeeds = new HashMap<>(INITIAL_MAP_SIZE); 
     }
 
     // Methods
@@ -96,6 +95,9 @@ public class Cupboard {
         return false;
     }
 
+    /**
+     * 
+     */
     public boolean updateNeed(Need need) {
         if (currentNeeds.containsKey(need.getId())) {
             currentNeeds.put(need.getId(), need);
@@ -105,16 +107,19 @@ public class Cupboard {
     }
 
     /**
-     * This function removes a need from a collection of needs and returns true if
-     * the need was successfully removed.
+     * This function removes a need from a collection of needs and "retires" it so that it
+     * remains stored while it is no longer being used
      * 
      * @param needID 
      * @return boolean based on success of removal
      */
-    public boolean removeNeed(String needId) {
+    public boolean retireNeed(String needId) {
         if (needId != null) {
             Need removedNeed = currentNeeds.remove(needId);
-            return removedNeed != null;
+            if(removedNeed != null) {
+                retiredNeeds.put(needId, removedNeed); 
+                return true; 
+            }
         }
         return false;
     }
