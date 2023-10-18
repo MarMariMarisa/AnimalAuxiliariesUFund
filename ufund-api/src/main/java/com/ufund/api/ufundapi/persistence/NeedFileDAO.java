@@ -51,9 +51,6 @@ public class NeedFileDAO implements NeedDAO {
     private Need[] getNeedsArray() {
         return getNeedsArray(null);
     }
-    public Need getNeed(int i){
-        return new Need();
-    }
     /**
      * Generates an array of {@linkplain Need needs} from the tree map for any
      * {@linkplain Need needs} that contains the text specified by containsText
