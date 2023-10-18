@@ -53,29 +53,29 @@ public class NeedFileDAOTest {
 
         assertEquals(needs.length, testNeeds.length);
         for (int i = 0; i < testNeeds.length; ++i)
-            assertEquals(needs[testNeeds.length-1 - i].getId(), testNeeds[i].getId());
+            assertEquals(testNeeds[i].getId(), needs[testNeeds.length-1 - i].getId());
     }
 
     @Test
     public void testFindNeeds() throws IOException {
         Need[] needs = needFileDAO.findNeeds("dog");
 
-        assertEquals(needs.length, 1);
-        assertEquals(needs[0], testNeeds[0]);
+        assertEquals( 1, needs.length);
+        assertEquals(testNeeds[0], needs[0]);
     }
 
     @Test
     public void testGetNeed() throws IOException {
         Need need = needFileDAO.getNeed("need2");
-        assertEquals(need.getId(), testNeeds[1].getId());
+        assertEquals(testNeeds[1].getId(), need.getId());
     }
 
     @Test
     public void testDeleteNeed() throws IOException {
         boolean result = assertDoesNotThrow(() -> needFileDAO.deleteNeed("need1"), "Unexpected exception thrown");
 
-        assertEquals(result, true);
-        assertEquals(needFileDAO.cupboard.getEntireCupboard().size(), testNeeds.length - 1);
+        assertEquals( true, result);
+        assertEquals( testNeeds.length - 1, needFileDAO.cupboard.getEntireCupboard().size());
     }
 
     @Test
@@ -87,8 +87,8 @@ public class NeedFileDAOTest {
 
         assertNotNull(result);
         Need actual = needFileDAO.getNeed("need4");
-        assertEquals(actual.getId(), need.getId());
-        assertEquals(actual.getName(), need.getName());
+        assertEquals(need.getId(), actual.getId());
+        assertEquals(need.getName(), actual.getName());
     }
 
     @Test
@@ -99,7 +99,7 @@ public class NeedFileDAOTest {
 
         assertNotNull(result);
         Need actual = needFileDAO.getNeed("need2");
-        assertEquals(actual, need);
+        assertEquals(need, actual);
     }
 
     @Test
@@ -124,8 +124,8 @@ public class NeedFileDAOTest {
     public void testDeleteNeedNotFound() throws IOException {
         boolean result = assertDoesNotThrow(() -> needFileDAO.deleteNeed("Non-Existent Need"), "Unexpected exception thrown");
 
-        assertEquals(result, false);
-        assertEquals(needFileDAO.cupboard.getEntireCupboard().size(), testNeeds.length);
+        assertEquals( false, result);
+        assertEquals(testNeeds.length, needFileDAO.cupboard.getEntireCupboard().size());
     }
 
     @Test
