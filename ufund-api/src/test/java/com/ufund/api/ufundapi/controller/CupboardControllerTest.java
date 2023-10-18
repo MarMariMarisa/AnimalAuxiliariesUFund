@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.NeedFileDAO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Cupboard;
 
 public class CupboardControllerTest {
@@ -102,4 +103,83 @@ public class CupboardControllerTest {
                 assertEquals(HttpStatus.OK, response.getStatusCode());
                 assertEquals(response.getBody().size(), expectedSize);
     }
+
+
+    @Test
+    public void testUpdateNeed() throws IOException {
+        //Setup
+        Need need = new Need("dog leash","a dog leash","leashes",25,5);
+        testCupboard.addNeed(need);
+
+        //Invoke
+        ResponseEntity<Need> response = cupboardController.updateNeed(need);
+        
+        //Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void testUpdateNeedNotFound() throws IOException {
+        //Setup
+        Need need = new Need("dog leash","a dog leash","leashes",25,5);
+
+        //Invoke
+        ResponseEntity<Need> response = cupboardController.updateNeed(need);
+        
+        //Assert
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+
+    @Test
+    public void testDeleteNeed() throws IOException{
+        // Setup
+        Need need = new Need("dog leash","a dog leash","leashes",25,5);
+        need.setID("5");
+        when(mockNeedDAO.getNeed("5")).thenReturn(need);
+        testCupboard.addNeed(need);
+        // Invoke
+        ResponseEntity<HttpStatus> response = cupboardController.deleteNeed("5");
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteNeedNotFound() throws IOException{
+        //Setup
+
+        //Invoke
+        ResponseEntity<HttpStatus> response = cupboardController.deleteNeed("0");
+
+        //Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
+    public void testCreateNeed() throws IOException {
+        //Setup
+        Need need = new Need("dog leash","a dog leash","leashes",25,5);
+        need.setID("5");
+
+        //Invoke
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+        response.getBody();
+        //Assert
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+    }
+
+    @Test public void testCreateNeedConflict() throws IOException{
+        //Setup
+        Need need = new Need("dog leash","a dog leash","leashes",25,5);
+        need.setID("5");
+        testCupboard.addNeed(need);
+
+
+        //Invoke
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+        response.getBody();
+        //Assert
+        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+    }
+
 }
