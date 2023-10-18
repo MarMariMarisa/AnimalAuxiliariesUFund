@@ -70,7 +70,7 @@ public class Need {
     public Need(@JsonProperty("name") String name, @JsonProperty("description") String description,
             @JsonProperty("type") String type, @JsonProperty("price") float price,
             @JsonProperty("quantity") int quantity) {
-        // TODO: Implement checking to prevent needs with faulty values being added 
+        // TODO: Implement checking to prevent needs with faulty values being added
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
@@ -82,6 +82,18 @@ public class Need {
     }
 
     // Methods
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Need other = (Need) obj;
+        return id.equals(other.id);
+}
+
     /**
      * Retrieves the decimal ratio of how many of the needs have been funded out of
      * the total quantity needed
@@ -90,11 +102,13 @@ public class Need {
      *         funded
      */
     public float getPercentFunded() {
-        return ((float) quantityFunded / (float) quantity)*100;
+        return ((float) quantityFunded / (float) quantity) * 100;
     }
-    public void setID(String id){
+
+    public void setID(String id) {
         this.id = id;
     }
+
     /**
      * Returns true if the full quantity of needs have been placed in a Helper
      * basket, false if not
