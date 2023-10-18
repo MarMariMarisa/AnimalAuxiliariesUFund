@@ -92,7 +92,9 @@ public class Need {
     public float getPercentFunded() {
         return ((float) quantityFunded / (float) quantity)*100;
     }
-
+    public void setID(String id){
+        this.id = id;
+    }
     /**
      * Returns true if the full quantity of needs have been placed in a Helper
      * basket, false if not
