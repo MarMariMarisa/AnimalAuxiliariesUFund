@@ -77,5 +77,5 @@ public interface NeedDAO {
      */
     boolean deleteNeed(String id) throws IOException;
 
-    //boolean containsNeed(String name);
+    boolean containsNeed(String name);
 }
