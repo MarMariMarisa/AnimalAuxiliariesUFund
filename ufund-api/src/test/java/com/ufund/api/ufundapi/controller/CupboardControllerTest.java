@@ -48,7 +48,7 @@ public class CupboardControllerTest {
     @Test
     public void testGetNeedNotFound() throws Exception { 
         // Setup
-        int needID = 99;
+        String needID = "1";
         when(mockNeedDAO.getNeed(needID)).thenReturn(null);
 
         // Invoke
