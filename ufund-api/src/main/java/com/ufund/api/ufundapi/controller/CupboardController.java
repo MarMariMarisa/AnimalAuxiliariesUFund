@@ -28,10 +28,10 @@ public class CupboardController {
 
     public CupboardController(Cupboard cupboard, NeedFileDAO needDAO) throws IOException {
         this.cupboard = cupboard;
-        // this.needDAO = needDAO;
-        // for (Need need : needDAO.getNeeds()) {
-        //     cupboard.addNeed(need);
-        // }
+        this.needDAO = needDAO;
+        for (Need need : needDAO.getNeeds()) {
+            cupboard.addNeed(need);
+        }
     }
     public ResponseEntity<Need> getNeed(String id){
         LOG.info("GET /cupboard?id=");

@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Need;
 
@@ -150,7 +151,9 @@ public class NeedFileDAO implements NeedDAO {
                 return null;
         }
     }
-    
+    private String nextId(){
+        return UUID.randomUUID().toString();
+    }
     /**
      ** {@inheritDoc}
      */
@@ -158,8 +161,8 @@ public class NeedFileDAO implements NeedDAO {
     public Need createNeed(Need need) throws IOException {
         synchronized (needs) {
             // We create a new need object because the id field is immutable
-            // and we need to assign the next unique id
-            Need newNeed = new Need(nextId(), need.getName(), need.getDescription(), need.getType(), need.getAmount());
+            // and we need to assign the next unique id   
+            Need newNeed = new Need(need.getName(), need.getDescription(), need.getType(), need.getPrice(),need.getQuantity());
             needs.put(newNeed.getId(), newNeed);
             save(); // may throw an IOException
             return newNeed;
@@ -197,7 +200,7 @@ public class NeedFileDAO implements NeedDAO {
 
     @Override
     public boolean containsNeed(String name) {
-        for (int key : needs.keySet()) {
+        for (String key : needs.keySet()) {
             if (needs.get(key).getName() == name) {
                 return true;
             }
