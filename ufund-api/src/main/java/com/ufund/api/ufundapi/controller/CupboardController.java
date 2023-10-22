@@ -22,9 +22,8 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping("cupboard")
 public class CupboardController {
-    private static final Logger LOG = Logger.getLogger(NeedController.class.getName());
+    private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
     private Cupboard cupboard;
-    private SearchController searchController = new SearchController();
     private NeedFileDAO needDAO;
 
     public CupboardController(Cupboard cupboard, NeedFileDAO needDAO) throws IOException {
@@ -33,6 +32,11 @@ public class CupboardController {
         for (Need need : needDAO.getNeeds()) {
             cupboard.addNeed(need);
         }
+    }
+    public ResponseEntity<Need> getNeed(String id){
+        LOG.info("GET /cupboard?id=");
+        for(Need i : cupboard.getEntireCupboard()) if(i.getId()== id) return new ResponseEntity<Need>(i,HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("")
@@ -48,12 +52,12 @@ public class CupboardController {
     @GetMapping("/")
     public ResponseEntity<List<Need>> searchOnName(@RequestParam String name) {
         LOG.info("GET /?name=" + name);
-            return new ResponseEntity<List<Need>>(searchController.findNeedName(name, cupboard), HttpStatus.OK);
+            return new ResponseEntity<List<Need>>(cupboard.getNeedsOnName(name), HttpStatus.OK);
     }
 
     @PutMapping("")
-    public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
-        LOG.info("PUT /cupboard " + need);
+    public ResponseEntity<Need> updateNeed(@RequestParam Need need) {
+        LOG.info("PUT /cupboard " + need.getId());
         if(cupboard.updateNeed(need)){
             return new ResponseEntity<Need>(need, HttpStatus.OK);
         }
@@ -72,8 +76,8 @@ public class CupboardController {
     @DeleteMapping("/")
     public ResponseEntity<HttpStatus> deleteNeed(@RequestParam String name) {
         LOG.info("DELETE /?name=" + name);
-        if (cupboard.getNeed(name) != null) {
-            if(cupboard.removeNeed(name))
+        if (cupboard.getNeedsOnName(name) != null) {
+            if(cupboard.retireNeed(name))
                 return new ResponseEntity<>(HttpStatus.OK);
         } 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -81,13 +85,12 @@ public class CupboardController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Need> createNeed(@RequestBody Need need) {
-        LOG.info("POST /cupboard " + need);
-            if (cupboard.getNeed(need.getName()) == null) {
+    public ResponseEntity<Need> createNeed(@RequestParam Need need) {
+        LOG.info("POST /cupboard " + need.getId());
+            if (cupboard.getNeedOnID(need.getId()) == null) {
                 if(cupboard.addNeed(need)){
                     return new ResponseEntity<Need>(need, HttpStatus.CREATED);
                 }
-                    
             }
             return new ResponseEntity<Need>(need, HttpStatus.CONFLICT);
     }

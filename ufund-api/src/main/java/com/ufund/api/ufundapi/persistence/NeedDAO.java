@@ -37,7 +37,7 @@ public interface NeedDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Need getNeed(int id) throws IOException;
+    Need getNeed(String id) throws IOException;
 
     /**
      * Creates and saves a {@linkplain Need need}
@@ -75,7 +75,7 @@ public interface NeedDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean deleteNeed(int id) throws IOException;
+    boolean deleteNeed(String id) throws IOException;
 
     boolean containsNeed(String name);
 }
