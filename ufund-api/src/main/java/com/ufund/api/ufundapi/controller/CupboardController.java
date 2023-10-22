@@ -28,10 +28,10 @@ public class CupboardController {
 
     public CupboardController(Cupboard cupboard, NeedFileDAO needDAO) throws IOException {
         this.cupboard = cupboard;
-        // this.needDAO = needDAO;
-        // for (Need need : needDAO.getNeeds()) {
-        //     cupboard.addNeed(need);
-        // }
+        this.needDAO = needDAO;
+        for (Need need : needDAO.getNeeds()) {
+            cupboard.addNeed(need);
+        }
     }
     public ResponseEntity<Need> getNeed(String id){
         LOG.info("GET /cupboard?id=");
@@ -56,8 +56,8 @@ public class CupboardController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
-        LOG.info("PUT /cupboard " + need);
+    public ResponseEntity<Need> updateNeed(@RequestParam Need need) {
+        LOG.info("PUT /cupboard " + need.getId());
         if(cupboard.updateNeed(need)){
             return new ResponseEntity<Need>(need, HttpStatus.OK);
         }
@@ -77,7 +77,7 @@ public class CupboardController {
     public ResponseEntity<HttpStatus> deleteNeed(@RequestParam String name) {
         LOG.info("DELETE /?name=" + name);
         if (cupboard.getNeedsOnName(name) != null) {
-            if(cupboard.removeNeed(name))
+            if(cupboard.retireNeed(name))
                 return new ResponseEntity<>(HttpStatus.OK);
         } 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -85,8 +85,8 @@ public class CupboardController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Need> createNeed(@RequestBody Need need) {
-        LOG.info("POST /cupboard " + need);
+    public ResponseEntity<Need> createNeed(@RequestParam Need need) {
+        LOG.info("POST /cupboard " + need.getId());
             if (cupboard.getNeedOnID(need.getId()) == null) {
                 if(cupboard.addNeed(need)){
                     return new ResponseEntity<Need>(need, HttpStatus.CREATED);
