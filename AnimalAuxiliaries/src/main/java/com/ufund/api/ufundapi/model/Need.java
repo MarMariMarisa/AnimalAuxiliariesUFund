@@ -13,7 +13,7 @@ public class Need {
     private static final Logger LOG = Logger.getLogger(Need.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Need [id=%d, name=%s,description=%s,type=%s,amount=%d,isInBasket=%s,isFunded=%s]";
+    static final String STRING_FORMAT = "Need [id=%d, name=%s,description=%s,type=%s,price=%d,isInBasket=%s,quantityFunded=%s]";
 
     // Private State
     @JsonProperty("id")
@@ -24,14 +24,14 @@ public class Need {
     private String description;
     @JsonProperty("type")
     private String type;
-    @JsonProperty("amount")
+    @JsonProperty("price")
     private float price;
     // number of this need to be listed as available
     @JsonProperty("quantity")
     private int quantity;
     @JsonProperty("numInBaskets")
     private int numInBaskets;
-    @JsonProperty("isFunded")
+    @JsonProperty("quantityFunded")
     private int quantityFunded;
 
     // Default Values

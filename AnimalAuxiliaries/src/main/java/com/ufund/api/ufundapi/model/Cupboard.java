@@ -123,7 +123,9 @@ public class Cupboard {
         }
         return false;
     }
-
+    public List<Need> getRetiredNeeds() {
+        return new ArrayList<Need>(retiredNeeds.values());
+    }
     @Override
     public String toString() {
         return String.format(getEntireCupboard().toString());

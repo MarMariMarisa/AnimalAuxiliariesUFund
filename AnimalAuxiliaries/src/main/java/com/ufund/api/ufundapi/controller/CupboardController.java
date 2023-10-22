@@ -46,9 +46,15 @@ public class CupboardController {
             return new ResponseEntity<List<Need>>(cupboard.getEntireCupboard(), HttpStatus.OK);
         } else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }  
-
-    //@GetMapping("/search/?name=")
+    }
+    @GetMapping("/retired")
+    public ResponseEntity<List<Need>> getRetiredNeeds() {
+        LOG.info("GET /retired");
+        if (cupboard.isEmpty() == false) {
+            return new ResponseEntity<List<Need>>(cupboard.getRetiredNeeds(), HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }    
     @GetMapping("/")
     public ResponseEntity<List<Need>> searchOnName(@RequestParam String name) {
         LOG.info("GET /?name=" + name);

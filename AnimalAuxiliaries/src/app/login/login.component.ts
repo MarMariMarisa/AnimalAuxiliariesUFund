@@ -14,7 +14,8 @@ export class LoginComponent {
   login() {
     if (this.username === 'manager') {
       this.router.navigate(['/manager']);
-    } else {
+    }
+    else {
       this.router.navigate(['/helper']);
     }
   }
