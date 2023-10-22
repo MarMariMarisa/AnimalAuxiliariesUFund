@@ -1,4 +1,4 @@
-package main.java.com.ufund.api.ufundapi.model;
+package com.ufund.api.ufundapi.model;
 
 public interface User {
     
