@@ -6,18 +6,24 @@ import java.util.UUID;
 public class Helper implements User {
     
     @JsonProperty("id")
-    private String id;
+    private final String id;
     @JsonProperty("username")
-    private String username;
+    private final String username;
 
-    //funding basket 
+    private FundingBasket fundingBasket;
 
     private static final String HELPER_ID_MODIFIER = "H"; 
 
-    public Helper(String username) {
+    @inject
+    public Helper(String username, FundingBasket basket) {
         this.username = username; 
+        this.fundingBasket = basket; 
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
     }
+
+    public void addToFundingBasket(Need need) {}
+
+    public void removeFromFundingBasket(Need need) {}
 
     public String getId() {
         return this.id; 
