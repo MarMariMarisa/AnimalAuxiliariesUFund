@@ -44,6 +44,11 @@ public class Cupboard {
         return null;
     }
 
+    /**
+     * Returns true when the currentNeeds is empty, false otherwise 
+     * 
+     * @return boolean
+     */
     public boolean isEmpty() {
         return currentNeeds.values().size() == 0;
     }
@@ -73,10 +78,20 @@ public class Cupboard {
      * Description: The function returns the entire contents of the current cupboard
      * as a map list of need objects.
      * 
-     * @return A list of objects of type Need is being returned.
+     * @return List<Need>
      */
     public List<Need> getEntireCupboard() {
         return new ArrayList<Need>(currentNeeds.values());
+    }
+
+    /**
+     * getRetiredNeeds
+     * Retrives a list of all retired Need objects in the cupboard
+     * 
+     * @return List<Need>
+     */
+    public List<Need> getRetiredNeeds() {
+        return new ArrayList<Need>(retiredNeeds.values()); 
     }
 
     /**
