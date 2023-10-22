@@ -1,6 +1,8 @@
-package main.java.com.ufund.api.ufundapi.model;
+package com.ufund.api.ufundapi.model;
 
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class Helper implements User {
