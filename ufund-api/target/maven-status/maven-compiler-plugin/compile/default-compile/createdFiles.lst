@@ -1,0 +1,9 @@
+com\ufund\api\ufundapi\controller\NeedController.class
+com\ufund\api\ufundapi\WebConfig.class
+com\ufund\api\ufundapi\persistence\NeedDAO.class
+com\ufund\api\ufundapi\controller\SearchController.class
+com\ufund\api\ufundapi\UfundApiApplication.class
+com\ufund\api\ufundapi\model\Need.class
+com\ufund\api\ufundapi\persistence\NeedFileDAO.class
+com\ufund\api\ufundapi\controller\CupboardController.class
+com\ufund\api\ufundapi\model\Cupboard.class
