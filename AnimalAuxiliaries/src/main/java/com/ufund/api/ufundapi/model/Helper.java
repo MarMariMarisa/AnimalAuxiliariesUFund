@@ -16,7 +16,7 @@ public class Helper implements User {
 
     private static final String HELPER_ID_MODIFIER = "H"; 
 
-    @inject
+    //@inject
     public Helper(String username, FundingBasket basket) {
         this.username = username; 
         this.fundingBasket = basket; 
