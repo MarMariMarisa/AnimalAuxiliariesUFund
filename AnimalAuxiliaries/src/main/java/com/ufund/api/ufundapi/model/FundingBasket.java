@@ -3,8 +3,6 @@ package com.ufund.api.ufundapi.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ufund.api.ufundapi.model.Need;
-
 public class FundingBasket {
     // Private State
     private List<Need> needs;
@@ -21,7 +19,7 @@ public class FundingBasket {
 
     public boolean addToBasket(Need need){
         // Check is real need that needs funding
-        if(need != null & (need.getAllFunded() == false)){
+        if(need != null && need.getAllFunded() == false){
             return needs.add(need);
         }
         return false;
