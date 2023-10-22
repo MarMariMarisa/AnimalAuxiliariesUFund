@@ -91,7 +91,7 @@ public class Need {
             return false;
         }
         Need other = (Need) obj;
-        return id.equals(other.id);
+        return id.equals(other.getId());
 }
 
     /**
