@@ -1,5 +1,3 @@
-//TODO: Convert to CupboardControllerTest @Tyler @Tszfai
-
 package com.ufund.api.ufundapi.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

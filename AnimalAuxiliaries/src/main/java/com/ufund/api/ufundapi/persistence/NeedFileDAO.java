@@ -3,8 +3,6 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Cupboard;
 import com.ufund.api.ufundapi.model.Need;
