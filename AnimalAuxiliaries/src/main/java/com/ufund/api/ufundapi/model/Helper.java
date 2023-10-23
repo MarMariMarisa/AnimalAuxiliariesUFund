@@ -27,7 +27,7 @@ public class Helper implements User {
     }
 
     public boolean removeFromFundingBasket(Need need) {
-        return removeFromFundingBasket(need);
+        return fundingBasket.removeFromBasket(need);
     }
 
     public String getId() {
