@@ -22,9 +22,13 @@ public class Helper implements User {
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
     }
 
-    public void addToFundingBasket(Need need) {}
+    public boolean addToFundingBasket(Need need) {
+        return fundingBasket.addToBasket(need);
+    }
 
-    public void removeFromFundingBasket(Need need) {}
+    public boolean removeFromFundingBasket(Need need) {
+        return removeFromFundingBasket(need);
+    }
 
     public String getId() {
         return this.id; 
