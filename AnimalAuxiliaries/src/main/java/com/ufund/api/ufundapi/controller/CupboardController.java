@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,19 @@ public class CupboardController {
     public CupboardController(NeedFileDAO needDAO) throws IOException {
         this.needDAO = needDAO;
     }
-    GetMapping("/{id}")
+    
+    @GetMapping("")
+    public ResponseEntity<Need[]> getEntireCupboard() {
+        LOG.info("GET /cupboard");
+        try{
+            return new ResponseEntity<Need[]>(needDAO.getNeeds(), HttpStatus.OK);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/{id}")
     public ResponseEntity<Need> getNeed(@PathVariable String id) throws IOException{
         LOG.info("GET /cupboard/"+id);
         try{
@@ -45,18 +58,6 @@ public class CupboardController {
         
         //for(Need i : cupboard.getEntireCupboard()) if(i.getId()== id) return new ResponseEntity<Need>(i,HttpStatus.OK);
         
-    }
-
-    @GetMapping("")
-    public ResponseEntity<Need[]> getEntireCupboard() {
-        LOG.info("GET /cupboard");
-        try{
-            return new ResponseEntity<Need[]>(needDAO.getNeeds(), HttpStatus.OK);
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
     }
     /**
      * @GetMapping("/retired")
@@ -124,7 +125,7 @@ public class CupboardController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Need> createNeed(@RequestParam Need need) {
+    public ResponseEntity<Need> createNeed(Need need) {
         LOG.info("POST /cupboard " + need.getId());
         try{
             if(needDAO.getNeed(need.getId()) == null){

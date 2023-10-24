@@ -29,8 +29,8 @@ export class ManagerComponent implements OnInit {
     }
     this.needService
       .createNeed({
-        id: '5',
-        name: 'hello',
+        id: '4',
+        name: name,
         description: 'descirption',
         type: 'type',
         price: 5,
@@ -39,7 +39,20 @@ export class ManagerComponent implements OnInit {
         quantityFunded: 2,
       } as Need)
       .subscribe((need) => {
-        console.log(typeof need);
+        console.log(need);
+      });
+    this.needService
+      .createNeed({
+        id: '4',
+        name: name,
+        description: 'descirption',
+        type: 'type',
+        price: 5,
+        quantity: 25,
+        numInBaskets: 5,
+        quantityFunded: 2,
+      } as Need)
+      .subscribe((need) => {
         this.needs.push(need);
       });
   }
