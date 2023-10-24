@@ -1,1 +1,11 @@
-<p>need works!</p>
+<div *ngIf="need">
+    <h2>{{need.name }} Details</h2>
+    <div><span>id: </span>{{need.id }}</div>
+    <div>
+      <label for="need-name">Need name: </label>
+      <input id="need-name" [(ngModel)]="need.name" placeholder="need name" />
+    </div>
+    <button type="button" (click)="goBack()">go back</button>
+    <button type="button" (click)="save()">save</button>
+  </div>
+  

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import com.ufund.api.ufundapi.model.Cupboard;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.NeedFileDAO;
@@ -33,9 +33,15 @@ public class CupboardController {
             cupboard.addNeed(need);
         }
     }
-    public ResponseEntity<Need> getNeed(String id){
-        LOG.info("GET /cupboard?id=");
-        for(Need i : cupboard.getEntireCupboard()) if(i.getId()== id) return new ResponseEntity<Need>(i,HttpStatus.OK);
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Need> getNeed(@PathVariable String id){
+        LOG.info("GET /cupboard/" + id);
+        for(Need i : cupboard.getEntireCupboard()){
+         if(i.getId().equals(id)){
+            return new ResponseEntity<Need>(i,HttpStatus.OK);
+         } 
+        }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

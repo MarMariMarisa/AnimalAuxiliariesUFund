@@ -11,17 +11,16 @@ import { Observable } from 'rxjs';
 })
 export class CupboardComponent implements OnInit {
   constructor(private cupboardService: CupboardService) { }
-  cupboard: Cupboard = {
-    currentNeeds: [],
-    retiredNeeds: []
-  }
+
+    currentNeeds: Need[] = [];
+
   ngOnInit(): void {
-    this.cupboard.currentNeeds = this.cupboardService.getEntireCupboard;
     this.getEntireCupboard();
   }
 
-  getEntireCupboard(): Observable<Need[]> {
-    this.cupboardService.getEntireCupboard();
+  getEntireCupboard(): void {
+    this.cupboardService.getEntireCupboard().subscribe((need)=> (this.currentNeeds = need));
   }
+  
 
 }
