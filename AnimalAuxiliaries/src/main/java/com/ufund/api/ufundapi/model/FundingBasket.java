@@ -3,8 +3,11 @@ package com.ufund.api.ufundapi.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class FundingBasket {
     // Private State
+    @JsonProperty("Needs")
     private List<Need> needs;
 
     // Constructor
