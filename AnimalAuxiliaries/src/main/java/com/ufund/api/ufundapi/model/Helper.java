@@ -31,6 +31,10 @@ public class Helper implements User {
         return fundingBasket.removeFromBasket(need);
     }
 
+    public Need[] getBasketNeeds() {
+        return fundingBasket.getBasket().toArray(new Need[0]); 
+    }
+
     public String getId() {
         return this.id; 
     }
