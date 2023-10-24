@@ -1,4 +1,5 @@
 <div id="search-component">
+<<<<<<< HEAD
     <label for="search-box">Need Search</label>
     <input #searchBox id="search-box" (input)="search(searchBox.value)" />
   
@@ -11,3 +12,16 @@
     </ul>
   </div>
   
+=======
+  <label for="search-box">Need Search</label>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li *ngFor="let need of needs$ | async">
+      <a routerLink="/detail/{{ need.id }}">
+        {{ need.name }}
+      </a>
+    </li>
+  </ul>
+</div>
+>>>>>>> bf5ee8b2f164fb969d7ff74af99fcec608c00c47
