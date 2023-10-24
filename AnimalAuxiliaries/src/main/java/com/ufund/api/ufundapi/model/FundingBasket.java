@@ -20,6 +20,10 @@ public class FundingBasket {
         return needs;
     }
 
+    public int getSize() {
+        return needs.size(); 
+    }
+
     public boolean addToBasket(Need need){
         // Check is real need that needs funding
         if(need != null && need.getAllFunded() == false){
