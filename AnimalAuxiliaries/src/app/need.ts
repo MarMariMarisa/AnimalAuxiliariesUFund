@@ -1,8 +1,8 @@
 export interface Need{
-    id: String,
-    name: String,
-    description: String,
-    type: String,
+    id: string,
+    name: string,
+    description: string,
+    type: string,
     price: number,
     quantity: number,
     numInBaskets: number,

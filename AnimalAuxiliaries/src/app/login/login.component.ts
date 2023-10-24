@@ -12,10 +12,9 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   login() {
-    if (this.username === 'manager') {
+    if (this.username === 'admin') {
       this.router.navigate(['/manager']);
-    }
-    else {
+    } else {
       this.router.navigate(['/helper']);
     }
   }

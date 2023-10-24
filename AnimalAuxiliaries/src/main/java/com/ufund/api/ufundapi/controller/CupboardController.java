@@ -26,8 +26,9 @@ public class CupboardController {
     public CupboardController(NeedFileDAO needDAO) throws IOException {
         this.needDAO = needDAO;
     }
-    public ResponseEntity<Need> getNeed(String id) throws IOException{
-        LOG.info("GET /cupboard?id=");
+    GetMapping("/{id}")
+    public ResponseEntity<Need> getNeed(@PathVariable String id) throws IOException{
+        LOG.info("GET /cupboard/"+id);
         try{
             Need need = needDAO.getNeed(id);
             if(need != null){
@@ -106,8 +107,8 @@ public class CupboardController {
      *         ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/")
-    public ResponseEntity<HttpStatus> deleteNeed(@RequestParam String id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteNeed(@PathVariable String id) {
         LOG.info("DELETE /cupboard/" + id);
         try{
             if(needDAO.deleteNeed(id))
