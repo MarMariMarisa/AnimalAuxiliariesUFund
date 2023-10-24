@@ -67,8 +67,8 @@ public class CupboardController {
             return new ResponseEntity<List<Need>>(cupboard.getNeedsOnName(name), HttpStatus.OK);
     }
 
-    @PutMapping("")
-    public ResponseEntity<Need> updateNeed(@RequestParam Need need) {
+    @PutMapping("/")
+    public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
         LOG.info("PUT /cupboard " + need.getId());
         if(cupboard.updateNeed(need)){
             return new ResponseEntity<Need>(need, HttpStatus.OK);
@@ -85,26 +85,23 @@ public class CupboardController {
      *         ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/")
-    public ResponseEntity<HttpStatus> deleteNeed(@RequestParam String name) {
-        LOG.info("DELETE /?name=" + name);
-        if (cupboard.getNeedsOnName(name) != null) {
-            if(cupboard.retireNeed(name))
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteNeed(@PathVariable String id) {
+        LOG.info("DELETE /cupboard/" + id);
+        if (cupboard.getNeedOnID(id) != null) {
+            if(cupboard.retireNeed(id))
                 return new ResponseEntity<>(HttpStatus.OK);
         } 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    
     }
-
     @PostMapping("")
-    public ResponseEntity<Need> createNeed(@RequestParam Need need) {
-        LOG.info("POST /cupboard " + need.getId());
-            if (cupboard.getNeedOnID(need.getId()) == null) {
-                if(cupboard.addNeed(need)){
-                    return new ResponseEntity<Need>(need, HttpStatus.CREATED);
-                }
+    public ResponseEntity<Need> createNeed(@RequestBody Need need) {
+        LOG.info("POST /cupboard " + need);
+        if (cupboard.getNeedsOnName(need.getName()) == null) {
+            if(cupboard.addNeed(need)){
+                return new ResponseEntity<Need>(need, HttpStatus.CREATED);
             }
-            return new ResponseEntity<Need>(need, HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<Need>(need, HttpStatus.CONFLICT);
     }
-
 }

@@ -1,9 +1,9 @@
 <h2>Cupboard</h2>
 
 <ul class="cupboard">
-<li>
-  <a *ngFor="let need of currentNeeds" routerLink="/helper/{{need.id}}" >
-    <h1 class="badge">{{need.name}}</h1>
-  </a>
-</li>
+  <li>
+    <a *ngFor="let need of currentNeeds" routerLink="/helper/{{ need.id }}">
+      <h1 class="badge">{{ need.name }}</h1>
+    </a>
+  </li>
 </ul>
