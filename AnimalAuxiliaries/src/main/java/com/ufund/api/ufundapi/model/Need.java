@@ -1,6 +1,5 @@
 package com.ufund.api.ufundapi.model;
 
-import java.util.logging.Logger;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 
  */
 public class Need {
-    private static final Logger LOG = Logger.getLogger(Need.class.getName());
+    //private static final Logger LOG = Logger.getLogger(Need.class.getName());
 
     // Package private for tests
     static final String STRING_FORMAT = "Need [id=%d, name=%s,description=%s,type=%s,price=%d,isInBasket=%s,quantityFunded=%s]";
@@ -70,13 +69,22 @@ public class Need {
     public Need(@JsonProperty("name") String name, @JsonProperty("description") String description,
             @JsonProperty("type") String type, @JsonProperty("price") float price,
             @JsonProperty("quantity") int quantity) {
-        // TODO: Implement checking to prevent needs with faulty values being added
+
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
         this.type = type;
-        this.price = price;
-        this.quantity = quantity;
+
+        if(price < 0)
+            this.price = 0;
+        else
+            this.price = price;
+
+        if(quantity < 0)
+            this.quantity = 0;
+        else
+            this.quantity = quantity;      
+
         this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
     }

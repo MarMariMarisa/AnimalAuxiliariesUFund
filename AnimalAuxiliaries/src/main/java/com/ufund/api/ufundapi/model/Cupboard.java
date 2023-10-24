@@ -122,6 +122,19 @@ public class Cupboard {
         }
         return false;
     }
+
+    public boolean unretireNeed(String needID) {
+        if(needID != null) {
+            Need removedNeed = retiredNeeds.remove(needID); 
+            if(removedNeed != null) {
+                currentNeeds.put(needID, removedNeed); 
+                return true;
+            }
+        }
+        return false; 
+    }
+
+
     public List<Need> getRetiredNeeds() {
         return new ArrayList<Need>(retiredNeeds.values());
     }
