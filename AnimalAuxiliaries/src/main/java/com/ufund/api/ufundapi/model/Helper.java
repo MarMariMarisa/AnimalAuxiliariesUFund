@@ -12,6 +12,7 @@ public class Helper implements User {
     @JsonProperty("username")
     private final String username;
 
+    @JsonProperty("basket")
     private FundingBasket fundingBasket;
 
     private static final String HELPER_ID_MODIFIER = "H"; 
