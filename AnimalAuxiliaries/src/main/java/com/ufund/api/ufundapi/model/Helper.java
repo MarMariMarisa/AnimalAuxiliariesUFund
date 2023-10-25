@@ -19,7 +19,13 @@ public class Helper implements User {
 
     public Helper(String username) {
         this.username = username; 
-        this.fundingBasket = new FundingBasket(); 
+        this.fundingBasket = new FundingBasket();
+        this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
+    }
+
+    public Helper(){
+        this.username = "";
+        this.fundingBasket = new FundingBasket();
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
     }
 
