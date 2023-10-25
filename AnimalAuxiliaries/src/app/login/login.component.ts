@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Helper } from '../helper';
+import { FundingBasketService } from '../funding-basket.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +11,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   username: string = '';
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService,private fundingBasketService: FundingBasketService) {}
 
   login() {
     if (this.username === 'admin') {
@@ -21,5 +23,20 @@ export class LoginComponent {
   }
   getUsername(): string {
     return this.username;
+  }
+  add(username: String): void {
+    if (!username) {
+      return;
+    }
+    let a = JSON.parse(
+      JSON.stringify({
+        id: 0,
+        username: username,
+        basket: []
+       
+      } as Helper)
+    );
+    console.log(a);
+    this.fundingBasketService.createHelper(a);
   }
 }
