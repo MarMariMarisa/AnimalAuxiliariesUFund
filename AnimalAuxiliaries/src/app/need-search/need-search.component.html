@@ -3,10 +3,11 @@
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
 
   <ul class="search-result">
-    <li *ngFor="let need of needs$ | async">
-      <a routerLink="/detail/{{ need.id }}">
-        {{ need.name }}
-      </a>
-    </li>
+    <div *ngFor="let need of needs$ | async">
+        <h2 class="badge">Name: {{ need.name }}</h2>
+        <h4 class="badge">Description: {{ need.description }}</h4>
+        <h4 class="badge">Price: ${{ need.price }}</h4>
+        <h4 class="badge">Quantity: {{ need.quantity }}</h4>
+    </div>
   </ul>
 </div>
