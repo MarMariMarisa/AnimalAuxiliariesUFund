@@ -67,15 +67,22 @@ public class HelperController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
     @PostMapping("")
-   public ResponseEntity<Helper> createHelper(@RequestBody Helper helper) {
+   public ResponseEntity<Helper> createHelper(@RequestBody Helper helper) throws IOException{
         LOG.info("POST /funding-basket " + helper.getUsername());
-        for(Helper help : helperDAO.getHelpers()){
-             if(help.getUsername() == helper.getUsername() || helper.getUsername().toLowerCase() == "admin"){
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
+        try{
+            if(helperDAO.createHelper(helper) != null){
+                return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
+            }
+            else{
+                return new ResponseEntity<>(helper, HttpStatus.CONFLICT);
             }
         }
-        return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
+        catch(IOException e){
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/{username}/{needID}")
