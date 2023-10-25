@@ -1,11 +1,9 @@
-<h4>Cupboard</h4>
+<h2>Cupboard</h2>
 
 <ul class="cupboard">
-  <div *ngFor="let need of currentNeeds">
-      <h1 class="badge">Name: {{ need.name }}</h1>
-      <h4 class="badge">Description: {{ need.description }}</h4>
-      <h4 class="badge">Price: ${{ need.price }}</h4>
-      <h4 class="badge">Quantity: {{ need.quantity }}</h4>
-      <button>+</button>
-  </div>
+  <li>
+    <h5 *ngFor="let need of currentNeeds">
+      <h1 class="badge">{{ need.name }}</h1>
+    </h5>
+  </li>
 </ul>
