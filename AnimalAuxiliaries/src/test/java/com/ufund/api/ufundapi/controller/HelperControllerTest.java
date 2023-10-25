@@ -1,12 +1,12 @@
 package com.ufund.api.ufundapi.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doThrow;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -19,12 +19,10 @@ import com.ufund.api.ufundapi.persistence.HelperFileDAO;
 public class HelperControllerTest {
     private HelperController helperController;
     private HelperFileDAO mockHelperDAO;
-    private Logger mockLogger;
 
     @BeforeEach
     public void setupHelperController() throws IOException {
         mockHelperDAO = mock(HelperFileDAO.class);
-        mockLogger = mock(Logger.class);
         helperController = new HelperController(mockHelperDAO);
     }
 
@@ -70,7 +68,7 @@ public class HelperControllerTest {
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(need.getId(), response.getBody().getId());
+        assertEquals(need, response.getBody());
     }
 
     @Test
@@ -102,21 +100,21 @@ public class HelperControllerTest {
     }
 
     @Test
-    public void testCreateHelper() {
+    public void testCreateHelper() throws IOException {
         // Setup
-        Helper helper = new Helper("user1");
-        when(mockHelperDAO.getHelpers()).thenReturn(new Helper[0]);
+        Helper testHelper = new Helper("user1");
+        when(mockHelperDAO.createHelper(any(Helper.class))).thenReturn(testHelper);
 
-        // Invoke
-        ResponseEntity<Helper> response = helperController.createHelper(helper);
+        // Invoke 
+        ResponseEntity<Helper> response = helperController.createHelper(testHelper);
 
-        // Analyze
+        // Analyze 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(helper, response.getBody());
+        assertEquals(testHelper, response.getBody());
     }
 
     @Test
-    public void testCreateHelperConflict() {
+    public void testCreateHelperConflict() throws IOException {
         // Setup
         Helper helper = new Helper("user1");
         when(mockHelperDAO.getHelpers()).thenReturn(new Helper[] { new Helper("user2") });
@@ -126,5 +124,51 @@ public class HelperControllerTest {
 
         // Analyze
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+    }
+
+    @Test
+    public void testRemoveFromBasket() throws IOException {
+        // Setup
+        String username = "user1";
+        String needID = "need1";
+        Need removedNeed = new Need("Removed Need", "Description", "Category", 10, 2);
+        when(mockHelperDAO.removeFromBasket(username, needID)).thenReturn(removedNeed);
+
+        // Invoke
+        ResponseEntity<Need> response = helperController.removeFromBasket(username, needID);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(removedNeed, response.getBody());
+    }
+
+    @Test
+    public void testRemoveFromBasketNeedNotExists() throws IOException {
+        // Setup
+        String username = "user1";
+        String needID = "nonexistent";
+        when(mockHelperDAO.removeFromBasket(username, needID)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Need> response = helperController.removeFromBasket(username, needID);
+
+        // Analyze
+        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+        assertNull(response.getBody());
+    }
+
+    @Test
+    public void testRemoveFromBasketHandleException() throws IOException {
+        // Setup
+        String username = "user1";
+        String needID = "need1";
+        when(mockHelperDAO.removeFromBasket(username, needID)).thenThrow(new IOException("Test Exception"));
+
+        // Invoke
+        ResponseEntity<Need> response = helperController.removeFromBasket(username, needID);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertNull(response.getBody());
     }
 }
