@@ -126,7 +126,7 @@ public class CupboardController {
     }
 
    @PostMapping("")
-   public ResponseEntity<Need> createNeed(@RequestBody Need need) {
+   public ResponseEntity<Need> createNeed(Need need) {
         LOG.info("POST /cupboard " + need.getId());
         try{
             if(needDAO.getNeed(need.getId()) == null){
