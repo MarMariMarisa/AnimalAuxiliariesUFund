@@ -47,9 +47,12 @@ public class HelperFileDAO implements UserDAO {
     private boolean save() throws IOException {
         Helper[] helperArray = getHelpers();
 
-        // Serializes the Java Objects to JSON objects into the file
-        // writeValue will thrown an IOException if there is an issue
-        // with the file or reading from the file
+
+        // objectMapper.writeValue(new File(filename), helperArray);
+        // return true;
+        String json = objectMapper.writeValueAsString(helperArray);
+        System.out.println("JSON content to save: " + json);
+
         objectMapper.writeValue(new File(filename), helperArray);
         return true;
     }
