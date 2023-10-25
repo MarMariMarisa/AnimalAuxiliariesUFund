@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,6 @@ import com.ufund.api.ufundapi.persistence.NeedFileDAO;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 @RestController
 @RequestMapping("cupboard")
 public class CupboardController {

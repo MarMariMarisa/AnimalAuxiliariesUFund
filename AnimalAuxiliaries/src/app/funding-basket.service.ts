@@ -13,7 +13,12 @@ export class FundingBasketService {
   private basketUrl = 'http://localhost:8080/funding-basket'; // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS,DELETE'})
   };
 
   constructor(
@@ -22,17 +27,16 @@ export class FundingBasketService {
   ) {}
 
   getBasket(username: String): Observable<Need[]> {
-    const url = `${this.basketUrl}/${username}/`;
-    return this.http.get<Need[]>(url).pipe(
+    const url = `${this.basketUrl}/${username}`;
+    return this.http.get<Need[]>(url,this.httpOptions).pipe(
       tap((_) => this.log('fetched basket')),
-      catchError(this.handleError('getEntireCupboard', []))
+      catchError(this.handleError('getBasket', []))
     );
   }
-  addToBasket(id: string, username: string): Observable<Need> {
-    const url = `${this.basketUrl}/${username}/${id}`;
-    console.log("I am herer!!!!")
+  addToBasket(username: string,need: Need): Observable<Need> {
+    const url = `${this.basketUrl}/${username}/${need}`;
     return this.http.post<Need>(url, this.httpOptions).pipe(
-      tap((_) => this.log(`added need w/ id=${id}`)),
+      tap((_) => this.log(`added need =${need}`)),
       catchError(this.handleError<Need>('addToBasket'))
     );
   }

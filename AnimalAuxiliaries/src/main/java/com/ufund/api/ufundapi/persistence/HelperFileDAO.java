@@ -81,11 +81,10 @@ public class HelperFileDAO implements UserDAO {
         }
     }
 
-    public Need addToBasket(String username, String needID) throws IOException{
+    public Need addToBasket(String username, Need need) throws IOException{
         synchronized(helpers){
             if(helpers.containsKey(username)){
                 Helper h = helpers.get(username);
-                Need need = needDao.getNeed(needID);
                 if(need != null){
                     need.setNumInBaskets(need.getNumInBaskets()+1);
                     if(h.addToFundingBasket(need)){

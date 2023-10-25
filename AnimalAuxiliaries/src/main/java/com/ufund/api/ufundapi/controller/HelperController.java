@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,15 +48,15 @@ public class HelperController {
         }
     }
 
-    @PostMapping("/{username}/{needID}")
-    public ResponseEntity<Need> addToBasket(@PathVariable String username, @PathVariable String needID) {
-        LOG.info("POST /funding-basket/" + username + "/" + needID);
+    @PostMapping("/{username}/{need}")
+    public ResponseEntity<Need> addToBasket(@PathVariable String username, @RequestBody Need need) {
+        LOG.info("POST /funding-basket/" + username + "/" + need);
         
         try{
-            Need need = helperDAO.addToBasket(username, needID);
+            Need nee = helperDAO.addToBasket(username, need);
             
-            if(need != null){
-                return new ResponseEntity<>(need, HttpStatus.OK);
+            if(nee != null){
+                return new ResponseEntity<>(nee, HttpStatus.OK);
             }
             else{
                 return new ResponseEntity<>(need, HttpStatus.CONFLICT);

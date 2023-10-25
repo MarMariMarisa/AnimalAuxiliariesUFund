@@ -13,7 +13,12 @@ export class CupboardService {
   private cupboardUrl = 'http://localhost:8080/cupboard'; // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS,DELETE'})
   };
 
   constructor(
@@ -22,14 +27,14 @@ export class CupboardService {
   ) {}
 
   getEntireCupboard(): Observable<Need[]> {
-    return this.http.get<Need[]>(this.cupboardUrl).pipe(
+    return this.http.get<Need[]>(this.cupboardUrl,this.httpOptions).pipe(
       tap((_) => this.log('fetched cupboard')),
       catchError(this.handleError('getEntireCupboard', []))
     );
   }
   getNeed(id: string): Observable<Need> {
     const url = `${this.cupboardUrl}/${id}`; ///cupboard?id="
-    return this.http.get<Need>(url).pipe(
+    return this.http.get<Need>(url,this.httpOptions).pipe(
       tap((_) => this.log(`fetched need id=${id}`)),
       catchError(this.handleError<Need>(`getNeed id=${id}`))
     );
@@ -58,7 +63,7 @@ export class CupboardService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Need[]>(`${this.cupboardUrl}/?name=${term}`).pipe(
+    return this.http.get<Need[]>(`${this.cupboardUrl}/?name=${term}`,this.httpOptions).pipe(
       tap((x) =>
         x.length
           ? this.log(`found heroes matching "${term}"`)
@@ -70,7 +75,7 @@ export class CupboardService {
 
   getRetiredNeeds() {
     const url = `${this.cupboardUrl}/retired`;
-    return this.http.get(url).pipe(
+    return this.http.get(url,this.httpOptions).pipe(
       tap((_) => this.log('fetched cupboard')),
       catchError(this.handleError('getEntireCupboard'))
     );

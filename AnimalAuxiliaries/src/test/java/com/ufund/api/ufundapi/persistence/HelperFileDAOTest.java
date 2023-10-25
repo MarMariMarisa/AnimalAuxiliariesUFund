@@ -69,7 +69,7 @@ public class HelperFileDAOTest {
 
         // Perform the test
         assertTrue(testHelpers[0].addToFundingBasket(testNeeds[0]));
-        Need need = helperFileDAO.addToBasket(testHelpers[0].getUsername(), testNeeds[0].getId());
+        Need need = helperFileDAO.addToBasket(testHelpers[0].getUsername(), testNeeds[0]);
 
         // Assert the results
         assertEquals(testNeeds[0].getId(), need.getId());

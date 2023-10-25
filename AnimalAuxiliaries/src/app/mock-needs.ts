@@ -2,12 +2,14 @@ import { Need } from './need';
 
 export const NEEDS: Need[] = [
   {
-    id: '1',
     name: 'Dog-Leash',
     description: 'The dogs we have are going to need leashes',
     type: 'Equipment',
     price: 15,
     quantity: 5,
+    allFunded: false,
+    percentFunded: 0.0,
+    id: '1',
     numInBaskets: 0,
     quantityFunded: 0,
   },
@@ -18,6 +20,8 @@ export const NEEDS: Need[] = [
     type: 'Food',
     price: 20,
     quantity: 5,
+    allFunded: false,
+    percentFunded: 0.0,
     numInBaskets: 0,
     quantityFunded: 0,
   },
@@ -30,5 +34,7 @@ export const NEEDS: Need[] = [
     quantity: 5,
     numInBaskets: 0,
     quantityFunded: 0,
+    allFunded: false,
+    percentFunded: 0.0,
   },
 ];

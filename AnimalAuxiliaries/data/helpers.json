@@ -1,7 +1,12 @@
 [
     {
         "id": "1",
-        "username": "helper",
+        "username": "helperOne",
+        "basket": []
+    },
+    {
+        "id": "2",
+        "username": "helperTwo",
         "basket": []
     }
 ]

@@ -3,6 +3,7 @@ import { Need } from '../need';
 import { FundingBasketService } from '../funding-basket.service';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-funding-basket',
@@ -12,13 +13,17 @@ import { AuthService } from '../auth.service';
 export class FundingBasketComponent {
   constructor(
     private fundingBasketService: FundingBasketService,
-    private auth: AuthService
+    private auth: AuthService,
+    private route: ActivatedRoute
   ) {}
   basket: Need[] = [];
+
+
   ngOnInit(): void {
     this.getBasket();
   }
   getBasket(): void {
+    this.auth.setUsername(this.route.snapshot.paramMap.get('username')!);
     this.fundingBasketService
       .getBasket(this.auth.getUsername())
       .subscribe((need) => (this.basket = need));
