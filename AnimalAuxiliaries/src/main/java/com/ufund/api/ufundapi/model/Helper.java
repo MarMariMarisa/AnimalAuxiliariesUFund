@@ -17,9 +17,15 @@ public class Helper implements User {
 
     private static final String HELPER_ID_MODIFIER = "H"; 
 
-    public Helper(String username, FundingBasket basket) {
+    public Helper(String username) {
         this.username = username; 
-        this.fundingBasket = basket; 
+        this.fundingBasket = new FundingBasket();
+        this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
+    }
+
+    public Helper(){
+        this.username = "";
+        this.fundingBasket = new FundingBasket();
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
     }
 

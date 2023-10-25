@@ -1,0 +1,10 @@
+[
+    {
+        "id": "some-id-value",
+        "username": "some-username-value",
+        "basket": {
+            "needs": []
+        }
+    }
+]
+    
