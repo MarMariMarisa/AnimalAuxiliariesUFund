@@ -27,10 +27,10 @@ export class ManagerComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.needService
-      .createNeed({
-        id: '5',
-        name: 'hello',
+    let a = JSON.parse(
+      JSON.stringify({
+        id: '4',
+        name: name,
         description: 'descirption',
         type: 'type',
         price: 5,
@@ -38,10 +38,11 @@ export class ManagerComponent implements OnInit {
         numInBaskets: 5,
         quantityFunded: 2,
       } as Need)
-      .subscribe((need) => {
-        console.log(typeof need);
-        this.needs.push(need);
-      });
+    );
+    console.log(a);
+    this.needService.createNeed(a).subscribe((need) => {
+      this.needs.push(need);
+    });
   }
 
   delete(need: Need): void {
