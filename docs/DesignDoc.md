@@ -25,13 +25,18 @@ This project is a U-Fund website that is to be used by a local animal shelter/hu
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
 
+The Animal Auxiliaries U-Fund website exists to allow an animal shelter to virtually fundraise for their non-profit by making the process of donating to the animal shelter simple and easy. 
+
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
 
 | Term | Definition |
 |------|------------|
-| SPA | Single Page |
-
+| Need | A single item or action that the non-profit needs to be funded. Needs are **created** by *Managers* and **funded** by *Helpers*. |
+| Cupboard | Virtual storage for the many needs of the non-profit. The cupboard is **edited** by *Managers* and **viewed** by *Helpers*. | 
+| Funding Basket | Virtual shopping basket. Each *Helper* has a personal Funding Basket, they can **add** and **remove** *Needs* from their Funding Basket as well as **Check-out** or buy those *Needs*. | 
+| Manager | A website User that represents a person who is responsible for the needs of a non-profit. The Manager has the ability to **edit** the *Cupboard*. | 
+| Helper | A website User that represents a person who is donating to the non-profit. The Helper has the ability to **search** the *Cupboard* and **fund** *Needs*. | 
 
 ## Requirements
 Webpage displaying and enabling all of the following things:
@@ -61,6 +66,12 @@ Your 10% additional feature enchantment(s)
 
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+
+- **Minimal Authentication** --> Minimal Authentication allows any user to login to the webisite without creating an account. Any user attempting to login with the **admin** username will be logged in as a *Manger*. Any user attempting to login with any other username will be logged in as a *Helper*. 
+
+- **Helper Functionality** --> Minimal Helper Functionality allows the *Helper* to **search** for a *need*. As well as **Add** and **Remove** *Needs* from their *Funding Basket*. 
+
+- **U-fund Manager Functionality** --> Minimal Manager Functionality allows a *Manager* to **add**, **remove**, and **edit** the *needs* in the *cupboard*. And prevent the *Manager* from viewing the *funding baskets*. 
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._

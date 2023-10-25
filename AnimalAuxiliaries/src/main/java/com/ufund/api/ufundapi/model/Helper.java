@@ -12,13 +12,14 @@ public class Helper implements User {
     @JsonProperty("username")
     private final String username;
 
+    @JsonProperty("basket")
     private FundingBasket fundingBasket;
 
     private static final String HELPER_ID_MODIFIER = "H"; 
 
-    public Helper(String username, FundingBasket basket) {
+    public Helper(String username) {
         this.username = username; 
-        this.fundingBasket = basket; 
+        this.fundingBasket = new FundingBasket(); 
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
     }
 
@@ -28,6 +29,14 @@ public class Helper implements User {
 
     public boolean removeFromFundingBasket(Need need) {
         return fundingBasket.removeFromBasket(need);
+    }
+
+    public Need[] getBasketNeeds() {
+        return fundingBasket.getBasket().toArray(new Need[0]); 
+    }
+
+    public FundingBasket getFundingBasket() {
+        return fundingBasket; 
     }
 
     public String getId() {
