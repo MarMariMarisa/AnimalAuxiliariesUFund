@@ -17,8 +17,10 @@ export class FundingBasketService {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS,DELETE'})
+      'Access-Control-Allow-Headers':
+        'X-Requested-With, content-type, Authorization',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS,DELETE',
+    }),
   };
 
   constructor(
@@ -26,14 +28,15 @@ export class FundingBasketService {
     private messageService: MessageService
   ) {}
 
-  getBasket(username: String): Observable<Need[]> {
+  getBasket(username: string): Observable<Need[]> {
     const url = `${this.basketUrl}/${username}`;
-    return this.http.get<Need[]>(url,this.httpOptions).pipe(
+
+    return this.http.get<Need[]>(url, this.httpOptions).pipe(
       tap((_) => this.log('fetched basket')),
       catchError(this.handleError('getBasket', []))
     );
   }
-  addToBasket(username: string,need: Need): Observable<Need> {
+  addToBasket(username: string, need: Need): Observable<Need> {
     const url = `${this.basketUrl}/${username}/${need}`;
     return this.http.post<Need>(url, this.httpOptions).pipe(
       tap((_) => this.log(`added need =${need}`)),
@@ -48,10 +51,14 @@ export class FundingBasketService {
     );
   }
   createHelper(helper: Helper): Observable<Helper> {
-    return this.http.post<Helper>(this.basketUrl, helper, this.httpOptions).pipe(
-      tap((newHelper: Helper) => this.log(`added need w/ id=${newHelper.id}`)),
-      catchError(this.handleError<Helper>('addHelper'))
-    );
+    return this.http
+      .post<Helper>(this.basketUrl, helper, this.httpOptions)
+      .pipe(
+        tap((newHelper: Helper) =>
+          this.log(`added need w/ id=${newHelper.id}`)
+        ),
+        catchError(this.handleError<Helper>('addHelper'))
+      );
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

@@ -49,7 +49,7 @@ public class HelperController {
     }
 
     @PostMapping("/{username}/{need}")
-    public ResponseEntity<Need> addToBasket(@PathVariable String username, @RequestBody Need need) {
+    public ResponseEntity<Need> addToBasket(@PathVariable String username, @PathVariable Need need) {
         LOG.info("POST /funding-basket/" + username + "/" + need);
         
         try{
