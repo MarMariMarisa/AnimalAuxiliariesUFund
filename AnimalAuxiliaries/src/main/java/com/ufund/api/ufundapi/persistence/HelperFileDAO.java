@@ -35,7 +35,10 @@ public class HelperFileDAO implements UserDAO {
         Helper[] helperArray = objectMapper.readValue(new File(filename), Helper[].class);
     
         for(Helper h : helperArray){
-            helpers.put(h.getUsername(), h);
+            if(h != null){
+                helpers.put(h.getUsername(), h);
+            }
+            
         }
 
         return true;
@@ -66,9 +69,10 @@ public class HelperFileDAO implements UserDAO {
 
     public Helper createHelper(Helper helper) throws IOException{
         synchronized(helpers){
-            if(helpers.containsKey(helper.getUsername())){
+            if(!helpers.containsKey(helper.getUsername())){
                 helpers.put(helper.getUsername(), helper);
                 save();
+                return helper;
             }
             return null;
         }
@@ -76,26 +80,22 @@ public class HelperFileDAO implements UserDAO {
 
     public Need addToBasket(String username, String needID) throws IOException{
         synchronized(helpers){
-            if(!helpers.containsKey(username)){
-                Helper helper = new Helper(username);
-                 helpers.put(helper.getUsername(), helper);
-                save();
-            }
             if(helpers.containsKey(username)){
                 Helper h = helpers.get(username);
                 Need need = needDao.getNeed(needID);
                 if(need != null){
                     need.setNumInBaskets(need.getNumInBaskets()+1);
                     if(h.addToFundingBasket(need)){
-                        needDao.updateNeed(need);
-                        save();
-                        return need;
+                        needDao.updateNeed(need); 
+                        save();   
+                        return need;          
                     }
                     else{
                         need.setNumInBaskets(need.getNumInBaskets()-1);
                         return null;
                     }
                 }
+                
             }
             return null;
         }
@@ -110,12 +110,14 @@ public class HelperFileDAO implements UserDAO {
                     if(h.removeFromFundingBasket(need)){
                         need.setNumInBaskets(need.getNumInBaskets()-1);
                         needDao.updateNeed(need);  
-                        save();            
+                        save();  
+                        return need;
                     }
                     else{
                         return null;
                     }
                 }
+                
             }
             return null;
         }
@@ -124,7 +126,6 @@ public class HelperFileDAO implements UserDAO {
     public Need[] getBasketNeeds(String username) throws IOException{
         synchronized(helpers){
             Helper h = helpers.get(username);
-            if(h == null){return null;}
             return h.getBasketNeeds();
         }
     }
