@@ -21,7 +21,6 @@ setTimeout(() => {
         if (isNeedFunded) {
           isNeedFunded.classList.toggle('unsuccessful');
           isNeedFunded.classList.toggle('successful');
-
           if (isNeedFunded.classList.contains('successful')) {
             isNeedFunded.textContent = 'Funded';
           } else {
