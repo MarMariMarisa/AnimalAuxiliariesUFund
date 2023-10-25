@@ -31,7 +31,7 @@ export class CupboardComponent implements OnInit {
   }
   addToBasket(need: Need): void {
     this.fundingbasketService
-      .addToBasket(this.auth.getUsername(),need)
+      .addToBasket(this.auth.getUsername(), need)
       .subscribe((newNeed) => newNeed);
   }
 }

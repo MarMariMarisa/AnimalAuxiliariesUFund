@@ -18,12 +18,11 @@ export class FundingBasketComponent {
   ) {}
   basket: Need[] = [];
 
-
   ngOnInit(): void {
     this.getBasket();
   }
   getBasket(): void {
-    this.auth.setUsername(this.route.snapshot.paramMap.get('username')!);
+    console.log(this.auth.getUsername());
     this.fundingBasketService
       .getBasket(this.auth.getUsername())
       .subscribe((need) => (this.basket = need));

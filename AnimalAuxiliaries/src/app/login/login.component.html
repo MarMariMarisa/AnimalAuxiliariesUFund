@@ -1,10 +1,6 @@
-
 <h2>Login</h2>
 <form (submit)="login()">
   <label>Username:</label>
-  <input type="text" id="role" name="role" [(ngModel)]="username" required #helperUsername />
-  <button 
-  type="submit"
-  (click)="add(helperUsername.value)"
-  >Login</button>
+  <input type="text" id="role" name="role" required #username />
+  <button type="submit" (click)="add(username.value)">Login</button>
 </form>
