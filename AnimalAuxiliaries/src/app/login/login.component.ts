@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,13 +9,17 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   login() {
     if (this.username === 'admin') {
       this.router.navigate(['/manager']);
     } else {
+      this.auth.setUsername(this.username);
       this.router.navigate(['/helper']);
     }
+  }
+  getUsername(): string {
+    return this.username;
   }
 }

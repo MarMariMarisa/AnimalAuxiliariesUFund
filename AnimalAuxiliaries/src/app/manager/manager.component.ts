@@ -22,14 +22,17 @@ export class ManagerComponent implements OnInit {
       .subscribe((needs) => (this.needs = needs));
   }
 
-  add(name: string): void {
+  add(name: string, id: string): void {
     name = name.trim();
     if (!name) {
       return;
     }
+    if (!id) {
+      return;
+    }
     let a = JSON.parse(
       JSON.stringify({
-        id: '4',
+        id: id,
         name: name,
         description: 'descirption',
         type: 'type',

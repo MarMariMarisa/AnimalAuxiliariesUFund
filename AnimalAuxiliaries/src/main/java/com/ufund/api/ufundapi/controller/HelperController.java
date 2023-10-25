@@ -34,6 +34,8 @@ public class HelperController {
     @GetMapping("/{username}")
     public ResponseEntity<Need[]> getHelpersBasket(@PathVariable String username) {
         LOG.info("GET /funding-basket/" + username);
+
+        
         try{
             return new ResponseEntity<Need[]>(helperDAO.getBasketNeeds(username), HttpStatus.OK);
         }
@@ -44,10 +46,12 @@ public class HelperController {
     }
 
     @PostMapping("/{username}/{needID}")
-    public ResponseEntity<Need> addToBasket(String username, String needID) {
+    public ResponseEntity<Need> addToBasket(@PathVariable String username, @PathVariable String needID) {
         LOG.info("POST /funding-basket/" + username + "/" + needID);
+        
         try{
             Need need = helperDAO.addToBasket(username, needID);
+            
             if(need != null){
                 return new ResponseEntity<>(need, HttpStatus.OK);
             }

@@ -9,15 +9,25 @@ import { LoginComponent } from './login/login.component';
 import { BasketComponent } from './basket/basket.component';
 import { CupboardComponent } from './cupboard/cupboard.component';
 
-
 import { HttpClientModule } from '@angular/common/http';
 import { NeedComponent } from './need/need.component';
 import { NeedSearchComponent } from './need-search/need-search.component';
 import { FundingBasketComponent } from './funding-basket/funding-basket.component';
 
 @NgModule({
-  declarations: [AppComponent, ManagerComponent, HelperComponent, LoginComponent, BasketComponent,CupboardComponent, NeedComponent, NeedComponent, NeedSearchComponent, FundingBasketComponent],
-  imports: [BrowserModule,FormsModule, AppRoutingModule,HttpClientModule,],
+  declarations: [
+    AppComponent,
+    ManagerComponent,
+    HelperComponent,
+    LoginComponent,
+    BasketComponent,
+    CupboardComponent,
+    NeedComponent,
+    NeedComponent,
+    NeedSearchComponent,
+    FundingBasketComponent,
+  ],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -3,6 +3,8 @@ import { Cupboard } from '../cupboard';
 import { CupboardService } from '../cupboard.service';
 import { Need } from '../need';
 import { Observable } from 'rxjs';
+import { FundingBasketService } from '../funding-basket.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-cupboard',
@@ -10,7 +12,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cupboard.component.css'],
 })
 export class CupboardComponent implements OnInit {
-  constructor(private cupboardService: CupboardService) {}
+  constructor(
+    private cupboardService: CupboardService,
+    private fundingbasketService: FundingBasketService,
+    private auth: AuthService
+  ) {}
 
   currentNeeds: Need[] = [];
 
@@ -22,5 +28,10 @@ export class CupboardComponent implements OnInit {
     this.cupboardService
       .getEntireCupboard()
       .subscribe((need) => (this.currentNeeds = need));
+  }
+  addToCupboard(need: Need): void {
+    this.fundingbasketService
+      .addToBasket(need.id, this.auth.getUsername())
+      .subscribe((newNeed) => newNeed);
   }
 }
