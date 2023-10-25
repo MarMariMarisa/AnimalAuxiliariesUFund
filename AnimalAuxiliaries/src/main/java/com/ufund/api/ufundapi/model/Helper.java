@@ -32,26 +32,23 @@ public class Helper implements User {
         this.fundingBasket = new ArrayList<>(); 
     }
 
-    public boolean addToFundingBasket(Need need) {
-        for(Need i : fundingBasket){
-        if(i.getId() == need.getId()){return false;}
+    public boolean addToFundingBasket(Need need){
+        // Check is real need that needs funding
+        if(need != null && need.getAllFunded() == false){
+            return fundingBasket.add(need);
         }
-            fundingBasket.add(need);
-            return true;
-        }
+        return false;
+    }
 
 
-    public boolean removeFromFundingBasket(Need need) {
-            for(Need i : fundingBasket){
-                if(i.getId() != need.getId()) return false;
-            }
-            fundingBasket.remove(need);
-            return true;
-        }
+    public boolean removeFromFundingBasket(Need need){
+        return fundingBasket.remove(need);     
+    }
     
     
     public Need[] getBasketNeeds() {
-        return (Need[]) fundingBasket.toArray();
+        //return (Need[]) fundingBasket.toArray();
+        return fundingBasket.toArray(new Need[0]);
     }
 
     public List<Need> getFundingBasket() {

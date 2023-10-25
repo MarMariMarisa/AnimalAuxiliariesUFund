@@ -24,7 +24,7 @@ public class HelperTest {
                         new Need("need 3", "", "", 1.00f, 1)}; 
 
         for(int i = 0; i < needs.length; i++) {
-            helper.getFundingBasket().addToBasket(needs[i]); 
+            helper.addToFundingBasket(needs[i]);
         }
 
         assertArrayEquals(needs, helper.getBasketNeeds()); 
@@ -41,7 +41,7 @@ public class HelperTest {
 
         assertTrue(helper.addToFundingBasket(need)); 
 
-        assertEquals(1, helper.getFundingBasket().getSize());      
+        assertEquals(1, helper.getBasketNeeds().length);      
 
     }
 
@@ -62,7 +62,7 @@ public class HelperTest {
 
         assertTrue(helper.removeFromFundingBasket(needs[1])); 
 
-        assertEquals(needs.length - 1, helper.getFundingBasket().getSize()); 
+        assertEquals(needs.length - 1, helper.getBasketNeeds().length); 
         assertFalse(helper.getBasketNeeds().equals(needs)); 
         //TO DO I think there needs to be some extra confirmation here 
     }
