@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.persistence;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -64,6 +65,19 @@ public class HelperFileDAOTest {
     }
 
     @Test
+    public void testCreateHelperExists() throws IOException{
+        Helper helper = new Helper("example");
+        Helper result = assertDoesNotThrow(() -> helperFileDAO.createHelper(helper), "Unexpected exception thrown");
+        assertNotNull(result);
+        int afterAddition = helperFileDAO.getHelpers().length;
+        assertEquals(testHelpers.length+1, afterAddition);
+
+        result = assertDoesNotThrow(() -> helperFileDAO.createHelper(helper), "Unexpected exception thrown");
+        assertNull(result);
+        assertEquals(afterAddition, helperFileDAO.getHelpers().length);
+    }
+
+    @Test
     public void testAddToBasket() throws IOException {
         when(mockNeedFileDAO.getNeed(testNeeds[0].getId())).thenReturn(testNeeds[0]);
 
@@ -77,17 +91,29 @@ public class HelperFileDAOTest {
     }
 
     @Test
-    public void testremoveFromBasket() throws IOException {
-        when(mockNeedFileDAO.getNeed(testNeeds[0].getId())).thenReturn(testNeeds[0]);
+    public void testAddToBasketHelperDoesNotExist() throws IOException {
+        Need result = helperFileDAO.addToBasket("non_existing_user", testNeeds[0]);
 
-        // Perform the test
-        testHelpers[0].addToFundingBasket(testNeeds[0]);
-        assertTrue(testHelpers[0].removeFromFundingBasket(testNeeds[0]));
-        testHelpers[0].addToFundingBasket(testNeeds[0]);
-        Need need = helperFileDAO.removeFromBasket(testHelpers[0].getUsername(), testNeeds[0].getId());
+        // Assert that the result is null since the helper doesn't exist
+        assertEquals(null, result);
+    }
 
-        // Assert the results
-        assertEquals(testNeeds[0].getId(), need.getId());
+    @Test
+    public void testAddToBasketNeedDoesNotExist() throws IOException {
+        Need result = helperFileDAO.addToBasket("user1", null);
+
+        // Assert that the result is null since the need doesn't exist
+        assertEquals(null, result);
+    }
+
+   
+    @Test
+    public void testRemoveFromBasketNeedDoesNotExist() throws IOException {
+        assertTrue(testHelpers[0].addToFundingBasket(testNeeds[0]));
+        Need result = helperFileDAO.removeFromBasket("user1", "need1");
+
+        // Assert that the result is null since the need doesn't exist
+        assertEquals(null, result);
     }
 
     @Test

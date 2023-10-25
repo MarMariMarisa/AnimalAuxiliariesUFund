@@ -2,7 +2,7 @@
     {
         "id": "1",
         "username": "helperOne",
-        "basket": []
+        "basket": [{"name":"Dog Toys","description":"Dogs need toys to play with","type":"type","price":5.0,"quantity":25,"allInBasket":false,"allFunded":false,"percentFunded":8.0,"id":"4","numInBaskets":5,"quantityFunded":2}]
     },
     {
         "id": "2",

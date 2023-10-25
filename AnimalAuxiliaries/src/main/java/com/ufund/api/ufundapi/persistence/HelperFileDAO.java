@@ -128,7 +128,11 @@ public class HelperFileDAO implements UserDAO {
     public Need[] getBasketNeeds(String username) throws IOException{
         synchronized(helpers){
             Helper h = helpers.get(username);
-            return h.getBasketNeeds();
+            if(h != null){
+                return h.getBasketNeeds();
+            }
+            return null;
+            
         }
     }
 }
