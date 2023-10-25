@@ -34,7 +34,7 @@ This project is a U-Fund website that is to be used by a local animal shelter/hu
 
 
 ## Requirements
-Webpage displaying and enabling all of the following things:
+**Webpage displaying and enabling all of the following things:**
 
 Authentication for Helper/U-fund Manager login & logout will enable necessary privledges for a user. 
 
