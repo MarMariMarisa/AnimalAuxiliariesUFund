@@ -4,6 +4,7 @@ import { MessageService } from './message.service';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { Need } from './need';
 import { fundingBasket } from './funding-basket';
+import { Helper } from './helper';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,7 @@ export class FundingBasketService {
   }
   addToBasket(id: string, username: string): Observable<Need> {
     const url = `${this.basketUrl}/${username}/${id}`;
+    console.log("I am herer!!!!")
     return this.http.post<Need>(url, this.httpOptions).pipe(
       tap((_) => this.log(`added need w/ id=${id}`)),
       catchError(this.handleError<Need>('addToBasket'))
@@ -39,6 +41,12 @@ export class FundingBasketService {
     return this.http.delete<Need>(url, this.httpOptions).pipe(
       tap((_) => this.log(`deleted need id=${id}`)),
       catchError(this.handleError<Need>('deleteNeedFromBasket'))
+    );
+  }
+  createHelper(helper: Helper): Observable<Helper> {
+    return this.http.post<Helper>(this.basketUrl, helper, this.httpOptions).pipe(
+      tap((newHelper: Helper) => this.log(`added need w/ id=${newHelper.id}`)),
+      catchError(this.handleError<Helper>('addHelper'))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {

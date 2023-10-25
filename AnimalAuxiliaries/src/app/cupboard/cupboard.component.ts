@@ -29,7 +29,7 @@ export class CupboardComponent implements OnInit {
       .getEntireCupboard()
       .subscribe((need) => (this.currentNeeds = need));
   }
-  addToCupboard(need: Need): void {
+  addToBasket(need: Need): void {
     this.fundingbasketService
       .addToBasket(need.id, this.auth.getUsername())
       .subscribe((newNeed) => newNeed);
