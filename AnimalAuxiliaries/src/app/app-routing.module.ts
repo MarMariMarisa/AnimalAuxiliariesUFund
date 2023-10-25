@@ -8,7 +8,7 @@ import { NeedComponent } from './need/need.component';
 const routes: Routes = [
   { path: 'manager', component: ManagerComponent },
   { path: 'helper', component: HelperComponent },
-  { path: 'helper/:id', component: NeedComponent },
+  { path: 'manager/:id', component: NeedComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

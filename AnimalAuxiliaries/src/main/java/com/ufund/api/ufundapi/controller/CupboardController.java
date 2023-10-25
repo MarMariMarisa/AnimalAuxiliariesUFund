@@ -86,7 +86,7 @@ public class CupboardController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Need> updateNeed(@RequestParam Need need) {
+    public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
         LOG.info("PUT /cupboard " + need.getId());
         try{
             if(needDAO.updateNeed(need) == null)

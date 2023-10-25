@@ -13,7 +13,7 @@
 
 <ul class="needs">
   <li *ngFor="let need of needs">
-    <a routerLink="/detail/{{ need.id }}">
+    <a routerLink="/manager/{{ need.id }} ">
       <span class="badge">{{ need.id }}</span> {{ need.name }}
     </a>
     <button
