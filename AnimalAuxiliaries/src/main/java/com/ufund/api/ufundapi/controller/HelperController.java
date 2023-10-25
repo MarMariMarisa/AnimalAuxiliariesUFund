@@ -49,7 +49,7 @@ public class HelperController {
 
     @PostMapping("/{username}/{need}")
     public ResponseEntity<Need> addToBasket(@PathVariable String username, @PathVariable Need need) {
-        LOG.info("POST /funding-basket/" + username + "/" + need);
+        LOG.info("POST /funding-basket/" + username + "/" + need.getId());
         
         try{
             Need nee = helperDAO.addToBasket(username, need);
