@@ -10,7 +10,7 @@ import { Helper } from './helper';
   providedIn: 'root',
 })
 export class FundingBasketService {
-  private basketUrl = 'http://localhost:8080/funding-basket'; // URL to web api
+  private basketUrl: string = 'http://localhost:8080/funding-basket'; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -37,11 +37,14 @@ export class FundingBasketService {
     );
   }
   addToBasket(username: string, need: Need): Observable<Need> {
-    const url = `${this.basketUrl}/${username}/${need}`;
-    return this.http.post<Need>(url, this.httpOptions).pipe(
-      tap((_) => this.log(`added need =${need}`)),
-      catchError(this.handleError<Need>('addToBasket'))
-    );
+    const url = `${this.basketUrl}/${username}`;
+
+    return this.http
+      .post<Need>(url, JSON.stringify(need), this.httpOptions)
+      .pipe(
+        tap((_) => this.log(`added need =${need}`)),
+        catchError(this.handleError<Need>('addToBasket'))
+      );
   }
   removeFromBasket(username: string, id: String): Observable<Need> {
     const url = `${this.basketUrl}/${username}/${id}`;
@@ -52,7 +55,7 @@ export class FundingBasketService {
   }
   createHelper(helper: Helper): Observable<Helper> {
     return this.http
-      .post<Helper>(this.basketUrl, helper, this.httpOptions)
+      .post<Helper>(this.basketUrl, JSON.stringify(helper), this.httpOptions)
       .pipe(
         tap((newHelper: Helper) =>
           this.log(`added need w/ id=${newHelper.id}`)

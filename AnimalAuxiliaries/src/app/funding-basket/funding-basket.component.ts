@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Need } from '../need';
 import { FundingBasketService } from '../funding-basket.service';
 import { LoginComponent } from '../login/login.component';
@@ -14,17 +14,8 @@ export class FundingBasketComponent {
   constructor(
     private fundingBasketService: FundingBasketService,
     private auth: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
   basket: Need[] = [];
-
-  ngOnInit(): void {
-    this.getBasket();
-  }
-  getBasket(): void {
-    console.log(this.auth.getUsername());
-    this.fundingBasketService
-      .getBasket(this.auth.getUsername())
-      .subscribe((need) => (this.basket = need));
-  }
 }

@@ -30,5 +30,13 @@ export class LoginComponent {
   }
   add(username: string): void {
     this.username = username;
+
+    this.fundingBasketService
+      .createHelper({
+        id: 0,
+        username: this.username,
+        basket: [],
+      } as Helper)
+      .subscribe((res) => res);
   }
 }

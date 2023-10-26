@@ -42,7 +42,6 @@ export class ManagerComponent implements OnInit {
         quantityFunded: 2,
       } as Need)
     );
-    console.log(a);
     this.needService.createNeed(a).subscribe((need) => {
       this.needs.push(need);
     });
