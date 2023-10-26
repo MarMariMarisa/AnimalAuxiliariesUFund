@@ -1,7 +1,7 @@
 ---
 geometry: margin=1in
 ---
-# PROJECT Design Documentation
+# ANIMAL AUXILIARIEs Design Documentation
 
 > _The following template provides the headings for your Design
 > Documentation.  As you edit each section make sure you remove these
@@ -92,13 +92,12 @@ This section describes the application domain.
 
 
 ## Architecture and Design
-TODO!!!
 This section describes the application architecture.
 
 ### Summary
 
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
-**NOTE**: detailed diagrams are required in later sections of this document. (_When requested, replace this diagram with your **own** rendition and representations of sample classes of your system_.) 
+**NOTE**: detailed diagrams are required in later sections of this document.
 
 ![The Tiers & Layers of the Architecture](architecutre-tiers-layers.png)
 
@@ -109,7 +108,6 @@ The Model stores the application data objects including any functionality to pro
 The View is the client-side SPA built with Angular utilizing HTML, CSS and TypeScript. The ViewModel provides RESTful APIs to the client (View) as well as any logic required to manipulate the data objects from the Model.
 
 Both the ViewModel and Model are built using Java and Spring Framework. Details of the components within these tiers are supplied below.
-
 
 ### Overview of User Interface
 
@@ -188,3 +186,5 @@ This section describes the web interface flow; this is how the user views and in
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
+
+
