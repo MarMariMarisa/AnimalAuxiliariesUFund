@@ -26,13 +26,12 @@ Taking advantage of the granted extensions, we have updated our readMe and desig
 
 1. Clone the repository and go to the root directory.
 2. Execute `mvn compile exec:java`
-3. Open in your browser `http://localhost:8080/`
-4.  _add any other steps required or examples of how to use/run_
+3. Open in your browser `http://localhost:8080/` to view the sprint server
+4. In another powershell, from the root directory, run ng serve
+5. Open in your browser `http://localhost:4200/` to view the actual page
+6. Login and use site as you please
 
 ## Known bugs and disclaimers
-
-Needs names should be created without spaces in order for delete to work correctly.
-Need names are not updatable. 
 
 
 ## How to test it

@@ -1,0 +1,13 @@
+<div id="search-component">
+  <label for="search-box">Need Search</label>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <div *ngFor="let need of needs$ | async">
+      <h2 class="badge">Name: {{ need.name }}</h2>
+      <h4 class="badge">Description: {{ need.description }}</h4>
+      <h4 class="badge">Price: ${{ need.price }}</h4>
+      <h4 class="badge">Quantity: {{ need.quantity }}</h4>
+    </div>
+  </ul>
+</div>

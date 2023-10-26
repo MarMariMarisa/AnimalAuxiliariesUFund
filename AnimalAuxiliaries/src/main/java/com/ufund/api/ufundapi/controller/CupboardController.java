@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,6 @@ import com.ufund.api.ufundapi.persistence.NeedFileDAO;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 @RestController
 @RequestMapping("cupboard")
 public class CupboardController {
@@ -85,7 +85,7 @@ public class CupboardController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Need> updateNeed(@RequestParam Need need) {
+    public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
         LOG.info("PUT /cupboard " + need.getId());
         try{
             if(needDAO.updateNeed(need) == null)
@@ -124,8 +124,9 @@ public class CupboardController {
     
     }
 
+
     @PostMapping("")
-    public ResponseEntity<Need> createNeed(Need need) {
+   public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need.getId());
         try{
             if(needDAO.getNeed(need.getId()) == null){

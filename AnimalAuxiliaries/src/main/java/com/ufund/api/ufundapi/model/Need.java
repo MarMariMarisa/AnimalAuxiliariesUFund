@@ -1,6 +1,8 @@
 package com.ufund.api.ufundapi.model;
 
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /*
@@ -8,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Represents something needed by the coorporation. Holds many pieces of data, will be a current until it is fully funded. 
  * 
  */
+
+ @JsonIgnoreProperties(ignoreUnknown = true)
 public class Need {
     //private static final Logger LOG = Logger.getLogger(Need.class.getName());
 
@@ -212,10 +216,10 @@ public class Need {
         return this.quantityFunded;
     }
 
-    @Override
-    public String toString() {
-        return String.format(STRING_FORMAT, id, name, description, type, price, quantity, numInBaskets, quantityFunded);
-    }
+    // @Override
+    // public String toString() {
+    //     return String.format(STRING_FORMAT, id, name, description, type, price, quantity, numInBaskets, quantityFunded);
+    // }
 
     // Setters
     public void setName(String name) {
