@@ -128,7 +128,7 @@ public class Need {
      * @return boolean
      */
     public boolean getAllInBasket() {
-        if (this.quantity == this.numInBaskets)
+        if (this.quantity <= this.numInBaskets)
             return true;
         return false;
     }
