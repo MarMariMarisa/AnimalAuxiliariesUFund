@@ -12,7 +12,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Sarah Payne
 
 # Sprint 2 Release
-Our demo did not include this -> now when a helper searches for a need, they may add a need to their functiong basket from the search list that appears.
+Our demo did not include this -> now when a helper searches for a need, they may add a need to their funding basket from the search list that appears.
 Known bugs/disclaimers:
 We are currently only permitting predefined helpers to have proper usage of the program.
 To login as a helper, use the login 'helperOne'
