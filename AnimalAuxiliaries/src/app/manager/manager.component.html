@@ -3,14 +3,10 @@
 <div>
   <label for="new-need">Need name: </label>
   <input id="new-need" #needName />
-  <label for="new-need-id">Need ID: </label>
-  <input id="new-need-ID" #needID />
   <button
     type="button"
     class="add-button"
-    (click)="
-      add(needName.value, needID.value); needName.value = ''; needID.value = '0'
-    "
+    (click)="add(needName.value); needName.value = ''"
   >
     Add need
   </button>
@@ -19,7 +15,7 @@
 <ul class="needs">
   <li *ngFor="let need of needs">
     <a routerLink="/manager/{{ need.id }} ">
-      <span class="badge">{{ need.id }}</span> {{ need.name }}
+      <span class="badge"></span> {{ need.name }}
     </a>
     <button
       type="button"
