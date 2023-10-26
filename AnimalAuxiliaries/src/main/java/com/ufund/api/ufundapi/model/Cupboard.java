@@ -112,16 +112,16 @@ public class Cupboard {
      * @param needID 
      * @return boolean based on success of removal
      */
-    public boolean retireNeed(String needId) {
-        if (needId != null) {
-            Need removedNeed = currentNeeds.remove(needId);
-            if(removedNeed != null) {
-                retiredNeeds.put(needId, removedNeed); 
-                return true; 
-            }
-        }
-        return false;
-    }
+    // public boolean retireNeed(String needId) {
+    //     if (needId != null) {
+    //         Need removedNeed = currentNeeds.remove(needId);
+    //         if(removedNeed != null) {
+    //             retiredNeeds.put(needId, removedNeed); 
+    //             return true; 
+    //         }
+    //     }
+    //     return false;
+    // }
 
     // public boolean unretireNeed(String needID) {
     //     if(needID != null) {
@@ -135,9 +135,9 @@ public class Cupboard {
     // }
 
 
-    public List<Need> getRetiredNeeds() {
-        return new ArrayList<Need>(retiredNeeds.values());
-    }
+    // public List<Need> getRetiredNeeds() {
+    //     return new ArrayList<Need>(retiredNeeds.values());
+    // }
     // @Override
     // public String toString() {
     //     return String.format(getEntireCupboard().toString());
