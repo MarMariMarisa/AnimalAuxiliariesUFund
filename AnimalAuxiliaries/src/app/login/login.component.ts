@@ -20,7 +20,7 @@ export class LoginComponent {
   login() {
     if (this.username === 'admin') {
       this.router.navigate(['/manager']);
-    } else {
+    } else if (this.username == 'helperOne' || this.username == 'helperTwo') {
       this.auth.setUsername(this.username);
       this.router.navigate(['/helper']);
     }
