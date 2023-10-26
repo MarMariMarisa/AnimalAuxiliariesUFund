@@ -60,6 +60,7 @@
 								<argument>surefire:test@persistence</argument>
 								<argument>jacoco:report@persistence</argument>
 							</arguments>
+				
 						</configuration>
 					</execution>
 				</executions>
