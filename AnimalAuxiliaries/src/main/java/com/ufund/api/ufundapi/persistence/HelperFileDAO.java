@@ -89,16 +89,16 @@ public class HelperFileDAO implements UserDAO {
                 Need helperNeed;
                 Need cupboardNeed = need;
 
-                if(need != null){
+                if(need != null && need.getQuantity() > 0){
                     // If need present, increment quantity
                     for(Need n : h.getBasketNeeds()){
                         if(need.equals(n)){
                             helperNeed = n;
-                            helperNeed.setQuantity(n.getQuantity()+1);
+                            helperNeed.setQuantity(helperNeed.getQuantity()+1);
                             if(h.removeFromFundingBasket(n)){
                                 if(h.addToFundingBasket(helperNeed)){
-                                    cupboardNeed.setNumInBaskets(need.getNumInBaskets()-n.getNumInBaskets());
-                                    cupboardNeed.setQuantity(need.getQuantity()-n.getQuantity());
+                                    //cupboardNeed.setNumInBaskets(need.getNumInBaskets()-n.getNumInBaskets());
+                                    cupboardNeed.setQuantity(cupboardNeed.getQuantity()-1);
                                     needDao.updateNeed(cupboardNeed); 
                                     save();   
                                     return need;          
@@ -109,12 +109,10 @@ public class HelperFileDAO implements UserDAO {
                     }
 
                     // Add raw new need, quantity is one. Update need in the cupboard to reflect changes
-                    need.setNumInBaskets(need.getNumInBaskets()+1);
-                    need.setQuantity(need.getQuantity()-1);
-                    helperNeed = need;
+                    helperNeed = new Need(need);
                     helperNeed.setQuantity(1);
-
-                    if(h.addToFundingBasket(need)){
+                    if(h.addToFundingBasket(helperNeed)){
+                        need.setQuantity(need.getQuantity()-1);
                         needDao.updateNeed(need); 
                         save();   
                         return need;          
@@ -134,10 +132,20 @@ public class HelperFileDAO implements UserDAO {
             if(helpers.containsKey(username)){
                 Helper h = helpers.get(username);
                 Need need = needDao.getNeed(needID);
+                Need helperNeed = new Need();
+
+                
+              
                 if(need != null){
+                    for(Need n : h.getBasketNeeds()){
+                    if(need.equals(n))
+                        helperNeed = n;
+                    }
                     if(h.removeFromFundingBasket(need)){
-                        need.setNumInBaskets(need.getNumInBaskets()-1);
-                        need.setQuantity(need.getQuantity()+1);
+                        //need.setNumInBaskets(need.getNumInBaskets()-1);
+                        //need.setQuantity(need.getQuantity()+1);
+                        // need.setNumInBaskets(need.getNumInBaskets()-helperNeed.getNumInBaskets());
+                        need.setQuantity(need.getQuantity()+helperNeed.getQuantity());
                         needDao.updateNeed(need);  
                         save();  
                         return need;
