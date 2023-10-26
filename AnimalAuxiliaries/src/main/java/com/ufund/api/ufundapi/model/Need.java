@@ -93,6 +93,18 @@ public class Need {
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
     }
 
+    public Need(Need otherNeed) {
+        this.id = otherNeed.getId();
+        this.name = otherNeed.getName();
+        this.description = otherNeed.getDescription();
+        this.type = otherNeed.getType();
+        this.price = otherNeed.getPrice();
+        this.quantity = otherNeed.getQuantity();
+        this.numInBaskets = otherNeed.getNumInBaskets();
+        this.quantityFunded = otherNeed.getQuantityFunded();
+    }
+        
+
     // Methods
     @Override
     public boolean equals(Object obj) {

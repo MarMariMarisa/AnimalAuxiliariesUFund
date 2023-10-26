@@ -1,7 +1,7 @@
 ---
 geometry: margin=1in
 ---
-# ANIMAL AUXILIARIEs Design Documentation
+# ANIMAL AUXILIARIES Design Documentation
 
 > _The following template provides the headings for your Design
 > Documentation.  As you edit each section make sure you remove these
@@ -115,6 +115,13 @@ This section describes the web interface flow; this is how the user views and in
 
 > _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
+The application opens on a login page 'http://localhost:4200/login', logging in as an admin will take the user to the manager page 'http://localhost:4200/manager'; logging in as a helper takes you to the helper page 'http://localhost:4200/helper'
+
+> TO DO update this line after bug fixes 
+
+Once on the manager page the user sees a 'logout' button at the top of the page was a create need textbox and a list of needs in the cupboard underneath the logout button and a heading 'My Needs'. A manager can create a need by entering a name into the 'Need name: ' labeled text box and clicking the 'Add need' button, this adds the need to the list of all needs underneath. The list of needs displays the need names which link to a 'Need detail' page as well as an 'x' button which will delete the need from the cupboard. The 'Need detail' page displays the name, description, type, price, quantity, and quantity funded properties of the need in editable text boxes. The manager can update the values of the need properties by editing the boxes and clicking the 'save' button, or discard their changes by clicking the 'go back' button. 
+
+Once on the helper page the user sees a 'logout' button above a search box with all of the cupboard needs listed below displaying yhe need name, description, price, and quantity propoerties as well as a '+' button that when clicked will add the need to the helper's funding-basket. Below the list of all needs in the cupboard is a list of all needs inside of the helpers funding-basket where the needs are displayed in the same way as they are in the cupboard except with a '-' button which will remove the need from the helper's funding-basket. 
 
 ### View Tier
 > _**[Sprint 4]** Provide a summary of the View Tier UI of your architecture.
@@ -152,10 +159,32 @@ This section describes the web interface flow; this is how the user views and in
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
-![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
+![The Model Tier Class Diagram](model-tier-class-diagram.png)
 
 ## OO Design Principles
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
+
+**Sprint 1 Champion Principles**
+
+*Single Responsibility* 
+- During Sprint 1 our team focused on keeping our classes single responsibility. This means keeping classes as small as possible ad ensuring that every class or object we create should only do one thing.
+- Our cupboardController is a good implementation of a single responsibility class; its only job is manipulating the needs in the cupboard. It does not hold the logic for doing these things, its only responsibility is to call the correct methods to make the manipulations happen.
+
+*Controllers*
+- During Sprint 1 our team focused on the controllers design principle. Controllers handle user input/actions and interact with the models and views. They facilitate communication between the user interface and the underlying system components.
+- The controller principle is applied in our design by separating the user interface from the business logic of the application.
+- Our cupboardController is a good example of a controller class in our code; it handles adding/removing/edting needs in the cupboard
+
+**Sprint 2 OO Design Principles** 
+
+*Information Expert*
+-  During Sprint 2, our team focused on making our Need and Cupboard classes 'information experts'. These classes have methods that can be called to find the states of their many properties. 
+- The Cupboard class has many methods that support searching functionality, so that our cupboardController class can call cupboard methods with search terms and only recieve back needs that fit the search, rather than requesting the full cupboard and having to search through it itself every time. 
+- The Need class has many methods that describe the standing of the need in terms of quantity available and quantity funded. While they were not used during this sprint as we haven't yet completed our checkout basket functionality, these methods will be useful by alowing the Need object itself to state if it is avaiable to be checked out rather than another class having to deal with the logic of deciding it.
+
+*Open/Closed*
+- During Sprint 2 our team focused on making our Users Open/Closed, meaning that they are 'open for extension, but closed for modification'. 
+- Our team wrote a User interface to be used when creating types of Users for our website. While at the moment our team has only implemented the User interface in the creation of the Helper class, in futire sprints we see the possibility of including different types of users that will have different abilities and the User interface will be an ideal place to start in creating those new Users. 
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
@@ -178,6 +207,8 @@ This section describes the web interface flow; this is how the user views and in
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
 
+![Acceptance Testing Summary](acceptance-testing-summary.png)
+
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
 > achieved from unit testing of the code base. Discuss the team's
@@ -187,4 +218,6 @@ This section describes the web interface flow; this is how the user views and in
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
 
+![The code coverage analysis part 1](code-coverage-analysis-1.png)
+![The code coverage analysis part 2](code-coverage-analysis-2.png)
 

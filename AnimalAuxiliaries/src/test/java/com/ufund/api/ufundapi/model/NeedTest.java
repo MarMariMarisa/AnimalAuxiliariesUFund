@@ -1,5 +1,7 @@
 package com.ufund.api.ufundapi.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.Test;
 public class NeedTest {
     @Test
@@ -141,5 +143,14 @@ public class NeedTest {
     public void testEquals(){
         Need need = new Need();
         assertEquals(need, need);
+    }
+
+    @Test
+    public void testOtherConstructor(){
+        Need need = new Need();
+        Need need2 = new Need(need);
+        assertEquals(need, need2);
+        Need need3 = new Need();
+        assertNotEquals(need, need3);
     }
 }
