@@ -8,7 +8,6 @@ export const NEEDS: Need[] = [
     price: 15,
     quantity: 5,
     allFunded: false,
-    percentFunded: 0.0,
     id: '1',
     numInBaskets: 0,
     quantityFunded: 0,
@@ -21,7 +20,6 @@ export const NEEDS: Need[] = [
     price: 20,
     quantity: 5,
     allFunded: false,
-    percentFunded: 0.0,
     numInBaskets: 0,
     quantityFunded: 0,
   },
@@ -35,6 +33,5 @@ export const NEEDS: Need[] = [
     numInBaskets: 0,
     quantityFunded: 0,
     allFunded: false,
-    percentFunded: 0.0,
   },
 ];
