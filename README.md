@@ -11,9 +11,13 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Tyler Combs
 - Sarah Payne
 
-# Changes / Improvements 
-Release 1.2
-Taking advantage of the granted extensions, we have updated our readMe and designDoc. In the 1st extension, we updated some logic around our cupboardController to bolster against mishandling of "less than perfect" inputs.
+# Sprint 2 Release
+Known bugs/disclaimers:
+We are currently only permitting predefined helpers to have proper usage of the program.
+To login as a helper, use the login 'helperOne'
+
+Not really a bug, but a note that needs can be added as many times as you want into a basket, once checkout is implemented this will change. 
+Needs also do not become invisible to other helpers when added to a basket as without checkout functionality (which was not required), there is no need to prevent other helpers from adding them. 
 
 ## Prerequisites
 
@@ -31,7 +35,7 @@ Taking advantage of the granted extensions, we have updated our readMe and desig
 5. Open in your browser `http://localhost:4200/` to view the actual page
 6. Login and use site as you please
 
-## Known bugs and disclaimers
+
 
 
 ## How to test it
@@ -77,6 +81,7 @@ To run tests on all the tiers in isolation do this:
 We are championing the principles of single responsibility and controllers. 
 The controller principle is applied in our design by separating the user interface from the business logic of the application. Controllers handle user input/actions and interact with the models and views. They facilitate communication between the user interface and the underlying system components. An example of this in our system is our cupboardController, the took handling adding/removing/edting needs in the cupboard. 
 The single responsibility principle is implemented in our design through the means of keeping classes as small as possible. Every class or object we create should only do one thing, it should only have one responsibility. An example of this could be our cupboard controller, its only job is manipulating the needs in the cupboard. It does not hold the logic for doing these things, its only responsibility is to call the correct methods to make the manipulations happen.
+Other principles will be updated at the same time with out design doc, To be updated 10/26 my midnight
 
 ## License
 MIT License
