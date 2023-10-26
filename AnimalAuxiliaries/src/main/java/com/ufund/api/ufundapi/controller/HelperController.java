@@ -80,7 +80,7 @@ public class HelperController {
             helper = objectMapper.readValue(helperJson, Helper.class);
         }catch(IOException ie){}
         for(Helper help : helperDAO.getHelpers()){
-             if(help.getUsername() == helper.getUsername() || helper.getUsername().toLowerCase() == "admin"){
+            if(help.getUsername().equals(helper.getUsername()) || helper.getUsername().toLowerCase().equals("admin")){
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
         }

@@ -136,4 +136,10 @@ public class NeedTest {
         need.setQuantityFunded(5);
         assertEquals(expectedTwo,need.getAllFunded());
     }
+
+    @Test
+    public void testEquals(){
+        Need need = new Need();
+        assertEquals(need, need);
+    }
 }

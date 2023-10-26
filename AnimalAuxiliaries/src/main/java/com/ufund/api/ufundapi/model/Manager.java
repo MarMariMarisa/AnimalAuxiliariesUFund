@@ -5,6 +5,10 @@
 
 // import com.fasterxml.jackson.annotation.JsonProperty;
 
+// /**
+//  * Manager class is not used in the MVP and this class will remain in development until 
+//  * if/when we choose to use it in Sprint 3
+//  */
 // public class Manager implements User {
 
 //     @JsonProperty("id")
@@ -112,4 +116,3 @@
 //     public String getUsername() {
 //         return this.username;
 //     }
-// }

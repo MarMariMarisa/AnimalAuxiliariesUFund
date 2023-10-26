@@ -216,10 +216,10 @@ public class Need {
         return this.quantityFunded;
     }
 
-    @Override
-    public String toString() {
-        return String.format(STRING_FORMAT, id, name, description, type, price, quantity, numInBaskets, quantityFunded);
-    }
+    // @Override
+    // public String toString() {
+    //     return String.format(STRING_FORMAT, id, name, description, type, price, quantity, numInBaskets, quantityFunded);
+    // }
 
     // Setters
     public void setName(String name) {
