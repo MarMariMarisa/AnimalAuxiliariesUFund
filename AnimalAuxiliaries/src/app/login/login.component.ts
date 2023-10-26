@@ -23,6 +23,8 @@ export class LoginComponent {
     } else if (this.username == 'helperOne' || this.username == 'helperTwo') {
       this.auth.setUsername(this.username);
       this.router.navigate(['/helper']);
+    } else {
+      window.alert('Invalid login!');
     }
   }
   getUsername(): string {

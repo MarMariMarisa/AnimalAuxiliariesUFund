@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Need } from '../need';
 import { CupboardService } from '../cupboard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manager',
@@ -10,10 +11,13 @@ import { CupboardService } from '../cupboard.service';
 export class ManagerComponent implements OnInit {
   needs: Need[] = [];
 
-  constructor(private needService: CupboardService) {}
+  constructor(private needService: CupboardService, private router: Router) {}
 
   ngOnInit(): void {
     this.getNeeds();
+  }
+  logout(): void {
+    this.router.navigate(['/login']);
   }
 
   getNeeds(): void {
