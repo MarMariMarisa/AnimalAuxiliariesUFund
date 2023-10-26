@@ -54,9 +54,10 @@ export class CupboardComponent implements OnInit {
   getEntireCupboard(): void {
     this.cupboardService
       .getEntireCupboard()
-      .subscribe((need) => (this.currentNeeds = need));
+      .subscribe((need) => (this.currentNeeds = [...need]));
   }
   addToBasket(need: Need): void {
+    if (!need) return;
     this.basketService.addToBasket(need);
     setTimeout(() => {
       this.fundingbasketService

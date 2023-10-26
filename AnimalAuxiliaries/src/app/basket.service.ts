@@ -20,7 +20,9 @@ export class BasketService {
     return this.fundingbasketService.getBasket(this.auth.getUsername());
   }
   addToBasket(need: Need): void {
+    console.log(need);
     if (need.quantity == 0) return;
+    need.quantity--;
     if (!need) return;
     const existingItem = this.basket.find((aNeed) => aNeed.id === need.id);
 
@@ -32,7 +34,6 @@ export class BasketService {
       .subscribe((basket) => {
         this.basket = [...this.basket, basket];
       });
-    need.quantity--;
   }
   removeFromBasket(need: Need): number {
     let res: number = need.quantity;
