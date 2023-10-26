@@ -58,18 +58,20 @@ export class CupboardService {
       catchError(this.handleError<any>('updateNeed'))
     );
   }
+
+  
   searchNeeds(term: string): Observable<Need[]> {
     if (!term.trim()) {
-      // if not search term, return empty hero array.
+      // if not search term, return empty need array.
       return of([]);
     }
     return this.http.get<Need[]>(`${this.cupboardUrl}/?name=${term}`,this.httpOptions).pipe(
       tap((x) =>
         x.length
-          ? this.log(`found heroes matching "${term}"`)
-          : this.log(`no heroes matching "${term}"`)
+          ? this.log(`found needs matching "${term}"`)
+          : this.log(`no needs matching "${term}"`)
       ),
-      catchError(this.handleError<Need[]>('searchHeroes', []))
+      catchError(this.handleError<Need[]>('searchNeeds', []))
     );
   }
 
