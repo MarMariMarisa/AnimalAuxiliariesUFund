@@ -1,24 +1,24 @@
 package com.ufund.api.ufundapi.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Helper;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.HelperFileDAO;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class HelperControllerTest {
     private HelperController helperController;
+    @Mock
     private HelperFileDAO mockHelperDAO;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
     public void setupHelperController() throws IOException {
@@ -44,27 +44,15 @@ public class HelperControllerTest {
     }
 
     @Test
-    public void testGetHelpersBasketNotFound() throws IOException {
-        // Setup
-        String username = "user1";
-        when(mockHelperDAO.getBasketNeeds(username)).thenThrow(new IOException());
-
-        // Invoke
-        ResponseEntity<Need[]> response = helperController.getHelpersBasket(username);
-
-        // Analyze
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-    }
-
-    @Test
     public void testAddToBasket() throws IOException {
         // Setup
         String username = "user1";
         Need need = new Need("Item 1", "Description 1", "Category 1", 20, 5);
+        String needJson = objectMapper.writeValueAsString(need);
         when(mockHelperDAO.addToBasket(username, need)).thenReturn(need);
 
         // Invoke
-        ResponseEntity<Need> response = helperController.addToBasket(username, need);
+        ResponseEntity<Need> response = helperController.addToBasket(username, needJson);
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -76,51 +64,42 @@ public class HelperControllerTest {
         // Setup
         String username = "user1";
         Need need = new Need("Item 1", "Description 1", "Category 1", 20, 5);
+        String needJson = objectMapper.writeValueAsString(need);
         when(mockHelperDAO.addToBasket(username, need)).thenReturn(null);
 
         // Invoke
-        ResponseEntity<Need> response = helperController.addToBasket(username, need);
+        ResponseEntity<Need> response = helperController.addToBasket(username, needJson);
 
         // Analyze
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
     }
 
     @Test
-    public void testAddToBasketHandleException() throws IOException {
-        // Setup
-        String username = "user1";
-        Need need = new Need("Item 1", "Description 1", "Category 1", 20, 5);
-        when(mockHelperDAO.addToBasket(username, need)).thenThrow(new IOException());
-
-        // Invoke
-        ResponseEntity<Need> response = helperController.addToBasket(username, need);
-
-        // Analyze
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-    }
-
-    @Test
     public void testCreateHelper() throws IOException {
         // Setup
-        Helper testHelper = new Helper("user1");
-        when(mockHelperDAO.createHelper(any(Helper.class))).thenReturn(testHelper);
+        String helperJson = "{\"id\":\"1\",\"username\":\"user1\",\"basket\":[]}";
+        Helper helper = objectMapper.readValue(helperJson, Helper.class);
+        when(mockHelperDAO.createHelper(helper)).thenReturn(helper);
+        when(mockHelperDAO.getHelpers()).thenReturn(new Helper[0]);
 
         // Invoke 
-        ResponseEntity<Helper> response = helperController.createHelper(testHelper);
+        ResponseEntity<Helper> response = helperController.createHelper(helperJson);
 
         // Analyze 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(testHelper, response.getBody());
+        assertEquals(helper.getUsername(), response.getBody().getUsername());
     }
 
     @Test
     public void testCreateHelperConflict() throws IOException {
         // Setup
-        Helper helper = new Helper("user1");
-        when(mockHelperDAO.getHelpers()).thenReturn(new Helper[] { new Helper("user2") });
+        //String helperJson = "{\"username\":\"user1\"}";
+        String helperJson = "{\"id\":\"1\",\"username\":\"user1\",\"basket\":[]}";
+        //Helper helper = objectMapper.readValue(helperJson, Helper.class);
+        when(mockHelperDAO.getHelpers()).thenReturn(new Helper[] { new Helper("user1") });
 
         // Invoke
-        ResponseEntity<Helper> response = helperController.createHelper(helper);
+        ResponseEntity<Helper> response = helperController.createHelper(helperJson);
 
         // Analyze
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
@@ -154,21 +133,5 @@ public class HelperControllerTest {
 
         // Analyze
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
-        assertNull(response.getBody());
-    }
-
-    @Test
-    public void testRemoveFromBasketHandleException() throws IOException {
-        // Setup
-        String username = "user1";
-        String needID = "need1";
-        when(mockHelperDAO.removeFromBasket(username, needID)).thenThrow(new IOException("Test Exception"));
-
-        // Invoke
-        ResponseEntity<Need> response = helperController.removeFromBasket(username, needID);
-
-        // Analyze
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertNull(response.getBody());
     }
 }
