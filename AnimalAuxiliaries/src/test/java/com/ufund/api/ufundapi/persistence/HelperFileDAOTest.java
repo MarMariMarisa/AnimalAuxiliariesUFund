@@ -179,4 +179,30 @@ public class HelperFileDAOTest {
         // This is subtracted here because our front end actually handles the quantity decrementing
         assertEquals(4, result.getQuantity()-1);
     }
+
+    @Test
+    public void testRemoveFromBasketWhenNeedIsNotInNeedDAO() throws IOException {
+        
+        // Arrange
+        String username = "testUser";
+        String needID = "nonExistentNeedID";
+
+        Helper helper = new Helper(username);
+        Need mockNeedInBasket = new Need("Item 1", "Description 1", "Category 1", 20, 5);
+        mockNeedInBasket.setID("123"); // Set an ID
+        helper.addToFundingBasket(mockNeedInBasket);
+        helperFileDAO.createHelper(helper);
+        helperFileDAO.addToBasket(username, mockNeedInBasket);
+
+        // Configure needDao.getNeed to return null when looking for needID
+        Mockito.when(mockNeedFileDAO.getNeed(needID)).thenReturn(null);
+
+        // Act
+        Need removedNeed = helperFileDAO.removeFromBasket(username, "123");
+
+        // Assert
+        assertNotNull(removedNeed);
+
+        assertEquals(removedNeed.getId(), mockNeedInBasket.getId());
+    }
 }

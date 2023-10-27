@@ -157,6 +157,19 @@ public class HelperFileDAO implements UserDAO {
                         return null;
                     }
                 }
+                else{
+                    for(Need n : h.getBasketNeeds()){
+                        if(n.getId().equals(needID)){
+                            if(h.removeFromFundingBasket(n)){
+                                return n;
+                            }
+                            else
+                                return null;
+                        }
+                        
+                    }
+
+                }
                 
             }
             return null;

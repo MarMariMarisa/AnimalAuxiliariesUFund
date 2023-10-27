@@ -12,13 +12,16 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Sarah Payne
 
 # Sprint 2 Release
-Our demo did not include this -> now when a helper searches for a need, they may add a need to their funding basket from the search list that appears.
-Known bugs/disclaimers:
-We are currently only permitting predefined helpers to have proper usage of the program.
-To login as a helper, use the login 'helperOne'
+# Improvements with granted 10/26 midnight release
+The team has updated the logic so that any helper can now login. Any username other than admin will be a helper and their funding basket will be saved and unqique to them. 
+The team has updated cupboard/basket logic so that now when a need is added to a basket, the quantity of that need in the cupboard is reduced by one. A helper can add a need multiple times into their cupboard (ex: fund 5 dog food), but will not be able to add the need more times than the cupboard is offering. When a need has been fully placed in baskets, no helpers will be able to add need to their basket(ex: cat food has 5 quantity, once 5 of this need is put in baskets, it can no longer be added to a basket). These changes are reflected across all users.
+Managers no longer see or edit a needs ID
 
-Not really a bug, but a note that needs can be added as many times as you want into a basket, once checkout is implemented this will change. 
-Needs also do not become invisible to other helpers when added to a basket as without checkout functionality (which was not required), there is no need to prevent other helpers from adding them. 
+Known Bugs/Disclaimers 
+Checkout is not implemented - team was under impression it was not required for this sprint. 
+When needs are either deleted or modified, they will still remain in helpers baskets without those changes reflected. The team made this decision as they felt in the future when a user selects to checkout, that is when these changes would be reflected and the helper would be notified. 
+In this case though, it is still possible for a helper to delete the need from their basket.
+If a need is searched for and then added to basket, followed by removing the search query, the need quantity in the cupboard is not reflected until user signs in and out. This could allow someone to add extra amounts of a need if used in this fashion.
 
 ## Prerequisites
 
@@ -79,10 +82,27 @@ To run tests on all the tiers in isolation do this:
 5. ...
 
 ## Design Principles 
-We are championing the principles of single responsibility and controllers. 
-The controller principle is applied in our design by separating the user interface from the business logic of the application. Controllers handle user input/actions and interact with the models and views. They facilitate communication between the user interface and the underlying system components. An example of this in our system is our cupboardController, the took handling adding/removing/edting needs in the cupboard. 
-The single responsibility principle is implemented in our design through the means of keeping classes as small as possible. Every class or object we create should only do one thing, it should only have one responsibility. An example of this could be our cupboard controller, its only job is manipulating the needs in the cupboard. It does not hold the logic for doing these things, its only responsibility is to call the correct methods to make the manipulations happen.
-Other principles will be updated at the same time with out design doc, To be updated 10/26 my midnight
+**Sprint 1 Champion Principles**
+
+*Single Responsibility* 
+- During Sprint 1 our team focused on keeping our classes single responsibility. This means keeping classes as small as possible ad ensuring that every class or object we create should only do one thing.
+- Our cupboardController is a good implementation of a single responsibility class; its only job is manipulating the needs in the cupboard. It does not hold the logic for doing these things, its only responsibility is to call the correct methods to make the manipulations happen.
+
+*Controllers*
+- During Sprint 1 our team focused on the controllers design principle. Controllers handle user input/actions and interact with the models and views. They facilitate communication between the user interface and the underlying system components.
+- The controller principle is applied in our design by separating the user interface from the business logic of the application.
+- Our cupboardController is a good example of a controller class in our code; it handles adding/removing/edting needs in the cupboard
+
+**Sprint 2 OO Design Principles** 
+
+*Information Expert*
+-  During Sprint 2, our team focused on making our Need and Cupboard classes 'information experts'. These classes have methods that can be called to find the states of their many properties. 
+- The Cupboard class has many methods that support searching functionality, so that our cupboardController class can call cupboard methods with search terms and only recieve back needs that fit the search, rather than requesting the full cupboard and having to search through it itself every time. 
+- The Need class has many methods that describe the standing of the need in terms of quantity available and quantity funded. While they were not used during this sprint as we haven't yet completed our checkout basket functionality, these methods will be useful by alowing the Need object itself to state if it is avaiable to be checked out rather than another class having to deal with the logic of deciding it.
+
+*Open/Closed*
+- During Sprint 2 our team focused on making our Users Open/Closed, meaning that they are 'open for extension, but closed for modification'. 
+- Our team wrote a User interface to be used when creating types of Users for our website. While at the moment our team has only implemented the User interface in the creation of the Helper class, in futire sprints we see the possibility of including different types of users that will have different abilities and the User interface will be an ideal place to start in creating those new Users. 
 
 ## License
 MIT License
