@@ -12,6 +12,7 @@ import { FundingBasketService } from '../funding-basket.service';
 import { AuthService } from '../auth.service';
 import { FundingBasketComponent } from '../funding-basket/funding-basket.component';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { BasketService } from '../basket.service';
 @Component({
   selector: 'app-cupboard',
   templateUrl: './cupboard.component.html',
@@ -23,7 +24,8 @@ export class CupboardComponent implements OnInit {
     private cupboardService: CupboardService,
     private fundingbasketService: FundingBasketService,
     private auth: AuthService,
-    private changeDetection: ChangeDetectorRef
+    private changeDetection: ChangeDetectorRef,
+    private basketService: BasketService
   ) {}
   needs$!: Observable<Need[]>;
   private searchTerms = new Subject<string>();
@@ -32,7 +34,6 @@ export class CupboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEntireCupboard();
-    this.getBasket();
     this.needs$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
@@ -43,6 +44,9 @@ export class CupboardComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.cupboardService.searchNeeds(term))
     );
+    this.basketService
+      .getBasket()
+      .subscribe((basket) => (this.basket = basket));
   }
   search(term: string): void {
     this.searchTerms.next(term);
@@ -50,35 +54,32 @@ export class CupboardComponent implements OnInit {
   getEntireCupboard(): void {
     this.cupboardService
       .getEntireCupboard()
-      .subscribe((need) => (this.currentNeeds = need));
+      .subscribe((need) => (this.currentNeeds = [...need]));
   }
   addToBasket(need: Need): void {
-    this.fundingbasketService
-      .addToBasket(this.auth.getUsername(), need)
-      .subscribe((basket) => {
-        this.basket = [...this.basket, basket];
-      });
-    this.fundingbasketService
-      .getBasket(this.auth.getUsername())
-      .subscribe((need) => (this.basket = need));
-  }
-  getBasket(): void {
-    this.fundingbasketService
-      .getBasket(this.auth.getUsername())
-      .subscribe((need) => (this.basket = need));
+    if (!need) return;
+    this.basketService.addToBasket(need);
+    setTimeout(() => {
+      this.fundingbasketService
+        .getBasket(this.auth.getUsername())
+        .subscribe((basket) => (this.basket = basket));
+    }, 30);
+    this.changeDetection.detectChanges();
   }
 
   removeFromBasket = async (need: Need) => {
-    this.fundingbasketService
-      .removeFromBasket(this.auth.getUsername(), need.id)
-      .subscribe((basket) => {
-        basket;
-      });
-    this.fundingbasketService
-      .getBasket(this.auth.getUsername())
-      .subscribe((need) => (this.basket = need));
-    this.fundingbasketService
-      .getBasket(this.auth.getUsername())
-      .subscribe((need) => (this.basket = need));
+    let count: number = this.basketService.removeFromBasket(need);
+    this.currentNeeds.forEach((aNeed) => {
+      if (aNeed.id == need.id) {
+        aNeed.quantity += count;
+      }
+    });
+
+    setTimeout(() => {
+      this.fundingbasketService
+        .getBasket(this.auth.getUsername())
+        .subscribe((basket) => (this.basket = basket));
+    }, 30);
+    this.changeDetection.detectChanges();
   };
 }
