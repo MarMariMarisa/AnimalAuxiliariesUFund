@@ -1,5 +1,6 @@
 package com.ufund.api.ufundapi.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
@@ -153,4 +154,12 @@ public class NeedTest {
         Need need3 = new Need();
         assertNotEquals(need, need3);
     }
+
+    @Test
+    public void testEqualsWithNullObject() {
+        Need need = new Need("Item 1", "Description 1", "Category 1", 20, 5);
+        assertFalse(need.equals(null));
+    }
+
+    
 }

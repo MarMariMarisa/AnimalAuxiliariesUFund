@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 public class HelperControllerTest {
@@ -78,16 +80,18 @@ public class HelperControllerTest {
     public void testCreateHelper() throws IOException {
         // Setup
         String helperJson = "{\"id\":\"1\",\"username\":\"user1\",\"basket\":[]}";
-        Helper helper = objectMapper.readValue(helperJson, Helper.class);
-        when(mockHelperDAO.createHelper(helper)).thenReturn(helper);
+        Helper helper = new Helper("user1");
+
+        // Mock the behavior of the DAO
+        when(mockHelperDAO.createHelper(any(Helper.class))).thenReturn(helper);
         when(mockHelperDAO.getHelpers()).thenReturn(new Helper[0]);
 
-        // Invoke 
+        // Invoke the createHelper method
         ResponseEntity<Helper> response = helperController.createHelper(helperJson);
 
-        // Analyze 
+        // Analyze the response
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(helper.getUsername(), response.getBody().getUsername());
+        assertEquals("user1", response.getBody().getUsername());
     }
 
     @Test
@@ -133,5 +137,40 @@ public class HelperControllerTest {
 
         // Analyze
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+    }
+    @Test
+    public void testGetHelpersBasketException() throws IOException {
+        when(mockHelperDAO.getBasketNeeds("user1")).thenThrow(new IOException("Simulated Exception"));
+
+        ResponseEntity<Need[]> response = helperController.getHelpersBasket("user1");
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    @Test
+    public void testAddToBasketException() throws IOException {
+        when(mockHelperDAO.addToBasket(eq("user1"), any(Need.class))).thenThrow(new IOException("Simulated Exception"));
+
+        ResponseEntity<Need> response = helperController.addToBasket("user1", "{}");
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+}
+
+    @Test
+    public void testCreateHelperException() throws IOException {
+        when(mockHelperDAO.createHelper(any(Helper.class))).thenThrow(new IOException("Simulated Exception"));
+
+        ResponseEntity<Helper> response = helperController.createHelper("{}");
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    @Test
+    public void testRemoveFromBasketException() throws IOException {
+        when(mockHelperDAO.removeFromBasket("user1", "need1")).thenThrow(new IOException("Simulated Exception"));
+
+        ResponseEntity<Need> response = helperController.removeFromBasket("user1", "need1");
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 }

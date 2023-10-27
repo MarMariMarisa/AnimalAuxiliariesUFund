@@ -17,6 +17,7 @@ import com.ufund.api.ufundapi.model.Need;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 @Tag("persistence-tier")
 public class HelperFileDAOTest {
@@ -147,5 +148,35 @@ public class HelperFileDAOTest {
         for(int i = 0; i < basketLength; i++){
             assertEquals(testNeeds[i], needs[i]);
         }
+    }
+
+    @Test
+    public void testGetBasketNeedNoHelper() throws IOException{
+
+        Need[] needs = helperFileDAO.getBasketNeeds("does not exist");
+
+        assertEquals(null, needs);
+    }
+
+    @Test
+    public void testAddToBasketWhenHelperExistsAndNeedNotInBasket() throws IOException {
+        // Mocked data
+        Helper helper = new Helper("user1");
+        Need need = new Need("Item 1", "Description 1", "Category 1", 20, 5);
+
+        // Stub the needFileDAO methods
+        when(mockNeedFileDAO.updateNeed(Mockito.any())).thenReturn(null);
+
+        // Initialize the helper with no basket needs
+        helper.addToFundingBasket(new Need("Another Item", "Another Description", "Category 2", 10, 2));
+        when(mockObjectMapper.readValue("file path", Helper[].class)).thenReturn(new Helper[]{helper});
+
+        // Invoke
+        Need result = helperFileDAO.addToBasket("user1", need);
+
+        // Verify
+        assertNotNull(result);
+        // This is subtracted here because our front end actually handles the quantity decrementing
+        assertEquals(4, result.getQuantity()-1);
     }
 }
