@@ -20,11 +20,9 @@ export class LoginComponent {
   login() {
     if (this.username === 'admin') {
       this.router.navigate(['/manager']);
-    } else if (this.username == 'helperOne' || this.username == 'helperTwo') {
+    } else {
       this.auth.setUsername(this.username);
       this.router.navigate(['/helper']);
-    } else {
-      window.alert('Invalid login!');
     }
   }
   getUsername(): string {
@@ -39,6 +37,6 @@ export class LoginComponent {
         username: this.username,
         basket: [],
       } as Helper)
-      .subscribe((res) => res);
+      .subscribe((res) => console.log(res));
   }
 }

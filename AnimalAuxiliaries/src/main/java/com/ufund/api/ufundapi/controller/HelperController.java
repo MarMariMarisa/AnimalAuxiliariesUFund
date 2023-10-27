@@ -71,10 +71,12 @@ public class HelperController {
         }
     }
     @PostMapping("")
-   public ResponseEntity<Helper> createHelper(@RequestBody String username) {
-        LOG.info("POST /funding-basket " + username);
+   public ResponseEntity<Helper> createHelper(@RequestBody String helperJson) {
+        LOG.info("POST /funding-basket " + helperJson);
         try{
-            Helper helper = new Helper(username);
+            ObjectMapper objectMapper = new ObjectMapper();
+            Helper aHelper = objectMapper.readValue(helperJson, Helper.class);
+            Helper helper = new Helper(aHelper.getUsername());
             if(helperDAO.createHelper(helper) != null){
                 return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
             }

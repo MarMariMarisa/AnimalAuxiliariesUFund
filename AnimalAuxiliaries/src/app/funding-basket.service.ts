@@ -37,7 +37,6 @@ export class FundingBasketService {
     );
   }
 
-  
   addToBasket(username: string, need: Need): Observable<Need> {
     const url = `${this.basketUrl}/${username}`;
 
@@ -48,7 +47,6 @@ export class FundingBasketService {
         catchError(this.handleError<Need>('addToBasket'))
       );
   }
-  
 
   removeFromBasket(username: string, id: String): Observable<Need> {
     const url = `${this.basketUrl}/${username}/${id}`;
@@ -59,7 +57,7 @@ export class FundingBasketService {
   }
   createHelper(helper: Helper): Observable<Helper> {
     return this.http
-      .post<Helper>(this.basketUrl, JSON.stringify(helper), this.httpOptions)
+      .post<Helper>(this.basketUrl, helper, this.httpOptions)
       .pipe(
         tap((newHelper: Helper) =>
           this.log(`added need w/ id=${newHelper.id}`)
