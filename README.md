@@ -13,7 +13,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 
 # Sprint 2 Release
 # Improvements with granted 10/26 midnight release
-The team has updated the logic so that any helper can now login. Any username other than admin will be a helper and their funding basket will be saved and unqique to them. 
+The team has updated the logic so that any helper can now login. Any username other than admin will be a helper and their funding basket will be saved and unique to them. 
 The team has updated cupboard/basket logic so that now when a need is added to a basket, the quantity of that need in the cupboard is reduced by one. A helper can add a need multiple times into their cupboard (ex: fund 5 dog food), but will not be able to add the need more times than the cupboard is offering. When a need has been fully placed in baskets, no helpers will be able to add need to their basket(ex: cat food has 5 quantity, once 5 of this need is put in baskets, it can no longer be added to a basket). These changes are reflected across all users.
 Managers no longer see or edit a needs ID
 
