@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,19 +71,21 @@ public class HelperController {
         }
     }
     @PostMapping("")
-   public ResponseEntity<Helper> createHelper(@RequestBody String helperJson) {
-        LOG.info("POST /funding-basket " + helperJson);
-        Helper helper = new Helper(helperJson);
+   public ResponseEntity<Helper> createHelper(@RequestBody String username) {
+        LOG.info("POST /funding-basket " + username);
         try{
-            ObjectMapper objectMapper = new ObjectMapper();
-            helper = objectMapper.readValue(helperJson, Helper.class);
-        }catch(IOException ie){}
-        for(Helper help : helperDAO.getHelpers()){
-            if(help.getUsername().equals(helper.getUsername()) || helper.getUsername().toLowerCase().equals("admin")){
+            Helper helper = new Helper(username);
+            if(helperDAO.createHelper(helper) != null){
+                return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
+            }
+            else{
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
         }
-        return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
+        catch(IOException e){
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/{username}/{needID}")
