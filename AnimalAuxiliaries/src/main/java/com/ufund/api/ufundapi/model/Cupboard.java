@@ -110,6 +110,10 @@ public class Cupboard {
         return new ArrayList<Need>(currentNeeds.values());
     }
 
+    public List<Need> getFundedNeeds() {
+        return new ArrayList<Need>(fundedNeeds.values()); 
+    }
+
     /**
      * retrieves the current surplus value 
      * 
@@ -134,7 +138,7 @@ public class Cupboard {
     public void addToSurplus(float amt) {
         surplus += amt; 
     }
-    
+
     /**
      * addNeed
      * Description: The function adds a new need to a map of current needs. Will not

@@ -46,6 +46,7 @@ public class CupboardTest {
         assertNotNull(cupboard, "Cupboard is null");
         //these might fail because the get methods return a list created on the values of the maps which might make it null, i'm not sure 
         assertNotNull(cupboard.getEntireCupboard(), "Current Needs is null"); 
+        assertNotNull(cupboard.getFundedNeeds(), "Funded Needs is null");
         assertNotNull(cupboard.getSurplus()); 
         //assertNotNull(cupboard.getRetiredNeeds(), "Retired needs is null"); 
 
