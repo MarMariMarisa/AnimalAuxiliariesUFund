@@ -161,7 +161,7 @@ public class NeedFileDAO implements NeedDAO {
     @Override
     public boolean deleteNeed(String id) throws IOException {
         synchronized (cupboard) {
-            if(cupboard.retireNeed(id)){
+            if(cupboard.deleteNeed(id)){
                 save(); // may throw an IOException
                 return true;
             }
