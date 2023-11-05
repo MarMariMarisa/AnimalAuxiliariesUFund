@@ -36,7 +36,7 @@ export class ManagerComponent implements OnInit {
       JSON.stringify({
         id: '',
         name: name,
-        description: 'descirption',
+        description: 'description',
         type: 'type',
         price: 5,
         quantity: 25,
