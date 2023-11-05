@@ -166,6 +166,20 @@ public class Cupboard {
     }
 
     /**
+     * deletes a need from the cupboard by removing it from the currentNeeds list
+     * @param need
+     * @return boolean success 
+     */
+    public boolean deleteNeed(String needID) {
+        if(needID != null) {
+            if(currentNeeds.remove(needID) != null) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    /**
      * This function removes a need from a collection of needs and "retires" it so that it
      * remains stored while it is no longer being used
      * 
