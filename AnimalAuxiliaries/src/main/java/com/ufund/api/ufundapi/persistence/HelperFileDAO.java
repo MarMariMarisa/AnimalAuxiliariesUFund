@@ -45,8 +45,9 @@ public class HelperFileDAO implements UserDAO {
     }
 
     private boolean save() throws IOException {
-        Helper[] helperArray = getHelpers();
-
+        try{
+            Helper[] helperArray = getHelpers();
+            
 
         // objectMapper.writeValue(new File(filename), helperArray);
         // return true;
@@ -55,6 +56,11 @@ public class HelperFileDAO implements UserDAO {
 
         objectMapper.writeValue(new File(filename), helperArray);
         return true;
+        }
+        catch(IOException e){
+            return false;
+        }
+        
     }
 
     public Helper[] getHelpers(){
@@ -74,6 +80,10 @@ public class HelperFileDAO implements UserDAO {
         synchronized(helpers){
             if(!helpers.containsKey(helper.getUsername())){
                 helpers.put(helper.getUsername(), helper);
+
+                String json = objectMapper.writeValueAsString(helper);
+                System.out.println("Helper:" + json);
+
                 save();
                 return helper;
             }

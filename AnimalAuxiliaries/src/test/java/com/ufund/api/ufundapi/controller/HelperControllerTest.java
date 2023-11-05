@@ -79,7 +79,7 @@ public class HelperControllerTest {
     @Test
     public void testCreateHelper() throws IOException {
         // Setup
-        String helperJson = "{\"id\":\"1\",\"username\":\"user1\",\"basket\":[]}";
+        String helperJson = "{\"id\":\"1\",\"username\":\"user1\",\"basket\":{\"needs\":[]}}";
         Helper helper = new Helper("user1");
 
         // Mock the behavior of the DAO
@@ -98,7 +98,7 @@ public class HelperControllerTest {
     public void testCreateHelperConflict() throws IOException {
         // Setup
         //String helperJson = "{\"username\":\"user1\"}";
-        String helperJson = "{\"id\":\"1\",\"username\":\"user1\",\"basket\":[]}";
+        String helperJson = "{\"id\":\"1\",\"username\":\"user1\",\"basket\":{\"needs\":[]}}";
         //Helper helper = objectMapper.readValue(helperJson, Helper.class);
         when(mockHelperDAO.getHelpers()).thenReturn(new Helper[] { new Helper("user1") });
 

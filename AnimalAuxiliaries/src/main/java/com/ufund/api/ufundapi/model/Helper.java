@@ -1,13 +1,14 @@
 package com.ufund.api.ufundapi.model;
 
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
-
+// @JsonIgnoreProperties(ignoreUnknown = true)
 public class Helper implements User {
     
     @JsonProperty("id")
@@ -16,44 +17,39 @@ public class Helper implements User {
     private final String username;
 
     @JsonProperty("basket")
-    private List<Need> fundingBasket;
+    private FundingBasket fundingBasket;
 
     private static final String HELPER_ID_MODIFIER = "H"; 
 
     public Helper(String username) {
         this.username = username;
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
-        this.fundingBasket = new  ArrayList<>();
+        this.fundingBasket = new FundingBasket();
     }
 
     public Helper(){
         this.username = "";
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString();
-        this.fundingBasket = new ArrayList<>(); 
+        this.fundingBasket = new FundingBasket();
     }
 
     public boolean addToFundingBasket(Need need){
-        // Check is real need that needs funding
-        if(need != null && need.getAllFunded() == false){
-            return fundingBasket.add(need);
-        }
-        return false;
+        return fundingBasket.addToBasket(need);
     }
-
 
     public boolean removeFromFundingBasket(Need need){
-        return fundingBasket.remove(need);     
+        return fundingBasket.removeFromBasket(need);   
     }
     
-    
+    @JsonIgnore 
     public Need[] getBasketNeeds() {
-        //return (Need[]) fundingBasket.toArray();
-        return fundingBasket.toArray(new Need[0]);
+        return fundingBasket.getNeeds();
     }
 
-    public List<Need> getFundingBasket() {
-        return fundingBasket; 
-    }
+    // @JsonUnwrapped
+    // public FundingBasket getFundingBasket() {
+    //     return fundingBasket;
+    // }
 
     public String getId() {
         return this.id; 
@@ -63,3 +59,5 @@ public class Helper implements User {
         return this.username; 
     }
 }
+
+
