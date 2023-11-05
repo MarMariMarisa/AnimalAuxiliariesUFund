@@ -13,7 +13,7 @@ public class NeedTest {
         String expectedType = "equipment";
         int expectedQuantity = 1;
         double expectedPrice  = 1;
-        int expectedNumInBaskets = 0;
+        //int expectedNumInBaskets = 0;
         int expectedQuantityFunded = 0;
 
         // Invoke
@@ -24,7 +24,7 @@ public class NeedTest {
         assertEquals(expectedType,need.getType());
         assertEquals(expectedQuantity,need.getQuantity());
         assertEquals(expectedPrice,need.getPrice());
-        assertEquals(expectedNumInBaskets,need.getNumInBaskets());
+        //assertEquals(expectedNumInBaskets,need.getNumInBaskets());
         assertEquals(expectedQuantityFunded,need.getQuantityFunded());
     }
     @Test 
@@ -80,6 +80,7 @@ public class NeedTest {
         need.setPrice(expectedPrice);
         assertEquals(expectedPrice,need.getPrice());
     }
+    /*
       @Test
     public void testNumInBaskets(){
         // Setup
@@ -90,6 +91,7 @@ public class NeedTest {
         need.setNumInBaskets(expectedNumInBaskets);
         assertEquals(expectedNumInBaskets,need.getNumInBaskets());
     }
+    */
       @Test
     public void testQuantiyFunded(){
         // Setup
@@ -111,6 +113,7 @@ public class NeedTest {
         need.setQuantity(5);
         assertEquals(expectedPercentFunded,need.getPercentFunded());
     }
+    /*
     @Test
     public void testGetAllInBasket(){
         // Setup
@@ -125,6 +128,7 @@ public class NeedTest {
         need.setNumInBaskets(5);
         assertEquals(expectedTwo,need.getAllInBasket());
     }
+    */
     @Test
     public void testGetAllFunded(){
         // Setup

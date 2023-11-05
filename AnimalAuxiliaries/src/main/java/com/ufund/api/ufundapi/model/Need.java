@@ -43,7 +43,7 @@ public class Need {
     private static final String DEFAULT_TYPE = "equipment";
     private static final float DEFAULT_PRICE = 1;
     private static final int DEFAULT_QUANTITY = 1;
-    private static final int DEFAULT_NUM_IN_BASKETS = 0;
+    //private static final int DEFAULT_NUM_IN_BASKETS = 0;
     private static final int DEFAULT_QUANTITY_FUNDED = 0;
 
     /**
@@ -56,7 +56,7 @@ public class Need {
         this.type = DEFAULT_TYPE;
         this.price = DEFAULT_PRICE;
         this.quantity = DEFAULT_QUANTITY;
-        this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
+        //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
     }
 
@@ -89,7 +89,7 @@ public class Need {
         else
             this.quantity = quantity;      
 
-        this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
+        //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
     }
 
@@ -100,7 +100,7 @@ public class Need {
         this.type = otherNeed.getType();
         this.price = otherNeed.getPrice();
         this.quantity = otherNeed.getQuantity();
-        this.numInBaskets = otherNeed.getNumInBaskets();
+        //this.numInBaskets = otherNeed.getNumInBaskets();
         this.quantityFunded = otherNeed.getQuantityFunded();
     }
         
@@ -139,10 +139,27 @@ public class Need {
      * 
      * @return boolean
      */
+    /*
     public boolean getAllInBasket() {
         if (this.quantity <= this.numInBaskets)
             return true;
         return false;
+    }
+    */
+
+    /**
+     * 
+     * @param quantity
+     * @return
+     */
+    public boolean fund(int quantity) {
+        if(quantity <= getQuantityAvailable()) {
+            setQuantityFunded(getQuantityFunded() + quantity);
+            return true; 
+        } else {
+            return false; 
+        }
+
     }
 
     /**
@@ -202,7 +219,7 @@ public class Need {
     }
 
     /**
-     * Retrieves the quantity of the nees
+     * Retrieves the quantity of the needs
      * 
      * @return The quantity of the need
      */
@@ -211,13 +228,24 @@ public class Need {
     }
 
     /**
+     * returns the number of this need that are available to be funded 
+     * 
+     * @return int 
+     */
+    public int getQuantityAvailable() {
+        return this.quantity - this.quantityFunded; 
+    }
+
+    /**
      * Retrieves the number of Helper baskets that the need is placed in
      * 
      * @return the number of Helper baskets that the need is placed in
      */
+    /*
     public int getNumInBaskets() {
         return this.numInBaskets;
     }
+    */
 
     /**
      * Retreives the number of times that the need has been funded/bought
@@ -254,9 +282,11 @@ public class Need {
         this.quantity = quantity;
     }
 
+    /*
     public void setNumInBaskets(int numInBaskets) {
         this.numInBaskets = numInBaskets;
     }
+    */
 
     public void setQuantityFunded(int quantityFunded) {
         this.quantityFunded = quantityFunded;
