@@ -1,0 +1,19 @@
+.cart-icon {
+  transition: all 0.2s ease-in-out;
+}
+.cart-icon:hover {
+  transform: scale(1.1);
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+.nav-right * {
+  margin-left: 1.5rem;
+}

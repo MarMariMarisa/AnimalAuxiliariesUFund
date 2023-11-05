@@ -6,9 +6,4 @@ import { Router } from '@angular/router';
   templateUrl: './helper.component.html',
   styleUrls: ['./helper.component.css'],
 })
-export class HelperComponent {
-  constructor(private router: Router) {}
-  logout(): void {
-    this.router.navigate(['/login']);
-  }
-}
+export class HelperComponent {}
