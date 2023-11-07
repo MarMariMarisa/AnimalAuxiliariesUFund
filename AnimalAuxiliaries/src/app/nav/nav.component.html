@@ -1,7 +1,7 @@
 <nav class="navbar">
   <h1 class="logo">Animal Auxiliaries</h1>
   <div class="nav-right">
-    <a
+    <a (click)="basket()"
       ><svg
         class="cart-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +14,7 @@
         />
       </svg>
     </a>
+    <button (click)="moveToNeeds()">Needs</button>
     <button (click)="logout()">Logout</button>
   </div>
 </nav>

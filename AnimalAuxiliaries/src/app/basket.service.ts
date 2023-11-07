@@ -23,11 +23,6 @@ export class BasketService {
     if (need.quantity == 0) return;
     need.quantity--;
     if (!need) return;
-    const existingItem = this.basket.find((aNeed) => aNeed.id === need.id);
-
-    if (existingItem) {
-      existingItem.quantity++;
-    }
     this.fundingbasketService
       .addToBasket(this.auth.getUsername(), need)
       .subscribe((basket) => {

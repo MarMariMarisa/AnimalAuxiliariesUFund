@@ -33,7 +33,6 @@ export class LoginComponent {
 
     this.fundingBasketService
       .createHelper({
-        id: 0,
         username: this.username,
         basket: [],
       } as Helper)
