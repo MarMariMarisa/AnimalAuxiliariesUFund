@@ -21,7 +21,7 @@ export class BasketService {
   }
   addToBasket(need: Need): void {
     if (need.quantity <= 0) return;
-    //need.quantity--;
+
     if (!need) return;
     this.fundingbasketService
       .addToBasket(this.auth.getUsername(), need)
