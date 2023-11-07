@@ -20,8 +20,8 @@ export class BasketService {
     return this.fundingbasketService.getBasket(this.auth.getUsername());
   }
   addToBasket(need: Need): void {
-    if (need.quantity == 0) return;
-    need.quantity--;
+    if (need.quantity <= 0) return;
+    //need.quantity--;
     if (!need) return;
     this.fundingbasketService
       .addToBasket(this.auth.getUsername(), need)
