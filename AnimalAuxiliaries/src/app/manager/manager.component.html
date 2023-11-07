@@ -1,17 +1,11 @@
-<button (click)="logout()">Logout</button>
-<h2>My Needs</h2>
-<div>
-  <label for="new-need">Need name: </label>
-  <input id="new-need" #needName />
-  <button
-    type="button"
-    class="add-button"
-    (click)="add(needName.value); needName.value = ''"
-  >
-    Add need
-  </button>
-</div>
-
+<html>
+  <div id = "header">
+    <h1 style="padding:10px;">Animal Auxiliaries</h1>
+    <p>Help the voiceless</p>
+    <button class="button"(click)="logout()" style="margin-left: auto;">Analytics</button>
+    <button class="button"(click)="logout()" style="margin-left:10px;margin-right:10px">Logout</button>
+    <!-- <img src = '../../../data/dogCat.png' alt = "A cat sitting on top of a dog"> -->
+    </div>
 <div id = "lists" >
 <div id = "searchList">
 <h2>Current Needs</h2>
@@ -43,11 +37,11 @@
   <button 
     type="button"
     class="button"
-    (click)="add(needName.value,needDescription.value,needType.value,1,1); needName.value = ''"
+    (click)="add(needName.value,needDescription.value,needType.value,1,1);"
     style="font-family:Poppins;align-self: flex-end;">
     Add need
   </button>
 </div>
 </div>
-<html>
+</html>
 
