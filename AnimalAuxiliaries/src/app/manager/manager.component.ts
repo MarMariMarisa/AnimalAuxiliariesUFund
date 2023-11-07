@@ -34,21 +34,23 @@ export class ManagerComponent implements OnInit {
     name: string,
     description: string,
     type: string,
-    price: number,
-    quantity: number
+    price: string,
+    quantity: string
   ): void {
     name = name.trim();
     if (!name) {
       return;
     }
+    let aPrice = parseInt(price);
+    let aQuant = parseInt(quantity);
     let a = JSON.parse(
       JSON.stringify({
         id: '',
         name: name,
         description: description,
         type: type,
-        price: price,
-        quantity: quantity,
+        price: aPrice,
+        quantity: aQuant,
         numInBaskets: 0,
         quantityFunded: 0,
       } as Need)

@@ -132,18 +132,29 @@
         </li>
         <li>
           <label for="new-need">Price: </label
-          ><input id="new-need" #needPrice class="labelStyles" />
+          ><input id="new-need" #needPrice class="labelStyles" type="number" />
         </li>
         <li>
           <label for="new-need">Quantity: </label
-          ><input id="new-need" #needQuantity class="labelStyles" />
+          ><input
+            id="new-need"
+            #needQuantity
+            class="labelStyles"
+            type="number"
+          />
         </li>
       </ul>
       <button
         type="button"
         class="btn"
         (click)="
-          add(needName.value, needDescription.value, needType.value, 1, 1)
+          add(
+            needName.value,
+            needDescription.value,
+            needType.value,
+            needPrice.value,
+            needQuantity.value
+          )
         "
         style="font-family: Poppins; align-self: flex-end"
       >
