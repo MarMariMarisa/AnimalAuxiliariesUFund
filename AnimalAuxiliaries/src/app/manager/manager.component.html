@@ -2,11 +2,32 @@
 <h2>My Needs</h2>
 <div>
   <label for="new-need">Need name: </label>
-  <input id="new-need" #needName />
+  <input #needName />
+  <label for="new-need">Need description: </label>
+  <input #needDesc />
+  <label for="new-need">Need Type: </label>
+  <input #needType />
+  <label for="new-need">Need Price: </label>
+  <input value="5" #needPrice />
+  <label for="new-need">Need Quantity: </label>
+  <input value="5" #needQuant />
   <button
     type="button"
     class="add-button"
-    (click)="add(needName.value); needName.value = ''"
+    (click)="
+      add(
+        needName.value,
+        needDesc.value,
+        needType.value,
+        needPrice.value,
+        needQuant.value
+      );
+      needName.value = '';
+      needDesc.value = '';
+      needType.value = '';
+      needPrice.value = '5';
+      needQuant.value = '5'
+    "
   >
     Add need
   </button>
