@@ -1,16 +1,16 @@
 <button (click)="logout()">Logout</button>
 <h2>My Needs</h2>
 <div>
-  <label for="new-need">Need name: </label>
+  <label for="new-need">Need Name: </label>
   <input #needName />
-  <label for="new-need">Need description: </label>
+  <label for="new-need">Need Description: </label>
   <input #needDesc />
   <label for="new-need">Need Type: </label>
   <input #needType />
   <label for="new-need">Need Price: </label>
-  <input value="5" #needPrice />
+  <input value="5" type="number" #needPrice />
   <label for="new-need">Need Quantity: </label>
-  <input value="5" #needQuant />
+  <input value="5" type="number" #needQuant />
   <button
     type="button"
     class="add-button"
