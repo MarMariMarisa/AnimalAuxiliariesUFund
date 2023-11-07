@@ -63,6 +63,7 @@ public class HelperFileDAO implements UserDAO {
         
     }
 
+
     public Helper[] getHelpers(){
         synchronized(helpers){
             return helpers.values().toArray(new Helper[0]);

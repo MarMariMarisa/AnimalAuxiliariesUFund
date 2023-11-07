@@ -33,8 +33,11 @@ export class LoginComponent {
 
     this.fundingBasketService
       .createHelper({
+        id: 0,
         username: this.username,
-        basket: [],
+        basket: {
+          needs: []
+        },
       } as Helper)
       .subscribe((res) => console.log(res));
   }

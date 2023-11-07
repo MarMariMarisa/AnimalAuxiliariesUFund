@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Cupboard;
+import com.ufund.api.ufundapi.model.Helper;
 import com.ufund.api.ufundapi.model.Need;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,10 +20,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class NeedFileDAO implements NeedDAO {
-    //private static final Logger LOG = Logger.getLogger(NeedFileDAO.class.getName());
-
     Cupboard cupboard;
-    //Map<String, Need> needs;
+    private HelperFileDAO helperFileDAO;
     private ObjectMapper objectMapper;
     private String filename;
 
@@ -34,9 +34,10 @@ public class NeedFileDAO implements NeedDAO {
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public NeedFileDAO(@Value("${needs.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public NeedFileDAO(@Value("${needs.file}") String filename, ObjectMapper objectMapper, @Lazy HelperFileDAO helperFileDAO) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
+        this.helperFileDAO = helperFileDAO;
         load(); // load the needs from the file
     }
 
@@ -148,6 +149,12 @@ public class NeedFileDAO implements NeedDAO {
         synchronized (cupboard) {
 
             if(cupboard.updateNeed(need)){
+
+                // // Remove from funding baskets if need is updated 
+                // for(Helper h : helperFileDAO.getHelpers()){
+                //     helperFileDAO.removeFromBasket(h.getUsername(), need.getId());
+                // }
+
                 save(); // may throw an IOException
                 return need;
             }
@@ -163,6 +170,12 @@ public class NeedFileDAO implements NeedDAO {
         synchronized (cupboard) {
             if(cupboard.deleteNeed(id)){
                 save(); // may throw an IOException
+
+                // Delete this need from every funding basket 
+                for(Helper h : helperFileDAO.getHelpers()){
+                    helperFileDAO.removeFromBasket(h.getUsername(), id);
+                }
+
                 return true;
             }
             return false;
