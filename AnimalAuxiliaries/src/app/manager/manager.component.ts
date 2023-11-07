@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ManagerComponent implements OnInit {
   needs: Need[] = [];
-
+  deleteConfirm: Need | null = null;
   constructor(private needService: CupboardService, private router: Router) {}
 
   ngOnInit(): void {
@@ -30,8 +30,13 @@ export class ManagerComponent implements OnInit {
       this.needService.updateNeed(need).subscribe();
     }
   }
-
-  add(name: string,description: string,type:string,price:number,quantity:number): void {
+  add(
+    name: string,
+    description: string,
+    type: string,
+    price: number,
+    quantity: number
+  ): void {
     name = name.trim();
     if (!name) {
       return;
@@ -40,7 +45,7 @@ export class ManagerComponent implements OnInit {
       JSON.stringify({
         id: '',
         name: name,
-        description:description,
+        description: description,
         type: type,
         price: price,
         quantity: quantity,
@@ -57,7 +62,7 @@ export class ManagerComponent implements OnInit {
     this.needs = this.needs.filter((h) => h !== need);
     this.needService.deleteNeed(need.id).subscribe();
   }
-  onPress(need: Need){
+  onPress(need: Need) {
     need.display = !need.display;
   }
 }
