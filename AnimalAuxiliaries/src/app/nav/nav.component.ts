@@ -11,4 +11,10 @@ export class NavComponent {
   logout(): void {
     this.router.navigate(['/login']);
   }
+  basket(): void {
+    this.router.navigate(['/basket']);
+  }
+  moveToNeeds(): void {
+    this.router.navigate(['/helper']);
+  }
 }
