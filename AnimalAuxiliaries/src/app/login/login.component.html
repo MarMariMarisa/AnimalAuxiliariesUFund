@@ -1,46 +1,38 @@
 <body>
 
-  <div id="container">
-
-    <div id="header">
-      <h1>Animal Auxiliaries</h1>
-      <h2>Help the Voiceless</h2>
-    </div>
-
-    <div id="flex">
-      <main>
-        <h2>Our Mission</h2>
-        <p>
-          We are the Animal Auxiliaries! Dedicated to connecting people and animals. 
-          We connect to a local animal shelter so people like you can donate much needed supplies. 
-          Ready to join us? Sign up today!
-        </p> 
-      </main>
-    
-      <aside id="leftSidebar">
-        <div class="box">
-          <h2>Login</h2>
-          <form (submit)="login()">
+  <div id="header">
+    <h1>Animal Auxiliaries</h1>
+    <h2>Helping the Voiceless</h2>
+  </div>
+  
+  <div class="grid">
+  
+    <div class="box" style="grid-column: 1;">
+      <div>
+        <h2>Login</h2>
+        <form (submit)="login()">
           <label>Username:</label>
           <input type="text" id="role" name="role" required #username />
           <button type="submit" (click)="add(username.value)">Login</button>
-          </form>
-        </div>
-
-        <div class="box">
-          <h3>Our Impact</h3>
-          <p>With your help we've funded ### needs!</p>
-        </div>
-
-      </aside>
-      
-      <aside id="rightSidebar">
-        <h1>Recent Announcements</h1>
-        <p>Community Board Posts</p>
-        <!-- this is where the community board/announcement board will be-->
-      </aside>
+      </form>
+      </div>
+      <h2>Our Impact</h2>
+      <p>We've helped ### Animals so far!</p>
     </div>
-    
+  
+    <div class="box" style="grid-column: 2;">
+      <h2>Our Mission</h2>
+      <p>
+        We are the Animal Auxiliaries! Dedicated to connecting people and animals. 
+        We connect to a local animal shelter so people like you can donate much needed supplies. 
+        Ready to join us? Sign up today!
+      </p> 
+    </div>
+  
+    <div class="box" style="grid-column: 3;">
+      <h1>Recent Announcements</h1>
+      <p>Community Board Posts</p>
+    </div>
   </div>
-    
-  </body>
+
+</body>

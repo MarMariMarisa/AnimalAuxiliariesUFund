@@ -1,70 +1,50 @@
 body {
-    background-color: #FFFFFF;
     width: 100%;
+    height: 100%;
+    padding-bottom: 2%;
+    background: #644b68;
   }
   
 h1 {
-    color: #52050A;
-    font-family: Georgia;
+    color: #422527;
+    font-family: Poppins;
+    font-weight: bolder;
+}
+
+h2 {
+    color: #422527;
+    font-family: Poppins;
+    font-weight: bold;
 }
   
 p {
-    color: #495867;
-    font-family: verdana;
+    color: #604967;
+    font-family: Poppins;
     font-size: 20px;
 }
 
-div {
-    display: flexbox;
-    text-align: center;
-    border: 2px solid black;
-}
-
-main{
-    flex: 1;
-    margin-top: 2%;
-    padding: 20px;
-    order: 2;
-    border: 4px solid black;
-    background-color: #777f88;
-}
-
-aside{
-    padding: 3%;
-    margin: 5%;
-    border: 4px solid black;
-    max-width: 20%;
-}
-
 .box {
-    margin: 5%;
-    padding: 3%;
+    background-color: #cdbed1;
+    padding: 2%;
+    margin: 1%;
+    text-align: center;
 }
 
-#container{
-    margin: 0 auto;
-}
-
-#flex {
-    display: flex;
-}
-
-#leftSidebar {
-    padding: 10px;
-    order: 1;
-    background-color: #777f88;
-}
-
-#rightSidebar {
-    padding: 10px;
-    order: 3;
-    background-color: #777f88;
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    margin: 3%;
+    height: 60vh;
 }
 
 #header {
     padding: 2%;
     text-align: center;
-    margin-top: 5%;
-    height: 15%;
-    background-color: #777f88;
+    margin-top: 2%;
+    background-color: #b09db3;
 }
+
+@font-face{
+    font-family: Poppins;
+    src : url("../../../data/Poppins-Regular.woff") format('woff');
+  }
