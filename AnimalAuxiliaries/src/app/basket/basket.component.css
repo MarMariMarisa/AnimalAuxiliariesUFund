@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#basketContainer {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: auto;
+  border: 1px solid #eee;
+}
+.needComponent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0.5rem;
+  justify-content: space-between;
+}
+.needComponent * {
+  margin: 0 0.5rem 0 0.5rem;
+  width: 22%;
+}
+.checkBtn {
+  width: 20%;
+  margin: auto;
+}
+.basketHeader {
+  padding: 0 0.5rem 0 0.5rem;
+  background-color: #eee;
+}
