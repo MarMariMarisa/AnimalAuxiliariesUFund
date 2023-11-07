@@ -1,50 +1,47 @@
-<button (click)="logout()">Logout</button>
-<h2>My Needs</h2>
-<div>
-  <label for="new-need">Need Name: </label>
-  <input #needName />
-  <label for="new-need">Need Description: </label>
-  <input #needDesc />
-  <label for="new-need">Need Type: </label>
-  <input #needType />
-  <label for="new-need">Need Price: </label>
-  <input value="5" type="number" #needPrice />
-  <label for="new-need">Need Quantity: </label>
-  <input value="5" type="number" #needQuant />
-  <button
-    type="button"
-    class="add-button"
-    (click)="
-      add(
-        needName.value,
-        needDesc.value,
-        needType.value,
-        needPrice.value,
-        needQuant.value
-      );
-      needName.value = '';
-      needDesc.value = '';
-      needType.value = '';
-      needPrice.value = '5';
-      needQuant.value = '5'
-    "
-  >
-    Add need
-  </button>
-</div>
-
+<html>
+  <div id = "header">
+    <h1 style="padding:10px;">Animal Auxiliaries</h1>
+    <p>Help the voiceless</p>
+    <button class="button"(click)="logout()" style="margin-left: auto;">Analytics</button>
+    <button class="button"(click)="logout()" style="margin-left:10px;margin-right:10px">Logout</button>
+    <!-- <img src = '../../../data/dogCat.png' alt = "A cat sitting on top of a dog"> -->
+    </div>
+<div id = "lists" >
+<div id = "searchList">
+<h2>Current Needs</h2>
 <ul class="needs">
-  <li *ngFor="let need of needs">
-    <a routerLink="/manager/{{ need.id }} ">
+  <li *ngFor="let need of needs" style="padding:5px;">
+    <a routerLink="/manager/{{ need.id }} " style="color:black;">
       <span class="badge"></span> {{ need.name }}
     </a>
-    <button
+    <button 
       type="button"
       class="delete"
       title="delete need"
       (click)="delete(need)"
     >
-      X
+    -
     </button>
   </li>
 </ul>
+</div>
+<div id = "needList">
+  <h2>Create A Need</h2>
+  <ul id = "inputStyles"> 
+  <li><label for="new-need">Name: </label><input id="new-need" #needName class="labelStyles"></li>
+  <li><label for="new-need">Description: </label><input id="new-need" #needDescription class="labelStyles"/></li>
+  <li><label for="new-need">Type: </label><input id="new-need"  #needType class="labelStyles"/></li>
+  <li><label for="new-need">Price: </label><input id="new-need" #needPrice class="labelStyles"/></li>
+  <li><label for="new-need">Quantity: </label><input id="new-need" #needQuantity class="labelStyles"/></li>
+</ul>
+  <button 
+    type="button"
+    class="button"
+    (click)="add(needName.value,needDescription.value,needType.value,1,1);"
+    style="font-family:Poppins;align-self: flex-end;">
+    Add need
+  </button>
+</div>
+</div>
+</html>
+

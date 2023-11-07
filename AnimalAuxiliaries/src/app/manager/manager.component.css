@@ -1,0 +1,50 @@
+* {background-color:#B0D5F5 }
+#header {
+    width: 100%;
+    font-family: Poppins;
+    display: flex;
+    align-items: center;
+    
+}
+
+#lists {
+    display: flex;
+    justify-content: center;
+}
+#needList {
+    float:right;
+    font-family: Poppins;
+    padding-left: 50px;
+    
+}
+#inputStyles {
+    text-align: right;
+    list-style: none;
+}
+.labelStyles{
+    background-color: white;
+    font-family: Poppins;
+}
+
+#searchList {
+    display: inline-block;
+    font-family: Poppins;
+    padding-right: 50px;
+}
+
+.button{
+    background-color: #72878c; 
+    border-radius: 5px;
+    border-width: 1px;
+    font-size: 15px;
+    color: black;
+    font-family: Poppins;
+
+}
+
+
+@font-face{
+    font-family: Poppins;
+    src : url("../../../data/Poppins-Regular.woff") format('woff');
+ 
+}

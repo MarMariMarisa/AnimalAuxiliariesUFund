@@ -26,27 +26,19 @@ export class ManagerComponent implements OnInit {
       .subscribe((needs) => (this.needs = needs));
   }
 
-  add(
-    name: string,
-    desc: string,
-    type: string,
-    price: string,
-    quant: string
-  ): void {
+  add(name: string,description: string,type:string,price:number,quantity:number): void {
     name = name.trim();
     if (!name) {
       return;
     }
-    let aPrice: number = parseInt(price);
-    let aQuant: number = parseInt(quant);
     let a = JSON.parse(
       JSON.stringify({
         id: '',
         name: name,
-        description: desc,
+        description:description,
         type: type,
-        price: aPrice,
-        quantity: aQuant,
+        price: price,
+        quantity: quantity,
         numInBaskets: 0,
         quantityFunded: 0,
       } as Need)
