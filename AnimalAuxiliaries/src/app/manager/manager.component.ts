@@ -25,6 +25,11 @@ export class ManagerComponent implements OnInit {
       .getEntireCupboard()
       .subscribe((needs) => (this.needs = needs));
   }
+  save(need: Need): void {
+    if (need) {
+      this.needService.updateNeed(need).subscribe();
+    }
+  }
 
   add(name: string,description: string,type:string,price:number,quantity:number): void {
     name = name.trim();
@@ -51,5 +56,8 @@ export class ManagerComponent implements OnInit {
   delete(need: Need): void {
     this.needs = this.needs.filter((h) => h !== need);
     this.needService.deleteNeed(need.id).subscribe();
+  }
+  onPress(need: Need){
+    need.display = !need.display;
   }
 }

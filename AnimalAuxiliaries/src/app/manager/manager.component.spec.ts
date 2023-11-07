@@ -18,4 +18,9 @@ describe('ManagerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+
 });
+
+
+
