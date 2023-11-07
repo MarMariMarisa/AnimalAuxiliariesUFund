@@ -22,6 +22,14 @@ export class BasketComponent {
     this.basketService
       .getBasket()
       .subscribe((basket) => (this.basket = basket));
+    setTimeout(() => {
+      if (this.basket.length == 0) {
+        let container = document.getElementById('basketContainer');
+        if (container)
+          container.innerHTML =
+            '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
+      }
+    }, 50);
   }
   basket: Need[] = [];
   currentNeeds: Need[] = [];

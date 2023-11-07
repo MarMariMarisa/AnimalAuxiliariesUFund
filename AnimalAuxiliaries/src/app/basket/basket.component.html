@@ -1,11 +1,12 @@
 <app-nav></app-nav>
-<h4>Basket</h4>
-<ul class="funding-basket">
-  <div *ngFor="let need of basket">
+<ul id="basketContainer">
+  <h3 class="basketHeader">Your Basket</h3>
+  <div class="needComponent" *ngFor="let need of basket">
     <h1 class="badge">Name: {{ need.name }}</h1>
     <h4 class="badge">Description: {{ need.description }}</h4>
     <h4 class="badge">Price: ${{ need.price }}</h4>
     <h4 class="badge">Quantity: {{ need.quantity }}</h4>
-    <button (click)="removeFromBasket(need)">-</button>
+    <button (click)="removeFromBasket(need)">Remove</button>
   </div>
+  <button class="checkBtn">Checkout</button>
 </ul>
