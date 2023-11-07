@@ -1,47 +1,154 @@
-<html>
-  <div id = "header">
-    <h1 style="padding:10px;">Animal Auxiliaries</h1>
+<div class="managerContainer">
+  <div id="header">
+    <h1 style="padding: 10px">Animal Auxiliaries</h1>
     <p>Help the voiceless</p>
-    <button class="button"(click)="logout()" style="margin-left: auto;">Analytics</button>
-    <button class="button"(click)="logout()" style="margin-left:10px;margin-right:10px">Logout</button>
-    <!-- <img src = '../../../data/dogCat.png' alt = "A cat sitting on top of a dog"> -->
-    </div>
-<div id = "lists" >
-<div id = "searchList">
-<h2>Current Needs</h2>
-<ul class="needs">
-  <li *ngFor="let need of needs" style="padding:5px;">
-    <a routerLink="/manager/{{ need.id }} " style="color:black;">
-      <span class="badge"></span> {{ need.name }}
-    </a>
-    <button 
-      type="button"
-      class="delete"
-      title="delete need"
-      (click)="delete(need)"
-    >
-    -
+    <button class="navbtn" (click)="logout()" style="margin-left: auto">
+      Analytics
     </button>
-  </li>
-</ul>
-</div>
-<div id = "needList">
-  <h2>Create A Need</h2>
-  <ul id = "inputStyles"> 
-  <li><label for="new-need">Name: </label><input id="new-need" #needName class="labelStyles"></li>
-  <li><label for="new-need">Description: </label><input id="new-need" #needDescription class="labelStyles"/></li>
-  <li><label for="new-need">Type: </label><input id="new-need"  #needType class="labelStyles"/></li>
-  <li><label for="new-need">Price: </label><input id="new-need" #needPrice class="labelStyles"/></li>
-  <li><label for="new-need">Quantity: </label><input id="new-need" #needQuantity class="labelStyles"/></li>
-</ul>
-  <button 
-    type="button"
-    class="button"
-    (click)="add(needName.value,needDescription.value,needType.value,1,1);"
-    style="font-family:Poppins;align-self: flex-end;">
-    Add need
-  </button>
-</div>
-</div>
-</html>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <button class="navbtn" (click)="logout()">Logout</button>
+    <!-- <img src = '../../../data/dogCat.png' alt = "A cat sitting on top of a dog"> -->
+  </div>
+  <div id="control">
+    <div id="searchList">
+      <h2>Current Needs</h2>
+      <ul class="needs">
+        <li *ngFor="let need of needs" style="padding: 5px">
+          <button
+            style="padding: 5px"
+            (click)="onPress(need)"
+            style="background: #b0d5f5; color: black; border: none"
+          >
+            <h2 class="badge">{{ need.name }}</h2>
+          </button>
+          <button
+            type="button"
+            class="deleteBtn"
+            title="delete need"
+            (click)="deleteConfirm = need"
+          >
+            Delete
+          </button>
+          <div id="comp-render" *ngIf="need.display">
+            <h2>Details</h2>
+            <div class="need-container">
+              <div class="need-align">
+                <label for="need-name">Name: </label>
 
+                <input
+                  id="need-name"
+                  [(ngModel)]="need.name"
+                  placeholder="need name"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-description">Description:</label>
+                <input
+                  id="need-description"
+                  [(ngModel)]="need.description"
+                  placeholder="need description"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-Type">Type: </label>
+                <input
+                  id="need-type"
+                  [(ngModel)]="need.type"
+                  placeholder="need type"
+                />
+              </div>
+
+              <div class="need-align">
+                <label for="need-price">Price: </label>
+                <input
+                  id="need-price"
+                  [(ngModel)]="need.price"
+                  placeholder="need price"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-quantity">Quantity: </label>
+                <input
+                  id="need-quantity"
+                  [(ngModel)]="need.quantity"
+                  placeholder="need quantity"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-quantiy-funded">Quantity Funded </label>
+                <input
+                  id="need-quantityFunded"
+                  [(ngModel)]="need.quantityFunded"
+                  placeholder="need quantity funded"
+                />
+              </div>
+            </div>
+            <button type="button" (click)="save(need)" class="button">
+              Save
+            </button>
+          </div>
+          <div class="modal-container" *ngIf="deleteConfirm === need">
+            <div class="modal">
+              <div class="modal-header">
+                Are you sure you'd like to delete the need: {{ need.name }}
+              </div>
+              <p class="modal-desc">This action is irreversable!!</p>
+
+              <div class="modal-btns">
+                <button class="deleteBtn close-button" (click)="delete(need)">
+                  Yes!
+                </button>
+                <button
+                  class="greenBtn close-button"
+                  (click)="deleteConfirm = null"
+                >
+                  No!
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div id="needList">
+      <h2>Create A Need</h2>
+      <ul id="inputStyles">
+        <li>
+          <label for="new-need">Name: </label
+          ><input id="new-need" #needName class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-need">Description: </label
+          ><input id="new-need" #needDescription class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-need">Type: </label
+          ><input id="new-need" #needType class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-need">Price: </label
+          ><input id="new-need" #needPrice class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-need">Quantity: </label
+          ><input id="new-need" #needQuantity class="labelStyles" />
+        </li>
+      </ul>
+      <button
+        type="button"
+        class="btn"
+        (click)="
+          add(needName.value, needDescription.value, needType.value, 1, 1)
+        "
+        style="font-family: Poppins; align-self: flex-end"
+      >
+        Add need
+      </button>
+    </div>
+  </div>
+</div>

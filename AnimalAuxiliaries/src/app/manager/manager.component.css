@@ -1,50 +1,146 @@
-* {background-color:#B0D5F5 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.managerContainer {
+  background-color: #b0d5f5;
+  height: 100vh;
+  width: 100vw;
+}
 #header {
-    width: 100%;
-    font-family: Poppins;
-    display: flex;
-    align-items: center;
-    
+  width: 80%;
+  display: flex;
+  align-items: center;
+  margin: auto;
 }
 
-#lists {
-    display: flex;
-    justify-content: center;
+#control {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin: auto;
+  padding-top: 2rem;
 }
 #needList {
-    float:right;
-    font-family: Poppins;
-    padding-left: 50px;
-    
+  float: right;
+  padding-left: 50px;
 }
 #inputStyles {
-    text-align: right;
-    list-style: none;
+  text-align: right;
+  list-style: none;
 }
-.labelStyles{
-    background-color: white;
-    font-family: Poppins;
+.labelStyles {
+  background-color: white;
 }
 
 #searchList {
-    display: inline-block;
-    font-family: Poppins;
-    padding-right: 50px;
+  display: inline-block;
 }
 
-.button{
-    background-color: #72878c; 
-    border-radius: 5px;
-    border-width: 1px;
-    font-size: 15px;
-    color: black;
-    font-family: Poppins;
-
+.navbtn {
+  background-color: #72878c;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 15px;
+  margin-right: 1rem;
+  color: black;
+  transition: all 0.2s ease-in-out;
+  padding: 0.1rem 0.25rem 0.1rem 0.25rem;
 }
-
-
-@font-face{
-    font-family: Poppins;
-    src : url("../../../data/Poppins-Regular.woff") format('woff');
- 
+.btn {
+  display: grid;
+  margin: auto;
+  background-color: #72878c;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 15px;
+  color: black;
+  transition: all 0.2s ease-in-out;
+  margin-top: 0.75rem;
+  padding: 0.2rem 0.25rem 0.2rem 0.25rem;
+}
+.navbtn:hover,
+.btn:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+.deleteBtn {
+  margin-left: 2rem;
+  color: #eee;
+  width: 100px;
+  height: 30px;
+  background: linear-gradient(
+    to right,
+    rgb(214, 39, 39) 50%,
+    rgb(129, 3, 3) 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.2s ease-out;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.greenBtn {
+  margin-left: 2rem;
+  color: #eee;
+  width: 100px;
+  height: 30px;
+  background: linear-gradient(
+    to right,
+    rgb(74, 214, 39) 50%,
+    rgb(3, 129, 51) 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.2s ease-out;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.deleteBtn:hover,
+.greenBtn:hover {
+  background-position: left bottom;
+  transform: scale(1.05);
+}
+.modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: #efefef;
+  width: 500px;
+  max-width: 80%;
+  display: block;
+}
+.modal-header {
+  padding: 10px 15px;
+  border-bottom: 1px solid black;
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-desc {
+  padding: 1rem 2rem;
+  font-weight: bold;
+}
+.modal-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto;
+  padding: 1rem 0;
 }
