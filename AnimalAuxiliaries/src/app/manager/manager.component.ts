@@ -26,7 +26,7 @@ export class ManagerComponent implements OnInit {
       .subscribe((needs) => (this.needs = needs));
   }
 
-  add(name: string): void {
+  add(name: string,description: string,type:string,price:number,quantity:number): void {
     name = name.trim();
     if (!name) {
       return;
@@ -36,12 +36,12 @@ export class ManagerComponent implements OnInit {
       JSON.stringify({
         id: '',
         name: name,
-        description: 'description',
-        type: 'type',
-        price: 5,
-        quantity: 25,
-        numInBaskets: 5,
-        quantityFunded: 2,
+        description:description,
+        type: type,
+        price: price,
+        quantity: quantity,
+        numInBaskets: 0,
+        quantityFunded: 0,
       } as Need)
     );
     this.needService.createNeed(a).subscribe((need) => {
