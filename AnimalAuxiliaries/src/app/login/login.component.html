@@ -19,7 +19,9 @@
             required
             #password
           />
-          <button type="submit">Login</button>
+          <button type="submit" (click)="add(username.value, password.value)">
+            Login
+          </button>
           <button type="submit" (click)="add(username.value, password.value)">
             Register
           </button>
