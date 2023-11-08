@@ -35,7 +35,8 @@ export class ManagerComponent implements OnInit {
     description: string,
     type: string,
     price: string,
-    quantity: string
+    quantity: string,
+    imgSrc: string
   ): void {
     name = name.trim();
     if (!name) {
@@ -53,6 +54,7 @@ export class ManagerComponent implements OnInit {
         quantity: aQuant,
         numInBaskets: 0,
         quantityFunded: 0,
+        imgSrc: imgSrc
       } as Need)
     );
     this.needService.createNeed(a).subscribe((need) => {

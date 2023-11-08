@@ -1,1 +1,8 @@
 * {font-family: Poppins; background-color:#b0d5f5;}
+
+body{
+width: 100vw;
+height: 100vh;
+padding-bottom: 2%;
+background:#b0d5f5;
+}

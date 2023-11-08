@@ -87,6 +87,14 @@
                   placeholder="need quantity funded"
                 />
               </div>
+              <div class="need-align">
+                <label for="need-image-link">Image Link</label>
+                <input
+                  id="need-image-link"
+                  [(ngModel)]="need.imgSrc"
+                  placeholder="need image link"
+                />
+              </div>
             </div>
             <button type="button" (click)="save(need)" class="button">
               Save
@@ -143,6 +151,15 @@
             type="number"
           />
         </li>
+        <li>
+          <label for="new-need">Image Link: </label
+          ><input
+            id="new-need"
+            #needImage
+            class="labelStyles"
+            type="string"
+          />
+        </li>
       </ul>
       <button
         type="button"
@@ -153,7 +170,9 @@
             needDescription.value,
             needType.value,
             needPrice.value,
-            needQuantity.value
+            needQuantity.value,
+            needImage.value
+
           )
         "
         style="font-family: Poppins; align-self: flex-end"

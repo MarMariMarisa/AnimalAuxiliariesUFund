@@ -8,4 +8,5 @@ export interface Need {
   numInBaskets: number;
   quantityFunded: number;
   display: boolean;
+  imgSrc: string;
 }

@@ -1,1 +1,67 @@
-[{"name":"Dog Toys","description":"Various Dog toys","type":"Euipment","price":5.0,"quantity":10,"quantityAvailable":10,"allFunded":false,"percentFunded":0.0,"id":"a48c23f0-f4cd-4192-95c0-e91a55e9cdfb","numInBaskets":0,"quantityFunded":0},{"name":"Cat Litter","description":"The entire place will get smelly without this","type":"Equipment","price":15.0,"quantity":5,"quantityAvailable":5,"allFunded":false,"percentFunded":0.0,"id":"2658e664-f9a1-4814-9a98-99658ffdc1af","numInBaskets":0,"quantityFunded":0},{"name":"Cat Nibble","description":"A sweet treat for the kitties!","type":"Food","price":6.0,"quantity":10,"quantityAvailable":10,"allFunded":false,"percentFunded":0.0,"id":"e9151c2a-7182-4974-ba43-4bb64a6d30f6","numInBaskets":0,"quantityFunded":0},{"name":"Bird Cage","description":"Somewhere to keep our flying friends","type":"Equipment","price":80.0,"quantity":3,"quantityAvailable":3,"allFunded":false,"percentFunded":0.0,"id":"ff50f7ea-250c-4c5f-a7e0-b318c54888f8","numInBaskets":0,"quantityFunded":0},{"name":"Nail Clippers","description":"Gotta keep those nails short!","type":"Tool","price":5.0,"quantity":3,"quantityAvailable":3,"allFunded":false,"percentFunded":0.0,"id":"bb60944e-c024-463b-9a41-73b62baa782d","numInBaskets":0,"quantityFunded":0}]
+[
+    {
+        "name": "Dog Toys",
+        "description": "Various Dog toys",
+        "type": "Euipment",
+        "price": 5.0,
+        "quantity": 10,
+        "quantityAvailable": 10,
+        "allFunded": false,
+        "percentFunded": 0.0,
+        "id": "a48c23f0-f4cd-4192-95c0-e91a55e9cdfb",
+        "numInBaskets": 0,
+        "quantityFunded": 0
+    },
+    {
+        "name": "Cat Litter",
+        "description": "The entire place will get smelly without this",
+        "type": "Equipment",
+        "price": 15.0,
+        "quantity": 5,
+        "quantityAvailable": 5,
+        "allFunded": false,
+        "percentFunded": 0.0,
+        "id": "2658e664-f9a1-4814-9a98-99658ffdc1af",
+        "numInBaskets": 0,
+        "quantityFunded": 0
+    },
+    {
+        "name": "Cat Nibble",
+        "description": "A sweet treat for the kitties!",
+        "type": "Food",
+        "price": 6.0,
+        "quantity": 10,
+        "quantityAvailable": 10,
+        "allFunded": false,
+        "percentFunded": 0.0,
+        "id": "e9151c2a-7182-4974-ba43-4bb64a6d30f6",
+        "numInBaskets": 0,
+        "quantityFunded": 0
+    },
+    {
+        "name": "Bird Cage",
+        "description": "Somewhere to keep our flying friends",
+        "type": "Equipment",
+        "price": 80.0,
+        "quantity": 3,
+        "quantityAvailable": 3,
+        "allFunded": false,
+        "percentFunded": 0.0,
+        "id": "ff50f7ea-250c-4c5f-a7e0-b318c54888f8",
+        "numInBaskets": 0,
+        "quantityFunded": 0
+    },
+    {
+        "name": "Nail Clippers",
+        "description": "Gotta keep those nails short!",
+        "type": "Tool",
+        "price": 5.0,
+        "quantity": 3,
+        "quantityAvailable": 3,
+        "allFunded": false,
+        "percentFunded": 0.0,
+        "id": "bb60944e-c024-463b-9a41-73b62baa782d",
+        "numInBaskets": 0,
+        "quantityFunded": 0
+    }
+]
