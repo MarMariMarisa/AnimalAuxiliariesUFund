@@ -40,16 +40,18 @@ export class BasketComponent {
   }
   removeFromBasket = async (need: Need) => {
     let count: number = this.basketService.removeFromBasket(need);
-    this.currentNeeds.forEach((aNeed) => {
-      if (aNeed.id == need.id) {
-        aNeed.quantity += count;
-      }
-    });
-
     setTimeout(() => {
       this.fundingbasketService
         .getBasket(this.auth.getUsername())
         .subscribe((basket) => (this.basket = basket));
     }, 30);
+    setTimeout(() => {
+      if (this.basket.length == 0) {
+        let container = document.getElementById('basketContainer');
+        if (container)
+          container.innerHTML =
+            '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
+      }
+    }, 50);
   };
 }
