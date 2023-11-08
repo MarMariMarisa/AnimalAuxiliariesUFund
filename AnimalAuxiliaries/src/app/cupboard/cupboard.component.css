@@ -1,0 +1,37 @@
+* {font-family: Poppins; background-color:#b0d5f5;}
+
+
+#search-component{
+    align-content: center;
+}
+
+h4{
+    padding: 3px;
+}
+
+#need-format{
+    padding: 10px;
+}
+.greenBtn {
+    color: #eee;
+    width: 100px;
+    height: 30px;
+    background: linear-gradient(
+      to right,
+      rgb(74, 214, 39) 50%,
+      rgb(3, 129, 51) 50%
+    );
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 0.2s ease-out;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+  .greenBtn:hover {
+    background-position: left bottom;
+    transform: scale(1.05);
+  }
+@font-face {
+    font-family: Poppins;
+    src: url("../../../data/Poppins-Regular.woff") format("woff");
+}

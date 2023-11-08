@@ -1,3 +1,8 @@
+* {font-family: Poppins; background-color:#b0d5f5;}
+@font-face {
+    font-family: Poppins;
+    src: url("../../../data/Poppins-Regular.woff") format("woff");
+  }
 .cart-icon {
   transition: all 0.2s ease-in-out;
 }
