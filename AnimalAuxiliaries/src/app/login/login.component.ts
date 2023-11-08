@@ -23,7 +23,16 @@ export class LoginComponent {
       this.router.navigate(['/manager']);
     } else {
       this.auth.setUsername(this.username);
-      this.router.navigate(['/helper']);
+      let result: Boolean | never[] = false;
+      this.fundingBasketService
+        .authenticate(username, password)
+        .subscribe((res) => {
+          if (res) {
+            this.router.navigate(['/helper']);
+          } else {
+            window.alert('Invalid login!');
+          }
+        });
     }
   }
   getUsername(): string {
@@ -41,6 +50,8 @@ export class LoginComponent {
           needs: [],
         },
       } as Helper)
-      .subscribe((res) => res);
+      .subscribe((res) => {
+        if (res == undefined) window.alert('Username has been taken!');
+      });
   }
 }

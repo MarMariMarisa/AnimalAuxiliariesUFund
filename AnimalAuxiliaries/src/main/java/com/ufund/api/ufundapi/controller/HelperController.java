@@ -48,7 +48,7 @@ public class HelperController {
 
     @GetMapping("/{username}/{password}")
     public ResponseEntity<Boolean> checkHelperCredentials(@PathVariable String username, @PathVariable String password){
-        LOG.info("GET /username/password" + username + "/" + password);
+        LOG.info("GET /fundingbasket/" + username + "/" + password);
         return new ResponseEntity<Boolean>(helperDAO.checkCredentials(username, password), HttpStatus.OK);
        
     }
