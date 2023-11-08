@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run Maven",
+        "type": "shell",
+        "command": "mvn",
+        "args": ["compile", "exec:java"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "cwd": "${workspaceFolder}/AnimalAuxiliaries"
+      },
+      {
+        "label": "Run ng serve",
+        "type": "shell",
+        "command": "ng",
+        "args": ["serve"],
+        "group": "build",
+        "cwd": "${workspaceFolder}/AnimalAuxiliaries",  
+      }
+    ],
+    "configurations": [
+    
+    ]
+  }
+  
