@@ -1,4 +1,4 @@
-<body>
+<div class="homeWrapper">
   <div id="header">
     <h1>Animal Auxiliaries</h1>
     <h2>Helping the Voiceless</h2>
@@ -6,12 +6,49 @@
 
   <div class="grid">
     <div class="box" style="grid-column: 1">
-      <div>
+      <div class="loginContainer">
         <h2>Login</h2>
-        <form (submit)="login()">
-          <label>Username:</label>
-          <input type="text" id="role" name="role" required #username />
-          <button type="submit" (click)="add(username.value)">Login</button>
+        <form>
+          <section class="login-segment">
+            <h4>Username:</h4>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              #username
+              placeholder="username"
+            />
+          </section>
+
+          <section class="login-segment">
+            <h4>Password:</h4>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="password"
+              #password
+            />
+          </section>
+
+          <div class="loginBtns">
+            <button
+              class="btn"
+              type="submit"
+              (click)="login(username.value, password.value)"
+            >
+              Login
+            </button>
+            <button
+              class="btn"
+              type="submit"
+              (click)="add(username.value, password.value)"
+            >
+              Register
+            </button>
+          </div>
         </form>
       </div>
       <section style="padding-top: 1rem">
@@ -34,4 +71,4 @@
       <p>Community Board Posts</p>
     </div>
   </div>
-</body>
+</div>

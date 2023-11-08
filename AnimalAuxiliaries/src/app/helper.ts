@@ -1,9 +1,10 @@
-import { Need } from "./need"
+import { Need } from './need';
 
-export interface Helper{
-    id: number,
-    username: string,
-    basket: {
-        needs: Need[]
-    }
+export interface Helper {
+  id: number;
+  password: string;
+  username: string;
+  basket: {
+    needs: Need[];
+  };
 }

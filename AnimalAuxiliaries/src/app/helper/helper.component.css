@@ -6,3 +6,8 @@ height: 100vh;
 padding-bottom: 2%;
 background:#b0d5f5;
 }
+.helperWrapper {
+  font-family: Poppins;
+  background-color: #b0d5f5;
+  min-height: 100vh;
+}

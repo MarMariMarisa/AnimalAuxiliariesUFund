@@ -17,7 +17,8 @@ export class LoginComponent {
     private fundingBasketService: FundingBasketService
   ) {}
 
-  login() {
+  login(username: string, password: string) {
+    this.username = username;
     if (this.username === 'admin') {
       this.router.navigate(['/manager']);
     } else {
@@ -28,17 +29,18 @@ export class LoginComponent {
   getUsername(): string {
     return this.username;
   }
-  add(username: string): void {
-    this.username = username;
 
+  async add(username: string, password: string): Promise<void> {
+    this.username = username;
     this.fundingBasketService
       .createHelper({
         id: 0,
+        password: password,
         username: this.username,
         basket: {
-          needs: []
+          needs: [],
         },
       } as Helper)
-      .subscribe((res) => console.log(res));
+      .subscribe((res) => res);
   }
 }
