@@ -1,4 +1,4 @@
-<body>
+<div class="homeWrapper">
   <div id="header">
     <h1>Animal Auxiliaries</h1>
     <h2>Helping the Voiceless</h2>
@@ -10,8 +10,19 @@
         <h2>Login</h2>
         <form (submit)="login()">
           <label>Username:</label>
-          <input type="text" id="role" name="role" required #username />
-          <button type="submit" (click)="add(username.value)">Login</button>
+          <input type="text" id="username" name="username" required #username />
+          <label>Password: </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            #password
+          />
+          <button type="submit">Login</button>
+          <button type="submit" (click)="add(username.value, password.value)">
+            Register
+          </button>
         </form>
       </div>
       <section style="padding-top: 1rem">
@@ -34,4 +45,4 @@
       <p>Community Board Posts</p>
     </div>
   </div>
-</body>
+</div>

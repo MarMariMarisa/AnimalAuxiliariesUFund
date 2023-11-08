@@ -76,7 +76,7 @@ public class HelperController {
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             Helper aHelper = objectMapper.readValue(helperJson, Helper.class);
-            Helper helper = new Helper(aHelper.getUsername());
+            Helper helper = new Helper(aHelper.getUsername(),aHelper.getPassword());
             if(helperDAO.createHelper(helper) != null){
                 return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
             }

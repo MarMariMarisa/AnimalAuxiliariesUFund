@@ -15,20 +15,28 @@ public class Helper implements User {
     private final String id;
     @JsonProperty("username")
     private final String username;
-
+    @JsonProperty("password")
+    private String password;
     @JsonProperty("basket")
     private FundingBasket fundingBasket;
 
     private static final String HELPER_ID_MODIFIER = "H"; 
-
-    public Helper(String username) {
+    public Helper(String username, String password) {
         this.username = username;
+        this.password = password;
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
         this.fundingBasket = new FundingBasket();
     }
-
+    public Helper(String username) {
+        this.username = username;
+        this.password = "";
+        this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString(); 
+        this.fundingBasket = new FundingBasket();
+    }
+    
     public Helper(){
         this.username = "";
+        this.password = "";
         this.id = HELPER_ID_MODIFIER + UUID.randomUUID().toString();
         this.fundingBasket = new FundingBasket();
     }
@@ -50,7 +58,9 @@ public class Helper implements User {
     // public FundingBasket getFundingBasket() {
     //     return fundingBasket;
     // }
-
+    public String getPassword() {
+        return this.password;
+    }
     public String getId() {
         return this.id; 
     }
