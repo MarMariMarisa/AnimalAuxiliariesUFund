@@ -42,7 +42,10 @@ p {
   text-align: center;
   background-color: #b09db3;
 }
-
+.col {
+  display: flex;
+  flex-direction: column;
+}
 @font-face {
   font-family: Poppins;
   src: url("../../../data/Poppins-Regular.woff") format("woff");

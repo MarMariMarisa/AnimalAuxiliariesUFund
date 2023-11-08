@@ -4,13 +4,16 @@
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
+.basket-wrapper {
+  background-color: #b0d5f5;
+  min-height: 100vh;
+}
 #basketContainer {
   display: flex;
   flex-direction: column;
   width: 85%;
   margin: auto;
-  border: 1px solid #eee;
+  border: 2px #000080 solid;
 }
 .needComponent {
   display: flex;
@@ -23,11 +26,55 @@
   margin: 0 0.5rem 0 0.5rem;
   width: 22%;
 }
-.checkBtn {
-  width: 20%;
+.needComponent button {
+  width: 11%;
+}
+.checkContainer {
+  display: grid;
+  place-items: center;
   margin: auto;
+  padding-bottom: 1rem;
 }
 .basketHeader {
   padding: 0 0.5rem 0 0.5rem;
-  background-color: #eee;
+  background-color: #000080;
+  color: #eee;
+}
+.redBtn {
+  margin-left: 2rem;
+  color: #eee;
+  width: 100px;
+  height: 30px;
+  background: linear-gradient(
+    to right,
+    rgb(214, 39, 39) 50%,
+    rgb(129, 3, 3) 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.2s ease-out;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.checkBtn {
+  margin-left: 2rem;
+  color: #eee;
+  width: 100px;
+  height: 30px;
+  background: linear-gradient(
+    to right,
+    rgb(74, 214, 39) 50%,
+    rgb(3, 129, 51) 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.2s ease-out;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.redBtn:hover,
+.checkBtn:hover {
+  background-position: left bottom;
+  transform: scale(1.05);
 }
