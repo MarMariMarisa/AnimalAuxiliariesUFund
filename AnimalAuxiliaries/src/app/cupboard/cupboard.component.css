@@ -27,10 +27,11 @@ h4{
     border: 1px solid black;
     border-radius: 3px;
   }
-  .greenBtn:hover {
+.greenBtn:hover {
     background-position: left bottom;
     transform: scale(1.05);
-  }
+}
+.green
 @font-face {
     font-family: Poppins;
     src: url("../../../data/Poppins-Regular.woff") format("woff");

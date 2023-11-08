@@ -1,12 +1,16 @@
-<app-nav></app-nav>
-<ul id="basketContainer">
-  <h3 class="basketHeader">Your Basket</h3>
-  <div class="needComponent" *ngFor="let need of basket">
-    <h4 class="badge">Name: {{ need.name }}</h4>
-    <h4 class="badge">Description: {{ need.description }}</h4>
-    <h4 class="badge">Price: ${{ need.price }}</h4>
-    <h4 class="badge">Quantity: {{ need.quantity }}</h4>
-    <button (click)="removeFromBasket(need)">Remove</button>
-  </div>
-  <button class="checkBtn">Checkout</button>
-</ul>
+<div class="basket-wrapper">
+  <app-nav></app-nav>
+  <ul id="basketContainer">
+    <h3 class="basketHeader">Your Basket</h3>
+    <div class="needComponent" *ngFor="let need of basket">
+      <h4 class="badge">Name: {{ need.name }}</h4>
+      <h4 class="badge">Description: {{ need.description }}</h4>
+      <h4 class="badge">Price: ${{ need.price }}</h4>
+      <h4 class="badge">Quantity: {{ need.quantity }}</h4>
+      <button class="redBtn" (click)="removeFromBasket(need)">Remove</button>
+    </div>
+    <div class="checkContainer">
+      <button class="checkBtn">Checkout</button>
+    </div>
+  </ul>
+</div>
