@@ -71,11 +71,21 @@ public class HelperFileDAO implements UserDAO {
         
     }
 
-    // public Helper getHelper(String username) throws IOException{
-    //     synchronized(helpers){
-    //         return helpers.get(username);
-    //     }
-    // }
+    public boolean checkCredentials(String username, String password){
+        synchronized(helpers){
+            for(Helper h : getHelpers()){
+                boolean usernameMatch = h.getUsername().equals(username);
+                if(usernameMatch){
+                    boolean passwordMatch = h.getPassword().equals(password);
+                    if(passwordMatch){
+                        return true;
+                    }
+                   
+                }
+            }
+            return false;
+        }
+    }
 
     public Helper createHelper(Helper helper) throws IOException{
         synchronized(helpers){
@@ -149,15 +159,8 @@ public class HelperFileDAO implements UserDAO {
             if(helpers.containsKey(username)){
                 Helper h = helpers.get(username);
                 Need need = needDao.getNeed(needID);
-                Need helperNeed = new Need();
-
-                
-              
+     
                 if(need != null){
-                    for(Need n : h.getBasketNeeds()){
-                    if(need.equals(n))
-                        helperNeed = n;
-                    }
                     if(h.removeFromFundingBasket(need)){
                         save();  
                         return need;
@@ -175,12 +178,9 @@ public class HelperFileDAO implements UserDAO {
                             }
                             else
                                 return null;
-                        }
-                        
+                        }                       
                     }
-
-                }
-                
+                }     
             }
             return null;
         }
@@ -196,4 +196,15 @@ public class HelperFileDAO implements UserDAO {
             
         }
     }
+
+    // public boolean checkout(String username, int surplus) throws IOException{
+    //     synchronized(helpers){
+    //         Helper helper = helpers.get(username);
+    //         if(helper != null){
+    //             save();
+    //             return helper.checkout();      
+    //         }
+    //         return false;
+    //     }
+    // }
 }
