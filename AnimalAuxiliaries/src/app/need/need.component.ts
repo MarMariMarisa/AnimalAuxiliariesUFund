@@ -25,5 +25,4 @@ export class NeedComponent implements OnInit{
     this.cupboardService.getNeed(id).subscribe((need) => (this.need = need));
   }
 
-
 }
