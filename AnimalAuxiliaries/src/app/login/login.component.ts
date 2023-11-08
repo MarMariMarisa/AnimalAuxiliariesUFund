@@ -17,7 +17,8 @@ export class LoginComponent {
     private fundingBasketService: FundingBasketService
   ) {}
 
-  login() {
+  login(username: string, password: string) {
+    this.username = username;
     if (this.username === 'admin') {
       this.router.navigate(['/manager']);
     } else {

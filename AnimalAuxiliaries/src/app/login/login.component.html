@@ -8,7 +8,7 @@
     <div class="box" style="grid-column: 1">
       <div>
         <h2>Login</h2>
-        <form (submit)="login()">
+        <form>
           <label>Username:</label>
           <input type="text" id="username" name="username" required #username />
           <label>Password: </label>
@@ -19,7 +19,7 @@
             required
             #password
           />
-          <button type="submit" (click)="add(username.value, password.value)">
+          <button type="submit" (click)="login(username.value, password.value)">
             Login
           </button>
           <button type="submit" (click)="add(username.value, password.value)">
