@@ -1,19 +1,31 @@
-* {font-family: Poppins; background-color:#b0d5f5;}
-
-
+* {font-family: Poppins; background-color:#4F4557;color:#F4EEE0}
 #search-component{
     align-content: center;
 }
 
 .search-box{
+    margin:5px;
     background-color: white;
 }
 h4{
     padding: 3px;
+    background-color: #393646;
 }
 
 #need-format{
     padding: 10px;
+    
+}
+.badge{
+    background-color: #393646
+}
+#list-format{
+    padding: 10px;
+    background-color: #393646;
+    width: fit-content;
+    border-radius: 10px;
+    margin: 5px;
+    
 }
 .greenBtn {
     color: #eee;
@@ -34,7 +46,7 @@ h4{
     background-position: left bottom;
     transform: scale(1.05);
 }
-.green
+
 @font-face {
     font-family: Poppins;
     src: url("../../../data/Poppins-Regular.woff") format("woff");

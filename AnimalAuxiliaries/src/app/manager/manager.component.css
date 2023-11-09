@@ -4,35 +4,40 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   height:fit-content;
+  color: #F4EEE0;
 }
+
 .managerContainer {
-  background-color:  #644b68;
+  background-color:  #4F4557;
   min-height: 100vh;
   min-width: 100vw;
   height: fit-content;
+}
+.Savbutton{
+  background-color: #6d5d6e;
 }
 #header {
   width: 100vw;
   display: flex;
   align-items: center;
   margin: auto;
-  background-color: #b09db3;
+  background-color: #393646;
 
 }
 h1{
-color: #422527;
+color: #F4EEE0;
 font-family: Poppins;
 font-weight: bold;
 font-size: 40px;
 }
 h3{
-  color: #422527;
+  color: #F4EEE0;
   font-family: Poppins;
   font-weight: bold;
 }
 
 h2 {
-color: #422527;
+color: #F4EEE0;
 font-family: Poppins;
 font-weight: bold;
 }
@@ -49,11 +54,12 @@ font-weight: bold;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 10px;
-  padding-top:10px;
+  padding-top: 10px;
   width: 25rem;
   margin-left: 10px;
-  background-color: #cdbed1;
+  background-color: #393646;
   height: fit-content;
+  border-radius: 10px;
 }
 #inputStyles {
   text-align: right;
@@ -64,25 +70,27 @@ font-weight: bold;
 }
 
 #searchList {
-  background-color: #cdbed1;
+  background-color: #393646;
   float: right;
   justify-content: center;
-  width: 25rem;
+  width: 27.5rem;
   align-content: flex-end;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 10px;
-  padding-top:10px;
+  padding-top: 10px;
+
+  border-radius: 10px;
 }
 
-.btn-font{
+.btn-font {
   font-size: 25px;
 }
 
 .btn {
   display: grid;
   margin: auto;
-  background-color: #644b68;
+  background-color: #6d5d6e;
   border-radius: 5px;
   border-width: 1px;
   size: 5px;
@@ -93,7 +101,7 @@ font-weight: bold;
 }
 
 .btn {
-  background-color: #72878c57;
+  background-color: #6d5d6e;
   border-radius: 5px;
   border-width: 1px;
   font-size: 1rem;
@@ -157,7 +165,7 @@ font-weight: bold;
   border: 1px solid black;
   border-radius: 10px;
   z-index: 10;
-  background-color: #efefef;
+  background-color: #6d5d6e;
   width: 500px;
   max-width: 80%;
   display: block;
@@ -200,16 +208,24 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.headerImage{
-  width:100px;
+.headerImage {
+  width: 100px;
   border-color: black;
   border-width: 5px;
   border-style: solid;
   border-radius: 50px;
-  margin:10px
+  margin: 10px;
 }
 
 .badge{
-  background-color: #cdbed1;
+  background-color: #393646;
 }
 
+.center {
+  margin: auto;
+  margin-top: 0.5rem;
+  padding-top: 0.25rem;
+}
+#comp-render {
+  padding: 1rem 0;
+}

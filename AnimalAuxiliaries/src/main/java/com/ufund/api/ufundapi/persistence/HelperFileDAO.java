@@ -75,18 +75,19 @@ public class HelperFileDAO implements UserDAO {
 
     public boolean checkCredentials(String username, String password){
         synchronized(helpers){
+           
             for(Helper h : getHelpers()){
+                
                 boolean usernameMatch = h.getUsername().equals(username);
                 if(usernameMatch){
                     boolean passwordMatch = h.getPassword().equals(password);
                     if(passwordMatch){
                         return true;
-                    }
-                   
+                    }  
                 }
             }
-            return false;
         }
+        return false;
     }
 
     public Helper createHelper(Helper helper) throws IOException{

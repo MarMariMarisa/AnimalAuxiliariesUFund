@@ -1,13 +1,13 @@
-* {font-family: Poppins; background-color:#b0d5f5;}
+* {font-family: Poppins,sans-serif; background-color:#393646;}
 
 body{
 width: 100vw;
 height: 100vh;
 padding-bottom: 2%;
-background:#b0d5f5;
+background:#393646;
 }
 .helperWrapper {
   font-family: Poppins;
-  background-color: #b0d5f5;
+  background-color: #393646;
   min-height: 100vh;
 }

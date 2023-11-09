@@ -27,7 +27,13 @@ export class FundingBasketService {
     private http: HttpClient,
     private messageService: MessageService
   ) {}
-
+  authenticate(username: string, password: string) {
+    const url = `${this.basketUrl}/${username}/${password}`;
+    return this.http.get<Boolean>(url, this.httpOptions).pipe(
+      tap((_) => this.log('authenicated user')),
+      catchError(this.handleError('authenicate', []))
+    );
+  }
   getBasket(username: string): Observable<Need[]> {
     const url = `${this.basketUrl}/${username}`;
 

@@ -1,3 +1,9 @@
+:root{
+  --purp-grey:#393646;
+  --mid-purp: solid(#4F4557);
+  --purp: solid(#6d5d6e);
+  --font-color: #F4EEE0;
+}
 * {
   margin: 0;
   padding: 0;

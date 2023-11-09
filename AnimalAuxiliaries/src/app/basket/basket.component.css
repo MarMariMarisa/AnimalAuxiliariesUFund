@@ -3,17 +3,23 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+font-family: "Poppins", sans-serif; background-color:#393646;color: #F4EEE0}
+@font-face {
+    font-family: Poppins;
+    src: url("../../../data/Poppins-Regular.woff") format("woff");
+  }
 .basket-wrapper {
-  background-color: #b0d5f5;
+  background-color: #4F4557;
   min-height: 100vh;
+  align-items: center;
 }
 #basketContainer {
   display: flex;
   flex-direction: column;
   width: 85%;
-  margin: auto;
-  border: 2px #000080 solid;
+  margin: 10px;
+  border-radius: 10px;
+
 }
 .needComponent {
   display: flex;
@@ -37,7 +43,7 @@
 }
 .basketHeader {
   padding: 0 0.5rem 0 0.5rem;
-  background-color: #000080;
+  background-color: #393646;
   color: #eee;
 }
 .redBtn {
