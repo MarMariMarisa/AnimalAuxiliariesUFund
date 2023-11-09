@@ -26,8 +26,8 @@
   display: flex;
   align-items: center;
 }
-.nav-right * {
-  margin-left: 1.5rem;
+.nav-right > * {
+  margin: 0 1rem;
 }
 
 .navBtn {
