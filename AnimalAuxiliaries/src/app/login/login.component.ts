@@ -24,7 +24,6 @@ export class LoginComponent {
       else window.alert('Incorrect admin login!');
     } else {
       this.auth.setUsername(this.username);
-      let result: Boolean | never[] = false;
       this.fundingBasketService
         .authenticate(username, password)
         .subscribe((res) => {

@@ -3,7 +3,7 @@
     <h1 style="padding: 10px">Animal Auxiliaries</h1>
     <h3>Help the voiceless</h3>
     <button class="btn" (click)="logout()" style="margin-left: auto">
-    <p class = "btn-font">Analytics</p>
+      <p class="btn-font">Analytics</p>
     </button>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,29 +12,28 @@
       rel="stylesheet"
     />
     <button class="btn" (click)="logout()">
-      <p class = "btn-font">Logout</p></button>
+      <p class="btn-font">Logout</p>
+    </button>
     <!-- <img src = '../../../data/dogCat.png' alt = "A cat sitting on top of a dog"> -->
   </div>
   <div id="control">
     <div id="searchList">
       <h2>Current Needs</h2>
       <ul>
-        <li *ngFor="let need of needs" style="padding: 5px">
-          <button
-            style="padding: 5px"
-            (click)="onPress(need)"
-            style="background: #b0d5f5; color: black; border: none"
-          >
-            <h2 class="badge">{{ need.name }}</h2>
-          </button>
-          <button
-            type="button"
-            class="deleteBtn"
-            title="delete need"
-            (click)="deleteConfirm = need"
-          >
-            Delete
-          </button>
+        <li *ngFor="let need of needs">
+          <h2 class="badge">{{ need.name }}</h2>
+          <div style="display: flex; align-items: center; padding-top: 0.25rem">
+            <button
+              type="button"
+              class="deleteBtn"
+              title="delete need"
+              (click)="deleteConfirm = need"
+            >
+              Delete
+            </button>
+            <button (click)="onPress(need)" class="btn">Edit</button>
+          </div>
+
           <div id="comp-render" *ngIf="need.display">
             <div class="need-container">
               <div class="need-align">
@@ -96,7 +95,12 @@
                 />
               </div>
             </div>
-            <button type="button" (click)="save(need)" class="button">
+            <button
+              type="button"
+              (click)="save(need)"
+              class="btn left-zero-marg"
+              style="margin-left: 0; margin-top: 0.5rem"
+            >
               Save
             </button>
           </div>
@@ -153,17 +157,12 @@
         </li>
         <li>
           <label for="new-need">Image Link: </label
-          ><input
-            id="new-need"
-            #needImage
-            class="labelStyles"
-            type="string"
-          />
+          ><input id="new-need" #needImage class="labelStyles" type="string" />
         </li>
       </ul>
       <button
         type="button"
-        class="btn"
+        class="btn center"
         (click)="
           add(
             needName.value,
@@ -172,7 +171,6 @@
             needPrice.value,
             needQuantity.value,
             needImage.value
-
           )
         "
         style="font-family: Poppins; align-self: flex-end"
