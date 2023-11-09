@@ -1,53 +1,54 @@
-* {font-family: Poppins; background-color:#4F4557;color:#F4EEE0}
-#search-component{
-    align-content: center;
+* {
+  font-family: Poppins;
+  background-color: #4f4557;
+}
+#search-component {
+  align-content: center;
 }
 
-.search-box{
-    margin:5px;
-    background-color: white;
+.search-box {
+  margin: 5px;
+  background-color: white;
 }
-h4{
-    padding: 3px;
-    background-color: #393646;
+h4 {
+  padding: 3px;
+  background-color: #393646;
 }
 
-#need-format{
-    padding: 10px;
-    
+#need-format {
+  padding: 10px;
 }
-.badge{
-    background-color: #393646
+.badge {
+  background-color: #393646;
 }
-#list-format{
-    padding: 10px;
-    background-color: #393646;
-    width: fit-content;
-    border-radius: 10px;
-    margin: 5px;
-    
+#list-format {
+  padding: 10px;
+  background-color: #393646;
+  width: fit-content;
+  border-radius: 10px;
+  margin: 5px;
 }
 .greenBtn {
-    color: #eee;
-    width: 100px;
-    height: 30px;
-    background: linear-gradient(
-      to right,
-      rgb(74, 214, 39) 50%,
-      rgb(3, 129, 51) 50%
-    );
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all 0.2s ease-out;
-    border: 1px solid black;
-    border-radius: 3px;
-  }
+  color: #eee;
+  width: 100px;
+  height: 30px;
+  background: linear-gradient(
+    to right,
+    rgb(74, 214, 39) 50%,
+    rgb(3, 129, 51) 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.2s ease-out;
+  border: 1px solid black;
+  border-radius: 3px;
+}
 .greenBtn:hover {
-    background-position: left bottom;
-    transform: scale(1.05);
+  background-position: left bottom;
+  transform: scale(1.05);
 }
 
 @font-face {
-    font-family: Poppins;
-    src: url("../../../data/Poppins-Regular.woff") format("woff");
+  font-family: Poppins;
+  src: url("../../../data/Poppins-Regular.woff") format("woff");
 }

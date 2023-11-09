@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Need } from '../need';
 import { CupboardService } from '../cupboard.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { FundingBasketService } from '../funding-basket.service';
 
 @Component({
   selector: 'app-manager',
@@ -11,10 +13,16 @@ import { Router } from '@angular/router';
 export class ManagerComponent implements OnInit {
   needs: Need[] = [];
   deleteConfirm: Need | null = null;
-  constructor(private needService: CupboardService, private router: Router) {}
+  constructor(
+    private needService: CupboardService,
+    private router: Router,
+    private auth: AuthService,
+    private basket: FundingBasketService
+  ) {}
 
   ngOnInit(): void {
     this.getNeeds();
+    if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
   }
   logout(): void {
     this.router.navigate(['/login']);
@@ -28,6 +36,7 @@ export class ManagerComponent implements OnInit {
   save(need: Need): void {
     if (need) {
       this.needService.updateNeed(need).subscribe();
+      this.basket.removeFromBasket(this.auth.getUsername(), need.id);
     }
   }
   add(
@@ -44,6 +53,8 @@ export class ManagerComponent implements OnInit {
     }
     let aPrice = parseInt(price);
     let aQuant = parseInt(quantity);
+    if (aPrice <= 0) aPrice = 1;
+    if (aQuant <= 0) aQuant = 1;
     let a = JSON.parse(
       JSON.stringify({
         id: '',
@@ -54,7 +65,7 @@ export class ManagerComponent implements OnInit {
         quantity: aQuant,
         numInBaskets: 0,
         quantityFunded: 0,
-        imgSrc: imgSrc
+        imgSrc: imgSrc,
       } as Need)
     );
     this.needService.createNeed(a).subscribe((need) => {

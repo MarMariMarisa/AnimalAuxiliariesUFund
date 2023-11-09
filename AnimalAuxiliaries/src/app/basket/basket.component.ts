@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { FundingBasketService } from '../funding-basket.service';
 import { BasketService } from '../basket.service';
 import { CupboardService } from '../cupboard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basket',
@@ -15,9 +16,11 @@ export class BasketComponent {
     private fundingbasketService: FundingBasketService,
     private auth: AuthService,
     private basketService: BasketService,
-    private cupboardService: CupboardService
+    private cupboardService: CupboardService,
+    private router: Router
   ) {}
   ngOnInit(): void {
+    if (this.auth.getUsername() == '') this.router.navigate(['/login']);
     this.getEntireCupboard();
     this.basketService
       .getBasket()

@@ -3,17 +3,15 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  height:fit-content;
-  color: #F4EEE0;
 }
 
 .managerContainer {
-  background-color:  #4F4557;
+  background-color: #4f4557;
   min-height: 100vh;
   min-width: 100vw;
   height: fit-content;
 }
-.Savbutton{
+.Savbutton {
   background-color: #6d5d6e;
 }
 #header {
@@ -22,24 +20,23 @@
   align-items: center;
   margin: auto;
   background-color: #393646;
-
 }
-h1{
-color: #F4EEE0;
-font-family: Poppins;
-font-weight: bold;
-font-size: 40px;
+h1 {
+  color: #f4eee0;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 40px;
 }
-h3{
-  color: #F4EEE0;
+h3 {
+  color: #f4eee0;
   font-family: Poppins;
   font-weight: bold;
 }
 
 h2 {
-color: #F4EEE0;
-font-family: Poppins;
-font-weight: bold;
+  color: #f4eee0;
+  font-family: Poppins;
+  font-weight: bold;
 }
 
 #control {
@@ -217,7 +214,7 @@ input[type="number"] {
   margin: 10px;
 }
 
-.badge{
+.badge {
   background-color: #393646;
 }
 

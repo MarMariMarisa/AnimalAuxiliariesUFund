@@ -18,19 +18,29 @@ export class LoginComponent {
   ) {}
 
   login(username: string, password: string) {
+    const responseText = document.getElementById('response-text');
     this.username = username;
     if (this.username === 'admin') {
-      if (password === 'admin') this.router.navigate(['/manager']);
-      else window.alert('Incorrect admin login!');
+      if (password === 'admin') {
+        this.auth.setUsername('admin');
+        this.router.navigate(['/manager']);
+      } else if (responseText) {
+        responseText.textContent = 'Invalid Login!';
+        responseText.style.color = '#c91d06';
+      }
     } else {
-      this.auth.setUsername(this.username);
+      this.auth.setUsername(username);
       this.fundingBasketService
         .authenticate(username, password)
         .subscribe((res) => {
           if (res) {
+            console.log(this.auth.getUsername());
             this.router.navigate(['/helper']);
           } else {
-            window.alert('Invalid login!');
+            if (responseText) {
+              responseText.textContent = 'Invalid Login!';
+              responseText.style.color = '#c91d06';
+            }
           }
         });
     }
@@ -41,6 +51,7 @@ export class LoginComponent {
 
   async add(username: string, password: string): Promise<void> {
     this.username = username;
+    const responseText = document.getElementById('response-text');
     this.fundingBasketService
       .createHelper({
         id: 0,
@@ -51,7 +62,18 @@ export class LoginComponent {
         },
       } as Helper)
       .subscribe((res) => {
-        if (res == undefined) window.alert('Username has been taken!');
+        if (res == undefined) {
+          if (responseText) {
+            responseText.textContent = 'Username taken';
+            responseText.style.color = '#c91d06';
+          }
+        } else {
+          // if (responseText) {
+          //   responseText.textContent = 'Account created successfully';
+          //   responseText.style.color = '#1ba802';
+          // }
+          this.login(username, password);
+        }
       });
   }
 }

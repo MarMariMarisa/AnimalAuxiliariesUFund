@@ -35,13 +35,7 @@ export class CupboardComponent implements OnInit {
   ngOnInit(): void {
     this.getEntireCupboard();
     this.needs$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
-
-      // ignore new term if same as previous term
       distinctUntilChanged(),
-
-      // switch to new search observable each time the term changes
       switchMap((term: string) => this.cupboardService.searchNeeds(term))
     );
     this.basketService
@@ -49,7 +43,9 @@ export class CupboardComponent implements OnInit {
       .subscribe((basket) => (this.basket = basket));
   }
   search(term: string): void {
-    this.searchTerms.next(term);
+    setTimeout(() => {
+      this.searchTerms.next(term);
+    }, 150);
   }
   getEntireCupboard(): void {
     this.cupboardService
@@ -67,7 +63,7 @@ export class CupboardComponent implements OnInit {
     this.changeDetection.detectChanges();
   }
 
-  getNeedsImage(need:Need): string{
+  getNeedsImage(need: Need): string {
     return need.imgSrc;
   }
 
