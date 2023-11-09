@@ -4,7 +4,8 @@ import { CupboardService } from '../cupboard.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FundingBasketService } from '../funding-basket.service';
-
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -13,6 +14,8 @@ import { FundingBasketService } from '../funding-basket.service';
 export class ManagerComponent implements OnInit {
   needs: Need[] = [];
   deleteConfirm: Need | null = null;
+  needs$!: Observable<Need[]>;
+  private searchTerms = new Subject<string>();
   constructor(
     private needService: CupboardService,
     private router: Router,
@@ -22,12 +25,20 @@ export class ManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNeeds();
+    this.needs$ = this.searchTerms.pipe(
+      distinctUntilChanged(),
+      switchMap((term: string) => this.needService.searchNeeds(term))
+    );
     if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
   }
   logout(): void {
     this.router.navigate(['/login']);
   }
-
+  search(term: string): void {
+    setTimeout(() => {
+      this.searchTerms.next(term);
+    }, 150);
+  }
   getNeeds(): void {
     this.needService
       .getEntireCupboard()
