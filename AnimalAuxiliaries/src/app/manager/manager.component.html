@@ -23,7 +23,7 @@
   <div id="control">
     <div id="searchList">
       <label for="search-box">Need Search</label>
-      <input #searchBox class="search-box" (input)="search(searchBox.value)" />
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" />
 
       <ul *ngIf="searchBox.value == ''; else searchNeeds">
         <li *ngFor="let need of needs">
@@ -223,7 +223,6 @@
                 Are you sure you'd like to delete the need: {{ need.name }}
               </div>
               <p class="modal-desc">This action is irreversable!!</p>
-
               <div class="modal-btns">
                 <button class="deleteBtn close-button" (click)="delete(need)">
                   Yes!

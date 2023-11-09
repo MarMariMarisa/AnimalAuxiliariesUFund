@@ -4,7 +4,7 @@ import { CupboardService } from '../cupboard.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FundingBasketService } from '../funding-basket.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-manager',
@@ -48,6 +48,19 @@ export class ManagerComponent implements OnInit {
     if (need) {
       this.needService.updateNeed(need).subscribe();
       this.basket.removeFromBasket(this.auth.getUsername(), need.id);
+      const sb: HTMLInputElement | null = <HTMLInputElement>(
+        document.getElementById('search-box')
+      );
+      if (sb) {
+        const temp: string = sb.value;
+        sb.value = '';
+        setTimeout(() => {
+          sb.value = temp;
+          setTimeout(() => {
+            this.searchTerms.next(temp);
+          }, 5);
+        }, 5);
+      }
     }
   }
   add(
@@ -82,11 +95,40 @@ export class ManagerComponent implements OnInit {
     this.needService.createNeed(a).subscribe((need) => {
       this.needs.push(need);
     });
+    const sb: HTMLInputElement | null = <HTMLInputElement>(
+      document.getElementById('search-box')
+    );
+    if (sb) {
+      const temp: string = sb.value;
+      sb.value = '';
+      setTimeout(() => {
+        sb.value = temp;
+        setTimeout(() => {
+          this.searchTerms.next(temp);
+        }, 5);
+      }, 5);
+    }
   }
 
   delete(need: Need): void {
-    this.needs = this.needs.filter((h) => h !== need);
-    this.needService.deleteNeed(need.id).subscribe();
+    this.needService.deleteNeed(need.id).subscribe(() => {
+      const sb: HTMLInputElement | null = <HTMLInputElement>(
+        document.getElementById('search-box')
+      );
+      if (sb) {
+        const temp: string = sb.value;
+        sb.value = '';
+        setTimeout(() => {
+          sb.value = temp;
+          setTimeout(() => {
+            this.searchTerms.next(temp);
+          }, 5);
+        }, 5);
+      }
+    });
+    setTimeout(() => {
+      this.needs = this.needs.filter((h) => h.id != need.id);
+    }, 50);
   }
   onPress(need: Need) {
     need.display = !need.display;
