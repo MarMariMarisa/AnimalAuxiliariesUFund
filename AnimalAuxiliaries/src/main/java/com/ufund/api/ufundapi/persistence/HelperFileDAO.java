@@ -5,7 +5,9 @@ import com.ufund.api.ufundapi.model.Need;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -197,14 +199,32 @@ public class HelperFileDAO implements UserDAO {
         }
     }
 
-    // public boolean checkout(String username, int surplus) throws IOException{
-    //     synchronized(helpers){
-    //         Helper helper = helpers.get(username);
-    //         if(helper != null){
-    //             save();
-    //             return helper.checkout();      
-    //         }
-    //         return false;
-    //     }
-    // }
+    public boolean checkout(String username) throws IOException{
+        synchronized(helpers){
+            Helper helper = helpers.get(username);
+            List<Need> toBeFunded = new ArrayList<Need>();
+            
+            if(helper != null){
+                // Update all the needs helper has in their basket 
+                for(Need n : helper.getBasketNeeds()){
+                    // Find need in cupboard, increment quantity, updated need 
+                    Need cupboardNeed = needDao.getNeed(n.getId());
+                    int updatedQuantity = cupboardNeed.getQuantityFunded() - n.getQuantity();
+                    cupboardNeed.setQuantityFunded(updatedQuantity);
+                    needDao.updateNeed(cupboardNeed);
+
+                    // If fully funded - send need to funded list 
+                    if(cupboardNeed.getAllFunded()){
+                        toBeFunded.add(cupboardNeed);
+                    }
+                }
+                //Fund Needs
+                needDao.fundNeeds(toBeFunded);
+
+                save();
+                return helper.checkout();      
+            }
+            return false;
+        }
+    }
 }

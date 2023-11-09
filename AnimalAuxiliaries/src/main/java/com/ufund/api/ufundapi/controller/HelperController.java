@@ -115,4 +115,16 @@ public class HelperController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<Boolean> checkout(@PathVariable String username) {
+        LOG.info("DELETE/FUND /funding-basket/" + username );
+        try{
+            return new ResponseEntity<Boolean>(helperDAO.checkout(username), HttpStatus.OK);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

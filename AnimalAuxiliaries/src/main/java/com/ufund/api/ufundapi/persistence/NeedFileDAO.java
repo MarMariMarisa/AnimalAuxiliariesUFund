@@ -182,5 +182,16 @@ public class NeedFileDAO implements NeedDAO {
         }
     }
 
+    public boolean fundNeeds(List<Need> toBeFunded) throws IOException {
+        synchronized(cupboard){
+            if(cupboard.fundNeeds(toBeFunded)){
+                // TODO: Add persistence for funded needs
+                save();
+                return true;
+            }
+            return false;
+        }
+    }
+
 
 }
