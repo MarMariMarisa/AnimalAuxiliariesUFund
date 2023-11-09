@@ -87,6 +87,24 @@ public class HelperTest {
         assertFalse(helper.removeFromFundingBasket(null)); 
     }
 
+    @Test
+    public void testCheckout(){
+        Need[] needs = {new Need("need 1", "", "", 1.00f, 1), 
+                        new Need("need 2", "", "", 1.00f, 1), 
+                        new Need("need 3", "", "", 1.00f, 1)};
+        
+        Need need = new Need("need 4", "", "", 1.00f, 1); 
+
+        for(int i = 0; i < needs.length; i++) {
+            helper.addToFundingBasket(needs[i]); 
+        }
+
+        assertTrue(helper.getBasketNeeds().length > 0);
+        helper.checkout();
+
+        assertTrue(helper.getBasketNeeds().length == 0);
+    }
+
     //helper functions:
     //add to funding basket 
     // remove from funding basket 

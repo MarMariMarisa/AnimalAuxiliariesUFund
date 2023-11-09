@@ -179,45 +179,5 @@ public class Cupboard {
         return false; 
     }
 
-    /**
-     * This function removes a need from a collection of needs and "retires" it so that it
-     * remains stored while it is no longer being used
-     * 
-     * @param needID 
-     * @return boolean based on success of removal
-     */
-    /*
-     public boolean retireNeed(String needId) {
-         if (needId != null) {
-             Need removedNeed = currentNeeds.remove(needId);
-             if(removedNeed != null) {
-                 retiredNeeds.put(needId, removedNeed); 
-                 return true; 
-             }
-         }
-         return false;
-    }
-    */
-
-    // public boolean unretireNeed(String needID) {
-    //     if(needID != null) {
-    //         Need removedNeed = retiredNeeds.remove(needID); 
-    //         if(removedNeed != null) {
-    //             currentNeeds.put(needID, removedNeed); 
-    //             return true;
-    //         }
-    //     }
-    //     return false; 
-    // }
-
-    /*
-    public List<Need> getRetiredNeeds() {
-        return new ArrayList<Need>(retiredNeeds.values());
-    }
-    */
-
-    // @Override
-    // public String toString() {
-    //     return String.format(getEntireCupboard().toString());
-    // }
+    
 }

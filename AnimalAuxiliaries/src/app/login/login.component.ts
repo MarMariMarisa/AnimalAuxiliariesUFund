@@ -20,10 +20,19 @@ export class LoginComponent {
   login(username: string, password: string) {
     this.username = username;
     if (this.username === 'admin') {
-      this.router.navigate(['/manager']);
+      if (password === 'admin') this.router.navigate(['/manager']);
+      else window.alert('Incorrect admin login!');
     } else {
       this.auth.setUsername(this.username);
-      this.router.navigate(['/helper']);
+      this.fundingBasketService
+        .authenticate(username, password)
+        .subscribe((res) => {
+          if (res) {
+            this.router.navigate(['/helper']);
+          } else {
+            window.alert('Invalid login!');
+          }
+        });
     }
   }
   getUsername(): string {
@@ -41,6 +50,8 @@ export class LoginComponent {
           needs: [],
         },
       } as Helper)
-      .subscribe((res) => res);
+      .subscribe((res) => {
+        if (res == undefined) window.alert('Username has been taken!');
+      });
   }
 }

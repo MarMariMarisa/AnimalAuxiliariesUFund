@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -42,8 +43,8 @@ public class HelperFileDAOTest {
 
 
         testHelpers = new Helper[2];
-        testHelpers[0] = new Helper("user1");  
-        testHelpers[1] = new Helper("user2");
+        testHelpers[0] = new Helper("user1", "password");  
+        testHelpers[1] = new Helper("user2", "password2");
 
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"), Helper[].class))
@@ -204,5 +205,20 @@ public class HelperFileDAOTest {
         assertNotNull(removedNeed);
 
         assertEquals(removedNeed.getId(), mockNeedInBasket.getId());
+    }
+
+    @Test
+    public void testCheckCredentials() {
+        // Test with valid credentials
+        assertTrue(helperFileDAO.checkCredentials("user1", "password"));
+        assertTrue(helperFileDAO.checkCredentials("user2", "password2"));
+        // Test with valid username but incorrect password
+        assertFalse(helperFileDAO.checkCredentials("user1", "incorrectPassword"));
+
+        // Test with non-existing username
+        assertFalse(helperFileDAO.checkCredentials("nonExistingUser", "password"));
+
+        // Test with null username and password
+        assertFalse(helperFileDAO.checkCredentials(null, null));
     }
 }
