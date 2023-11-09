@@ -42,7 +42,7 @@ h2 {
 #control {
   display: flex;
   justify-content: space-around;
-  width: 50%;
+  width: 55%;
   margin: auto;
   padding-top: 2rem;
 }
@@ -52,7 +52,7 @@ h2 {
   padding-right: 50px;
   padding-bottom: 10px;
   padding-top: 10px;
-  width: 25rem;
+  min-width: 28rem;
   margin-left: 10px;
   background-color: #393646;
   height: fit-content;
@@ -225,4 +225,13 @@ input[type="number"] {
 }
 #comp-render {
   padding: 1rem 0;
+}
+#search-box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  outline: none;
+  background-color: #eee;
 }

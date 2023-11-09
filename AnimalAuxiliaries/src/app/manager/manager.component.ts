@@ -75,10 +75,39 @@ export class ManagerComponent implements OnInit {
     if (!name) {
       return;
     }
+    const errorMessage = document.getElementById('errorMessage');
     let aPrice = parseInt(price);
     let aQuant = parseInt(quantity);
-    if (aPrice <= 0 || aPrice == null) aPrice = 1;
-    if (aQuant <= 0 || aQuant == null) aQuant = 1;
+    console.log(description);
+    if (
+      name == '' ||
+      description == '' ||
+      type == '' ||
+      price == '' ||
+      quantity == ''
+    ) {
+      if (errorMessage) {
+        errorMessage.textContent = 'Fields cannot be empty.';
+        errorMessage.style.color = '#c91d06';
+        return;
+      }
+    } else if (aPrice <= 0) {
+      if (errorMessage) {
+        errorMessage.textContent = 'Price cannot be less than or equal to 0';
+        errorMessage.style.color = '#c91d06';
+        return;
+      }
+    } else if (aQuant <= 0) {
+      if (errorMessage) {
+        errorMessage.textContent = 'Quantity cannot be less than or equal to 0';
+        errorMessage.style.color = '#c91d06';
+        return;
+      }
+    } else {
+      if (errorMessage) {
+        errorMessage.textContent = '';
+      }
+    }
     let a = JSON.parse(
       JSON.stringify({
         id: '',

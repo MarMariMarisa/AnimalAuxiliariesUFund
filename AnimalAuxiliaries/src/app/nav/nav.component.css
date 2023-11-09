@@ -1,9 +1,12 @@
-
-* {font-family: "Poppins", sans-serif; background-color:#393646;color: #F4EEE0}
+* {
+  font-family: "Poppins", sans-serif;
+  background-color: #393646;
+  color: #f4eee0;
+}
 @font-face {
-    font-family: Poppins;
-    src: url("../../../data/Poppins-Regular.woff") format("woff");
-  }
+  font-family: Poppins;
+  src: url("../../../data/Poppins-Regular.woff") format("woff");
+}
 
 .cart-icon {
   transition: all 0.2s ease-in-out;
@@ -17,7 +20,7 @@
   align-items: center;
   padding: 1rem 0;
   margin: auto;
-  width: 100%
+  width: 95%;
 }
 .nav-right {
   display: flex;

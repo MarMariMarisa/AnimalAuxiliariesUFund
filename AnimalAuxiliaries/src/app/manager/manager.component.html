@@ -22,8 +22,13 @@
   </div>
   <div id="control">
     <div id="searchList">
-      <label for="search-box">Need Search</label>
-      <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+      <label for="search-box" style="color: white">Need Search</label>
+      <input
+        #searchBox
+        id="search-box"
+        placeholder="Search here!"
+        (input)="search(searchBox.value)"
+      />
 
       <ul *ngIf="searchBox.value == ''; else searchNeeds">
         <li *ngFor="let need of needs">
@@ -240,7 +245,7 @@
       </ul>
     </ng-template>
     <div id="needList">
-      <h2>Create A Need</h2>
+      <h2 style="text-align: center">Create A Need</h2>
       <ul id="inputStyles">
         <li>
           <label for="new-need">Name: </label
@@ -272,6 +277,7 @@
           ><input id="new-need" #needImage class="labelStyles" type="string" />
         </li>
       </ul>
+      <p class="center" id="errorMessage"></p>
       <button
         type="button"
         class="btn center"
