@@ -4,35 +4,45 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   height:fit-content;
+  color: #F4EEE0;
+}
+:root{
+  --purp-grey:#393646;
+  --mid-purp: solid(#4F4557);
+  --purp: solid(#6d5d6e);
+  --font-color: #F4EEE0;
 }
 .managerContainer {
-  background-color:  #644b68;
+  background-color:  #4F4557;
   min-height: 100vh;
   min-width: 100vw;
   height: fit-content;
+}
+.Savbutton{
+  background-color: #6d5d6e;
 }
 #header {
   width: 100vw;
   display: flex;
   align-items: center;
   margin: auto;
-  background-color: #b09db3;
+  background-color: #393646;
 
 }
 h1{
-color: #422527;
+color: #F4EEE0;
 font-family: Poppins;
 font-weight: bold;
 font-size: 40px;
 }
 h3{
-  color: #422527;
+  color: #F4EEE0;
   font-family: Poppins;
   font-weight: bold;
 }
 
 h2 {
-color: #422527;
+color: #F4EEE0;
 font-family: Poppins;
 font-weight: bold;
 }
@@ -52,7 +62,7 @@ font-weight: bold;
   padding-top:10px;
   width: 25rem;
   margin-left: 10px;
-  background-color: #cdbed1;
+  background-color: #393646;
   height: fit-content;
 }
 #inputStyles {
@@ -64,7 +74,7 @@ font-weight: bold;
 }
 
 #searchList {
-  background-color: #cdbed1;
+  background-color: #393646;
   float: right;
   justify-content: center;
   width: 25rem;
@@ -82,7 +92,7 @@ font-weight: bold;
 .btn {
   display: grid;
   margin: auto;
-  background-color: #644b68;
+  background-color: #6d5d6e;
   border-radius: 5px;
   border-width: 1px;
   size: 5px;
@@ -93,7 +103,7 @@ font-weight: bold;
 }
 
 .btn {
-  background-color: #72878c57;
+  background-color: #6d5d6e;
   border-radius: 5px;
   border-width: 1px;
   font-size: 1rem;
@@ -157,7 +167,7 @@ font-weight: bold;
   border: 1px solid black;
   border-radius: 10px;
   z-index: 10;
-  background-color: #efefef;
+  background-color: #6d5d6e;
   width: 500px;
   max-width: 80%;
   display: block;
@@ -210,6 +220,6 @@ input[type="number"] {
 }
 
 .badge{
-  background-color: #cdbed1;
+  background-color: #393646;
 }
 

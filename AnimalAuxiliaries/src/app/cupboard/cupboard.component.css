@@ -1,5 +1,10 @@
 * {font-family: Poppins; background-color:#b0d5f5;}
-
+:root{
+    --purp-grey:#393646;
+    --mid-purp: solid(#4F4557);
+    --purp: solid(#6d5d6e);
+    --font-color: #F4EEE0;
+  }
 
 #search-component{
     align-content: center;

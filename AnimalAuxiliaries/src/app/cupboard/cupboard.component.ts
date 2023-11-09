@@ -67,6 +67,10 @@ export class CupboardComponent implements OnInit {
     this.changeDetection.detectChanges();
   }
 
+  getNeedsImage(need:Need): string{
+    return need.imgSrc;
+  }
+
   removeFromBasket = async (need: Need) => {
     let count: number = this.basketService.removeFromBasket(need);
     this.currentNeeds.forEach((aNeed) => {
