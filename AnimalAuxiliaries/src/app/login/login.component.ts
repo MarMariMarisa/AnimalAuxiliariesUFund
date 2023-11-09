@@ -20,7 +20,8 @@ export class LoginComponent {
   login(username: string, password: string) {
     this.username = username;
     if (this.username === 'admin') {
-      this.router.navigate(['/manager']);
+      if (password === 'admin') this.router.navigate(['/manager']);
+      else window.alert('Incorrect admin login!');
     } else {
       this.auth.setUsername(this.username);
       let result: Boolean | never[] = false;
