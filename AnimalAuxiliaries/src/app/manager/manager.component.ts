@@ -77,8 +77,8 @@ export class ManagerComponent implements OnInit {
     }
     let aPrice = parseInt(price);
     let aQuant = parseInt(quantity);
-    if (aPrice <= 0) aPrice = 1;
-    if (aQuant <= 0) aQuant = 1;
+    if (aPrice <= 0 || aPrice == null) aPrice = 1;
+    if (aQuant <= 0 || aQuant == null) aQuant = 1;
     let a = JSON.parse(
       JSON.stringify({
         id: '',
