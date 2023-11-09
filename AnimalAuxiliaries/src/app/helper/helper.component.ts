@@ -11,6 +11,6 @@ export class HelperComponent {
   constructor(private router: Router, private auth: AuthService) {}
 
   ngOnInit(): void {
-    // if (this.auth.getUsername() == '') this.router.navigate(['/login']);
+    if (this.auth.getUsername() == '') this.router.navigate(['/login']);
   }
 }
