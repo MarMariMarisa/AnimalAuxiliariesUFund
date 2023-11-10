@@ -221,4 +221,20 @@ public class HelperFileDAOTest {
         // Test with null username and password
         assertFalse(helperFileDAO.checkCredentials(null, null));
     }
+
+    @Test 
+    public void testCheckout() throws IOException{
+        when(mockNeedFileDAO.getNeed(testNeeds[0].getId())).thenReturn(testNeeds[0]);
+
+        helperFileDAO.addToBasket(testHelpers[0].getUsername(), testNeeds[0]);
+        assertTrue(helperFileDAO.getBasketNeeds(testHelpers[0].getUsername()).length == 1);  
+
+        assertTrue(helperFileDAO.checkout(testHelpers[0].getUsername()));
+        assertTrue(helperFileDAO.getBasketNeeds(testHelpers[0].getUsername()).length == 0);  
+    }
+
+    @Test 
+    public void testCheckoutHelperDoesntExist() throws IOException{
+        assertFalse(helperFileDAO.checkout("does not exist"));
+     }
 }

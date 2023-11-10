@@ -93,7 +93,7 @@ public class HelperTest {
                         new Need("need 2", "", "", 1.00f, 1), 
                         new Need("need 3", "", "", 1.00f, 1)};
         
-        Need need = new Need("need 4", "", "", 1.00f, 1); 
+        //Need need = new Need("need 4", "", "", 1.00f, 1); 
 
         for(int i = 0; i < needs.length; i++) {
             helper.addToFundingBasket(needs[i]); 
