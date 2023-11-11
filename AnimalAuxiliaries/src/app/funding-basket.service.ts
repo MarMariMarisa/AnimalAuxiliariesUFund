@@ -71,6 +71,13 @@ export class FundingBasketService {
         catchError(this.handleError<Helper>('addHelper'))
       );
   }
+  checkout(username: string) {
+    const url = `${this.basketUrl}/${username}`;
+    return this.http.delete<Boolean>(url, this.httpOptions).pipe(
+      tap((_) => this.log(`deleted checked out user = ${username}`)),
+      catchError(this.handleError<Boolean>('deleteNeedFromBasket'))
+    );
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
@@ -83,8 +90,6 @@ export class FundingBasketService {
       return of(result as T);
     };
   }
-
-  /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }

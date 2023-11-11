@@ -57,4 +57,9 @@ export class BasketComponent {
       }
     }, 50);
   };
+  checkout(): void {
+    this.fundingbasketService
+      .checkout(this.auth.getUsername())
+      .subscribe((res) => res);
+  }
 }
