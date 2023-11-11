@@ -59,6 +59,10 @@ public class Cupboard {
             
     }
 
+    public boolean addToFunded(Need need){
+        return fundedNeeds.put(need.getId(), need) != null;
+    }
+
 
     // Methods
     /**
