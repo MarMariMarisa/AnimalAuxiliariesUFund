@@ -1,11 +1,12 @@
-:root{
-  --purp-grey:#393646;
-  --mid-purp: solid(#4F4557);
+:root {
+  --purp-grey: #393646;
+  --mid-purp: solid(#4f4557);
   --purp: solid(#6d5d6e);
-  --font-color: #F4EEE0;
+  --font-color: #f4eee0;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins";
 }

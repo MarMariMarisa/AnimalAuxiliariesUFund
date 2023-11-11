@@ -14,6 +14,8 @@ import { NeedComponent } from './need/need.component';
 import { NeedSearchComponent } from './need-search/need-search.component';
 import { FundingBasketComponent } from './funding-basket/funding-basket.component';
 import { NavComponent } from './nav/nav.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { ManagerNavComponent } from './manager-nav/manager-nav.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { NavComponent } from './nav/nav.component';
     NeedSearchComponent,
     FundingBasketComponent,
     NavComponent,
+    AnalyticsComponent,
+    ManagerNavComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   bootstrap: [AppComponent],
