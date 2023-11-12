@@ -24,7 +24,7 @@ export class AnalyticsComponent {
     this.cupboard.getEntireCupboard().subscribe((cupboard) => {
       this.needs = [...cupboard];
     });
-    // if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
+    if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
     setTimeout(() => {
       const bars = document.getElementsByClassName('progress-bar');
       for (let x = 0; x < bars.length; x++) {
