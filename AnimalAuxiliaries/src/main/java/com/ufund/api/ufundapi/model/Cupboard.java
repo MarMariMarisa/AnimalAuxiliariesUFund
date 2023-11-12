@@ -119,6 +119,20 @@ public class Cupboard {
     }
 
     /**
+     * 
+     * Retrieves the total amount of money collected 
+     * 
+     * @return float 
+     */
+    public float getTotalFundsCollected() {
+        float totalFunds = 0.0f; 
+        for(Need need : fundedNeeds.values()) {
+            totalFunds += (need.getPrice() * need.getQuantityFunded()); 
+        }
+        return totalFunds; 
+    }
+
+    /**
      * retrieves the current surplus value 
      * 
      * @return float
