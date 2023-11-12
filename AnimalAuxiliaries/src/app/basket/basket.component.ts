@@ -61,5 +61,9 @@ export class BasketComponent {
     this.fundingbasketService
       .checkout(this.auth.getUsername())
       .subscribe((res) => res);
+    let container = document.getElementById('basketContainer');
+    if (container)
+      container.innerHTML =
+        '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
   }
 }

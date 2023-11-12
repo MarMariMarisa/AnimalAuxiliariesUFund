@@ -1,6 +1,26 @@
 <div class="analytics-container">
   <app-manager-nav></app-manager-nav>
-  <li class="needItem" *ngFor="let need of funded">
-    <h1>{{ need.name }}</h1>
-  </li>
+  <div class="fundedContaienr">
+    <h2>Funded Needs:</h2>
+    <li class="needItem" *ngFor="let need of funded">
+      <h1>{{ need.name }}</h1>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    </li>
+  </div>
+  <div class="fundedContaienr">
+    <h2>Unfunded Needs:</h2>
+    <li class="needItem" *ngFor="let need of needs">
+      <h1>{{ need.name }}</h1>
+      <div class="alt-progress-bar">
+        <div
+          class="alt-progress"
+          style="width:  {{ (need.quantityFunded * 100) / need.quantity }}%"
+        >
+          {{ ((need.quantityFunded * 100) / need.quantity).toFixed(2) }}%
+        </div>
+      </div>
+    </li>
+  </div>
 </div>

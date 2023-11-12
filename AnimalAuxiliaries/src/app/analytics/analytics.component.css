@@ -1,4 +1,25 @@
+* {
+  list-style-type: none;
+}
 .analytics-container {
   background-color: #4f4557;
-  height: 100vh;
+  min-height: 100vh;
+}
+.progress-bar,
+.alt-progress-bar {
+  width: 20rem;
+  height: 2rem;
+  border: 1px solid purple;
+  background-color: #fff;
+  margin: 0 1rem;
+}
+.progress,
+.alt-progress {
+  height: 2rem;
+  background-color: rgba(128, 0, 128, 0.849);
+  width: 0%;
+}
+.needItem {
+  display: flex;
+  align-items: center;
 }
