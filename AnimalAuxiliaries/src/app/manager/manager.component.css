@@ -3,17 +3,15 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  height:fit-content;
-  color: #F4EEE0;
 }
 
 .managerContainer {
-  background-color:  #4F4557;
+  background-color: #4f4557;
   min-height: 100vh;
   min-width: 100vw;
   height: fit-content;
 }
-.Savbutton{
+.Savbutton {
   background-color: #6d5d6e;
 }
 #header {
@@ -22,30 +20,29 @@
   align-items: center;
   margin: auto;
   background-color: #393646;
-
 }
-h1{
-color: #F4EEE0;
-font-family: Poppins;
-font-weight: bold;
-font-size: 40px;
+h1 {
+  color: #f4eee0;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 40px;
 }
-h3{
-  color: #F4EEE0;
+h3 {
+  color: #f4eee0;
   font-family: Poppins;
   font-weight: bold;
 }
 
 h2 {
-color: #F4EEE0;
-font-family: Poppins;
-font-weight: bold;
+  color: #f4eee0;
+  font-family: Poppins;
+  font-weight: bold;
 }
 
 #control {
   display: flex;
   justify-content: space-around;
-  width: 50%;
+  width: 55%;
   margin: auto;
   padding-top: 2rem;
 }
@@ -55,7 +52,7 @@ font-weight: bold;
   padding-right: 50px;
   padding-bottom: 10px;
   padding-top: 10px;
-  width: 25rem;
+  min-width: 28rem;
   margin-left: 10px;
   background-color: #393646;
   height: fit-content;
@@ -217,7 +214,7 @@ input[type="number"] {
   margin: 10px;
 }
 
-.badge{
+.badge {
   background-color: #393646;
 }
 
@@ -228,4 +225,20 @@ input[type="number"] {
 }
 #comp-render {
   padding: 1rem 0;
+}
+#search-box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  outline: none;
+  background-color: #eee;
+}
+
+li {
+  list-style-type: none;
+}
+.needItem {
+  margin: 0.5rem 0;
 }

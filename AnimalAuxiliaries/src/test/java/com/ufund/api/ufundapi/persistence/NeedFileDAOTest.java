@@ -5,14 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Collections;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ufund.api.ufundapi.model.Cupboard;
 import com.ufund.api.ufundapi.model.Need;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +50,7 @@ public class NeedFileDAOTest {
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"), Need[].class))
             .thenReturn(testNeeds);
-        needFileDAO = new NeedFileDAO("doesnt_matter.txt", mockObjectMapper, helperFileDAO);
+        needFileDAO = new NeedFileDAO("doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, helperFileDAO);
     }
 
     @Test
@@ -56,6 +62,15 @@ public class NeedFileDAOTest {
         for (int i = 0; i < testNeeds.length; ++i)
             assertEquals(testNeeds[i].getId(), needs[testNeeds.length-1 - i].getId());
     }
+
+    // @Test
+    // public void testGetFunded(){
+    //     List<Need> = Array.asList()
+    //     needFileDAO.fundNeeds(testNeeds.);
+    //     Need[] needs = needFileDAO.getFundedNeeds();
+    //     assertEquals(needs.length, 0);
+    //     assertTrue(needs.length == 0);
+    // }
 
     @Test
     public void testFindNeeds() throws IOException {
@@ -145,6 +160,6 @@ public class NeedFileDAOTest {
             .when(mockObjectMapper)
             .readValue(new File("doesnt_matter.txt"), Need[].class);
 
-        assertThrows(IOException.class, () -> new NeedFileDAO("doesnt_matter.txt", mockObjectMapper, helperFileDAO), "IOException not thrown");
+        assertThrows(IOException.class, () -> new NeedFileDAO("doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, helperFileDAO), "IOException not thrown");
     }
 }

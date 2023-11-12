@@ -1,5 +1,6 @@
 <div class="basket-wrapper">
-  <app-nav></app-nav>
+  <div class="nav-wrapper"><app-nav></app-nav></div>
+
   <ul id="basketContainer">
     <h3 class="basketHeader">Your Basket</h3>
     <div class="needComponent" *ngFor="let need of basket">
@@ -10,7 +11,7 @@
       <button class="redBtn" (click)="removeFromBasket(need)">Remove</button>
     </div>
     <div class="checkContainer">
-      <button class="checkBtn">Checkout</button>
+      <button class="checkBtn" (click)="checkout()">Checkout</button>
     </div>
   </ul>
 </div>

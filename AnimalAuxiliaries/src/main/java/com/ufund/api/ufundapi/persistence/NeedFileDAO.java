@@ -23,22 +23,24 @@ public class NeedFileDAO implements NeedDAO {
     Cupboard cupboard;
     private HelperFileDAO helperFileDAO;
     private ObjectMapper objectMapper;
-    private String filename;
+    private String needFilename;
+    private String fundedFileName;
 
     /**
      * Creates a Need File Data Access Object
      * 
-     * @param filename     Filename to read from and write to
+     * @param needFileName     Filename to read from and write to
      * @param objectMapper Provides JSON Object to/from Java Object serialization
      *                     and deserialization
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public NeedFileDAO(@Value("${needs.file}") String filename, ObjectMapper objectMapper, @Lazy HelperFileDAO helperFileDAO) throws IOException {
-        this.filename = filename;
+    public NeedFileDAO(@Value("${needs.file}") String needFileName, @Value("${funded.file}") String fundedFileName, ObjectMapper objectMapper, @Lazy HelperFileDAO helperFileDAO) throws IOException {
+        this.needFilename = needFileName;
+        this.fundedFileName = fundedFileName;
         this.objectMapper = objectMapper;
         this.helperFileDAO = helperFileDAO;
-        load(); // load the needs from the file
+        load(); 
     }
 
     /**
@@ -49,15 +51,6 @@ public class NeedFileDAO implements NeedDAO {
     private Need[] getNeedsArray() {
         List<Need> needsList = cupboard.getEntireCupboard();
         return needsList.toArray(new Need[0]);
-    }
-
-    private Need[] getFundedNeedArray() {
-        List<Need> fundedNeedList = cupboard.getFundedNeeds(); 
-        return fundedNeedList.toArray(new Need[0]); 
-    }
-
-    private float getSurplus() {
-        return cupboard.getSurplus(); 
     }
 
    
@@ -72,16 +65,11 @@ public class NeedFileDAO implements NeedDAO {
      */
     private boolean save() throws IOException {
         Need[] needArray = getNeedsArray();
-        Need[] fundedNeedArray = getFundedNeedArray(); 
-
-        File file = new File(filename); 
 
         // Serializes the Java Objects to JSON objects into the file
         // writeValue will thrown an IOException if there is an issue
         // with the file or reading from the file
-        objectMapper.writeValue(file, needArray);
-        objectMapper.writeValue(file, fundedNeedArray); 
-        objectMapper.writeValue(file, getSurplus()); 
+        objectMapper.writeValue(new File(filename), needArray);
         return true;
     }
 
@@ -100,11 +88,15 @@ public class NeedFileDAO implements NeedDAO {
         // Deserializes the JSON objects from the file into an array of needs
         // readValue will throw an IOException if there's an issue with the file
         // or reading from the file
-        Need[] needArray = objectMapper.readValue(new File(filename), Need[].class);
+        Need[] needArray = objectMapper.readValue(new File(needFilename), Need[].class);
+        Need[] fundedArray = objectMapper.readValue(new File(fundedFileName), Need[].class);
 
         // Add each need to the cupboard
         for (Need need : needArray) {
             cupboard.addNeed(need);
+        }
+        for(Need need : fundedArray){
+            cupboard.addToFunded(need);
         }
 
         return true;
@@ -117,6 +109,12 @@ public class NeedFileDAO implements NeedDAO {
     public Need[] getNeeds() throws IOException {
         synchronized (cupboard.getEntireCupboard()) {
             return getNeedsArray();
+        }
+    }
+
+    public Need[] getFundedNeeds(){
+        synchronized(cupboard){
+            return getFundedNeedsArray();
         }
     }
 

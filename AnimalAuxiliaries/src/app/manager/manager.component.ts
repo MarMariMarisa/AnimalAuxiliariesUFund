@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Need } from '../need';
 import { CupboardService } from '../cupboard.service';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../auth.service';
+import { FundingBasketService } from '../funding-basket.service';
+import { Observable, Subject, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -11,15 +14,31 @@ import { Router } from '@angular/router';
 export class ManagerComponent implements OnInit {
   needs: Need[] = [];
   deleteConfirm: Need | null = null;
-  constructor(private needService: CupboardService, private router: Router) {}
+  needs$!: Observable<Need[]>;
+  private searchTerms = new Subject<string>();
+  constructor(
+    private needService: CupboardService,
+    private router: Router,
+    private auth: AuthService,
+    private basket: FundingBasketService
+  ) {}
 
   ngOnInit(): void {
     this.getNeeds();
+    this.needs$ = this.searchTerms.pipe(
+      distinctUntilChanged(),
+      switchMap((term: string) => this.needService.searchNeeds(term))
+    );
+    if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
   }
   logout(): void {
     this.router.navigate(['/login']);
   }
-
+  search(term: string): void {
+    setTimeout(() => {
+      this.searchTerms.next(term);
+    }, 150);
+  }
   getNeeds(): void {
     this.needService
       .getEntireCupboard()
@@ -28,6 +47,20 @@ export class ManagerComponent implements OnInit {
   save(need: Need): void {
     if (need) {
       this.needService.updateNeed(need).subscribe();
+      this.basket.removeFromBasket(this.auth.getUsername(), need.id);
+      const sb: HTMLInputElement | null = <HTMLInputElement>(
+        document.getElementById('search-box')
+      );
+      if (sb) {
+        const temp: string = sb.value;
+        sb.value = '';
+        setTimeout(() => {
+          sb.value = temp;
+          setTimeout(() => {
+            this.searchTerms.next(temp);
+          }, 5);
+        }, 5);
+      }
     }
   }
   add(
@@ -42,8 +75,39 @@ export class ManagerComponent implements OnInit {
     if (!name) {
       return;
     }
+    const errorMessage = document.getElementById('errorMessage');
     let aPrice = parseInt(price);
     let aQuant = parseInt(quantity);
+    console.log(description);
+    if (
+      name == '' ||
+      description == '' ||
+      type == '' ||
+      price == '' ||
+      quantity == ''
+    ) {
+      if (errorMessage) {
+        errorMessage.textContent = 'Fields cannot be empty.';
+        errorMessage.style.color = '#c91d06';
+        return;
+      }
+    } else if (aPrice <= 0) {
+      if (errorMessage) {
+        errorMessage.textContent = 'Price cannot be less than or equal to 0';
+        errorMessage.style.color = '#c91d06';
+        return;
+      }
+    } else if (aQuant <= 0) {
+      if (errorMessage) {
+        errorMessage.textContent = 'Quantity cannot be less than or equal to 0';
+        errorMessage.style.color = '#c91d06';
+        return;
+      }
+    } else {
+      if (errorMessage) {
+        errorMessage.textContent = '';
+      }
+    }
     let a = JSON.parse(
       JSON.stringify({
         id: '',
@@ -54,17 +118,46 @@ export class ManagerComponent implements OnInit {
         quantity: aQuant,
         numInBaskets: 0,
         quantityFunded: 0,
-        imgSrc: imgSrc
+        imgSrc: imgSrc,
       } as Need)
     );
     this.needService.createNeed(a).subscribe((need) => {
       this.needs.push(need);
     });
+    const sb: HTMLInputElement | null = <HTMLInputElement>(
+      document.getElementById('search-box')
+    );
+    if (sb) {
+      const temp: string = sb.value;
+      sb.value = '';
+      setTimeout(() => {
+        sb.value = temp;
+        setTimeout(() => {
+          this.searchTerms.next(temp);
+        }, 5);
+      }, 5);
+    }
   }
 
   delete(need: Need): void {
-    this.needs = this.needs.filter((h) => h !== need);
-    this.needService.deleteNeed(need.id).subscribe();
+    this.needService.deleteNeed(need.id).subscribe(() => {
+      const sb: HTMLInputElement | null = <HTMLInputElement>(
+        document.getElementById('search-box')
+      );
+      if (sb) {
+        const temp: string = sb.value;
+        sb.value = '';
+        setTimeout(() => {
+          sb.value = temp;
+          setTimeout(() => {
+            this.searchTerms.next(temp);
+          }, 5);
+        }, 5);
+      }
+    });
+    setTimeout(() => {
+      this.needs = this.needs.filter((h) => h.id != need.id);
+    }, 50);
   }
   onPress(need: Need) {
     need.display = !need.display;

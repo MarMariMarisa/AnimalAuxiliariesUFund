@@ -1,24 +1,37 @@
-
 <div id="search-component">
-  <label for="search-box">Need Search</label>
-  <input #searchBox class="search-box" (input)="search(searchBox.value)" />
-  <div *ngIf="searchBox.value == ''; else searchNeeds" id="need-format">
-    <div *ngFor="let need of currentNeeds" id="list-format">
+  <div class="search-wrapper">
+    <label for="search-box">Need Search: </label>
+    <input
+      placeholder="Search for a need here!"
+      #searchBox
+      class="search-box"
+      (input)="search(searchBox.value)"
+    />
+  </div>
+
+  <div *ngIf="searchBox.value == ''; else searchNeeds" class="need-container">
+    <div *ngFor="let need of currentNeeds" class="list-format">
       <h2 class="badge">{{ need.name }}</h2>
       <h4 class="badge">Description: {{ need.description }}</h4>
       <h4 class="badge">Price: ${{ need.price }}</h4>
-      <h4 class="badge">Quantity: {{ need.quantity }}</h4>
-      <img [src]="need.imgSrc">
-      <button (click)="addToBasket(need)" class="greenBtn">Add to Basket</button>
+      <h4 class="badge">Quantity: {{ need.quantity - need.quantityFunded }}</h4>
+      <img [src]="need.imgSrc" />
+      <button (click)="addToBasket(need)" class="greenBtn">
+        Add to Basket
+      </button>
     </div>
   </div>
   <ng-template #searchNeeds>
-    <div *ngFor="let need of needs$ | async" id="need-format">
-      <h2 class="badge" >{{ need.name }}</h2>
-      <h4 class="badge">Description: {{ need.description }}</h4>
-      <h4 class="badge">Price: ${{ need.price }}</h4>
-      <h4 class="badge">Quantity: {{ need.quantity }}</h4>
-      <button (click)="addToBasket(need)" class="greenBtn">Add to Basket</button>
+    <div class="need-container">
+      <div *ngFor="let need of needs$ | async" class="list-format">
+        <h2 class="badge">{{ need.name }}</h2>
+        <h4 class="badge">Description: {{ need.description }}</h4>
+        <h4 class="badge">Price: ${{ need.price }}</h4>
+        <h4 class="badge">Quantity: {{ need.quantity }}</h4>
+        <button (click)="addToBasket(need)" class="greenBtn">
+          Add to Basket
+        </button>
+      </div>
     </div>
   </ng-template>
 </div>
