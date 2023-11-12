@@ -5,20 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Collections;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.model.Cupboard;
+import com.ufund.api.ufundapi.model.Helper;
 import com.ufund.api.ufundapi.model.Need;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -109,14 +107,23 @@ public class NeedFileDAOTest {
 
     @Test
     public void testUpdateNeed() throws IOException {
+        // Mock the behavior of helperFileDAO.getHelpers()
+        HelperFileDAO mockHelperFileDAO = mock(HelperFileDAO.class);
+        when(mockHelperFileDAO.getHelpers()).thenReturn(new Helper[0]);
+
+        // Inject the mockHelperFileDAO into your needFileDAO instance
+        NeedFileDAO needFileDAO = new NeedFileDAO("doesnt_matter.txt", "doesnt_matter.txt", mockObjectMapper, mockHelperFileDAO);
+
         Need need = new Need("Second Need", "Updated Description", "Updated Category", 20, 4);
         need.setID("need2");
+
         Need result = assertDoesNotThrow(() -> needFileDAO.updateNeed(need), "Unexpected exception thrown");
 
         assertNotNull(result);
         Need actual = needFileDAO.getNeed("need2");
         assertEquals(need, actual);
     }
+
 
     @Test
     public void testSaveException() throws IOException {

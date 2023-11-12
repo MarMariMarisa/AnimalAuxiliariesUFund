@@ -165,5 +165,15 @@ public class NeedTest {
         assertFalse(need.equals(null));
     }
 
+    @Test
+    public void compare(){
+        Need n = new Need();
+        Need n2 = new Need();
+        assertNotEquals(n, n2);
+        n.setID("id");
+        n2.setID("id");
+        assertEquals(n, n2);
+    }
+
     
 }

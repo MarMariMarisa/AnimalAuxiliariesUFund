@@ -165,10 +165,36 @@ public class NeedFileDAO implements NeedDAO {
 
             if(cupboard.updateNeed(need)){
 
-                // // Remove from funding baskets if need is updated 
-                // for(Helper h : helperFileDAO.getHelpers()){
-                //     helperFileDAO.removeFromBasket(h.getUsername(), need.getId());
-                // }
+                // Update need values if it is in a basket 
+                for(Helper h : helperFileDAO.getHelpers()){
+                    Need[] needs = helperFileDAO.getBasketNeeds(h.getUsername());
+                    for(Need n : needs){
+                        if(n.equals(need)){
+                            int helperQuantity = n.getQuantity();
+                            helperFileDAO.removeFromBasket(h.getUsername(), need.getId());
+
+                            if(need.getQuantity() <= 0){
+                                save(); // may throw an IOException
+                                return need;
+                            }
+
+                            Need helperNewNeed = new Need(need);
+                            if(helperQuantity >= need.getQuantity()){
+                                for(int i = 0; i < need.getQuantity(); i++){
+                                    helperFileDAO.addToBasket(h.getUsername(), need);
+                                }
+                            }
+                            else{
+                                System.out.println("HELPER QUANT: " + helperQuantity);
+                                helperNewNeed.setQuantity(helperQuantity);
+                                for(int i = 0; i < helperQuantity; i++){
+                                    helperFileDAO.addToBasket(h.getUsername(), helperNewNeed);
+                                }                                    
+                            }
+                        }
+                    }
+                    
+                }
 
                 save(); // may throw an IOException
                 return need;
@@ -200,7 +226,6 @@ public class NeedFileDAO implements NeedDAO {
     public boolean fundNeeds(List<Need> toBeFunded) throws IOException {
         synchronized(cupboard){
             if(cupboard.fundNeeds(toBeFunded)){
-                // TODO: Add persistence for funded needs
                 save();
                 return true;
             }
