@@ -10,7 +10,6 @@ public class PostTest {
         //Setup
         String expectedTitle = "";
         String expectedContent = "";
-        int expectedId = 0;
 
         //Invoke
         Post post = new Post();
@@ -18,7 +17,6 @@ public class PostTest {
         //Analyze
         assertEquals(expectedTitle, post.getTitle());
         assertEquals(expectedContent, post.getContent());
-        assertEquals(expectedId, post.getId());
 
     }
 

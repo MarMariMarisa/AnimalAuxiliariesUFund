@@ -1,5 +1,7 @@
 package com.ufund.api.ufundapi.model;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  @JsonIgnoreProperties(ignoreUnknown = true)
 public class Post {
     @JsonProperty("id")
-    private int id = -1;
+    private String id;
     @JsonProperty("title")
     private String title;
     @JsonProperty("content")
@@ -21,20 +23,20 @@ public class Post {
      * Creates an empty post
      */
     public Post() {
-        this.id += 1;
+        this.id = UUID.randomUUID().toString();
         this.title = "";
         this.content = "";
     }
 
     public Post(@JsonProperty("title") String title, @JsonProperty("content") String content){
-        this.id += 1;
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.content = content;
     }
 
     //Methods
 
-    public int getId(){
+    public String getId(){
         return this.id;
     }
 
