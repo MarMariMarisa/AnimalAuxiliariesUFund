@@ -178,20 +178,20 @@ export class ManagerComponent implements OnInit {
     if (!title) {
       return;
     }
-    const errorMessage = document.getElementById('errorMessage');
+    const errorMessagePost = document.getElementById('errorMessagePost');
     console.log(content);
     if (
       title == '' ||
       content == ''
     ) {
-      if (errorMessage) {
-        errorMessage.textContent = 'Fields cannot be empty.';
-        errorMessage.style.color = '#c91d06';
+      if (errorMessagePost) {
+        errorMessagePost.textContent = 'Fields cannot be empty.';
+        errorMessagePost.style.color = '#c91d06';
         return;
       }
     } else {
-      if (errorMessage) {
-        errorMessage.textContent = '';
+      if (errorMessagePost) {
+        errorMessagePost.textContent = '';
       }
     }
     let a = JSON.parse(

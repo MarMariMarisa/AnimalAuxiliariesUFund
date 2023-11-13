@@ -5,9 +5,11 @@
     height: 50px;
     width: inherit;
 }
-h2{
-    color: #f4eee0
+h3{
+    color: #f4eee0;
+    margin: 5px;
 }
 p{
-    color: #f4eee0
+    color: #f4eee0;
+    margin: 5px;
 }
