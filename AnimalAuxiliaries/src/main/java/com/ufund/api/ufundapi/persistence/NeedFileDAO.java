@@ -53,6 +53,11 @@ public class NeedFileDAO implements NeedDAO {
         return needsList.toArray(new Need[0]);
     }
 
+    private Need[] getFundedNeedsArray() {
+        List<Need> fundedList = cupboard.getFundedNeeds();
+        return fundedList.toArray(new Need[0]);
+    }
+
    
 
     /**
@@ -65,11 +70,9 @@ public class NeedFileDAO implements NeedDAO {
      */
     private boolean save() throws IOException {
         Need[] needArray = getNeedsArray();
-
-        // Serializes the Java Objects to JSON objects into the file
-        // writeValue will thrown an IOException if there is an issue
-        // with the file or reading from the file
-        objectMapper.writeValue(new File(filename), needArray);
+        Need[] fundedArray = getFundedNeedsArray();
+        objectMapper.writeValue(new File(needFilename), needArray);
+        objectMapper.writeValue(new File(fundedFileName), fundedArray);
         return true;
     }
 
