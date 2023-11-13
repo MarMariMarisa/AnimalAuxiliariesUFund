@@ -194,7 +194,25 @@
               Save
             </button>
           </div>
-          c
+          <div class="modal-container" *ngIf="deleteConfirm === need">
+            <div class="modal">
+              <div class="modal-header">
+                Are you sure you'd like to delete the need: {{ need.name }}
+              </div>
+              <p class="modal-desc">This action is irreversable!!</p>
+              <div class="modal-btns">
+                <button class="deleteBtn close-button" (click)="delete(need)">
+                  Yes!
+                </button>
+                <button
+                  class="greenBtn close-button"
+                  (click)="deleteConfirm = null"
+                >
+                  No!
+                </button>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
     </ng-template>
