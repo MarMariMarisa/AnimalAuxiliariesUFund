@@ -19,6 +19,9 @@ export class BasketComponent {
     private cupboardService: CupboardService,
     private router: Router
   ) {}
+  basket: Need[] = [];
+  currentNeeds: Need[] = [];
+  sum: number = 0;
   ngOnInit(): void {
     if (this.auth.getUsername() == '') this.router.navigate(['/login']);
     this.getEntireCupboard();
@@ -34,29 +37,27 @@ export class BasketComponent {
       }
     }, 50);
     const cost = document.getElementById('totalCost');
-    let sum: number = 0;
+
     setTimeout(() => {
       this.basket.forEach((need) => {
-        sum += need.price * need.quantity;
-        console.log(sum);
+        this.sum += need.price * need.quantity;
       });
-      if (cost) cost.innerText = `Total: $${sum}`;
+      if (cost) cost.innerText = `Total: $${this.sum}`;
     }, 60);
     const surp = <HTMLInputElement>document.getElementById('surplus');
     if (surp)
       surp.addEventListener('change', () => {
         if (cost && parseFloat(surp.value) >= 0.01) {
           const aSum: string = (
-            sum + parseFloat(parseFloat(surp.value).toFixed(2))
+            this.sum + parseFloat(parseFloat(surp.value).toFixed(2))
           ).toFixed(2);
           cost.innerText = `Total: $${aSum}`;
         } else {
-          if (cost) cost.innerText = `Total: $${sum}`;
+          if (cost) cost.innerText = `Total: $${this.sum}`;
         }
       });
   }
-  basket: Need[] = [];
-  currentNeeds: Need[] = [];
+
   getEntireCupboard(): void {
     this.cupboardService
       .getEntireCupboard()
@@ -77,6 +78,24 @@ export class BasketComponent {
             '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
       }
     }, 50);
+    const cost = document.getElementById('totalCost');
+    setTimeout(() => {
+      this.basket.forEach((need) => {
+        this.sum = 0;
+        this.sum += need.price * need.quantity;
+      });
+      if (cost) cost.innerText = `Total: $${this.sum}`;
+      const surp = <HTMLInputElement>document.getElementById('surplus');
+      if (surp)
+        if (cost && parseFloat(surp.value) >= 0.01) {
+          const aSum: string = (
+            this.sum + parseFloat(parseFloat(surp.value).toFixed(2))
+          ).toFixed(2);
+          cost.innerText = `Total: $${aSum}`;
+        } else {
+          if (cost) cost.innerText = `Total: $${this.sum}`;
+        }
+    }, 60);
   };
   checkout(): void {
     this.fundingbasketService
