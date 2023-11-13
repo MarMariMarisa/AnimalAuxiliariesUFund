@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Need } from '../need';
 import { CupboardService } from '../cupboard.service';
-import { Router } from '@angular/router';
+import { Router, TitleStrategy } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FundingBasketService } from '../funding-basket.service';
 import { Observable, Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { CommunityBoardService } from '../community-board.service';
+import { Post } from '../post';
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -13,11 +15,15 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 })
 export class ManagerComponent implements OnInit {
   needs: Need[] = [];
+  posts: Post[] = [];
   deleteConfirm: Need | null = null;
+  deleteConfirmPost: Post | null = null;
   needs$!: Observable<Need[]>;
+  posts$!: Observable<Post[]>;
   private searchTerms = new Subject<string>();
   constructor(
     private needService: CupboardService,
+    private communityBoardService: CommunityBoardService,
     private router: Router,
     private auth: AuthService,
     private basket: FundingBasketService
@@ -25,6 +31,8 @@ export class ManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNeeds();
+    this.getCommunityBoard();
+    this.posts$ = this.communityBoardService.getCommunityBoard();
     this.needs$ = this.searchTerms.pipe(
       distinctUntilChanged(),
       switchMap((term: string) => this.needService.searchNeeds(term))
@@ -43,6 +51,11 @@ export class ManagerComponent implements OnInit {
     this.needService
       .getEntireCupboard()
       .subscribe((needs) => (this.needs = needs));
+  }
+  getCommunityBoard(): void {
+    this.communityBoardService
+      .getCommunityBoard()
+      .subscribe((posts) => (this.posts = posts));
   }
   save(need: Need): void {
     if (need) {
@@ -161,5 +174,41 @@ export class ManagerComponent implements OnInit {
   }
   onPress(need: Need) {
     need.display = !need.display;
+  }
+
+  deletePost(post: Post): void {
+    this.communityBoardService.deletePost(post.id).subscribe(() => {});
+    setTimeout(() => {
+      this.posts = [...this.posts.filter((h) => h.id != post.id)];
+    }, 50);
+  }
+  addPost(title: string, content: string): void {
+    title = title.trim();
+    if (!title) {
+      return;
+    }
+    const errorMessagePost = document.getElementById('errorMessagePost');
+    console.log(content);
+    if (title == '' || content == '') {
+      if (errorMessagePost) {
+        errorMessagePost.textContent = 'Fields cannot be empty.';
+        errorMessagePost.style.color = '#c91d06';
+        return;
+      }
+    } else {
+      if (errorMessagePost) {
+        errorMessagePost.textContent = '';
+      }
+    }
+    let a = JSON.parse(
+      JSON.stringify({
+        id: '',
+        title: title,
+        content: content,
+      } as Post)
+    );
+    this.communityBoardService.createPost(a).subscribe((post) => {
+      this.posts.push(post);
+    });
   }
 }

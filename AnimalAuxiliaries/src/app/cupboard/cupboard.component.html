@@ -27,7 +27,9 @@
         <h2 class="badge">{{ need.name }}</h2>
         <h4 class="badge">Description: {{ need.description }}</h4>
         <h4 class="badge">Price: ${{ need.price }}</h4>
-        <h4 class="badge">Quantity: {{ need.quantity }}</h4>
+        <h4 class="badge">
+          Quantity: {{ need.quantity - need.quantityFunded }}
+        </h4>
         <button (click)="addToBasket(need)" class="greenBtn">
           Add to Basket
         </button>

@@ -50,6 +50,31 @@ public class CupboardControllerTest {
     }
 
     @Test
+    public void testGetSurplus(){
+        when(mockNeedDAO.getSurplus()).thenReturn((float)4.5);
+        ResponseEntity<Float> response = cupboardController.getSurplus();
+        assertEquals((float)4.5, response.getBody());
+    }
+
+    @Test
+    public void testGetFundedNeeds(){
+        Need[] needs = new Need[2];
+        needs[0] = new Need("dog leash","a dog leash","leashes",25,5);
+        needs[1] = new Need("dog collar","a dog leash","leashes",25,5);
+        
+        when(mockNeedDAO.getFundedNeeds()).thenReturn(needs);
+        ResponseEntity<Need[]> response = cupboardController.getFundedNeeds();
+        assertEquals(needs, response.getBody());
+    }
+
+    @Test
+    public void testAddToSurplus() throws IOException{
+        when(mockNeedDAO.addToSurplus((float)1.5)).thenReturn(true);
+        ResponseEntity<HttpStatus> response = cupboardController.addToSurplus((float)1.5);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
     public void testGetEntireCupboard() throws IOException {  
         // Setup
         Need[] needs = new Need[2];

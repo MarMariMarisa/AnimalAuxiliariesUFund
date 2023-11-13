@@ -14,8 +14,13 @@ import { NeedComponent } from './need/need.component';
 import { NeedSearchComponent } from './need-search/need-search.component';
 import { FundingBasketComponent } from './funding-basket/funding-basket.component';
 import { NavComponent } from './nav/nav.component';
+
+import { CommunityBoardComponent } from './community-board/community-board.component';
+import { PostComponent } from './post/post.component';
+
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { ManagerNavComponent } from './manager-nav/manager-nav.component';
+import { AdoptionComponent } from './adoption/adoption.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +35,8 @@ import { ManagerNavComponent } from './manager-nav/manager-nav.component';
     NeedSearchComponent,
     FundingBasketComponent,
     NavComponent,
+    CommunityBoardComponent,
+    PostComponent,
     AnalyticsComponent,
     ManagerNavComponent,
   ],

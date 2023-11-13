@@ -197,4 +197,18 @@ public class NeedFileDAOTest {
         needFileDAO.addToSurplus((float) 2.00);
         assertEquals((float)3.56, needFileDAO.getSurplus());
     }
+
+    @Test
+    public void getSurplus(){
+        assertEquals(0.0, needFileDAO.getSurplus());
+    }
+
+    @Test
+    public void addToSurplus() throws IOException{
+        assertEquals(0.0, needFileDAO.getSurplus());
+        needFileDAO.addToSurplus((float) 1.56);
+        assertEquals((float)1.56, needFileDAO.getSurplus());
+        needFileDAO.addToSurplus((float) 2.00);
+        assertEquals((float)3.56, needFileDAO.getSurplus());
+    }
 }
