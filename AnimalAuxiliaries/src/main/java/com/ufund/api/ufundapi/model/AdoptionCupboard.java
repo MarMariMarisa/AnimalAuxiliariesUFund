@@ -13,10 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AdoptionCupboard {
 
     //Private State
-    @JsonProperty("currentAnimals")
-    private Map<String, AdoptableAnimal> currentAnimals;
-    @JsonProperty("adoptedAnimals")
-    private Map<String, AdoptableAnimal> adoptedAnimals;
+    @JsonProperty("animals")
+    private Map<String, AdoptableAnimal> animals;
 
     private static final int INITIAL_MAP_SIZE = 45;
 
@@ -26,21 +24,19 @@ public class AdoptionCupboard {
      * Creates instance of AdoptionCupboard with an initial map size 45
      */
     public AdoptionCupboard(){
-        currentAnimals = new HashMap<>(INITIAL_MAP_SIZE);
-        adoptedAnimals = new HashMap<>(INITIAL_MAP_SIZE);
+        animals = new HashMap<>(INITIAL_MAP_SIZE);
     }
 
     //Methods
 
     /**
-     * Moves animal passed from currentAnimals into adoptedAnimals
+     * finds the given animal in the animal array and adopts them
      * @param animal to be moved from currentAnimals into adoptedAnimals
      * @return true if animal moved, false if it wasn't
      */
     public boolean adoptAnimal(AdoptableAnimal animal){
-        if(animal.getId() != null && (this.currentAnimals.containsKey(animal.getId()))){
-            this.adoptedAnimals.put(animal.getId(), animal);
-            this.currentAnimals.remove(animal.getId(), animal);
+        if(animal.getId() != null && (this.animals.containsKey(animal.getId()))){
+            this.animals.get(animal.getId()).adopt();
             return true;
         }
         return false;
@@ -50,16 +46,8 @@ public class AdoptionCupboard {
      * 
      * @return List of AdoptableAnimals in currentAnimals
      */
-    public List<AdoptableAnimal> getCurrentAnimals(){
-        return new ArrayList<AdoptableAnimal>(currentAnimals.values());
-    }
-
-   /**
-    * 
-    * @return List of AdoptableAnimals from adoptedAnimals
-    */
-    public List<AdoptableAnimal> getAdoptedAnimals(){
-        return new ArrayList<AdoptableAnimal>(adoptedAnimals.values());
+    public List<AdoptableAnimal> getAnimals(){
+        return new ArrayList<AdoptableAnimal>(animals.values());
     }
 
     /**
@@ -72,7 +60,7 @@ public class AdoptionCupboard {
     public List<AdoptableAnimal> getAdoptableAnimalOnSpecies(String speciesSubstring){
         List<AdoptableAnimal> matchingAnimals = new ArrayList<>();
         if (speciesSubstring != null){
-            for (AdoptableAnimal animal : currentAnimals.values()){
+            for (AdoptableAnimal animal : animals.values()){
                 if(animal.getSpecies().toLowerCase().contains(speciesSubstring.toLowerCase())){
                     matchingAnimals.add(animal);
                 }
@@ -89,7 +77,7 @@ public class AdoptionCupboard {
      */
     public AdoptableAnimal getAdoptableAnimalOnId(String id){
         if(id != null){
-            return currentAnimals.get(id);
+            return animals.get(id);
         }
         return null;
     }
@@ -101,8 +89,8 @@ public class AdoptionCupboard {
      * @return true if animal is added, false if it failed
      */
     public boolean addAnimal(AdoptableAnimal newAnimal){
-        if(newAnimal != null && !(this.currentAnimals.containsKey(newAnimal.getId()))){
-            this.currentAnimals.put(newAnimal.getId(), newAnimal);
+        if(newAnimal != null && !(this.animals.containsKey(newAnimal.getId()))){
+            this.animals.put(newAnimal.getId(), newAnimal);
             return true;
         }
         return false;
@@ -115,8 +103,8 @@ public class AdoptionCupboard {
      * @return true is animal is updated, false if it fails
      */
     public boolean updateAnimal(AdoptableAnimal animal){
-        if(currentAnimals.containsKey(animal.getId())){
-            currentAnimals.put(animal.getId(), animal);
+        if(animals.containsKey(animal.getId())){
+            animals.put(animal.getId(), animal);
             return true;
         }
         return false;
@@ -130,7 +118,7 @@ public class AdoptionCupboard {
     */
     public boolean deleteAnimal(String animalId){
         if(animalId != null){
-            if(currentAnimals.remove(animalId) != null) {
+            if(animals.remove(animalId) != null) {
                 return true;
             }
         }

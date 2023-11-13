@@ -19,16 +19,20 @@ public class AdoptableAnimal {
     private String species;
     @JsonProperty("image")
     private String image_url;
-    @JsonProperty("adoption_applications")
-    private Map<String, AdoptionApplication> adoption_applications;
+    @JsonProperty("isAdopted")
+    private boolean isAdopted; 
+    //@JsonProperty("adoption_applications")
+    //private Map<String, AdoptionApplication> adoption_applications;
 
     //Default values
     private static final String DEFAULT_NAME = "Animal";
     private static final String DEFAULT_DESCRIPTION = "";
     private static final String DEFAULT_SPECIES = "Dog";
     private static final String DEFAULT_IMAGE_URL = "";
+    private static final boolean DEFAULT_IS_ADOPTED = false; 
+    private static final boolean ADOPTED = true; 
     
-    private static final int INITIAL_MAP_SIZE = 45;
+    //private static final int INITIAL_MAP_SIZE = 45;
 
     //Constructors
 
@@ -41,7 +45,8 @@ public class AdoptableAnimal {
         this.description = DEFAULT_DESCRIPTION;
         this.species = DEFAULT_SPECIES;
         this.image_url = DEFAULT_IMAGE_URL;
-        this.adoption_applications = new HashMap<>(INITIAL_MAP_SIZE);
+        this.isAdopted = DEFAULT_IS_ADOPTED; 
+        //this.adoption_applications = new HashMap<>(INITIAL_MAP_SIZE);
         
     }
 
@@ -58,10 +63,15 @@ public class AdoptableAnimal {
         this.name = name;
         this.description = description;
         this.species = species;
-        this.adoption_applications = new HashMap<>(INITIAL_MAP_SIZE);
+        this.isAdopted = DEFAULT_IS_ADOPTED; 
+        //this.adoption_applications = new HashMap<>(INITIAL_MAP_SIZE);
     }
 
     //Methods
+
+    public void adopt() {
+        this.isAdopted = ADOPTED; 
+    }
     
     @Override
     public boolean equals(Object obj){
@@ -115,6 +125,13 @@ public class AdoptableAnimal {
         return this.image_url;
     }
 
+    /**
+     * retrieves if the animal has been adopted or not
+     * @return
+     */
+    public boolean getIsAdopted() {
+        return this.isAdopted; 
+    }
     //Setters
 
     /**
