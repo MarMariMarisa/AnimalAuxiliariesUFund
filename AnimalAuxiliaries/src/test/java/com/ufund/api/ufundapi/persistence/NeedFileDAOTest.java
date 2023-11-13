@@ -48,7 +48,10 @@ public class NeedFileDAOTest {
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"), Need[].class))
             .thenReturn(testNeeds);
-        needFileDAO = new NeedFileDAO("doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, helperFileDAO);
+        when(mockObjectMapper
+            .readValue(new File("doesnt_matter.txt"), float.class))
+            .thenReturn((float) 0.0);    
+        needFileDAO = new NeedFileDAO("doesnt_matter.txt","doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, helperFileDAO);
     }
 
     @Test
@@ -112,7 +115,7 @@ public class NeedFileDAOTest {
         when(mockHelperFileDAO.getHelpers()).thenReturn(new Helper[0]);
 
         // Inject the mockHelperFileDAO into your needFileDAO instance
-        NeedFileDAO needFileDAO = new NeedFileDAO("doesnt_matter.txt", "doesnt_matter.txt", mockObjectMapper, mockHelperFileDAO);
+        NeedFileDAO needFileDAO = new NeedFileDAO("doesnt_matter.txt", "doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, mockHelperFileDAO);
 
         Need need = new Need("Second Need", "Updated Description", "Updated Category", 20, 4);
         need.setID("need2");
@@ -167,6 +170,6 @@ public class NeedFileDAOTest {
             .when(mockObjectMapper)
             .readValue(new File("doesnt_matter.txt"), Need[].class);
 
-        assertThrows(IOException.class, () -> new NeedFileDAO("doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, helperFileDAO), "IOException not thrown");
+        assertThrows(IOException.class, () -> new NeedFileDAO("doesnt_matter.txt","doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, helperFileDAO), "IOException not thrown");
     }
 }

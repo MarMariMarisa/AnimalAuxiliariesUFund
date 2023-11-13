@@ -25,6 +25,7 @@ public class NeedFileDAO implements NeedDAO {
     private ObjectMapper objectMapper;
     private String needFilename;
     private String fundedFileName;
+    private String surplusFileName;
 
     /**
      * Creates a Need File Data Access Object
@@ -35,9 +36,10 @@ public class NeedFileDAO implements NeedDAO {
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public NeedFileDAO(@Value("${needs.file}") String needFileName, @Value("${funded.file}") String fundedFileName, ObjectMapper objectMapper, @Lazy HelperFileDAO helperFileDAO) throws IOException {
+    public NeedFileDAO(@Value("${needs.file}") String needFileName, @Value("${funded.file}") String fundedFileName, @Value("${surplus.file}") String surplusFileName, ObjectMapper objectMapper, @Lazy HelperFileDAO helperFileDAO) throws IOException {
         this.needFilename = needFileName;
         this.fundedFileName = fundedFileName;
+        this.surplusFileName = surplusFileName;
         this.objectMapper = objectMapper;
         this.helperFileDAO = helperFileDAO;
         load(); 
@@ -71,8 +73,10 @@ public class NeedFileDAO implements NeedDAO {
     private boolean save() throws IOException {
         Need[] needArray = getNeedsArray();
         Need[] fundedArray = getFundedNeedsArray();
+        float surplus = cupboard.getSurplus();
         objectMapper.writeValue(new File(needFilename), needArray);
         objectMapper.writeValue(new File(fundedFileName), fundedArray);
+        objectMapper.writeValue(new File(surplusFileName), surplus);
         return true;
     }
 
@@ -93,6 +97,7 @@ public class NeedFileDAO implements NeedDAO {
         // or reading from the file
         Need[] needArray = objectMapper.readValue(new File(needFilename), Need[].class);
         Need[] fundedArray = objectMapper.readValue(new File(fundedFileName), Need[].class);
+        float surplus = objectMapper.readValue(new File(surplusFileName), float.class);
 
         // Add each need to the cupboard
         for (Need need : needArray) {
@@ -101,6 +106,8 @@ public class NeedFileDAO implements NeedDAO {
         for(Need need : fundedArray){
             cupboard.addToFunded(need);
         }
+
+        cupboard.addToSurplus(surplus);
 
         return true;
     }
@@ -118,6 +125,14 @@ public class NeedFileDAO implements NeedDAO {
     public Need[] getFundedNeeds(){
         synchronized(cupboard){
             return getFundedNeedsArray();
+        }
+    }
+
+    public boolean addToSurplus(float money) throws IOException{
+        synchronized(cupboard){
+            cupboard.addToSurplus(money);
+            save();
+            return true;
         }
     }
 

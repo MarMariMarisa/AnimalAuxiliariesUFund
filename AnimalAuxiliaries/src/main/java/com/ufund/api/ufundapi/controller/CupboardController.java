@@ -45,6 +45,7 @@ public class CupboardController {
         LOG.info("GET /cupboard/funded");
         return new ResponseEntity<Need[]>(needDAO.getFundedNeeds(), HttpStatus.OK);
     }
+    
 
     @GetMapping("/{id}")
     public ResponseEntity<Need> getNeed(@PathVariable String id) throws IOException{
@@ -89,6 +90,13 @@ public class CupboardController {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping("/surplus")
+    public ResponseEntity<HttpStatus> addToSurplus(@PathVariable float money) throws IOException{
+        LOG.info("PUT /cupboard/surplus " + money);
+        needDAO.addToSurplus(money);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
