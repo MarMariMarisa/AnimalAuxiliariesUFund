@@ -30,6 +30,8 @@ public class AdoptableAnimal {
 
     private static final int INITIAL_MAP_SIZE = 45;
 
+    //Constructors
+
     /**
      * Creates an adoptable animal with default values
      */
@@ -59,6 +61,7 @@ public class AdoptableAnimal {
     }
 
     //Methods
+    
     @Override
     public boolean equals(Object obj){
         if (this == obj) {
@@ -71,35 +74,68 @@ public class AdoptableAnimal {
         return id.equals(other.id);
     }
 
+    /**
+     * 
+     * @return animal id
+     */
     public String getId(){
         return this.id;
     }
 
+    /**
+     * 
+     * @return animal name
+     */
     public String getName(){
         return this.name;
     }
 
+    /**
+     * 
+     * @return animal description
+     */
     public String getDescription(){
         return this.description;
     }
 
+    /**
+     * 
+     * @return animal species
+     */
     public String getSpecies(){
         return this.species;
     }
 
     //Setters
+
+    /**
+     * sets animal id value
+     * @param id new id value
+     */
     public void setId(String id){
         this.id = id;
     }
 
+    /**
+     * sets animal name
+     * @param name new name value
+     */
     public void setName(String name){
         this.name = name;
     }
 
+    /**
+     * sets animal description
+     * @param description new description value
+     */
     public void setDescription(String description){
         this.description = description;
     }
 
+    /**
+     * sets animal species
+     * @param species new species value
+     */
     public void setSpecies(String species){
         this.species = species;
     }

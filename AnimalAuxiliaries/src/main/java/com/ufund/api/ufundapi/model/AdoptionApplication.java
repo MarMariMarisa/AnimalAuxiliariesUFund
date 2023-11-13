@@ -45,6 +45,16 @@ public class AdoptionApplication {
 
     }
 
+    /**
+     * Creates an application with the given values
+     * 
+     * @param status 
+     * @param helper_id
+     * @param animal_id
+     * @param helper_username
+     * @param contact
+     * @param information
+     */
     public AdoptionApplication(@JsonProperty("status") String status, @JsonProperty("helper_id") String helper_id, 
             @JsonProperty("animal_id") String animal_id, @JsonProperty("helper_username") String helper_username, 
             @JsonProperty("contact") String contact, @JsonProperty("information") String information) {
@@ -58,6 +68,71 @@ public class AdoptionApplication {
         this.information = information;
     }
 
+    //Methods
+
+    /**
+     * 
+     * @return application id
+     */
+    public String getId(){
+        return this.id;
+    }
+
+    /**
+     * 
+     * @return application status
+     */
+    public String getStatus(){
+        return this.status;
+    }
+
+    /**
+     * 
+     * @return applications helper_id
+     */
+    public String getHelperId(){
+        return this.helper_id;
+    }
+
+    /**
+     * 
+     * @return applications animal_id
+     */
+    public String getAnimalId(){
+        return this.animal_id;
+    }
+
+    /**
+     * 
+     * @return applications helper_username
+     */
+    public String getHelperUsername(){
+        return this.helper_username;
+    }
+
+    /**
+     * 
+     * @return applications contact
+     */
+    public String getContact(){
+        return this.contact;
+    }
+
+    /**
+     * 
+     * @return applications information
+     */
+    public String getInformation(){
+        return this.information;
+    }
+
+    //Setters
+
+    /**
+     * Updates the status of the application.
+     * @param status new status value
+     * @return boolean if status updated
+     */
     public boolean setStatus(String status){
         if(status != null){
             this.status = status;
@@ -66,43 +141,27 @@ public class AdoptionApplication {
         return false;
     }
 
+    /**
+     * Updates the helper_username of the application
+     * @param helper_username new helper_username value
+     */
     public void setHelperUsername(String helper_username){
         this.helper_username = helper_username;
     }
 
+    /**
+     * Updates the contact contact of the application
+     * @param contact new contact value
+     */
     public void setContact(String contact){
         this.contact = contact;
     }
 
+    /**
+     * Updates the information of the application
+     * @param information new informaiton value
+     */
     public void setInformation(String information){
         this.information = information;
-    }
-
-    public String getId(){
-        return this.id;
-    }
-
-    public String getStatus(){
-        return this.status;
-    }
-
-    public String getHelperId(){
-        return this.helper_id;
-    }
-
-    public String getAnimalId(){
-        return this.animal_id;
-    }
-
-    public String getHelperUsername(){
-        return this.helper_username;
-    }
-
-    public String getContact(){
-        return this.contact;
-    }
-
-    public String getInformation(){
-        return this.information;
     }
 }

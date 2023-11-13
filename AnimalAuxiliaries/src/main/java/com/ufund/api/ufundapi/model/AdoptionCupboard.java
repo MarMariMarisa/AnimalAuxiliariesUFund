@@ -20,32 +20,55 @@ public class AdoptionCupboard {
 
     private static final int INITIAL_MAP_SIZE = 45;
 
-    //Constructor
+    //Constructors
+
+    /**
+     * Creates instance of AdoptionCupboard with an initial map size 45
+     */
     public AdoptionCupboard(){
         currentAnimals = new HashMap<>(INITIAL_MAP_SIZE);
         adoptedAnimals = new HashMap<>(INITIAL_MAP_SIZE);
     }
 
-    //Adopt Animal
+    //Methods
+
+    /**
+     * Moves animal passed from currentAnimals into adoptedAnimals
+     * @param animal to be moved from currentAnimals into adoptedAnimals
+     * @return true if animal moved, false if it wasn't
+     */
     public boolean adoptAnimal(AdoptableAnimal animal){
         if(animal.getId() != null && (this.currentAnimals.containsKey(animal.getId()))){
             this.adoptedAnimals.put(animal.getId(), animal);
+            this.currentAnimals.remove(animal.getId(), animal);
             return true;
         }
         return false;
     }
 
-    //Get all current animals
+    /**
+     * 
+     * @return List of AdoptableAnimals in currentAnimals
+     */
     public List<AdoptableAnimal> getCurrentAnimals(){
         return new ArrayList<AdoptableAnimal>(currentAnimals.values());
     }
 
-    //Get all adopted animals
+   /**
+    * 
+    * @return List of AdoptableAnimals from adoptedAnimals
+    */
     public List<AdoptableAnimal> getAdoptedAnimals(){
         return new ArrayList<AdoptableAnimal>(adoptedAnimals.values());
     }
 
-    //Get Animals by Species
+    /**
+     * Searches list of current animals to find animals that contain
+     * the species value passed
+     * 
+     * @param speciesSubstring What the function is searching for
+     * @return List of AdoptableAnimals that match the search querey 
+     */
     public List<AdoptableAnimal> getAdoptableAnimalOnSpecies(String speciesSubstring){
         List<AdoptableAnimal> matchingAnimals = new ArrayList<>();
         if (speciesSubstring != null){
@@ -58,7 +81,12 @@ public class AdoptionCupboard {
         return matchingAnimals;
     }
 
-    //Get Animal by Id
+    /**
+     * Fetches the animal matching the id passed
+     * 
+     * @param id What the function is searching for
+     * @return the AdoptableAnimal with the matching Id
+     */
     public AdoptableAnimal getAdoptableAnimalOnId(String id){
         if(id != null){
             return currentAnimals.get(id);
@@ -66,7 +94,12 @@ public class AdoptionCupboard {
         return null;
     }
 
-    //Add Animal
+    /**
+     * Adds an animal to currentAnimals
+     * 
+     * @param newAnimal what is to be added to currentAnimals
+     * @return true if animal is added, false if it failed
+     */
     public boolean addAnimal(AdoptableAnimal newAnimal){
         if(newAnimal != null && !(this.currentAnimals.containsKey(newAnimal.getId()))){
             this.currentAnimals.put(newAnimal.getId(), newAnimal);
@@ -75,7 +108,12 @@ public class AdoptionCupboard {
         return false;
     }
 
-    //Update Animal
+    /**
+     * Updates the animal with the same id as the one passed
+     * 
+     * @param animal animal with updated values
+     * @return true is animal is updated, false if it fails
+     */
     public boolean updateAnimal(AdoptableAnimal animal){
         if(currentAnimals.containsKey(animal.getId())){
             currentAnimals.put(animal.getId(), animal);
@@ -84,7 +122,12 @@ public class AdoptionCupboard {
         return false;
     }
 
-    //Delete Animal
+   /**
+    * Permantantly removes an animal from currentAnimals
+    *
+    * @param animalId id of the animal to be deleted
+    * @return true if the animal was deleated, false if it wasn't
+    */
     public boolean deleteAnimal(String animalId){
         if(animalId != null){
             if(currentAnimals.remove(animalId) != null) {
