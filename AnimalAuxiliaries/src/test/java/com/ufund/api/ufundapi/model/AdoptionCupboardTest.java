@@ -2,7 +2,9 @@ package com.ufund.api.ufundapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +17,8 @@ public class AdoptionCupboardTest {
     AdoptionCupboard adoptioncupboard;
     AdoptableAnimal[] testAnimals;
 
+    private static final boolean ADOPTED = true; 
+    private static final boolean NOT_ADOPTED = false; 
     @BeforeEach
     public void setUp(){
         adoptioncupboard = new AdoptionCupboard();
@@ -42,23 +46,42 @@ public class AdoptionCupboardTest {
 
         //Analyze
         assertNotNull(adoptioncupboard, "Adoption Cupboard is null");
-        assertNotNull(adoptioncupboard.getCurrentAnimals(), "Current Animals is null");
-        assertNotNull(adoptioncupboard.getAdoptedAnimals(), "Adopted Animals is not null");
+        assertNotNull(adoptioncupboard.getAnimals(), "Animals is null");
 
     }
 
     @Test
     public void testAdoptAnimal(){
         //Setup
-        int expectedSize = 1;
 
         //Invoke
         adoptioncupboard.adoptAnimal(testAnimals[0]);
 
         //Analyze
-        assertEquals(adoptioncupboard.getAdoptedAnimals().size(), expectedSize);
+        assertEquals(ADOPTED, testAnimals[0].getIsAdopted());
 
 
+    }
+
+    @Test 
+    public void testAdoptableAnimalNull() {
+        adoptioncupboard.adoptAnimal(null); 
+        int i = 0; 
+        for(AdoptableAnimal animal : testAnimals) {
+            assertEquals(animal, adoptioncupboard.getAnimals().get(i));
+            i++; 
+        }
+    }
+
+    @Test 
+    public void testAdoptAnimalIdNotFound() {
+        AdoptableAnimal testAnimal = new AdoptableAnimal();
+        adoptioncupboard.addAnimal(testAnimal); 
+        int i = 0; 
+        for(AdoptableAnimal animal : testAnimals) {
+            assertEquals(animal, adoptioncupboard.getAnimals().get(i));
+            i++; 
+        }
     }
     
     @Test
@@ -75,6 +98,21 @@ public class AdoptionCupboardTest {
 
     }
 
+    @Test
+    public void testGetAdoptableAnimalOnSpeciesNull() {
+        assertNull(adoptioncupboard.getAdoptableAnimalOnSpecies(null)); 
+    }
+
+    @Test 
+    public void testGetAnimals() {
+        ArrayList<AdoptableAnimal> animals = (ArrayList<AdoptableAnimal>) adoptioncupboard.getAnimals(); 
+        int i = 0; 
+        for(AdoptableAnimal animal : animals) {
+            assertEquals(testAnimals[i], animal); 
+            i++; 
+        }
+    }
+
     @Test 
     public void testGetAdoptableAnimalOnId(){
         //Setup
@@ -89,6 +127,11 @@ public class AdoptionCupboardTest {
     }
 
     @Test
+    public void testGetAdoptableAnimalOnIdNull() {
+        assertNull(adoptioncupboard.getAdoptableAnimalOnId(null));
+    }
+
+    @Test
     public void testAddAnimal(){
         //Setup
         AdoptableAnimal newAnimal = new AdoptableAnimal();
@@ -99,6 +142,16 @@ public class AdoptionCupboardTest {
         //Analyze
         assertEquals(true, result);
 
+    }
+
+    @Test
+    public void testAddAnimalNull() {
+        adoptioncupboard.addAnimal(null);
+        int i = 0;  
+        for(AdoptableAnimal animal : testAnimals) {
+            assertEquals(animal, adoptioncupboard.getAnimals().get(i)); 
+            i++; 
+        }
     }
 
     @Test
@@ -116,6 +169,17 @@ public class AdoptionCupboardTest {
 
     }
 
+    @Test 
+    public void testUpdateAnimalNotFound() {
+        AdoptableAnimal testAnimal = new AdoptableAnimal(); 
+        adoptioncupboard.updateAnimal(testAnimal); 
+        int i = 0;  
+        for(AdoptableAnimal animal : testAnimals) {
+            assertEquals(animal, adoptioncupboard.getAnimals().get(i)); 
+            i++; 
+        }
+    }
+
     @Test
     public void testDeleteAnimal(){
         //Setup
@@ -126,5 +190,15 @@ public class AdoptionCupboardTest {
         //Analyze
         assertEquals(true, result);
 
+    }
+
+    @Test 
+    public void testDeleteAnimalNull() {
+        adoptioncupboard.deleteAnimal(null); 
+        int i = 0;  
+        for(AdoptableAnimal animal : testAnimals) {
+            assertEquals(animal, adoptioncupboard.getAnimals().get(i)); 
+            i++; 
+        }
     }
 }
