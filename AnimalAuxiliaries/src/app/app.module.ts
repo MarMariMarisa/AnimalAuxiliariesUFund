@@ -20,7 +20,7 @@ import { PostComponent } from './post/post.component';
 
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { ManagerNavComponent } from './manager-nav/manager-nav.component';
-
+import { AdoptionComponent } from './adoption/adoption.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,6 @@ import { ManagerNavComponent } from './manager-nav/manager-nav.component';
     PostComponent,
     AnalyticsComponent,
     ManagerNavComponent,
-
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   bootstrap: [AppComponent],

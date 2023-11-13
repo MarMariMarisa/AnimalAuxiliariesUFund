@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { NeedComponent } from './need/need.component';
 import { BasketComponent } from './basket/basket.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { AdoptionComponent } from './adoption/adoption.component';
 
 const routes: Routes = [
   { path: 'manager', component: ManagerComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'basket', component: BasketComponent },
   { path: 'analytics', component: AnalyticsComponent },
+  { path: 'adoption', component: AdoptionComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 

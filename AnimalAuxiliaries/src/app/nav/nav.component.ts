@@ -17,4 +17,7 @@ export class NavComponent {
   moveToNeeds(): void {
     this.router.navigate(['/helper']);
   }
+  adoption(): void {
+    this.router.navigate(['adoption']);
+  }
 }
