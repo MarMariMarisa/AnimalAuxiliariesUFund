@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Need } from '../need';
 import { CupboardService } from '../cupboard.service';
-import { Router } from '@angular/router';
+import { Router, TitleStrategy } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FundingBasketService } from '../funding-basket.service';
 import { Observable, Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { CommunityBoardService } from '../community-board.service';
+import { Post } from '../post';
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -13,11 +15,13 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 })
 export class ManagerComponent implements OnInit {
   needs: Need[] = [];
+  posts: Post[] = [];
   deleteConfirm: Need | null = null;
   needs$!: Observable<Need[]>;
   private searchTerms = new Subject<string>();
   constructor(
     private needService: CupboardService,
+    private communityBoardService: CommunityBoardService,
     private router: Router,
     private auth: AuthService,
     private basket: FundingBasketService
@@ -162,4 +166,43 @@ export class ManagerComponent implements OnInit {
   onPress(need: Need) {
     need.display = !need.display;
   }
+
+  deletePost(post: Post): void {
+    this.communityBoardService.deletePost(post.title).subscribe();
+  }
+  addPost(
+    title: string,
+    content: string,
+  ): void {
+    title = title.trim();
+    if (!title) {
+      return;
+    }
+    const errorMessage = document.getElementById('errorMessage');
+    console.log(content);
+    if (
+      title == '' ||
+      content == ''
+    ) {
+      if (errorMessage) {
+        errorMessage.textContent = 'Fields cannot be empty.';
+        errorMessage.style.color = '#c91d06';
+        return;
+      }
+    } else {
+      if (errorMessage) {
+        errorMessage.textContent = '';
+      }
+    }
+    let a = JSON.parse(
+      JSON.stringify({
+        id: '',
+        title: title,
+        content: content,
+      } as Post)
+    );
+    this.communityBoardService.createPost(a).subscribe((post) => {
+      this.posts.push(post);
+    });
+}
 }

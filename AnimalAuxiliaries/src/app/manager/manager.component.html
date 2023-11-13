@@ -272,10 +272,6 @@
             type="number"
           />
         </li>
-        <li>
-          <label for="new-need">Image Link: </label
-          ><input id="new-need" #needImage class="labelStyles" type="string" />
-        </li>
       </ul>
       <p class="center" id="errorMessage"></p>
       <button
@@ -288,7 +284,8 @@
             needType.value,
             needPrice.value,
             needQuantity.value,
-            needImage.value
+            ''
+
           )
         "
         style="font-family: Poppins; align-self: flex-end"
@@ -296,5 +293,34 @@
         Add need
       </button>
     </div>
+
+    <div id="needList">
+      <h2 style="text-align: center">Create A Post</h2>
+      <ul id="inputStyles">
+        <li>
+          <label for="new-post">Title: </label
+          ><input id="new-post" #postTitle class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-post">Content: </label
+          ><input id="new-post" #postContent class="labelStyles" />
+        </li>
+      </ul>
+      <p class="center" id="errorMessage"></p>
+      <button
+        type="button"
+        class="btn center"
+        (click)="
+          addPost(
+            postTitle.value,
+            postContent.value
+          )
+        "
+        style="font-family: Poppins; align-self: flex-end"
+      >
+        Add Post
+      </button>
+    </div>
+
   </div>
 </div>
