@@ -15,14 +15,11 @@ public class AdoptableAnimal {
     private String description;
     @JsonProperty("species")
     private String species;
-    @JsonProperty("adopted")
-    private boolean is_adopted;
 
     //Default values
     private static final String DEFAULT_NAME = "Animal";
     private static final String DEFAULT_DESCRIPTION = "";
     private static final String DEFAULT_SPECIES = "Dog";
-    private static final boolean DEFAULT_IS_ADOPTED = false;
 
     /**
      * Creates an adoptable animal with default values
@@ -32,7 +29,6 @@ public class AdoptableAnimal {
         this.name = DEFAULT_NAME;
         this.description = DEFAULT_DESCRIPTION;
         this.species = DEFAULT_SPECIES;
-        this.is_adopted = DEFAULT_IS_ADOPTED;
     }
 
     /**
@@ -79,10 +75,6 @@ public class AdoptableAnimal {
         return this.species;
     }
 
-    public boolean getIsAdopted(){
-        return this.is_adopted;
-    }
-
     //Setters
     public void setId(String id){
         this.id = id;
@@ -98,10 +90,6 @@ public class AdoptableAnimal {
 
     public void setSpecies(String species){
         this.species = species;
-    }
-
-    public void setIsAdopted(boolean is_adopted){
-        this.is_adopted = is_adopted;
     }
 
 }
