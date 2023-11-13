@@ -24,7 +24,11 @@ export class AnalyticsComponent {
     this.cupboard.getEntireCupboard().subscribe((cupboard) => {
       this.needs = [...cupboard];
     });
-    if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
+    const surp = document.getElementById('surplus');
+    if (surp) {
+      surp.innerText = `Surplus Raised: $${0}`;
+    }
+    // if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
     setTimeout(() => {
       const bars = document.getElementsByClassName('progress-bar');
       for (let x = 0; x < bars.length; x++) {
