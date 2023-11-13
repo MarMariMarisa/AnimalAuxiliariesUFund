@@ -1,5 +1,7 @@
 package com.ufund.api.ufundapi.model;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,11 +17,18 @@ public class AdoptableAnimal {
     private String description;
     @JsonProperty("species")
     private String species;
+    @JsonProperty("image")
+    private String image_url;
+    @JsonProperty("adoption_applications")
+    private Map<String, AdoptionApplication> adoption_applications;
 
     //Default values
     private static final String DEFAULT_NAME = "Animal";
     private static final String DEFAULT_DESCRIPTION = "";
     private static final String DEFAULT_SPECIES = "Dog";
+    private static final String DEFAULT_IMAGE_URL = "";
+
+    private static final int INITIAL_MAP_SIZE = 45;
 
     /**
      * Creates an adoptable animal with default values
@@ -29,6 +38,8 @@ public class AdoptableAnimal {
         this.name = DEFAULT_NAME;
         this.description = DEFAULT_DESCRIPTION;
         this.species = DEFAULT_SPECIES;
+        this.image_url = DEFAULT_IMAGE_URL;
+        
     }
 
     /**
@@ -44,6 +55,7 @@ public class AdoptableAnimal {
         this.name = name;
         this.description = description;
         this.species = species;
+        this.adoption_applications = new HashMap<>(INITIAL_MAP_SIZE);
     }
 
     //Methods
