@@ -35,7 +35,7 @@ public class CommunityBoardTest {
     void testRemovePost() {
         Post post = new Post("Test title", "Test test test"); 
         communityBoard.addPost(post);
-        communityBoard.deletePost(post); 
+        communityBoard.deletePost(post.getId()); 
         assertEquals(EXPECTED_INITIAL_SIZE, communityBoard.getSize());
     }
 
