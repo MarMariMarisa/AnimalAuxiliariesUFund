@@ -33,7 +33,7 @@ public interface NeedDAO {
      * 
      * @return a {@link Need need} object with the matching id
      * <br>
-     * null if no {@link Hero hero} with a matching id is found
+     * null if no {@link Need need} with a matching id is found
      * 
      * @throws IOException if an issue with underlying storage
      */

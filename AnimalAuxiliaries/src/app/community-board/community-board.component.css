@@ -1,0 +1,15 @@
+.community-Board{
+    color: #F4EEE0;
+    font-family: "Poppins", sans-serif;
+    Overflow-x:scroll;
+    height: 50px;
+    width: inherit;
+}
+h3{
+    color: #f4eee0;
+    margin: 5px;
+}
+p{
+    color: #f4eee0;
+    margin: 5px;
+}

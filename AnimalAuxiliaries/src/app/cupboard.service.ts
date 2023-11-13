@@ -17,8 +17,10 @@ export class CupboardService {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS,DELETE'})
+      'Access-Control-Allow-Headers':
+        'X-Requested-With, content-type, Authorization',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS,DELETE',
+    }),
   };
 
   constructor(
@@ -27,14 +29,14 @@ export class CupboardService {
   ) {}
 
   getEntireCupboard(): Observable<Need[]> {
-    return this.http.get<Need[]>(this.cupboardUrl,this.httpOptions).pipe(
+    return this.http.get<Need[]>(this.cupboardUrl, this.httpOptions).pipe(
       tap((_) => this.log('fetched cupboard')),
       catchError(this.handleError('getEntireCupboard', []))
     );
   }
   getNeed(id: string): Observable<Need> {
     const url = `${this.cupboardUrl}/${id}`; ///cupboard?id="
-    return this.http.get<Need>(url,this.httpOptions).pipe(
+    return this.http.get<Need>(url, this.httpOptions).pipe(
       tap((_) => this.log(`fetched need id=${id}`)),
       catchError(this.handleError<Need>(`getNeed id=${id}`))
     );
@@ -58,26 +60,34 @@ export class CupboardService {
       catchError(this.handleError<any>('updateNeed'))
     );
   }
+  addToSurplus(money: number) {
+    const url = `${this.cupboardUrl}/surplus`;
+    return this.http.put(url, money, this.httpOptions).pipe(
+      tap((_) => this.log(`updated surplus ${money}`)),
+      catchError(this.handleError<any>('addToSurplus'))
+    );
+  }
 
-  
   searchNeeds(term: string): Observable<Need[]> {
     if (!term.trim()) {
       // if not search term, return empty need array.
       return of([]);
     }
-    return this.http.get<Need[]>(`${this.cupboardUrl}/?name=${term}`,this.httpOptions).pipe(
-      tap((x) =>
-        x.length
-          ? this.log(`found needs matching "${term}"`)
-          : this.log(`no needs matching "${term}"`)
-      ),
-      catchError(this.handleError<Need[]>('searchNeeds', []))
-    );
+    return this.http
+      .get<Need[]>(`${this.cupboardUrl}/?name=${term}`, this.httpOptions)
+      .pipe(
+        tap((x) =>
+          x.length
+            ? this.log(`found needs matching "${term}"`)
+            : this.log(`no needs matching "${term}"`)
+        ),
+        catchError(this.handleError<Need[]>('searchNeeds', []))
+      );
   }
 
   getRetiredNeeds() {
     const url = `${this.cupboardUrl}/retired`;
-    return this.http.get(url,this.httpOptions).pipe(
+    return this.http.get(url, this.httpOptions).pipe(
       tap((_) => this.log('fetched cupboard')),
       catchError(this.handleError('getEntireCupboard'))
     );
@@ -96,8 +106,8 @@ export class CupboardService {
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a CupboardService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`CupboardService: ${message}`);
   }
 }

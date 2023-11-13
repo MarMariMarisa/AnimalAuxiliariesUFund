@@ -176,14 +176,6 @@
                   placeholder="need quantity"
                 />
               </div>
-              <!-- <div class="need-align">
-                <label for="need-quantiy-funded">Quantity Funded: </label>
-                <input
-                  id="need-quantityFunded"
-                  [(ngModel)]="need.quantityFunded"
-                  placeholder="need quantity funded"
-                />
-              </div> -->
               <div class="need-align">
                 <label for="need-image-link">Image Link: </label>
                 <input
@@ -202,25 +194,7 @@
               Save
             </button>
           </div>
-          <div class="modal-container" *ngIf="deleteConfirm === need">
-            <div class="modal">
-              <div class="modal-header">
-                Are you sure you'd like to delete the need: {{ need.name }}
-              </div>
-              <p class="modal-desc">This action is irreversable!!</p>
-              <div class="modal-btns">
-                <button class="deleteBtn close-button" (click)="delete(need)">
-                  Yes!
-                </button>
-                <button
-                  class="greenBtn close-button"
-                  (click)="deleteConfirm = null"
-                >
-                  No!
-                </button>
-              </div>
-            </div>
-          </div>
+          c
         </li>
       </ul>
     </ng-template>
@@ -252,10 +226,6 @@
             type="number"
           />
         </li>
-        <li>
-          <label for="new-need">Image Link: </label
-          ><input id="new-need" #needImage class="labelStyles" type="string" />
-        </li>
       </ul>
       <p class="center" id="errorMessage"></p>
       <button
@@ -268,13 +238,72 @@
             needType.value,
             needPrice.value,
             needQuantity.value,
-            needImage.value
+            ''
           )
         "
         style="font-family: Poppins; align-self: flex-end"
       >
         Add need
       </button>
+    </div>
+
+    <div id="needList">
+      <h2 style="text-align: center">Create A Post</h2>
+      <ul id="inputStyles">
+        <li>
+          <label for="new-post">Title: </label
+          ><input id="new-post" #postTitle class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-post">Content: </label
+          ><input id="new-post" #postContent class="labelStyles" />
+        </li>
+      </ul>
+      <p class="center" id="errorMessage"></p>
+      <button
+        type="button"
+        class="btn center"
+        (click)="addPost(postTitle.value, postContent.value)"
+        style="font-family: Poppins; align-self: flex-end"
+      >
+        Add Post
+      </button>
+      <ul>
+        <li *ngFor="let post of posts">
+          {{ post.title }}
+          <button
+            type="button"
+            class="deleteBtn"
+            title="delete post"
+            (click)="deleteConfirmPost = post"
+          >
+            Delete
+          </button>
+          <div class="modal-container" *ngIf="deleteConfirmPost === post">
+            <div class="modal">
+              <div class="modal-header">
+                Are you sure you'd like to delete the post: {{ post.title }}
+              </div>
+              <p class="modal-desc">This action is irreversable!!</p>
+              <div class="modal-btns">
+                <button
+                  class="deleteBtn close-button"
+                  (click)="deletePost(post)"
+                >
+                  Yes!
+                </button>
+                <button
+                  class="greenBtn close-button"
+                  (click)="deleteConfirmPost = null"
+                >
+                  No!
+                </button>
+              </div>
+            </div>
+          </div>
+          <p class="center" id="errorMessagePost"></p>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
