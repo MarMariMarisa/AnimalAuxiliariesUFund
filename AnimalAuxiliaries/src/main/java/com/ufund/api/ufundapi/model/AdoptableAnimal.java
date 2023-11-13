@@ -27,7 +27,7 @@ public class AdoptableAnimal {
     private static final String DEFAULT_DESCRIPTION = "";
     private static final String DEFAULT_SPECIES = "Dog";
     private static final String DEFAULT_IMAGE_URL = "";
-
+    
     private static final int INITIAL_MAP_SIZE = 45;
 
     //Constructors
@@ -41,6 +41,7 @@ public class AdoptableAnimal {
         this.description = DEFAULT_DESCRIPTION;
         this.species = DEFAULT_SPECIES;
         this.image_url = DEFAULT_IMAGE_URL;
+        this.adoption_applications = new HashMap<>(INITIAL_MAP_SIZE);
         
     }
 
@@ -106,6 +107,14 @@ public class AdoptableAnimal {
         return this.species;
     }
 
+    /**
+     * 
+     * @return animal image url
+     */
+    public String getImageUrl(){
+        return this.image_url;
+    }
+
     //Setters
 
     /**
@@ -138,6 +147,14 @@ public class AdoptableAnimal {
      */
     public void setSpecies(String species){
         this.species = species;
+    }
+
+    /**
+     * set animal image_url
+     * @param image_url new url value
+     */
+    public void setImageUrl(String image_url){
+        this.image_url = image_url;
     }
 
 }
