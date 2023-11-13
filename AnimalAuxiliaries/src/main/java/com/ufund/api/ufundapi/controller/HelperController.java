@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -78,24 +79,24 @@ public class HelperController {
         }
     }
     @PostMapping("")
-   public ResponseEntity<Helper> createHelper(@RequestBody String helperJson) {
-        LOG.info("POST /funding-basket " + helperJson);
-        try{
-            ObjectMapper objectMapper = new ObjectMapper();
-            Helper aHelper = objectMapper.readValue(helperJson, Helper.class);
-            Helper helper = new Helper(aHelper.getUsername(),aHelper.getPassword());
-            if(helperDAO.createHelper(helper) != null){
-                return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
+    public ResponseEntity<Helper> createHelper(@RequestBody String helperJson) {
+            LOG.info("POST /funding-basket " + helperJson);
+            try{
+                ObjectMapper objectMapper = new ObjectMapper();
+                Helper aHelper = objectMapper.readValue(helperJson, Helper.class);
+                Helper helper = new Helper(aHelper.getUsername(),aHelper.getPassword());
+                if(helperDAO.createHelper(helper) != null){
+                    return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
+                }
+                else{
+                    return new ResponseEntity<>(HttpStatus.CONFLICT);
+                }
             }
-            else{
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            catch(IOException e){
+                LOG.log(Level.SEVERE,e.getLocalizedMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
-        catch(IOException e){
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     @DeleteMapping("/{username}/{needID}")
     public ResponseEntity<Need> removeFromBasket(@PathVariable String username, @PathVariable String needID) {
@@ -123,6 +124,18 @@ public class HelperController {
             return new ResponseEntity<Boolean>(helperDAO.checkout(username), HttpStatus.OK);
         }
         catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/{animalId}")
+    public ResponseEntity<Boolean> adoptAnimal(@PathVariable String animalId){
+        LOG.info("PUT /adopt/" + animalId);
+        try{
+            return new ResponseEntity<Boolean>(helperDAO.adoptAnimal(animalId), HttpStatus.OK);
+        }
+        catch(IOException e){
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

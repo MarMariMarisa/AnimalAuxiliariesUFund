@@ -1,5 +1,6 @@
 package com.ufund.api.ufundapi.persistence;
 
+import com.ufund.api.ufundapi.model.AdoptableAnimal;
 import com.ufund.api.ufundapi.model.Helper;
 import com.ufund.api.ufundapi.model.Need;
 
@@ -22,10 +23,12 @@ public class HelperFileDAO implements UserDAO {
     private ObjectMapper objectMapper; 
     private String filename; 
     private NeedFileDAO needDao;
+    private AdoptableAnimalDAO adoptableAnimalDAO;
 
 
-    public HelperFileDAO(@Value("${helpers.file}") String filename, ObjectMapper objectMapper, NeedFileDAO needFileDAO) throws IOException {
+    public HelperFileDAO(@Value("${helpers.file}") String filename, ObjectMapper objectMapper, NeedFileDAO needFileDAO, AdoptableAnimalDAO adoptableAnimalDAO) throws IOException {
         this.needDao = needFileDAO;
+        this.adoptableAnimalDAO = adoptableAnimalDAO;
         this.filename = filename;
         this.objectMapper = objectMapper;
         load(); 
@@ -226,6 +229,14 @@ public class HelperFileDAO implements UserDAO {
                 return helper.checkout();      
             }
             return false;
+        }
+    }
+
+    public boolean adoptAnimal(String animalId) throws IOException{
+        synchronized(helpers){
+            //Helper helper = helpers.get(username);
+            AdoptableAnimal animal = adoptableAnimalDAO.getAnimal(animalId);
+            return adoptableAnimalDAO.adoptAnimal(animal);
         }
     }
 }

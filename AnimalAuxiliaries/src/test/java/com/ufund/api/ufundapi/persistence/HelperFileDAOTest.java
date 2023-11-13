@@ -27,12 +27,14 @@ public class HelperFileDAOTest {
     Need[] testNeeds;
     ObjectMapper mockObjectMapper;
     NeedFileDAO mockNeedFileDAO;
+    AdoptableAnimalDAO mockAdoptableAnimalDAO;
 
     @BeforeEach
     public void setupHelperFileDAO() throws IOException{
         // Setup mock needs and helpers
         mockObjectMapper = mock(ObjectMapper.class);
         mockNeedFileDAO = mock(NeedFileDAO.class);
+        mockAdoptableAnimalDAO = mock(AdoptableAnimalDAO.class);
         testNeeds = new Need[3];
         testNeeds[0] = new Need("dog leash", "a dog leash", "leashes", 25, 5);
         testNeeds[0].setID("need1");
@@ -49,7 +51,7 @@ public class HelperFileDAOTest {
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"), Helper[].class))
             .thenReturn(testHelpers);
-        helperFileDAO = new HelperFileDAO("doesnt_matter.txt", mockObjectMapper, mockNeedFileDAO);
+        helperFileDAO = new HelperFileDAO("doesnt_matter.txt", mockObjectMapper, mockNeedFileDAO, mockAdoptableAnimalDAO);
     }
 
     @Test
