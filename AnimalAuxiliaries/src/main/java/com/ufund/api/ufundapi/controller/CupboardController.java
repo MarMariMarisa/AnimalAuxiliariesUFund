@@ -93,7 +93,7 @@ public class CupboardController {
     }
 
     @PutMapping("/surplus")
-    public ResponseEntity<HttpStatus> addToSurplus(@PathVariable float money) throws IOException{
+    public ResponseEntity<HttpStatus> addToSurplus(@RequestBody float money) throws IOException{
         LOG.info("PUT /cupboard/surplus " + money);
         needDAO.addToSurplus(money);
         return new ResponseEntity<>(HttpStatus.OK);

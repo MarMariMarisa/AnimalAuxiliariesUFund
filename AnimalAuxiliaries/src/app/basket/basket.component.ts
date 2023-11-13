@@ -33,6 +33,27 @@ export class BasketComponent {
             '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
       }
     }, 50);
+    const cost = document.getElementById('totalCost');
+    let sum: number = 0;
+    setTimeout(() => {
+      this.basket.forEach((need) => {
+        sum += need.price * need.quantity;
+        console.log(sum);
+      });
+      if (cost) cost.innerText = `Total: $${sum}`;
+    }, 60);
+    const surp = <HTMLInputElement>document.getElementById('surplus');
+    if (surp)
+      surp.addEventListener('change', () => {
+        if (cost && parseFloat(surp.value) >= 0.01) {
+          const aSum: string = (
+            sum + parseFloat(parseFloat(surp.value).toFixed(2))
+          ).toFixed(2);
+          cost.innerText = `Total: $${aSum}`;
+        } else {
+          if (cost) cost.innerText = `Total: $${sum}`;
+        }
+      });
   }
   basket: Need[] = [];
   currentNeeds: Need[] = [];
@@ -61,6 +82,12 @@ export class BasketComponent {
     this.fundingbasketService
       .checkout(this.auth.getUsername())
       .subscribe((res) => res);
+    const surp = <HTMLInputElement>document.getElementById('surplus');
+    if (surp) {
+      this.cupboardService
+        .addToSurplus(parseFloat(parseFloat(surp.value).toFixed(2)))
+        .subscribe((res) => res);
+    }
     let container = document.getElementById('basketContainer');
     if (container)
       container.innerHTML =

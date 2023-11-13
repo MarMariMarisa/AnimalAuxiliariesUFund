@@ -88,3 +88,22 @@
   background-position: left bottom;
   transform: scale(1.05);
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+#surplus {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  outline: none;
+  background-color: #eee;
+  color: black;
+  margin-left: 0.5rem;
+}
