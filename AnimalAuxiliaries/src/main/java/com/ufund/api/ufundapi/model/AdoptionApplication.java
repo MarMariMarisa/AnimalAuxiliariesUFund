@@ -58,6 +58,34 @@ public class AdoptionApplication {
         this.information = information;
     }
 
+    public boolean setStatus(String status){
+        if(status != null){
+            this.status = status;
+            return true;
+        }
+        return false;
+    }
+
+    public void setHelperUsername(String helper_username){
+        this.helper_username = helper_username;
+    }
+
+    public void setContact(String contact){
+        this.contact = contact;
+    }
+
+    public void setInformation(String information){
+        this.information = information;
+    }
+
+    public String getId(){
+        return this.id;
+    }
+
+    public String getStatus(){
+        return this.status;
+    }
+
     public String getHelperId(){
         return this.helper_id;
     }
@@ -66,4 +94,15 @@ public class AdoptionApplication {
         return this.animal_id;
     }
 
+    public String getHelperUsername(){
+        return this.helper_username;
+    }
+
+    public String getContact(){
+        return this.contact;
+    }
+
+    public String getInformation(){
+        return this.information;
+    }
 }
