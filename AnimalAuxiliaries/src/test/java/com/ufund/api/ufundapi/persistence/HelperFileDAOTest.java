@@ -12,6 +12,7 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ufund.api.ufundapi.model.AdoptableAnimal;
 import com.ufund.api.ufundapi.model.Helper;
 import com.ufund.api.ufundapi.model.Need;
 
@@ -238,5 +239,13 @@ public class HelperFileDAOTest {
     @Test 
     public void testCheckoutHelperDoesntExist() throws IOException{
         assertFalse(helperFileDAO.checkout("does not exist"));
-     }
+    }
+
+    @Test
+    public void testAdoptAnimal() throws IOException{
+        AdoptableAnimal animal = new AdoptableAnimal();
+        when(mockAdoptableAnimalDAO.adoptAnimal(animal)).thenReturn(true);
+        when(mockAdoptableAnimalDAO.getAnimal(animal.getId())).thenReturn(animal);
+        assertTrue(helperFileDAO.adoptAnimal(animal.getId()));
+    }
 }
