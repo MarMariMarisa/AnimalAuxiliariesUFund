@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,6 +13,9 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Helper;
 import com.ufund.api.ufundapi.model.Need;
@@ -61,14 +65,24 @@ public class NeedFileDAOTest {
             assertEquals(testNeeds[i].getId(), needs[testNeeds.length-1 - i].getId());
     }
 
-    // @Test
-    // public void testGetFunded(){
-    //     List<Need> = Array.asList()
-    //     needFileDAO.fundNeeds(testNeeds.);
-    //     Need[] needs = needFileDAO.getFundedNeeds();
-    //     assertEquals(needs.length, 0);
-    //     assertTrue(needs.length == 0);
-    // }
+    @Test
+    public void testGetFunded() throws IOException {
+        //assertEquals(needFileDAO.getFundedNeeds().length, 0);
+        List<Need> toFund = new ArrayList<>();
+        for (int i = 0; i < testNeeds.length; ++i)
+            toFund.add(testNeeds[i]);
+        needFileDAO.fundNeeds(toFund);
+        assertEquals(needFileDAO.getFundedNeeds().length,testNeeds.length);    
+    }
+
+    @Test
+    public void testFundFail() throws IOException {
+        //assertEquals(needFileDAO.getFundedNeeds().length, 0);
+        List<Need> toFund = new ArrayList<>();
+        toFund.add(new Need("non exist", "a dog leash", "leashes", 25, 5));
+        
+        assertFalse(needFileDAO.fundNeeds(toFund));    
+    }
 
     @Test
     public void testFindNeeds() throws IOException {
@@ -168,5 +182,19 @@ public class NeedFileDAOTest {
             .readValue(new File("doesnt_matter.txt"), Need[].class);
 
         assertThrows(IOException.class, () -> new NeedFileDAO("doesnt_matter.txt","doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, helperFileDAO), "IOException not thrown");
+    }
+
+    @Test
+    public void getSurplus(){
+        assertEquals(0.0, needFileDAO.getSurplus());
+    }
+
+    @Test
+    public void addToSurplus() throws IOException{
+        assertEquals(0.0, needFileDAO.getSurplus());
+        needFileDAO.addToSurplus((float) 1.56);
+        assertEquals((float)1.56, needFileDAO.getSurplus());
+        needFileDAO.addToSurplus((float) 2.00);
+        assertEquals((float)3.56, needFileDAO.getSurplus());
     }
 }
