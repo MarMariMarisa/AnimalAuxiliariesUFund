@@ -16,6 +16,7 @@ import { FundingBasketComponent } from './funding-basket/funding-basket.componen
 import { NavComponent } from './nav/nav.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { ManagerNavComponent } from './manager-nav/manager-nav.component';
+import { AdoptionComponent } from './adoption/adoption.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ManagerNavComponent } from './manager-nav/manager-nav.component';
     NavComponent,
     AnalyticsComponent,
     ManagerNavComponent,
+    AdoptionComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   bootstrap: [AppComponent],
