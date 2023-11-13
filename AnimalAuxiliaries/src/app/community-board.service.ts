@@ -42,10 +42,10 @@ export class CommunityBoardService {
       catchError(this.handleError<Post>('addPost'))
     );
   }
-  deletePost(name: string): Observable<Post> {
-    const url = `${this.communityBoardUrl}/${name}`;
+  deletePost(title: string): Observable<Post> {
+    const url = `${this.communityBoardUrl}/${title}`;
     return this.http.delete<Post>(url, this.httpOptions).pipe(
-      tap((_) => this.log(`deleted need name=${name}`)),
+      tap((_) => this.log(`deleted post title=${title}`)),
       catchError(this.handleError<Post>('deletePost'))
     );
   }

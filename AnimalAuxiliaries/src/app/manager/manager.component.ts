@@ -17,7 +17,9 @@ export class ManagerComponent implements OnInit {
   needs: Need[] = [];
   posts: Post[] = [];
   deleteConfirm: Need | null = null;
+  deleteConfirmPost: Post | null = null;
   needs$!: Observable<Need[]>;
+  posts$!: Observable<Post[]>;
   private searchTerms = new Subject<string>();
   constructor(
     private needService: CupboardService,
@@ -29,6 +31,8 @@ export class ManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNeeds();
+    this.getCommunityBoard();
+    this.posts$ = this.communityBoardService.getCommunityBoard();
     this.needs$ = this.searchTerms.pipe(
       distinctUntilChanged(),
       switchMap((term: string) => this.needService.searchNeeds(term))
@@ -47,6 +51,11 @@ export class ManagerComponent implements OnInit {
     this.needService
       .getEntireCupboard()
       .subscribe((needs) => (this.needs = needs));
+  }
+  getCommunityBoard(): void {
+    this.communityBoardService
+      .getCommunityBoard()
+      .subscribe((posts) => (this.posts = posts));
   }
   save(need: Need): void {
     if (need) {
@@ -168,7 +177,11 @@ export class ManagerComponent implements OnInit {
   }
 
   deletePost(post: Post): void {
-    this.communityBoardService.deletePost(post.title).subscribe();
+    this.communityBoardService.deletePost(post.title).subscribe(() => {
+    });
+    setTimeout(() => {
+      this.posts = this.posts.filter((h) => h.id != post.id);
+    }, 50);
   }
   addPost(
     title: string,
