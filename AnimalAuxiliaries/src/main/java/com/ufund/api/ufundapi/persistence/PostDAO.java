@@ -49,5 +49,5 @@ public interface PostDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed 
      */
-    boolean deletePost(Post post) throws IOException;
+    boolean deletePost(String id) throws IOException;
 }

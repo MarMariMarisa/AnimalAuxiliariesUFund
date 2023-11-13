@@ -34,7 +34,8 @@ public class CommunityBoard {
      * @param post
      * @return boolean
      */
-    public boolean deletePost(Post post) {
+    public boolean deletePost(String id) {
+        Post post = getPostOnId(id); 
         return this.communityBoard.remove(post); 
     }
 

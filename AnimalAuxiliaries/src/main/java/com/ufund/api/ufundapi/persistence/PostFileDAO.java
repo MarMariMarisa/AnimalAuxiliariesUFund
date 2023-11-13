@@ -116,9 +116,9 @@ public class PostFileDAO implements PostDAO {
      * {@inheritDoc}
      */
     @Override
-    public boolean deletePost(Post post) throws IOException {
+    public boolean deletePost(String id) throws IOException {
         synchronized(communityBoard) {
-            if(communityBoard.deletePost(post)) {
+            if(communityBoard.deletePost(id)) {
                 save(); 
                 return true; 
             }
