@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+projectKey=animal-auxiliaries
+serverUrl=http://localhost:9000
+serverVersion=10.2.1.78527
+dashboardUrl=http://localhost:9000/dashboard?id=animal-auxiliaries
+ceTaskId=AYuqFJZ5Ujxqj7MG05V_
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYuqFJZ5Ujxqj7MG05V_
+=======
+projectKey=ufund-app
+serverUrl=http://localhost:9000
+serverVersion=10.2.1.78527
+dashboardUrl=http://localhost:9000/dashboard?id=ufund-app
+ceTaskId=AYuqGkQYfY2mxJO1781X
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYuqGkQYfY2mxJO1781X
+>>>>>>> e2645a3daeffaacdae28addc02e1ada7b1f79066

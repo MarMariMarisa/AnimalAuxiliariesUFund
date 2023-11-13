@@ -7,4 +7,6 @@ export interface Need {
   id: string;
   numInBaskets: number;
   quantityFunded: number;
+  display: boolean;
+  imgSrc: string;
 }

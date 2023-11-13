@@ -17,26 +17,63 @@ export class LoginComponent {
     private fundingBasketService: FundingBasketService
   ) {}
 
-  login() {
+  login(username: string, password: string) {
+    const responseText = document.getElementById('response-text');
+    this.username = username;
     if (this.username === 'admin') {
-      this.router.navigate(['/manager']);
+      if (password === 'admin') {
+        this.auth.setUsername('admin');
+        this.router.navigate(['/manager']);
+      } else if (responseText) {
+        responseText.textContent = 'Invalid Login!';
+        responseText.style.color = '#c91d06';
+      }
     } else {
-      this.auth.setUsername(this.username);
-      this.router.navigate(['/helper']);
+      this.auth.setUsername(username);
+      this.fundingBasketService
+        .authenticate(username, password)
+        .subscribe((res) => {
+          if (res) {
+            console.log(this.auth.getUsername());
+            this.router.navigate(['/helper']);
+          } else {
+            if (responseText) {
+              responseText.textContent = 'Invalid Login!';
+              responseText.style.color = '#c91d06';
+            }
+          }
+        });
     }
   }
   getUsername(): string {
     return this.username;
   }
-  add(username: string): void {
-    this.username = username;
 
+  async add(username: string, password: string): Promise<void> {
+    this.username = username;
+    const responseText = document.getElementById('response-text');
     this.fundingBasketService
       .createHelper({
         id: 0,
+        password: password,
         username: this.username,
-        basket: [],
+        basket: {
+          needs: [],
+        },
       } as Helper)
-      .subscribe((res) => console.log(res));
+      .subscribe((res) => {
+        if (res == undefined) {
+          if (responseText) {
+            responseText.textContent = 'Username taken';
+            responseText.style.color = '#c91d06';
+          }
+        } else {
+          // if (responseText) {
+          //   responseText.textContent = 'Account created successfully';
+          //   responseText.style.color = '#1ba802';
+          // }
+          this.login(username, password);
+        }
+      });
   }
 }

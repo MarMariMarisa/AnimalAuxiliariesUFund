@@ -10,6 +10,7 @@ import { CupboardService } from '../cupboard.service';
 })
 export class NeedComponent implements OnInit{
   need : Need | undefined;
+  display: false;
   constructor(
     private route: ActivatedRoute,
     private cupboardService: CupboardService,
@@ -24,12 +25,4 @@ export class NeedComponent implements OnInit{
     this.cupboardService.getNeed(id).subscribe((need) => (this.need = need));
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-  save(): void {
-    if (this.need) {
-      this.cupboardService.updateNeed(this.need).subscribe(() => this.goBack());
-    }
-  }
 }

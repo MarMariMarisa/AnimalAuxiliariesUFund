@@ -19,15 +19,50 @@ public class Cupboard {
     // Private State
     @JsonProperty("currentNeeds")
     private Map<String, Need> currentNeeds;
-    @JsonProperty("retiredNeeds")
-    private Map<String, Need> retiredNeeds;
+    @JsonProperty("fundedNeeds")
+    private Map<String, Need> fundedNeeds;
+    @JsonProperty("surplus")
+    private float surplus; 
+
     private static final int INITIAL_MAP_SIZE = 45;
+    private static final float INITIAL_SURPLUS = 0.0f; 
 
     // Constructor
     public Cupboard() {
         currentNeeds = new HashMap<>(INITIAL_MAP_SIZE);
-        retiredNeeds = new HashMap<>(INITIAL_MAP_SIZE); 
+        fundedNeeds = new HashMap<>(INITIAL_MAP_SIZE); 
+        surplus = INITIAL_SURPLUS; 
     }
+
+    /**
+     * 'funds' all needs in the list by removing them from the current needs and adding them to funded needs 
+     * fails and returns false if any one of the needs in the list did not exist in currentNeeds before the method is called 
+     * a failure will result in no change to the cupboard 
+     * 
+     * @param needs List<Need>
+     * @return boolean success
+     */
+    public boolean fundNeeds(List<Need> needs) {
+        //check that all needs are in the cupboard 
+        for(Need need : needs) {
+            if(currentNeeds.get(need.getId()) == null) 
+                return false; 
+        }
+
+        //then remove them from current and add them to funded
+        for(Need need : needs) {
+            currentNeeds.remove(need.getId());
+            fundedNeeds.put(need.getId(), need); 
+        }
+
+        return true; 
+            
+    }
+
+    public boolean addToFunded(Need need){
+        return fundedNeeds.put(need.getId(), need) != null;
+    }
+
 
     // Methods
     /**
@@ -79,6 +114,49 @@ public class Cupboard {
         return new ArrayList<Need>(currentNeeds.values());
     }
 
+    public List<Need> getFundedNeeds() {
+        return new ArrayList<Need>(fundedNeeds.values()); 
+    }
+
+    /**
+     * 
+     * Retrieves the total amount of money collected 
+     * 
+     * @return float 
+     */
+    public float getTotalFundsCollected() {
+        float totalFunds = 0.0f; 
+        for(Need need : fundedNeeds.values()) {
+            totalFunds += (need.getPrice() * need.getQuantityFunded()); 
+        }
+        return totalFunds; 
+    }
+
+    /**
+     * retrieves the current surplus value 
+     * 
+     * @return float
+     */
+    public float getSurplus() {
+        return surplus; 
+    }
+
+    //!! This method exists for use in the cash out surplus functionality!!
+    /**
+     * resets the surplus value to zero 
+     */
+    public void resetSurplus() {
+        surplus = INITIAL_SURPLUS; 
+    }
+
+    /**
+     * adds the given amount to the current surplus value 
+     * @param amt
+     */
+    public void addToSurplus(float amt) {
+        surplus += amt; 
+    }
+
     /**
      * addNeed
      * Description: The function adds a new need to a map of current needs. Will not
@@ -106,40 +184,18 @@ public class Cupboard {
     }
 
     /**
-     * This function removes a need from a collection of needs and "retires" it so that it
-     * remains stored while it is no longer being used
-     * 
-     * @param needID 
-     * @return boolean based on success of removal
+     * deletes a need from the cupboard by removing it from the currentNeeds list
+     * @param need
+     * @return boolean success 
      */
-     public boolean retireNeed(String needId) {
-         if (needId != null) {
-             Need removedNeed = currentNeeds.remove(needId);
-             if(removedNeed != null) {
-                 retiredNeeds.put(needId, removedNeed); 
-                 return true; 
-             }
-         }
-         return false;
+    public boolean deleteNeed(String needID) {
+        if(needID != null) {
+            if(currentNeeds.remove(needID) != null) {
+                return true; 
+            }
+        }
+        return false; 
     }
 
-    // public boolean unretireNeed(String needID) {
-    //     if(needID != null) {
-    //         Need removedNeed = retiredNeeds.remove(needID); 
-    //         if(removedNeed != null) {
-    //             currentNeeds.put(needID, removedNeed); 
-    //             return true;
-    //         }
-    //     }
-    //     return false; 
-    // }
-
-
-    public List<Need> getRetiredNeeds() {
-        return new ArrayList<Need>(retiredNeeds.values());
-    }
-    // @Override
-    // public String toString() {
-    //     return String.format(getEntireCupboard().toString());
-    // }
+    
 }

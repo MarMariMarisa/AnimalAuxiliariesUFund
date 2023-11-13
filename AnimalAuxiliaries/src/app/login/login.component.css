@@ -1,0 +1,97 @@
+* {font-family: "Poppins", sans-serif;;
+
+}
+.homeWrapper {
+  width: 100vw;
+  height: 100vh;
+  padding-bottom: 2%;
+  background: #4F4557;
+}
+
+h1 {
+  color: #F4EEE0;
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+}
+
+h2 {
+  color: #F4EEE0;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+p {
+  color: #F4EEE0;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+.box {
+  background-color: #393646;
+  padding: 2rem;
+  margin: 1rem;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin: 3rem;
+  height: 60vh;
+}
+
+#header {
+  padding: 2%;
+  text-align: center;
+  
+  background-color: #393646;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+@font-face {
+  font-family: Poppins;
+  src: url("../../../data/Poppins-Regular.woff") format("woff");
+}
+.mission {
+  display: grid;
+  place-items: center;
+}
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+}
+.login-segment {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+.login-segment h4 {
+  text-align: left;
+  padding-bottom: 0.25rem;
+}
+.login-segment input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  outline: none;
+  background-color: #eee;
+}
+.btn {
+  background-color: #6d5d6e;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 1rem;
+  color: #F4EEE0;
+  transition: all 0.2s ease-in-out;
+  padding: 0.25rem 0.4rem 0.25rem 0.4rem;
+  margin: 0 1rem;
+}
+.btn:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}

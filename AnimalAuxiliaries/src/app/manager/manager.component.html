@@ -1,29 +1,280 @@
-<button (click)="logout()">Logout</button>
-<h2>My Needs</h2>
-<div>
-  <label for="new-need">Need name: </label>
-  <input id="new-need" #needName />
-  <button
-    type="button"
-    class="add-button"
-    (click)="add(needName.value); needName.value = ''"
-  >
-    Add need
-  </button>
-</div>
+<div class="managerContainer">
+  <app-manager-nav></app-manager-nav>
+  <div id="control">
+    <div id="searchList">
+      <label for="search-box" style="color: white">Need Search</label>
+      <input
+        #searchBox
+        id="search-box"
+        placeholder="Search here!"
+        (input)="search(searchBox.value)"
+      />
 
-<ul class="needs">
-  <li *ngFor="let need of needs">
-    <a routerLink="/manager/{{ need.id }} ">
-      <span class="badge"></span> {{ need.name }}
-    </a>
-    <button
-      type="button"
-      class="delete"
-      title="delete need"
-      (click)="delete(need)"
-    >
-      X
-    </button>
-  </li>
-</ul>
+      <ul *ngIf="searchBox.value == ''; else searchNeeds">
+        <li class="needItem" *ngFor="let need of needs">
+          <h2 class="badge">{{ need.name }}</h2>
+          <div style="display: flex; align-items: center; padding-top: 0.25rem">
+            <button
+              type="button"
+              class="deleteBtn"
+              title="delete need"
+              (click)="deleteConfirm = need"
+            >
+              Delete
+            </button>
+            <button (click)="onPress(need)" class="btn">Edit</button>
+          </div>
+          <div id="comp-render" *ngIf="need.display">
+            <div class="need-container">
+              <div class="need-align">
+                <label for="need-name">Name: </label>
+
+                <input
+                  id="need-name"
+                  [(ngModel)]="need.name"
+                  placeholder="need name"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-description">Description:</label>
+                <input
+                  id="need-description"
+                  [(ngModel)]="need.description"
+                  placeholder="need description"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-Type">Type: </label>
+                <input
+                  id="need-type"
+                  [(ngModel)]="need.type"
+                  placeholder="need type"
+                />
+              </div>
+
+              <div class="need-align">
+                <label for="need-price">Price: </label>
+                <input
+                  id="need-price"
+                  [(ngModel)]="need.price"
+                  placeholder="need price"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-quantity">Quantity: </label>
+                <input
+                  id="need-quantity"
+                  [(ngModel)]="need.quantity"
+                  placeholder="need quantity"
+                />
+              </div>
+              <!-- <div class="need-align">
+                <label for="need-quantiy-funded">Quantity Funded: </label>
+                <input
+                  id="need-quantityFunded"
+                  [(ngModel)]="need.quantityFunded"
+                  placeholder="need quantity funded"
+                />
+              </div> -->
+              <div class="need-align">
+                <label for="need-image-link">Image Link: </label>
+                <input
+                  id="need-image-link"
+                  [(ngModel)]="need.imgSrc"
+                  placeholder="need image link"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              (click)="save(need)"
+              class="btn left-zero-marg"
+              style="margin-left: 0; margin-top: 0.5rem"
+            >
+              Save
+            </button>
+          </div>
+          <div class="modal-container" *ngIf="deleteConfirm === need">
+            <div class="modal">
+              <div class="modal-header">
+                Are you sure you'd like to delete the need: {{ need.name }}
+              </div>
+              <p class="modal-desc">This action is irreversable!!</p>
+
+              <div class="modal-btns">
+                <button class="deleteBtn close-button" (click)="delete(need)">
+                  Yes!
+                </button>
+                <button
+                  class="greenBtn close-button"
+                  (click)="deleteConfirm = null"
+                >
+                  No!
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #searchNeeds id="searchList">
+      <ul>
+        <li *ngFor="let need of needs$ | async">
+          <h2 class="badge">{{ need.name }}</h2>
+          <div style="display: flex; align-items: center; padding-top: 0.25rem">
+            <button
+              type="button"
+              class="deleteBtn"
+              title="delete need"
+              (click)="deleteConfirm = need"
+            >
+              Delete
+            </button>
+            <button (click)="onPress(need)" class="btn">Edit</button>
+          </div>
+          <div id="comp-render" *ngIf="need.display">
+            <div class="need-container">
+              <div class="need-align">
+                <label for="need-name">Name: </label>
+
+                <input
+                  id="need-name"
+                  [(ngModel)]="need.name"
+                  placeholder="need name"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-description">Description:</label>
+                <input
+                  id="need-description"
+                  [(ngModel)]="need.description"
+                  placeholder="need description"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-Type">Type: </label>
+                <input
+                  id="need-type"
+                  [(ngModel)]="need.type"
+                  placeholder="need type"
+                />
+              </div>
+
+              <div class="need-align">
+                <label for="need-price">Price: </label>
+                <input
+                  id="need-price"
+                  [(ngModel)]="need.price"
+                  placeholder="need price"
+                />
+              </div>
+              <div class="need-align">
+                <label for="need-quantity">Quantity: </label>
+                <input
+                  id="need-quantity"
+                  [(ngModel)]="need.quantity"
+                  placeholder="need quantity"
+                />
+              </div>
+              <!-- <div class="need-align">
+                <label for="need-quantiy-funded">Quantity Funded: </label>
+                <input
+                  id="need-quantityFunded"
+                  [(ngModel)]="need.quantityFunded"
+                  placeholder="need quantity funded"
+                />
+              </div> -->
+              <div class="need-align">
+                <label for="need-image-link">Image Link: </label>
+                <input
+                  id="need-image-link"
+                  [(ngModel)]="need.imgSrc"
+                  placeholder="need image link"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              (click)="save(need)"
+              class="btn left-zero-marg"
+              style="margin-left: 0; margin-top: 0.5rem"
+            >
+              Save
+            </button>
+          </div>
+          <div class="modal-container" *ngIf="deleteConfirm === need">
+            <div class="modal">
+              <div class="modal-header">
+                Are you sure you'd like to delete the need: {{ need.name }}
+              </div>
+              <p class="modal-desc">This action is irreversable!!</p>
+              <div class="modal-btns">
+                <button class="deleteBtn close-button" (click)="delete(need)">
+                  Yes!
+                </button>
+                <button
+                  class="greenBtn close-button"
+                  (click)="deleteConfirm = null"
+                >
+                  No!
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </ng-template>
+    <div id="needList">
+      <h2 style="text-align: center">Create A Need</h2>
+      <ul id="inputStyles">
+        <li>
+          <label for="new-need">Name: </label
+          ><input id="new-need" #needName class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-need">Description: </label
+          ><input id="new-need" #needDescription class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-need">Type: </label
+          ><input id="new-need" #needType class="labelStyles" />
+        </li>
+        <li>
+          <label for="new-need">Price: </label
+          ><input id="new-need" #needPrice class="labelStyles" type="number" />
+        </li>
+        <li>
+          <label for="new-need">Quantity: </label
+          ><input
+            id="new-need"
+            #needQuantity
+            class="labelStyles"
+            type="number"
+          />
+        </li>
+        <li>
+          <label for="new-need">Image Link: </label
+          ><input id="new-need" #needImage class="labelStyles" type="string" />
+        </li>
+      </ul>
+      <p class="center" id="errorMessage"></p>
+      <button
+        type="button"
+        class="btn center"
+        (click)="
+          add(
+            needName.value,
+            needDescription.value,
+            needType.value,
+            needPrice.value,
+            needQuantity.value,
+            needImage.value
+          )
+        "
+        style="font-family: Poppins; align-self: flex-end"
+      >
+        Add need
+      </button>
+    </div>
+  </div>
+</div>

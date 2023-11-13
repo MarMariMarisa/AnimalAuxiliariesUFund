@@ -46,7 +46,9 @@ public class CupboardTest {
         assertNotNull(cupboard, "Cupboard is null");
         //these might fail because the get methods return a list created on the values of the maps which might make it null, i'm not sure 
         assertNotNull(cupboard.getEntireCupboard(), "Current Needs is null"); 
-        assertNotNull(cupboard.getRetiredNeeds(), "Retired needs is null"); 
+        assertNotNull(cupboard.getFundedNeeds(), "Funded Needs is null");
+        assertNotNull(cupboard.getSurplus()); 
+        //assertNotNull(cupboard.getRetiredNeeds(), "Retired needs is null"); 
 
     }
 
@@ -136,6 +138,27 @@ public class CupboardTest {
         assertTrue(cupboard.updateNeed(newNeed)); 
     }
 
+    @Test 
+    @DisplayName("Test addToSurplus") 
+    void testAddToSurplus() {
+        float add = 1.5f; 
+        cupboard.addToSurplus(add);
+        assertEquals(add, cupboard.getSurplus());
+        cupboard.addToSurplus(add);
+        assertEquals(add*2, cupboard.getSurplus());
+    }
+
+    @Test 
+    @DisplayName("Test resetSurplus")
+    void testResetSurplus() {
+        float add = 1.5f; 
+        cupboard.addToSurplus(add);
+        cupboard.resetSurplus();
+        assertEquals(0.0f, cupboard.getSurplus());
+    }
+
+
+    /*
     @Test
     @DisplayName("Test retireNeed") 
     void testRetireNeed() {
@@ -145,4 +168,5 @@ public class CupboardTest {
         assertTrue(cupboard.retireNeed(testNeeds[0].getId())); 
         assertTrue(cupboard.getRetiredNeeds().size() > oldRetiredSize); 
     }
+    */
 }

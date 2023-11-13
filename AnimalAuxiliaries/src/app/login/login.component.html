@@ -1,6 +1,75 @@
-<h2>Login</h2>
-<form (submit)="login()">
-  <label>Username:</label>
-  <input type="text" id="role" name="role" required #username />
-  <button type="submit" (click)="add(username.value)">Login</button>
-</form>
+<div class="homeWrapper">
+  <div id="header">
+    <h1>Animal Auxiliaries</h1>
+    <h2>Helping the Voiceless</h2>
+  </div>
+
+  <div class="grid">
+    <div class="box" style="grid-column: 1">
+      <div class="loginContainer">
+        <h2>Login</h2>
+        <form>
+          <section class="login-segment">
+            <h4>Username:</h4>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              #username
+              placeholder="username"
+            />
+          </section>
+
+          <section class="login-segment">
+            <h4>Password:</h4>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="password"
+              #password
+            />
+            <p id="response-text"></p>
+          </section>
+
+          <div class="loginBtns">
+            <button
+              class="btn"
+              type="submit"
+              (click)="login(username.value, password.value)"
+            >
+              Login
+            </button>
+            <button
+              class="btn"
+              type="submit"
+              (click)="add(username.value, password.value)"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+      <section style="padding-top: 1rem">
+        <h2>Our Impact</h2>
+        <p>We've helped ### Animals so far!</p>
+      </section>
+    </div>
+
+    <div class="box" style="grid-column: 2">
+      <h2>Our Mission</h2>
+      <p>
+        We are the Animal Auxiliaries! Dedicated to connecting people and
+        animals. We connect to a local animal shelter so people like you can
+        donate much needed supplies. Ready to join us? Sign up today!
+      </p>
+    </div>
+
+    <div class="box" style="grid-column: 3">
+      <h1>Recent Announcements</h1>
+      <p>Community Board Posts</p>
+    </div>
+  </div>
+</div>

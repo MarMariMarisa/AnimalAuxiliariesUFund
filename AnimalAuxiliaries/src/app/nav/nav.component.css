@@ -1,0 +1,57 @@
+* {
+  font-family: "Poppins", sans-serif;
+  background-color: #393646;
+  color: #f4eee0;
+}
+@font-face {
+  font-family: Poppins;
+  src: url("../../../data/Poppins-Regular.woff") format("woff");
+}
+
+.cart-icon {
+  transition: all 0.2s ease-in-out;
+}
+.cart-icon:hover {
+  transform: scale(1.1);
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin: auto;
+  width: 95%;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+.nav-right > * {
+  margin: 0 1rem;
+}
+
+.navBtn {
+  display: grid;
+  margin: auto;
+  background-color: #6d5d6e;
+  border-radius: 5px;
+  border-width: 1px;
+  size: 5px;
+  transition: all 0.2s ease-in-out;
+  margin-top: 0.75rem;
+  padding: 0.2rem 0.25rem 0.2rem 0.25rem;
+}
+
+.navBtn {
+  background-color: #6d5d6e;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  padding: 0.25rem 0.4rem 0.25rem 0.4rem;
+  margin: 0 1rem;
+}
+.navBtn:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}

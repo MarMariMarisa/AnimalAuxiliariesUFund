@@ -1,1 +1,29 @@
-<p>basket works!</p>
+<div class="basket-wrapper">
+  <div class="nav-wrapper"><app-nav></app-nav></div>
+
+  <ul id="basketContainer">
+    <h3 class="basketHeader">Your Basket</h3>
+    <div class="needComponent" *ngFor="let need of basket">
+      <h4 class="badge">Name: {{ need.name }}</h4>
+      <h4 class="badge">Description: {{ need.description }}</h4>
+      <h4 class="badge">Price: ${{ need.price }}</h4>
+      <h4 class="badge">Quantity: {{ need.quantity }}</h4>
+      <button class="redBtn" (click)="removeFromBasket(need)">Remove</button>
+    </div>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        padding-left: 0.5rem;
+        padding-top: 2rem;
+      "
+    >
+      <h3>Addtional Donations: $</h3>
+      <input type="number" id="surplus" placeholder="" min="0" />
+    </div>
+    <h3 style="padding-left: 0.5rem" id="totalCost"></h3>
+    <div class="checkContainer">
+      <button class="checkBtn" (click)="checkout()">Checkout</button>
+    </div>
+  </ul>
+</div>

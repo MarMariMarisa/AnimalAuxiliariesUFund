@@ -5,7 +5,9 @@ import com.ufund.api.ufundapi.model.Need;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -45,8 +47,9 @@ public class HelperFileDAO implements UserDAO {
     }
 
     private boolean save() throws IOException {
-        Helper[] helperArray = getHelpers();
-
+        try{
+            Helper[] helperArray = getHelpers();
+            
 
         // objectMapper.writeValue(new File(filename), helperArray);
         // return true;
@@ -55,7 +58,13 @@ public class HelperFileDAO implements UserDAO {
 
         objectMapper.writeValue(new File(filename), helperArray);
         return true;
+        }
+        catch(IOException e){
+            return false;
+        }
+        
     }
+
 
     public Helper[] getHelpers(){
         synchronized(helpers){
@@ -64,16 +73,31 @@ public class HelperFileDAO implements UserDAO {
         
     }
 
-    // public Helper getHelper(String username) throws IOException{
-    //     synchronized(helpers){
-    //         return helpers.get(username);
-    //     }
-    // }
+    public boolean checkCredentials(String username, String password){
+        synchronized(helpers){
+           
+            for(Helper h : getHelpers()){
+                
+                boolean usernameMatch = h.getUsername().equals(username);
+                if(usernameMatch){
+                    boolean passwordMatch = h.getPassword().equals(password);
+                    if(passwordMatch){
+                        return true;
+                    }  
+                }
+            }
+        }
+        return false;
+    }
 
     public Helper createHelper(Helper helper) throws IOException{
         synchronized(helpers){
             if(!helpers.containsKey(helper.getUsername())){
                 helpers.put(helper.getUsername(), helper);
+
+                String json = objectMapper.writeValueAsString(helper);
+                System.out.println("Helper:" + json);
+
                 save();
                 return helper;
             }
@@ -87,22 +111,25 @@ public class HelperFileDAO implements UserDAO {
                 // Setup
                 Helper h = helpers.get(username);
                 Need helperNeed;
-                Need cupboardNeed = need;
-                if(need != null){
-                    if(need.getQuantity() < 0)
-                        return null;
-                }
                 
+                // Need Viability
                 if(need != null && need.getQuantity() >= 0){
-                    // If need present, increment quantity
+                    // Need is already in basket 
                     for(Need n : h.getBasketNeeds()){
                         if(need.equals(n)){
                             helperNeed = new Need(n);
+
+                            // Check if need at max cap
+                            if(helperNeed.getQuantity() >= need.getQuantity()){
+                                return null;
+                            }
+
+                            // Add updated need to basket 
                             helperNeed.setQuantity(helperNeed.getQuantity()+1);
                             if(h.removeFromFundingBasket(n)){
                                 if(h.addToFundingBasket(helperNeed)){
-                                    cupboardNeed.setQuantity(cupboardNeed.getQuantity());
-                                    needDao.updateNeed(cupboardNeed); 
+                                    // cupboardNeed.setQuantity(cupboardNeed.getQuantity());
+                                    // needDao.updateNeed(cupboardNeed); 
                                     save();   
                                     return need;          
                                 }
@@ -111,12 +138,12 @@ public class HelperFileDAO implements UserDAO {
                         }   
                     }
 
-                    // Add raw new need, quantity is one. Update need in the cupboard to reflect changes
+                    // Need not present in basket
                     helperNeed = new Need(need);
                     helperNeed.setQuantity(1);
                     if(h.addToFundingBasket(helperNeed)){
-                        need.setQuantity(need.getQuantity());
-                        needDao.updateNeed(need); 
+                        // need.setQuantity(need.getQuantity());
+                        // needDao.updateNeed(need); 
                         save();   
                         return need;          
                     }
@@ -135,21 +162,9 @@ public class HelperFileDAO implements UserDAO {
             if(helpers.containsKey(username)){
                 Helper h = helpers.get(username);
                 Need need = needDao.getNeed(needID);
-                Need helperNeed = new Need();
-
-                
-              
+     
                 if(need != null){
-                    for(Need n : h.getBasketNeeds()){
-                    if(need.equals(n))
-                        helperNeed = n;
-                    }
                     if(h.removeFromFundingBasket(need)){
-                        //need.setNumInBaskets(need.getNumInBaskets()-1);
-                        //need.setQuantity(need.getQuantity()+1);
-                        // need.setNumInBaskets(need.getNumInBaskets()-helperNeed.getNumInBaskets());
-                        need.setQuantity(need.getQuantity()+helperNeed.getQuantity());
-                        needDao.updateNeed(need);  
                         save();  
                         return need;
                     }
@@ -161,16 +176,14 @@ public class HelperFileDAO implements UserDAO {
                     for(Need n : h.getBasketNeeds()){
                         if(n.getId().equals(needID)){
                             if(h.removeFromFundingBasket(n)){
+                                save();
                                 return n;
                             }
                             else
                                 return null;
-                        }
-                        
+                        }                       
                     }
-
-                }
-                
+                }     
             }
             return null;
         }
@@ -184,6 +197,35 @@ public class HelperFileDAO implements UserDAO {
             }
             return null;
             
+        }
+    }
+
+    public boolean checkout(String username) throws IOException{
+        synchronized(helpers){
+            Helper helper = helpers.get(username);
+            List<Need> toBeFunded = new ArrayList<Need>();
+            
+            if(helper != null){
+                // Update all the needs helper has in their basket 
+                for(Need n : helper.getBasketNeeds()){
+                    // Find need in cupboard, increment quantity, updated need 
+                    Need cupboardNeed = needDao.getNeed(n.getId());
+                    int updatedQuantity = cupboardNeed.getQuantityFunded() + n.getQuantity();
+                    cupboardNeed.setQuantityFunded(updatedQuantity);
+                    needDao.updateNeed(cupboardNeed);
+
+                    // If fully funded - send need to funded list 
+                    if(cupboardNeed.getAllFunded()){
+                        toBeFunded.add(cupboardNeed);
+                    }
+                }
+                //Fund Needs
+                needDao.fundNeeds(toBeFunded);
+
+                save();
+                return helper.checkout();      
+            }
+            return false;
         }
     }
 }

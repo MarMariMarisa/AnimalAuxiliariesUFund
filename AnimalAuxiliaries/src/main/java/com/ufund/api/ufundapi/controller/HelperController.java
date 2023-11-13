@@ -46,6 +46,13 @@ public class HelperController {
         }
     }
 
+    @GetMapping("/{username}/{password}")
+    public ResponseEntity<Boolean> checkHelperCredentials(@PathVariable String username, @PathVariable String password){
+        LOG.info("GET /fundingbasket/" + username + "/" + password);
+        return new ResponseEntity<Boolean>(helperDAO.checkCredentials(username, password), HttpStatus.OK);
+       
+    }
+
     @PostMapping("/{username}")
     public ResponseEntity<Need> addToBasket(@PathVariable String username, @RequestBody String needJson) {
 
@@ -76,7 +83,7 @@ public class HelperController {
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             Helper aHelper = objectMapper.readValue(helperJson, Helper.class);
-            Helper helper = new Helper(aHelper.getUsername());
+            Helper helper = new Helper(aHelper.getUsername(),aHelper.getPassword());
             if(helperDAO.createHelper(helper) != null){
                 return new ResponseEntity<Helper>(helper, HttpStatus.CREATED);
             }
@@ -102,6 +109,18 @@ public class HelperController {
                 return new ResponseEntity<>(need, HttpStatus.CONFLICT);
             }
             
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<Boolean> checkout(@PathVariable String username) {
+        LOG.info("DELETE/FUND /funding-basket/" + username );
+        try{
+            return new ResponseEntity<Boolean>(helperDAO.checkout(username), HttpStatus.OK);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
