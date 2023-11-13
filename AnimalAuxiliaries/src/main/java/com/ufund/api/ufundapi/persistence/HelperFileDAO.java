@@ -210,7 +210,7 @@ public class HelperFileDAO implements UserDAO {
                 for(Need n : helper.getBasketNeeds()){
                     // Find need in cupboard, increment quantity, updated need 
                     Need cupboardNeed = needDao.getNeed(n.getId());
-                    int updatedQuantity = cupboardNeed.getQuantityFunded() - n.getQuantity();
+                    int updatedQuantity = cupboardNeed.getQuantityFunded() + n.getQuantity();
                     cupboardNeed.setQuantityFunded(updatedQuantity);
                     needDao.updateNeed(cupboardNeed);
 

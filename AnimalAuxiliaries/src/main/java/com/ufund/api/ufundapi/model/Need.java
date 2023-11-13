@@ -140,7 +140,7 @@ public class Need {
      */
     public boolean fund(int quantity) {
         if(quantity <= getQuantityAvailable()) {
-            setQuantityFunded(getQuantityFunded() + quantity);
+            setQuantityFunded(getQuantityFunded());
             return true; 
         } else {
             return false; 

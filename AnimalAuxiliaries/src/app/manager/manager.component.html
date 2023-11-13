@@ -1,25 +1,5 @@
 <div class="managerContainer">
-  <div id="header">
-    <h1 style="padding: 10px">Animal Auxiliaries</h1>
-    <h3>Help the voiceless</h3>
-    <button
-      class="btn"
-      (click)="logout()"
-      style="margin-left: auto; margin-right: 2rem"
-    >
-      <p class="btn-font">Analytics</p>
-    </button>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <button class="btn" (click)="logout()">
-      <p class="btn-font">Logout</p>
-    </button>
-    <!-- <img src = '../../../data/dogCat.png' alt = "A cat sitting on top of a dog"> -->
-  </div>
+  <app-manager-nav></app-manager-nav>
   <div id="control">
     <div id="searchList">
       <label for="search-box" style="color: white">Need Search</label>
@@ -31,7 +11,7 @@
       />
 
       <ul *ngIf="searchBox.value == ''; else searchNeeds">
-        <li *ngFor="let need of needs">
+        <li class="needItem" *ngFor="let need of needs">
           <h2 class="badge">{{ need.name }}</h2>
           <div style="display: flex; align-items: center; padding-top: 0.25rem">
             <button

@@ -235,3 +235,10 @@ input[type="number"] {
   outline: none;
   background-color: #eee;
 }
+
+li {
+  list-style-type: none;
+}
+.needItem {
+  margin: 0.5rem 0;
+}

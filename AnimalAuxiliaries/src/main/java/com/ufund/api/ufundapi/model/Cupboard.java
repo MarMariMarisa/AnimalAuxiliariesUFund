@@ -59,6 +59,10 @@ public class Cupboard {
             
     }
 
+    public boolean addToFunded(Need need){
+        return fundedNeeds.put(need.getId(), need) != null;
+    }
+
 
     // Methods
     /**
@@ -112,6 +116,20 @@ public class Cupboard {
 
     public List<Need> getFundedNeeds() {
         return new ArrayList<Need>(fundedNeeds.values()); 
+    }
+
+    /**
+     * 
+     * Retrieves the total amount of money collected 
+     * 
+     * @return float 
+     */
+    public float getTotalFundsCollected() {
+        float totalFunds = 0.0f; 
+        for(Need need : fundedNeeds.values()) {
+            totalFunds += (need.getPrice() * need.getQuantityFunded()); 
+        }
+        return totalFunds; 
     }
 
     /**

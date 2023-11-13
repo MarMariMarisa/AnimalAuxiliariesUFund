@@ -39,6 +39,20 @@ public class CupboardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/surplus")
+    public ResponseEntity<Float> getSurplus(){
+        LOG.info("GET /cupboard/surplus");
+        return new ResponseEntity<Float>(needDAO.getSurplus(), HttpStatus.OK);
+    }
+
+    @GetMapping("/funded")
+    public ResponseEntity<Need[]> getFundedNeeds() {
+        LOG.info("GET /cupboard/funded");
+        return new ResponseEntity<Need[]>(needDAO.getFundedNeeds(), HttpStatus.OK);
+    }
+    
+
     @GetMapping("/{id}")
     public ResponseEntity<Need> getNeed(@PathVariable String id) throws IOException{
         LOG.info("GET /cupboard/"+id);
@@ -54,24 +68,9 @@ public class CupboardController {
         catch(IOException e){
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        
-        //for(Need i : cupboard.getEntireCupboard()) if(i.getId()== id) return new ResponseEntity<Need>(i,HttpStatus.OK);
-        
+        }  
     }
-    /**
-     * @GetMapping("/retired")
-    public ResponseEntity<List<Need>> getRetiredNeeds() {
-        LOG.info("GET /retired");
-        if (cupboard.isEmpty() == false) {
-            return new ResponseEntity<List<Need>>(cupboard.getRetiredNeeds(), HttpStatus.OK);
-        } else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-     * 
-     */
-    
-    
+     
     @GetMapping("/")
     public ResponseEntity<Need[]> searchOnName(@RequestParam String name) {
         LOG.info("GET /?name=" + name);
@@ -97,6 +96,13 @@ public class CupboardController {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping("/surplus")
+    public ResponseEntity<HttpStatus> addToSurplus(@RequestBody float money) throws IOException{
+        LOG.info("PUT /cupboard/surplus " + money);
+        needDAO.addToSurplus(money);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

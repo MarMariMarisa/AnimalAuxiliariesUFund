@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -91,7 +93,21 @@ public class HelperControllerTest {
 
         // Analyze the response
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals("user1", response.getBody().getUsername());
+        Helper h = response.getBody();
+        if(h != null){
+            String username = h.getUsername();
+            if(username != null){
+                assertEquals("user1", username);
+            }
+            else{
+                assertTrue(false);
+            }
+        }
+        else{
+            assertTrue(false);
+        }
+        
+        
     }
 
     @Test
@@ -172,5 +188,37 @@ public class HelperControllerTest {
         ResponseEntity<Need> response = helperController.removeFromBasket("user1", "need1");
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+     @Test
+    public void testCheckoutSuccess() throws IOException {
+        // Arrange
+        String username = "testUser";
+        when(mockHelperDAO.checkout(username)).thenReturn(true);
+
+        // Act
+        ResponseEntity<Boolean> responseEntity = helperController.checkout(username);
+
+        // Assert
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Boolean b = responseEntity.getBody();
+        if(b != null){
+            assertTrue(b);
+        }
+        
+    }
+
+    @Test
+    public void testCheckoutIOException() throws IOException {
+        // Arrange
+        String username = "testUser";
+        when(mockHelperDAO.checkout(username)).thenThrow(new IOException("Simulated IOException"));
+
+        // Act
+        ResponseEntity<Boolean> responseEntity = helperController.checkout(username);
+
+        // Assert
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+        assertNull(responseEntity.getBody());
     }
 }
