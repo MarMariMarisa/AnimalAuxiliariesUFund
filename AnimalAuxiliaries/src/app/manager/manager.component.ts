@@ -177,26 +177,19 @@ export class ManagerComponent implements OnInit {
   }
 
   deletePost(post: Post): void {
-    this.communityBoardService.deletePost(post.title).subscribe(() => {
-    });
+    this.communityBoardService.deletePost(post.id).subscribe(() => {});
     setTimeout(() => {
-      this.posts = this.posts.filter((h) => h.id != post.id);
+      this.posts = [...this.posts.filter((h) => h.id != post.id)];
     }, 50);
   }
-  addPost(
-    title: string,
-    content: string,
-  ): void {
+  addPost(title: string, content: string): void {
     title = title.trim();
     if (!title) {
       return;
     }
     const errorMessagePost = document.getElementById('errorMessagePost');
     console.log(content);
-    if (
-      title == '' ||
-      content == ''
-    ) {
+    if (title == '' || content == '') {
       if (errorMessagePost) {
         errorMessagePost.textContent = 'Fields cannot be empty.';
         errorMessagePost.style.color = '#c91d06';
@@ -217,5 +210,5 @@ export class ManagerComponent implements OnInit {
     this.communityBoardService.createPost(a).subscribe((post) => {
       this.posts.push(post);
     });
-}
+  }
 }
