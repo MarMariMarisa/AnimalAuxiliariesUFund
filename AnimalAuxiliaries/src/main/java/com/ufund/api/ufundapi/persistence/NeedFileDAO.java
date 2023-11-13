@@ -136,6 +136,12 @@ public class NeedFileDAO implements NeedDAO {
         }
     }
 
+    public float getSurplus(){
+        synchronized(cupboard){
+            return cupboard.getSurplus();
+        }
+    }
+
     /**
      ** {@inheritDoc}
      */

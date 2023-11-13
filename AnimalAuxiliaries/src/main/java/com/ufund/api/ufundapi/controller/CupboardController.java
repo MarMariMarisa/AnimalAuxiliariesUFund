@@ -40,6 +40,12 @@ public class CupboardController {
         }
     }
 
+    @GetMapping("/surplus")
+    public ResponseEntity<Float> getSurplus(){
+        LOG.info("GET /cupboard/surplus");
+        return new ResponseEntity<Float>(needDAO.getSurplus(), HttpStatus.OK);
+    }
+
     @GetMapping("/funded")
     public ResponseEntity<Need[]> getFundedNeeds() {
         LOG.info("GET /cupboard/funded");
