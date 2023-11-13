@@ -34,7 +34,7 @@ public class CommunityBoard {
      * @param post
      * @return boolean
      */
-    public boolean removePost(Post post) {
+    public boolean deletePost(Post post) {
         return this.communityBoard.remove(post); 
     }
 
@@ -44,6 +44,20 @@ public class CommunityBoard {
      */
     public ArrayList<Post> getCommunityBoard() {
         return this.communityBoard; 
+    }
+
+    /**
+     * Retrieves a post from the community board matching the given id
+     * returns null if the id is not found in the community board
+     * @return
+     */
+    public Post getPostOnId(String id) {
+        Post foundPost = null; 
+        for(Post post : this.communityBoard) {
+            if(post.getId().equals(id))
+                foundPost = post; 
+        }
+        return foundPost; 
     }
 
     /**
