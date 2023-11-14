@@ -1,1 +1,1 @@
-[{"name":"NeedOne","description":"asda","type":"adsf","price":2.0,"quantity":2,"allFunded":false,"percentFunded":0.0,"quantityAvailable":2,"id":"3604926b-ba0a-4801-b00e-285b0e68c182","numInBaskets":0,"quantityFunded":0}]
+[{"name":"NeedOne","description":"asda","type":"adsf","price":2.0,"quantity":2,"quantityAvailable":1,"percentFunded":50.0,"allFunded":false,"id":"3604926b-ba0a-4801-b00e-285b0e68c182","numInBaskets":0,"quantityFunded":1}]

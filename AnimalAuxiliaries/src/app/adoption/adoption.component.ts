@@ -3,6 +3,7 @@ import { Animal } from '../animal';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { AdoptionService } from '../adoption.service';
+
 @Component({
   selector: 'app-adoption',
   templateUrl: './adoption.component.html',
