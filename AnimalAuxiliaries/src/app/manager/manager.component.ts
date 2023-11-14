@@ -99,6 +99,7 @@ export class ManagerComponent implements OnInit {
     quantity: string,
     imgSrc: string
   ): void {
+    console.log(imgSrc)
     name = name.trim();
     const errorMessage = document.getElementById('errorMessage');
     let aPrice = parseInt(price);

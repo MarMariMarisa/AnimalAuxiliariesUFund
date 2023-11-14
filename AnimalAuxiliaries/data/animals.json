@@ -1,1 +1,30 @@
-[{"name":"asdfdsffdf","description":"ddd","species":"ddd","imageUrl":null,"id":"e464cc2b-63c3-4636-9edf-55635b6de24e","image":null,"isAdopted":false},{"name":"dd","description":"dd","species":"ddddd","imageUrl":null,"id":"e82a7f07-68ba-4e39-99f1-fb2209e5379e","image":null,"isAdopted":false},{"name":"Lily","description":"Lily the kitty!","species":"Cat","imageUrl":null,"id":"773cd3c8-ee7f-4c54-bc11-da9d969b4fe1","image":null,"isAdopted":false},{"name":"dd","description":"ddd","species":"ddd","imageUrl":null,"id":"1a1f7027-83c5-4ec7-b248-f42fe5ab8890","image":null,"isAdopted":false},{"name":"Nuggest","description":"Wow all these dogs look the same!","species":"Dog","imageUrl":"https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J","id":"4","image":"https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J","isAdopted":false},{"name":"Kevin","description":"One of the brothers","species":"Dog","imageUrl":"https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J","id":"5","image":"https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J","isAdopted":false},{"name":"Fluffy","description":"A cute and fluffy petAHHHHHHHHHHHHHHHHHHH","species":"Dog","imageUrl":"https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J","id":"6","image":"https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J","isAdopted":true}]
+[
+
+    {
+        "name": "Kevin",
+        "description": "One of the brothers",
+        "species": "Dog",
+        "imageUrl": "https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J",
+        "id": "3",
+        "image": "https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J",
+        "isAdopted": true
+    },
+    {
+        "name": "Nuggest",
+        "description": "Wow all these dogs look the same!",
+        "species": "Dog",
+        "imageUrl": "https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J",
+        "id": "4",
+        "image": "https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J",
+        "isAdopted": false
+    },
+    {
+        "name": "Leslie",
+        "description": "A talking bird!",
+        "species": "Bird",
+        "imageUrl": "https://as2.ftcdn.net/v2/jpg/00/26/79/13/1000_F_26791346_RVaoy8ZmPnoY57cgkkD4eqXN3ZToDieU.jpg",
+        "id": "5",
+        "image": "https://as2.ftcdn.net/v2/jpg/00/26/79/13/1000_F_26791346_RVaoy8ZmPnoY57cgkkD4eqXN3ZToDieU.jpg",
+        "isAdopted": false
+    }
+]
