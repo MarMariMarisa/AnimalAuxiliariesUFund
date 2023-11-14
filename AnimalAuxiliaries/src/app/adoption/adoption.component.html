@@ -17,11 +17,33 @@
         <button
           class="adoption"
           [disabled]="animal.isAdopted"
-          (click)="adopt(animal)"
+          (click)="adoptionConfirm = animal"
         >
           Adopt
         </button>
+        <div class="modal-container" *ngIf="adoptionConfirm === animal">
+          <div class="modal">
+            <div class="modal-header">
+              Are you sure you'd like to adopt the animal: {{ animal.name }}
+            </div>
+            <p class="modal-desc">Please remember you are promising a forever home!</p>
+
+            <div class="modal-btns">
+              <button class="greenBtn close-button" (click)="adopt(animal)">
+                Yes
+              </button>
+              <button
+                class="deleteBtn close-button"
+                (click)="adoptionConfirm = null"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
+
 </div>
