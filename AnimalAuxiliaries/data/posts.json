@@ -1,1 +1,17 @@
-[{"title":"Test Post","content":"this is a test","id":"06197fa0-3858-4267-9036-08b1ab21d08d"},{"title":"123","content":"123","id":"637ad683-2e14-408c-ace0-c1c747452ee2"},{"title":"12","content":"12","id":"9c17871d-02ef-462a-8b7e-c731cc1af568"}]
+[
+    {
+        "title": "New location",
+        "content": "We have recently moved to a new location on 1000 dog drive!",
+        "id": "06197fa0-3858-4267-9036-08b1ab21d08d"
+    },
+    {
+        "title": "Dogs in the shelter",
+        "content": "We just found an entire litter of laborador puppies looking for homes!",
+        "id": "637ad683-2e14-408c-ace0-c1c747452ee2"
+    },
+    {
+        "title": "Website maintence",
+        "content": "New website features have been added! Check out our adoption page!",
+        "id": "9c17871d-02ef-462a-8b7e-c731cc1af568"
+    }
+]
