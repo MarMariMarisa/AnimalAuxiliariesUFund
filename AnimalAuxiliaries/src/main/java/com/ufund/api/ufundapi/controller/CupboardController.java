@@ -134,9 +134,10 @@ public class CupboardController {
     @PostMapping("")
    public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need.getId());
-        if(need.getId()==""){
+        if(need.getId() == ""){
+            String image = need.getImgSrc();
             need = new Need(need.getName(),need.getDescription(),need.getType(),need.getPrice(),need.getQuantity());
-            need.setImgSrc(need.getImgSrc());  }
+            need.setImgSrc(image);  }
         try{
             if(needDAO.getNeed(need.getId()) == null){
                 if(needDAO.createNeed(need) == null)
