@@ -6,7 +6,7 @@
       <div class="fundedContainer">
         <h2 id="fundedTitle"></h2>
         <li class="needItem" *ngFor="let need of funded">
-          <h1>{{ need.name }}</h1>
+          <h2>{{ need.name }}</h2>
           <button (click)="onPress(need)" class="btn">View</button>
           <div id="comp-render" *ngIf="need.display">
             <div class="need-container">
@@ -30,7 +30,7 @@
       <div class="fundedContainer">
         <h2 id="unfundedTitle"></h2>
         <li class="needItem" *ngFor="let need of needs">
-          <h1>{{ need.name }}</h1>
+          <h2>{{ need.name }}</h2>
           <button (click)="onPress(need)" class="btn">View</button>
           <div id="comp-render" *ngIf="need.display" class="fundedContainer">
             <div class="need-container">
