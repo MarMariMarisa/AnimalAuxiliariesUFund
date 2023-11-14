@@ -1,11 +1,11 @@
 [
   {
-    "name": "12",
-    "description": "12",
-    "type": "12",
-    "price": 12.0,
-    "quantity": 9,
-    "quantityAvailable": 9,
+    "name": "Cat Toys",
+    "description": "The kitties need something to play with!",
+    "type": "Equipment",
+    "price": 6.0,
+    "quantity": 10,
+    "quantityAvailable": 10,
     "allFunded": false,
     "percentFunded": 0.0,
     "id": "7e63d7c6-7a8a-4ad7-8c4e-44a9080f007b",
@@ -13,16 +13,43 @@
     "quantityFunded": 0
   },
   {
-    "name": "12",
-    "description": "12",
-    "type": "12",
-    "price": 12.0,
-    "quantity": 9,
-    "quantityAvailable": 9,
+    "name": "Dog food",
+    "description": "We have to keep the dogs well fed!",
+    "type": "Food",
+    "price": 30.0,
+    "quantity": 5,
+    "quantityAvailable": 5,
     "allFunded": false,
     "percentFunded": 0.0,
     "id": "abcb7041-61d8-402a-a521-9e48a4b15914",
     "numInBaskets": 0,
     "quantityFunded": 0
+  },
+  {
+    "name": "Cat Litter",
+    "description": "Without this the whole place will start to reek!",
+    "type": "Cleaning",
+    "price": 15.0,
+    "quantity": 20,
+    "quantityAvailable": 15,
+    "allFunded": false,
+    "percentFunded": 0.0,
+    "id": "abcb7041-61d8-402a-a521-9e48a44",
+    "numInBaskets": 0,
+    "quantityFunded": 0
+  },
+  {
+    "name": "Dog beds",
+    "description": "A warm bed to sleep on for our pooches",
+    "type": "Equipment",
+    "price": 15.0,
+    "quantity": 20,
+    "quantityAvailable": 15,
+    "allFunded": false,
+    "percentFunded": 0.0,
+    "id": "abcb7041-61d8-40-9e48a44",
+    "numInBaskets": 0,
+    "quantityFunded": 0
   }
+
 ]
