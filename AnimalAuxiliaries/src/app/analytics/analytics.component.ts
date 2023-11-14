@@ -41,7 +41,7 @@ export class AnalyticsComponent {
         unfundedTitle.innerText = `Unfunded Needs: ${this.needs.length}`;
     }, 50);
 
-    // if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
+    if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
     // setTimeout(() => {
     //   const bars = document.getElementsByClassName('progress-bar');
     //   for (let x = 0; x < bars.length; x++) {

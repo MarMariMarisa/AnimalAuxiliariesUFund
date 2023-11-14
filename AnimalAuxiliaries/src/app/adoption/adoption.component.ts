@@ -22,7 +22,7 @@ export class AdoptionComponent {
     this.adoptionService
       .getAnimals()
       .subscribe((animals) => (this.animals = [...animals]));
-
+    if (this.auth.getUsername() == '') this.router.navigate(['/login']);
     setTimeout(() => {
       const desc = document.getElementsByClassName('description');
       for (let x = 0; x < desc.length; x++) {
@@ -34,7 +34,6 @@ export class AdoptionComponent {
     }, 45);
   }
   adopt(animal: Animal) {
-
     this.adoptionService.adopt(animal.id).subscribe((res) => res);
     setTimeout(() => {
       this.adoptionService

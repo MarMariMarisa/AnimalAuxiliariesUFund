@@ -10,19 +10,18 @@
           <button (click)="onPress(need)" class="btn">View</button>
           <div id="comp-render" *ngIf="need.display">
             <div class="need-container">
-  
               <div class="need-align">
                 <label for="need-description">Description:</label>
-                {{need.description}}
+                {{ need.description }}
               </div>
               <div class="need-align">
                 <label for="need-Type">Type: </label>
-                {{need.type}}
+                {{ need.type }}
               </div>
 
               <div class="need-align">
                 <label for="need-price">Price: </label>
-                {{need.price}}
+                ${{ need.price }}
               </div>
             </div>
           </div>
@@ -35,25 +34,23 @@
           <button (click)="onPress(need)" class="btn">View</button>
           <div id="comp-render" *ngIf="need.display" class="fundedContainer">
             <div class="need-container">
-  
               <div class="need-align">
                 <label for="need-description">Description:</label>
-                {{need.description}}
+                {{ need.description }}
               </div>
               <div class="need-align">
                 <label for="need-Type">Type: </label>
-                {{need.type}}
+                {{ need.type }}
               </div>
 
               <div class="need-align">
                 <label for="need-price">Price: </label>
-                {{need.price}}
+                ${{ need.price }}
               </div>
               <div class="need-align">
                 <label for="need-quantity">Quantity Remaining: </label>
-                {{need.quantity}}
+                {{ need.quantity }}
               </div>
-
             </div>
           </div>
         </li>
