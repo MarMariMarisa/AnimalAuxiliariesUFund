@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.AdoptableAnimal;
+import com.ufund.api.ufundapi.model.AdoptableAnimalTest;
 import com.ufund.api.ufundapi.model.Helper;
 import com.ufund.api.ufundapi.model.Need;
 
@@ -43,11 +45,116 @@ public class AdoptableAnimalDAOTest {
         testAnimals[2] = new AdoptableAnimal("Apollo", "Parrot", "Bird");
         testAnimals[2].setId("3");
 
-        when(mockObjectMapper
-            .readValue(new File("doesnt_matter.txt"), Need[].class))
-            .thenReturn(testAnimals);
-        when(mockObjectMapper
-            .readValue(new File("doesnt_matter.txt"), float.class))
-            .thenReturn((float) 0.0);    
+        when(mockObjectMapper.readValue(new File("doesn't_matter.txt"), AdoptableAnimal[].class)).thenReturn(testAnimals); 
+
+        animalDAO = new AdoptableAnimalDAO("doesn't_matter.txt", mockObjectMapper);
     }
+
+    @Test
+    public void testGetAnimals() throws IOException {
+        AdoptableAnimal[] animals = animalDAO.getAnimals(); 
+        assertEquals(animals.length, testAnimals.length); 
+        for(int i = 0; i < testAnimals.length; i++) {
+            assertEquals(testAnimals[i].getId(), animals[i].getId()); 
+        }
+    }
+
+    //Adoptable Animal create animal (animal)
+
+    @Test 
+    public void testCeateAnimal() throws IOException {
+        AdoptableAnimal animal = new AdoptableAnimal("Test animal", "description", "species"); 
+        String id = "animal4";
+        animal.setId(id); 
+
+        AdoptableAnimal result = assertDoesNotThrow(() -> animalDAO.createAnimal(animal), "Unexpected exception thrown"); 
+
+        assertNotNull(result); 
+        AdoptableAnimal actual = animalDAO.getAnimal(id); 
+        assertEquals(animal.getId(), actual.getId()); 
+        assertEquals(animal.getName(), actual.getName()); 
+        assertEquals(animal.getDescription(), actual.getDescription()); 
+        assertEquals(animal.getSpecies(), actual.getSpecies()); 
+    }
+
+    //create animal fail 
+    /*
+    @Test
+    public void testCreateAnimalFail() throws IOException {
+        AdoptableAnimal animal = null; 
+        assertFalse(animalDAO.createAnimal(animal)); 
+    }
+    */
+
+    //Animal update animal (animal) 
+
+    @Test 
+    public void testUpdateAnimal() throws IOException {
+        AdoptableAnimal animal = new AdoptableAnimal("New Animal", "Updated Description", "Updated Species");
+        animal.setId("2"); 
+
+        AdoptableAnimal result = assertDoesNotThrow(() -> animalDAO.updateAnimal(animal), "Unexpected exception throws"); 
+
+        assertNotNull(result); 
+
+        AdoptableAnimal actual = animalDAO.getAnimal("2"); 
+        assertEquals(animal, actual); 
+    }
+
+    @Test 
+    public void testUpdateAnimalNotFound() throws IOExcpetion {
+        AdoptableAnimal animal = new AdoptableAnimal("Uh oh doesn't exist", "Description", "Species"); 
+
+        AdoptableAnimal result = assertDoesNotThrow(() -> animalDAO.updateAnimal(animal), "Unexpected exception thrown"); 
+
+        assertNull(result); 
+    }
+
+    @Test
+    public void testGetAnimal() throws IOException {
+        AdoptableAnimal animal = animalDAO.getAnimal("2"); 
+        assertEquals(testAnimals[1].getId(), animal.getId()); 
+        assertEquals(testAnimals[1], animal); 
+    }
+
+    @Test 
+    public void testGetAnimalNotFound() throws IOException {
+        AdoptableAnimal animal = animalDAO.getAnimal("Oh no it doesn't exist"); 
+        assertNull(animal); 
+    }
+
+    @Test 
+    public void testDeleteAnimal() throws IOException {
+        boolean result = assertDoesNotThrow(() -> animalDAO.deleteAnimal("1"), "Unexpected exception thrown"); 
+
+        assertTrue(result); 
+        assertEquals(testAnimals.length - 1, animalDAO.getAnimals().length); 
+    }
+
+    @Test 
+    public void testDeleteAnimalNotFound() throws IOException {
+        boolean result = assertDoesNotThrow(() -> animalDAO.deleteAnimal("uh oh doesn't exist")); 
+        assertFalse(result); 
+        assertEquals(testAnimals.length, animalDAO.getAnimals().length); 
+
+    }
+
+    @Test 
+    public void testAdoptAnimal() throws IOException {
+        AdoptableAnimal animal = testAnimals[0]; 
+        boolean result = assertDoesNotThrow(() -> animalDAO.adoptAnimal(animal), "Unexpected exception thrown"); 
+
+        assertTrue(result); 
+        assertEquals(true, testAnimals[0].getIsAdopted()); 
+    }
+
+    @Test
+    public void testAdoptAnimalFail() throws IOException {
+        AdoptableAnimal animal = new AdoptableAnimal("uh oh", "description", "species"); 
+        boolean result = assertDoesNotThrow(() -> animalDAO.adoptAnimal(animal), "Unexpected exception thrown"); 
+
+        assertFalse(result); 
+    }
+
 }
+
