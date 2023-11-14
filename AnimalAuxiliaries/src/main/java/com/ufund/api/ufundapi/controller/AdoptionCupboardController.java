@@ -87,7 +87,9 @@ public class AdoptionCupboardController {
         LOG.info("POST /adoptioncupboard " + animal.getId()); 
 
         if(animal.getId().equals("")) {
+            String image = animal.getImageUrl();
             animal = new AdoptableAnimal(animal.getName(), animal.getDescription(), animal.getSpecies()); 
+            animal.setImageUrl(image);
         }
 
         try {
