@@ -46,6 +46,13 @@ public class AdoptableAnimalDAO {
 
     private boolean load() throws IOException {
         cupboard = new AdoptionCupboard(); 
+
+        AdoptableAnimal[] animals = objectMapper.readValue(new File(animalFileName), AdoptableAnimal[].class); 
+
+        for(AdoptableAnimal animal : animals) { 
+            cupboard.addAnimal(animal); 
+        }
+
         return true; 
     }
 
