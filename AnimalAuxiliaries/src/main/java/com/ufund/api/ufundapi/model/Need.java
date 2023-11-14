@@ -36,6 +36,8 @@ public class Need {
     private int numInBaskets;
     @JsonProperty("quantityFunded")
     private int quantityFunded;
+    @JsonProperty("imageSrc")
+    private String imageSrc;
 
     // Default Values
     private static final String DEFAULT_NAME = "Need";
@@ -45,6 +47,7 @@ public class Need {
     private static final int DEFAULT_QUANTITY = 1;
     //private static final int DEFAULT_NUM_IN_BASKETS = 0;
     private static final int DEFAULT_QUANTITY_FUNDED = 0;
+    private static final String DEFAULT_IMAGE = "https://as2.ftcdn.net/v2/jpg/02/49/36/69/1000_F_249366935_I9VGnZkzZRf6rku16cix3ITgjThFUaac.jpg";
 
     /**
      * Create a need with all default values
@@ -58,6 +61,7 @@ public class Need {
         this.quantity = DEFAULT_QUANTITY;
         //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
+        this.imageSrc = DEFAULT_IMAGE;
     }
 
     /**
@@ -92,6 +96,29 @@ public class Need {
         //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
     }
+    public Need(@JsonProperty("name") String name, @JsonProperty("description") String description,
+            @JsonProperty("type") String type, @JsonProperty("price") float price,
+            @JsonProperty("quantity") int quantity,@JsonProperty("imageSrc") String imageSrc) {
+
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.imageSrc = imageSrc;
+
+        if(price < 0)
+            this.price = 0;
+        else
+            this.price = price;
+
+        if(quantity < 0)
+            this.quantity = 0;
+        else
+            this.quantity = quantity;      
+
+        //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
+        this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
+    }
 
     public Need(Need otherNeed) {
         this.id = otherNeed.getId();
@@ -102,8 +129,10 @@ public class Need {
         this.quantity = otherNeed.getQuantity();
         //this.numInBaskets = otherNeed.getNumInBaskets();
         this.quantityFunded = otherNeed.getQuantityFunded();
+        this.imageSrc = otherNeed.getImageSrc();
     }
         
+
 
     // Methods
     @Override
@@ -193,6 +222,10 @@ public class Need {
      */
     public String getType() {
         return this.type;
+    }
+
+    public String getImageSrc(){
+        return this.imageSrc;
     }
 
     /**

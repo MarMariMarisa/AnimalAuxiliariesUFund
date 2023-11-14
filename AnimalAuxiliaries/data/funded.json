@@ -1,9 +1,9 @@
 [
   {
-    "name": "1",
-    "description": "1",
-    "type": "1",
-    "price": 1.0,
+    "name": "Cat tower",
+    "description": "The cats like climbing",
+    "type": "Equipment",
+    "price": 50,
     "quantity": 1,
     "quantityAvailable": 0,
     "allFunded": true,
@@ -13,10 +13,10 @@
     "quantityFunded": 1
   },
   {
-    "name": "12",
-    "description": "12",
-    "type": "12",
-    "price": 12.0,
+    "name": "Nail Clippers",
+    "description": "Some nail clippers for our friends!",
+    "type": "Tool",
+    "price": 10.0,
     "quantity": 12,
     "quantityAvailable": 0,
     "allFunded": true,
