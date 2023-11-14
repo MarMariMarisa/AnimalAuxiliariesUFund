@@ -136,7 +136,7 @@ public class CupboardController {
         LOG.info("POST /cupboard " + need.getId());
         if(need.getId()==""){
             need = new Need(need.getName(),need.getDescription(),need.getType(),need.getPrice(),need.getQuantity());
-        }
+            need.setImgSrc(need.getImgSrc());  }
         try{
             if(needDAO.getNeed(need.getId()) == null){
                 if(needDAO.createNeed(need) == null)

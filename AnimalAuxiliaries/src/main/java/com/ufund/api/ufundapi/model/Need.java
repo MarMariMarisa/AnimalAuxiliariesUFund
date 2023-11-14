@@ -96,29 +96,7 @@ public class Need {
         //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
     }
-    public Need(@JsonProperty("name") String name, @JsonProperty("description") String description,
-            @JsonProperty("type") String type, @JsonProperty("price") float price,
-            @JsonProperty("quantity") int quantity,@JsonProperty("imgSrc") String imgSrc) {
-
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.imgSrc = imgSrc;
-
-        if(price < 0)
-            this.price = 0;
-        else
-            this.price = price;
-
-        if(quantity < 0)
-            this.quantity = 0;
-        else
-            this.quantity = quantity;      
-
-        //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
-        this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
-    }
+   
 
     public Need(Need otherNeed) {
         this.id = otherNeed.getId();
@@ -195,6 +173,9 @@ public class Need {
      */
     public String getId() {
         return this.id;
+    }
+    public void setImgSrc(String src){
+        this.imgSrc = src;
     }
 
     /**
