@@ -15,7 +15,7 @@
       <h4 class="badge">Description: {{ need.description }}</h4>
       <h4 class="badge">Price: ${{ need.price }}</h4>
       <h4 class="badge">Quantity: {{ need.quantity - need.quantityFunded }}</h4>
-      <img style="max-width: 200px; margin: 0.5rem 0" src="need.imgSrc" />
+      <img style="max-width: 200px; margin: 0.5rem 0" [src]="need.imgSrc" />
       <button (click)="addToBasket(need)" class="greenBtn">
         Add to Basket
       </button>
@@ -30,7 +30,7 @@
         <h4 class="badge">
           Quantity: {{ need.quantity - need.quantityFunded }}
         </h4>
-        <img style="max-width: 200px; margin: 0.5rem 0" src="need.imgSrc" />
+        <img style="max-width: 200px; margin: 0.5rem 0" [src]="need.imgSrc" />
         <button (click)="addToBasket(need)" class="greenBtn">
           Add to Basket
         </button>
