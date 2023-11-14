@@ -10,7 +10,8 @@
     "percentFunded": 0.0,
     "id": "7e63d7c6-7a8a-4ad7-8c4e-44a9080f007b",
     "numInBaskets": 0,
-    "quantityFunded": 0
+    "quantityFunded": 0,
+    "imgSrc": "https://as2.ftcdn.net/v2/jpg/02/04/94/65/1000_F_204946584_EidyhYPyJNW3ergDsplWsUD3MV4GzJW4.jpg"
   },
   {
     "name": "Dog food",
@@ -23,7 +24,8 @@
     "percentFunded": 0.0,
     "id": "abcb7041-61d8-402a-a521-9e48a4b15914",
     "numInBaskets": 0,
-    "quantityFunded": 0
+    "quantityFunded": 0,
+    "imgSrc":"https://as1.ftcdn.net/v2/jpg/00/95/98/66/1000_F_95986679_CyCJNDY1kSU9DH2VeUoQAlH5RJPRGRXJ.jpg"
   },
   {
     "name": "Cat Litter",
@@ -36,7 +38,8 @@
     "percentFunded": 0.0,
     "id": "abcb7041-61d8-402a-a521-9e48a44",
     "numInBaskets": 0,
-    "quantityFunded": 0
+    "quantityFunded": 0,
+    "imgSrc": "https://as1.ftcdn.net/v2/jpg/04/88/40/96/1000_F_488409626_v0CdcqJu1Zb7NvDWtB1qkHMlbU6juj0n.jpg"
   },
   {
     "name": "Dog beds",
@@ -49,7 +52,8 @@
     "percentFunded": 0.0,
     "id": "abcb7041-61d8-40-9e48a44",
     "numInBaskets": 0,
-    "quantityFunded": 0
+    "quantityFunded": 0,
+    "imgSrc": "https://as1.ftcdn.net/v2/jpg/00/91/59/78/1000_F_91597814_Xr6QGML2s2ifcs0cKNz8EeCLWbkLn1LB.jpg"
   }
 
 ]

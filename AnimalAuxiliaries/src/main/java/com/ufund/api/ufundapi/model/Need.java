@@ -36,8 +36,8 @@ public class Need {
     private int numInBaskets;
     @JsonProperty("quantityFunded")
     private int quantityFunded;
-    @JsonProperty("imageSrc")
-    private String imageSrc;
+    @JsonProperty("imgSrc")
+    private String imgSrc;
 
     // Default Values
     private static final String DEFAULT_NAME = "Need";
@@ -61,7 +61,7 @@ public class Need {
         this.quantity = DEFAULT_QUANTITY;
         //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
-        this.imageSrc = DEFAULT_IMAGE;
+        this.imgSrc = DEFAULT_IMAGE;
     }
 
     /**
@@ -98,13 +98,13 @@ public class Need {
     }
     public Need(@JsonProperty("name") String name, @JsonProperty("description") String description,
             @JsonProperty("type") String type, @JsonProperty("price") float price,
-            @JsonProperty("quantity") int quantity,@JsonProperty("imageSrc") String imageSrc) {
+            @JsonProperty("quantity") int quantity,@JsonProperty("imgSrc") String imgSrc) {
 
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
         this.type = type;
-        this.imageSrc = imageSrc;
+        this.imgSrc = imgSrc;
 
         if(price < 0)
             this.price = 0;
@@ -129,7 +129,7 @@ public class Need {
         this.quantity = otherNeed.getQuantity();
         //this.numInBaskets = otherNeed.getNumInBaskets();
         this.quantityFunded = otherNeed.getQuantityFunded();
-        this.imageSrc = otherNeed.getImageSrc();
+        this.imgSrc = otherNeed.getImgSrc();
     }
         
 
@@ -224,8 +224,8 @@ public class Need {
         return this.type;
     }
 
-    public String getImageSrc(){
-        return this.imageSrc;
+    public String getImgSrc(){
+        return this.imgSrc;
     }
 
     /**
