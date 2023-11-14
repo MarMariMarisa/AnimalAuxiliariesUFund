@@ -11,18 +11,8 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Tyler Combs
 - Sarah Payne
 
-# Sprint 2 Release
-# Improvements with granted 10/26 midnight release
-These updates were made after the demo, these changes are not reflected in our demo video: https://youtu.be/7ascZSNXMg8?feature=shared
-The team has updated the logic so that any helper can now login. Any username other than admin will be a helper and their funding basket will be saved and unique to them. 
-The team has updated cupboard/basket logic so that now when a need is added to a basket, the quantity of that need in the cupboard is reduced by one. A helper can add a need multiple times into their cupboard (ex: fund 5 dog food), but will not be able to add the need more times than the cupboard is offering. When a need has been fully placed in baskets, no helpers will be able to add need to their basket(ex: cat food has 5 quantity, once 5 of this need is put in baskets, it can no longer be added to a basket). These changes are reflected across all users.
-Managers no longer see or edit a needs ID
-
-Known Bugs/Disclaimers 
-Checkout is not implemented - team was under impression it was not required for this sprint. 
-When needs are either deleted or modified, they will still remain in helpers baskets without those changes reflected. The team made this decision as they felt in the future when a user selects to checkout, that is when these changes would be reflected and the helper would be notified. 
-In this case though, it is still possible for a helper to delete the need from their basket.
-If a need is searched for and then added to basket, followed by removing the search query, the need quantity in the cupboard is not reflected until user signs in and out. This could allow someone to add extra amounts of a need if used in this fashion.
+# Sprint 3 Release 
+We do not believe there are any bugs with the program. We want to note that the pull requests from this sprint do not contain comments as all of the discussion regarding the merging of code was done in slack. We felt it was easier for communication to stay in once place - so we did not add comments to our pull requests, but we did both communicate about the pull requests, as well as make use of their merge feature.
 
 ## Prerequisites
 
