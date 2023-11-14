@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -220,5 +222,38 @@ public class HelperControllerTest {
         // Assert
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
         assertNull(responseEntity.getBody());
+    }
+    @Test
+    public void testAdoptAnimal() throws IOException {
+        String animalId = "123";
+        when(mockHelperDAO.adoptAnimal(animalId)).thenReturn(true);
+
+        ResponseEntity<Boolean> response = helperController.adoptAnimal(animalId);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertTrue(response.getBody());
+    }
+
+    @Test
+    public void testAdoptAnimalFail() throws IOException {
+        String animalId = "456";
+        when(mockHelperDAO.adoptAnimal(animalId)).thenReturn(false);
+
+        ResponseEntity<Boolean> response = helperController.adoptAnimal(animalId);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertFalse(response.getBody());
+    }
+
+    @Test
+    public void testAdoptAnimalIOE() throws IOException {
+        String animalId = "789";
+        when(mockHelperDAO.adoptAnimal(animalId)).thenThrow(new IOException("Simulated IOException"));
+
+        ResponseEntity<Boolean> response = helperController.adoptAnimal(animalId);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 }

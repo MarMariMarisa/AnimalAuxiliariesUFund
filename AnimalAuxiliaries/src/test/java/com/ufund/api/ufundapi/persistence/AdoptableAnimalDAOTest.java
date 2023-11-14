@@ -146,5 +146,10 @@ public class AdoptableAnimalDAOTest {
         assertFalse(result); 
     }
 
+    @Test
+    public void testFindAnimalOnSpecies() throws IOException {
+       AdoptableAnimal[] animals = animalDAO.findAnimalOnSpecies("Bird");
+       assertEquals(1, animals.length);
+    }
 }
 

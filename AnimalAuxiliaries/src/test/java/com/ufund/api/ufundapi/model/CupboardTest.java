@@ -179,6 +179,10 @@ public class CupboardTest {
     @Test
     public void testGetNeedOnIdNull(){
         assertNull(cupboard.getNeedOnID("doesnt exist"));
+        assertNull(cupboard.getNeedOnID(null));
+        List<Need> needs = cupboard.getNeedsOnName(null);
+        int size = needs.size();
+        assertTrue(size == 0);
     }
 
     @Test

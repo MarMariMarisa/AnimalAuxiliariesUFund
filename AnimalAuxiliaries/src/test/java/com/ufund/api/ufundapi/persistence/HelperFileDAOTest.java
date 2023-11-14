@@ -87,10 +87,10 @@ public class HelperFileDAOTest {
     public void testAddToBasket() throws IOException {
         when(mockNeedFileDAO.getNeed(testNeeds[0].getId())).thenReturn(testNeeds[0]);
 
-        //assertTrue(testHelpers[0].addToFundingBasket(testNeeds[0]));
-        Need need = helperFileDAO.addToBasket(testHelpers[0].getUsername(), testNeeds[0]);
-        
-        assertEquals(testNeeds[0].getId(), need.getId());     
+        Need need = helperFileDAO.addToBasket(testHelpers[0].getUsername(), testNeeds[0]);   
+        assertEquals(testNeeds[0].getId(), need.getId());    
+        need = helperFileDAO.addToBasket(testHelpers[0].getUsername(), testNeeds[0]);   
+        assertEquals(testNeeds[0].getId(), need.getId()); 
     }
 
     @Test
@@ -103,7 +103,11 @@ public class HelperFileDAOTest {
     @Test
     public void testAddToBasketNeedDoesNotExist() throws IOException {
         Need result = helperFileDAO.addToBasket("user1", null);
+        assertEquals(null, result);
 
+        Need test = new Need();
+        test.setQuantity(-1);
+        result = helperFileDAO.addToBasket("user1", test);
         assertEquals(null, result);
     }
 
@@ -136,6 +140,17 @@ public class HelperFileDAOTest {
     public void testRemoveFromBasketNeedDoesNotExist() throws IOException {
         when(mockNeedFileDAO.getNeed("fakeNeed")).thenReturn(null);
         Need result = helperFileDAO.removeFromBasket(testHelpers[0].getUsername(), "fakeNeed");
+
+        // Assert that the result is null since the need doesn't exist
+        assertEquals(null, result);
+        
+        result = helperFileDAO.removeFromBasket(testHelpers[0].getUsername(), "fakeNeed");
+    }
+
+    @Test
+    public void testRemoveFromBasketNeedNull() throws IOException {
+        when(mockNeedFileDAO.getNeed("fakeNeed")).thenReturn(null);
+        Need result = helperFileDAO.removeFromBasket(testHelpers[0].getUsername(), null);
 
         // Assert that the result is null since the need doesn't exist
         assertEquals(null, result);
@@ -181,8 +196,10 @@ public class HelperFileDAOTest {
         // Verify
         assertNotNull(result);
         // This is subtracted here because our front end actually handles the quantity decrementing
-        assertEquals(4, result.getQuantity()-1);
+        assertEquals(4, result.getQuantity()-1);      
     }
+
+     
 
     @Test
     public void testRemoveFromBasketWhenNeedIsNotInNeedDAO() throws IOException {
@@ -247,5 +264,15 @@ public class HelperFileDAOTest {
         when(mockAdoptableAnimalDAO.adoptAnimal(animal)).thenReturn(true);
         when(mockAdoptableAnimalDAO.getAnimal(animal.getId())).thenReturn(animal);
         assertTrue(helperFileDAO.adoptAnimal(animal.getId()));
+    }
+
+    @Test
+    public void testRemoveFromBasketUnsuccessfulRemoval() throws IOException {
+        String username = "testUser";
+        String needId = "123";
+
+        Need removedNeed = helperFileDAO.removeFromBasket(username, needId);
+
+        assertNull(removedNeed);
     }
 }

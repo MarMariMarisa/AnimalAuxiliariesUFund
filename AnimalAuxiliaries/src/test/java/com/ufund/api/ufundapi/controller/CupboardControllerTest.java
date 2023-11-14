@@ -245,5 +245,13 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
+    @Test
+    public void testGetNeed_IOError() throws IOException {
+        String needId = "123";
+        when(mockNeedDAO.getNeed(needId)).thenThrow(new IOException("Simulated IOException"));
 
+        ResponseEntity<Need> response = cupboardController.getNeed(needId);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
 }   
