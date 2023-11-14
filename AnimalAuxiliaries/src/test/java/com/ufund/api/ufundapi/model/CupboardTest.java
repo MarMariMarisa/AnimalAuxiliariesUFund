@@ -158,15 +158,58 @@ public class CupboardTest {
     }
 
 
-    /*
     @Test
-    @DisplayName("Test retireNeed") 
-    void testRetireNeed() {
-        assertFalse(cupboard.retireNeed("null")); 
+    public void testGetTotalFundsCollected() {
+        Need need1 = new Need("Item1", "Description1", "Category1", 20.0f, 5);
+        need1.setQuantityFunded(3);
+        Need need2 = new Need("Item2", "Description2", "Category2", 15.0f, 2);
+        need2.setQuantityFunded(2);
 
-        int oldRetiredSize = cupboard.getRetiredNeeds().size(); 
-        assertTrue(cupboard.retireNeed(testNeeds[0].getId())); 
-        assertTrue(cupboard.getRetiredNeeds().size() > oldRetiredSize); 
+        cupboard.addToFunded(need1);
+        cupboard.addToFunded(need2);
+
+        float expectedTotalFunds = (need1.getPrice() * need1.getQuantityFunded()) +
+                                   (need2.getPrice() * need2.getQuantityFunded());
+
+        float actualTotalFunds = cupboard.getTotalFundsCollected();
+
+        assertEquals(expectedTotalFunds, actualTotalFunds, 0.001f);
     }
-    */
+
+    @Test
+    public void testGetNeedOnIdNull(){
+        assertNull(cupboard.getNeedOnID("doesnt exist"));
+    }
+
+    @Test
+    public void testDeleteNeed() {
+        Need testNeed = new Need("TestItem", "TestDescription", "TestCategory", 10.0f, 3);
+        testNeed.setID("testNeedID");
+        cupboard.addNeed(testNeed);
+        boolean result = cupboard.deleteNeed("testNeedID");
+        assertTrue(result);
+    }
+
+    @Test
+    public void testDeleteNeedWithInvalidID() {
+        boolean result = cupboard.deleteNeed(null);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testAddToFundedFalse() {
+        Need testNeed = new Need("TestItem", "TestDescription", "TestCategory", 10.0f, 3);
+        testNeed.setID("testNeedID");
+        boolean result = cupboard.addToFunded(testNeed);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testAddToFundedTrue() {
+        Need testNeed = new Need("TestItem", "TestDescription", "TestCategory", 10.0f, 3);
+        testNeed.setID("testNeedID");
+        cupboard.addToFunded(testNeed);
+        boolean result = cupboard.addToFunded(testNeed);
+        assertTrue(result);
+    }
 }
