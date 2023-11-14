@@ -1,5 +1,6 @@
 * {
   list-style-type: none;
+  
 }
 .analytics-container {
   background-color: #4f4557;
@@ -31,7 +32,24 @@
   display: grid;
   place-items: center;
   padding-top: 2rem;
+  color: #f4eee0;
 }
 .fundedContainer {
   padding: 0.5rem 2rem;
+  background-color: #393646;
+  margin: 5px;
+  border-radius: 10px;
+  height: fit-content;
+  justify-content: right;
+}
+.btn {
+  background-color: #6d5d6e;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 1rem;
+  color: black;
+  transition: all 0.2s ease-in-out;
+  padding: 0.25rem 0.4rem 0.25rem 0.4rem;
+  margin: 0 1rem;
+  color: #f4eee0;
 }

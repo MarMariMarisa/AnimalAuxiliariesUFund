@@ -57,4 +57,7 @@ export class AnalyticsComponent {
   getFunded() {
     this.fund.getFunded().subscribe((funded) => (this.funded = [...funded]));
   }
+  onPress(need: Need) {
+    need.display = !need.display;
+  }
 }

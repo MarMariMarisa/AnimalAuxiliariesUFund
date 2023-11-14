@@ -7,23 +7,55 @@
         <h2 id="fundedTitle"></h2>
         <li class="needItem" *ngFor="let need of funded">
           <h1>{{ need.name }}</h1>
-          <!-- <div class="progress-bar">
-            <div class="progress"></div>
-          </div> -->
+          <button (click)="onPress(need)" class="btn">View</button>
+          <div id="comp-render" *ngIf="need.display">
+            <div class="need-container">
+  
+              <div class="need-align">
+                <label for="need-description">Description:</label>
+                {{need.description}}
+              </div>
+              <div class="need-align">
+                <label for="need-Type">Type: </label>
+                {{need.type}}
+              </div>
+
+              <div class="need-align">
+                <label for="need-price">Price: </label>
+                {{need.price}}
+              </div>
+            </div>
+          </div>
         </li>
       </div>
       <div class="fundedContainer">
         <h2 id="unfundedTitle"></h2>
         <li class="needItem" *ngFor="let need of needs">
-          <h1>{{ need.name }} - Remaining: {{ need.quantity }}</h1>
-          <!-- <div class="alt-progress-bar">
-            <div
-              class="alt-progress"
-              style="width:  {{ (need.quantityFunded * 100) / need.quantity }}%"
-            >
-              {{ ((need.quantityFunded * 100) / need.quantity).toFixed(2) }}%
+          <h1>{{ need.name }}</h1>
+          <button (click)="onPress(need)" class="btn">View</button>
+          <div id="comp-render" *ngIf="need.display" class="fundedContainer">
+            <div class="need-container">
+  
+              <div class="need-align">
+                <label for="need-description">Description:</label>
+                {{need.description}}
+              </div>
+              <div class="need-align">
+                <label for="need-Type">Type: </label>
+                {{need.type}}
+              </div>
+
+              <div class="need-align">
+                <label for="need-price">Price: </label>
+                {{need.price}}
+              </div>
+              <div class="need-align">
+                <label for="need-quantity">Quantity Remaining: </label>
+                {{need.quantity}}
+              </div>
+
             </div>
-          </div> -->
+          </div>
         </li>
       </div>
     </div>
