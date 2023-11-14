@@ -242,6 +242,14 @@
               type="number"
             />
           </li>
+          <li>
+            <label for="new-need">Image URL: </label
+            ><input
+              id="new-need"
+              #needImageURL
+              class="labelStyles"
+            />
+          </li>
         </ul>
         <p class="center" id="errorMessage"></p>
         <button
@@ -254,7 +262,7 @@
               needType.value,
               needPrice.value,
               needQuantity.value,
-              ''
+              needImageURL.value
             )
           "
           style="font-family: Poppins; align-self: flex-end"
