@@ -19,30 +19,42 @@ export class AnalyticsComponent {
   ) {}
   funded: Need[] = [];
   needs: Need[] = [];
+  val = 0;
   ngOnInit(): void {
     this.getFunded();
     this.cupboard.getEntireCupboard().subscribe((cupboard) => {
       this.needs = [...cupboard];
     });
+    this.cupboard.getSurplus().subscribe((val) => (this.val = val));
     const surp = document.getElementById('surplus');
     if (surp) {
-      surp.innerText = `Surplus Raised: $${0}`;
+      setTimeout(() => {
+        surp.innerText = `Surplus Raised: $${this.val.toFixed(2)}`;
+      }, 50);
     }
-    // if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
     setTimeout(() => {
-      const bars = document.getElementsByClassName('progress-bar');
-      for (let x = 0; x < bars.length; x++) {
-        const bar = <HTMLElement>bars[x].getElementsByClassName('progress')[0];
-        const percentage = `${
-          (this.funded[x].quantity / this.funded[x].quantityFunded) * 100
-        }%`;
-        bar.innerText = percentage;
-        bar.style.width = percentage;
-      }
+      const fundedTitle = document.getElementById('fundedTitle');
+      const unfundedTitle = document.getElementById('unfundedTitle');
+      if (fundedTitle)
+        fundedTitle.innerText = `Funded Needs: ${this.funded.length}`;
+      if (unfundedTitle)
+        unfundedTitle.innerText = `Unfunded Needs: ${this.needs.length}`;
     }, 50);
+
+    // if (this.auth.getUsername() != 'admin') this.router.navigate(['/login']);
+    // setTimeout(() => {
+    //   const bars = document.getElementsByClassName('progress-bar');
+    //   for (let x = 0; x < bars.length; x++) {
+    //     const bar = <HTMLElement>bars[x].getElementsByClassName('progress')[0];
+    //     const percentage = `${
+    //       (this.funded[x].quantity / this.funded[x].quantityFunded) * 100
+    //     }%`;
+    //     bar.innerText = percentage;
+    //     bar.style.width = percentage;
+    //   }
+    // }, 50);
   }
   getFunded() {
     this.fund.getFunded().subscribe((funded) => (this.funded = [...funded]));
-    console.log(this.funded);
   }
 }
