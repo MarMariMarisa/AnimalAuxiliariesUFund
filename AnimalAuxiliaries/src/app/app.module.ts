@@ -39,6 +39,7 @@ import { AdoptionComponent } from './adoption/adoption.component';
     PostComponent,
     AnalyticsComponent,
     ManagerNavComponent,
+    AdoptionComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   bootstrap: [AppComponent],

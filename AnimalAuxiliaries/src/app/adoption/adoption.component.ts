@@ -15,5 +15,11 @@ export class AdoptionComponent {
     private router: Router
   ) {}
   animals: Animal[] = [];
-  ngOnInit(): void {}
+  animal: Animal;
+  ngOnInit(): void {
+    this.adoptionService
+      .getAnimals()
+      .subscribe((animals) => (this.animals = [...animals]));
+    console.log(this.animals);
+  }
 }
