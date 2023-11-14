@@ -1,14 +1,27 @@
 <div class="adoption-wrapper">
   <div class="nav-wrapper"><app-nav></app-nav></div>
-  <div *ngFor="let animal of animals">
-    <h3>name</h3>
-    <h3>description</h3>
-    <h3>name</h3>
-    <img
-      src="https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J"
-      style="max-width: 200px"
-      alt=""
-    />
-    <!-- <button class="adoption" (click)="adopt(animal)">Adopt</button> -->
+  <div class="animals-wrapper">
+    <div *ngFor="let animal of animals">
+      <div
+        class="animal-container"
+        [ngStyle]="{ opacity: animal.isAdopted ? '0.5' : '1' }"
+      >
+        <h3>{{ animal.name }} - {{ animal.species }}</h3>
+        <h3 class="description">{{ animal.description }}</h3>
+
+        <img
+          src="{{ animal.image }}"
+          style="max-width: 200px"
+          alt="{{ animal.name }}"
+        />
+        <button
+          class="adoption"
+          [disabled]="animal.isAdopted"
+          (click)="adopt(animal)"
+        >
+          Adopt
+        </button>
+      </div>
+    </div>
   </div>
 </div>

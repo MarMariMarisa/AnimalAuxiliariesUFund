@@ -1,6 +1,8 @@
 package com.ufund.api.ufundapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -95,5 +97,51 @@ public class AdoptableAnimalTest {
         assertEquals(expectedSpecies, animal.getSpecies());
 
     }
+
+    @Test
+    public void testEqualsSameObject() {
+        AdoptableAnimal animal = new AdoptableAnimal();
+        assertTrue(animal.equals(animal));
+    }
+
+    @Test
+    public void testEqualsNullObject() {
+        AdoptableAnimal animal = new AdoptableAnimal();
+        assertFalse(animal.equals(null));
+    }
+
+    @Test
+    public void testEqualsDifferentClass() {
+        AdoptableAnimal animal = new AdoptableAnimal();
+        Object otherObject = new Object();
+        assertFalse(animal.equals(otherObject));
+    }
+
+    @Test
+    public void testEqualsSameId() {
+        AdoptableAnimal animal1 = new AdoptableAnimal();
+        AdoptableAnimal animal2 = new AdoptableAnimal();
+        animal1.setId("id");
+        animal2.setId("id");
+
+        assertTrue(animal1.equals(animal2));
+    }
+
+    @Test
+    public void testEqualsDifferentId() {
+        AdoptableAnimal animal1 = new AdoptableAnimal();
+        AdoptableAnimal animal2 = new AdoptableAnimal();
+
+        assertFalse(animal1.equals(animal2));
+    }
     
+    @Test
+    public void testSetImageUrl() {
+        AdoptableAnimal animal1 = new AdoptableAnimal();
+        String imageUrl = "https://example.com/image.jpg";
+
+        animal1.setImageUrl(imageUrl);
+
+        assertEquals(imageUrl, animal1.getImageUrl());
+    }
 }

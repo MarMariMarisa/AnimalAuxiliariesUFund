@@ -110,6 +110,11 @@ export class BasketComponent {
     let container = document.getElementById('basketContainer');
     if (container)
       container.innerHTML =
-        '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
+        '<h2 style="color:green;padding:0.5rem 1rem 0.5rem 1rem">Thank you for your contributions!</h2>';
+    setTimeout(() => {
+      if (container)
+        container.innerHTML =
+          '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
+    }, 1000);
   }
 }

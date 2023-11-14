@@ -216,58 +216,139 @@
         </li>
       </ul>
     </ng-template>
-    <div id="needList">
-      <h2 style="text-align: center">Create A Need</h2>
-      <ul id="inputStyles">
-        <li>
-          <label for="new-need">Name: </label
-          ><input id="new-need" #needName class="labelStyles" />
-        </li>
-        <li>
-          <label for="new-need">Description: </label
-          ><input id="new-need" #needDescription class="labelStyles" />
-        </li>
-        <li>
-          <label for="new-need">Type: </label
-          ><input id="new-need" #needType class="labelStyles" />
-        </li>
-        <li>
-          <label for="new-need">Price: </label
-          ><input id="new-need" #needPrice class="labelStyles" type="number" />
-        </li>
-        <li>
-          <label for="new-need">Quantity: </label
-          ><input
-            id="new-need"
-            #needQuantity
-            class="labelStyles"
-            type="number"
-          />
-        </li>
-      </ul>
-      <p class="center" id="errorMessage"></p>
-      <button
-        type="button"
-        class="btn center"
-        (click)="
-          add(
-            needName.value,
-            needDescription.value,
-            needType.value,
-            needPrice.value,
-            needQuantity.value,
-            ''
-          )
-        "
-        style="font-family: Poppins; align-self: flex-end"
-      >
-        Add need
-      </button>
+    <div>
+      <div id="needList">
+        <h2 style="text-align: center">Create A Need</h2>
+        <ul id="inputStyles">
+          <li>
+            <label for="new-need">Name: </label
+            ><input id="new-need" #needName class="labelStyles" />
+          </li>
+          <li>
+            <label for="new-need">Description: </label
+            ><input id="new-need" #needDescription class="labelStyles" />
+          </li>
+          <li>
+            <label for="new-need">Type: </label
+            ><input id="new-need" #needType class="labelStyles" />
+          </li>
+          <li>
+            <label for="new-need">Price: </label
+            ><input
+              id="new-need"
+              #needPrice
+              class="labelStyles"
+              type="number"
+            />
+          </li>
+          <li>
+            <label for="new-need">Quantity: </label
+            ><input
+              id="new-need"
+              #needQuantity
+              class="labelStyles"
+              type="number"
+            />
+          </li>
+        </ul>
+        <p class="center" id="errorMessage"></p>
+        <button
+          type="button"
+          class="btn center"
+          (click)="
+            add(
+              needName.value,
+              needDescription.value,
+              needType.value,
+              needPrice.value,
+              needQuantity.value,
+              ''
+            )
+          "
+          style="font-family: Poppins; align-self: flex-end"
+        >
+          Add need
+        </button>
+      </div>
+      <div id="needList">
+        <h2 style="text-align: center">Create An Animal</h2>
+        <ul id="inputStyles">
+          <li>
+            <label for="new-animal">Name: </label
+            ><input id="new-animal" #animalName class="labelStyles" />
+          </li>
+          <li>
+            <label for="new-animal">Description: </label
+            ><input id="new-animal" #animalDescription class="labelStyles" />
+          </li>
+          <li>
+            <label for="new-animal">Species: </label
+            ><input id="new-animal" #animalSpecies class="labelStyles" />
+          </li>
+          <li>
+            <label for="new-animal">Image: </label
+            ><input id="new-animal" #animalImage class="labelStyles" />
+          </li>
+        </ul>
+        <button
+          type="button"
+          class="btn center"
+          (click)="
+            addAnimal(
+              animalName.value,
+              animalDescription.value,
+              animalSpecies.value,
+              animalImage.value,
+              false
+            )
+          "
+          style="font-family: Poppins; align-self: flex-end"
+        >
+          Add Animal
+        </button>
+        <ul style="margin-top: 0.5rem">
+          <li *ngFor="let animal of animals">
+            {{ animal.name }}
+            <button
+              type="button"
+              class="deleteBtn"
+              title="delete post"
+              (click)="deleteConfirmAnimal = animal"
+            >
+              Delete
+            </button>
+            <div class="modal-container" *ngIf="deleteConfirmAnimal === animal">
+              <div class="modal">
+                <div class="modal-header">
+                  Are you sure you'd like to delete the animal:
+                  {{ animal.name }}
+                </div>
+                <p class="modal-desc">This action is irreversable!!</p>
+                <div class="modal-btns">
+                  <button
+                    class="deleteBtn close-button"
+                    (click)="deleteAnimal(animal)"
+                  >
+                    Yes!
+                  </button>
+                  <button
+                    class="greenBtn close-button"
+                    (click)="deleteConfirmAnimal = null"
+                  >
+                    No!
+                  </button>
+                </div>
+              </div>
+            </div>
+            <p class="center" id="errorMessageAnimal"></p>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div id="needList">
       <h2 style="text-align: center">Create A Post</h2>
-      <ul id="inputStyles">
+      <ul style="margin-top: 0.5rem" id="inputStyles">
         <li>
           <label for="new-post">Title: </label
           ><input id="new-post" #postTitle class="labelStyles" />
@@ -286,7 +367,7 @@
       >
         Add Post
       </button>
-      <ul>
+      <ul style="margin-top: 0.5rem">
         <li *ngFor="let post of posts">
           {{ post.title }}
           <button

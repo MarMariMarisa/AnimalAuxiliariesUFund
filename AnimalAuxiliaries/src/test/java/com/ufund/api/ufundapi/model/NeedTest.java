@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 public class NeedTest {
@@ -175,5 +176,62 @@ public class NeedTest {
         assertEquals(n, n2);
     }
 
-    
+    @Test
+    public void testEqualsSameID() {
+        Need need1 = new Need("Item1", "Description1", "Category1", 10.0f, 2);
+        need1.setID("testID");
+
+        Need need2 = new Need("Item2", "Description2", "Category2", 15.0f, 3);
+        need2.setID("testID");
+
+        assertTrue(need1.equals(need2));
+        assertTrue(need2.equals(need1));
+    }
+
+    @Test
+    public void testEqualsDifferentID() {
+        Need need1 = new Need("Item1", "Description1", "Category1", 10.0f, 2);
+        need1.setID("testID1");
+
+        Need need2 = new Need("Item2", "Description2", "Category2", 15.0f, 3);
+        need2.setID("testID2");
+
+        assertFalse(need1.equals(need2));
+        assertFalse(need2.equals(need1));
+    }
+
+    @Test
+    public void testEqualsSameInstance() {
+        Need need = new Need("Item", "Description", "Category", 20.0f, 4);
+        need.setID("testID");
+
+        assertTrue(need.equals(need));
+    }
+
+    @Test
+    public void testEqualsDifferentClass() {
+        Need need = new Need("Item", "Description", "Category", 20.0f, 4);
+        need.setID("testID");
+
+        String differentClassObject = "Not a Need object";
+
+        assertFalse(need.equals(differentClassObject));
+    }
+
+    @Test
+    public void testEqualsNull() {
+        Need need = new Need("Item", "Description", "Category", 20.0f, 4);
+        need.setID("testID");
+
+        assertFalse(need.equals(null));
+    }
+
+    @Test
+    public void testNeedExtraneosValues(){
+        Need need = new Need("Item", "Description", "Category", -100.0f, 4);
+        Need need2 = new Need("Item", "Description", "Category", 20.0f, -100);
+        assertEquals(0, need.getPrice());
+        assertEquals(0, need2.getQuantity());
+
+    }
 }

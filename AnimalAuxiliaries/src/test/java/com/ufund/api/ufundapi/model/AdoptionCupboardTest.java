@@ -1,8 +1,10 @@
 package com.ufund.api.ufundapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,6 +136,14 @@ public class AdoptionCupboardTest {
     }
 
     @Test
+    public void getOnId(){
+        AdoptableAnimal expectedAnimal = testAnimals[1];
+        AdoptableAnimal result = adoptioncupboard.getAdoptableAnimalOnId(expectedAnimal.getId());
+        assertEquals(expectedAnimal, result);
+
+    }
+
+    @Test
     public void testGetAdoptableAnimalOnIdNull() {
         assertNull(adoptioncupboard.getAdoptableAnimalOnId(null));
     }
@@ -159,6 +169,11 @@ public class AdoptionCupboardTest {
             assertEquals(animal, adoptioncupboard.getAnimals().get(i)); 
             i++; 
         }
+
+        AdoptableAnimal animal = new AdoptableAnimal();
+        
+        assertTrue(adoptioncupboard.addAnimal(animal));
+        assertFalse(adoptioncupboard.addAnimal(animal));
     }
 
     @Test
@@ -196,6 +211,7 @@ public class AdoptionCupboardTest {
 
         //Analyze
         assertEquals(true, result);
+        assertFalse(adoptioncupboard.deleteAnimal("not null but not real"));
 
     }
 
