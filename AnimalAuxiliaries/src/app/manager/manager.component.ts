@@ -39,7 +39,9 @@ export class ManagerComponent implements OnInit {
     this.getNeeds();
     this.getCommunityBoard();
     this.posts$ = this.communityBoardService.getCommunityBoard();
-    this.animals$ = this.adoptionService.getAnimals();
+    this.adoptionService
+      .getAnimals()
+      .subscribe((animals) => (this.animals = [...animals]));
     this.needs$ = this.searchTerms.pipe(
       distinctUntilChanged(),
       switchMap((term: string) => this.needService.searchNeeds(term))
@@ -230,14 +232,26 @@ export class ManagerComponent implements OnInit {
       this.animals = [...this.animals.filter((h) => h.id != animal.id)];
     }, 50);
   }
-  addAnimal(name: string, description: string,species:string,image:string,isAdopted:boolean): void {
+  addAnimal(
+    name: string,
+    description: string,
+    species: string,
+    image: string,
+    isAdopted: boolean
+  ): void {
     name = name.trim();
     if (!name) {
       return;
     }
     const errorMessageAnimal = document.getElementById('errorMessageAnimal');
     console.log(name);
-    if (name == '' || description == ''|| species == ''|| isAdopted == null || image == '') {
+    if (
+      name == '' ||
+      description == '' ||
+      species == '' ||
+      isAdopted == null ||
+      image == ''
+    ) {
       if (errorMessageAnimal) {
         errorMessageAnimal.textContent = 'Fields cannot be empty.';
         errorMessageAnimal.style.color = '#c91d06';
@@ -255,7 +269,7 @@ export class ManagerComponent implements OnInit {
         description: description,
         species: species,
         image: image,
-        isAdopted: isAdopted
+        isAdopted: isAdopted,
       } as Animal)
     );
     this.adoptionService.createAnimal(a).subscribe((animal) => {

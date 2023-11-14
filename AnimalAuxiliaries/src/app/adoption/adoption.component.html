@@ -9,7 +9,11 @@
         <h3>{{ animal.name }} - {{ animal.species }}</h3>
         <h3 class="description">{{ animal.description }}</h3>
 
-        <img src="{{ animal.image }}" style="max-width: 200px" alt="abc" />
+        <img
+          src="{{ animal.image }}"
+          style="max-width: 200px"
+          alt="{{ animal.name }}"
+        />
         <button
           class="adoption"
           [disabled]="animal.isAdopted"
