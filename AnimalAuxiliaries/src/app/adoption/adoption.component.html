@@ -15,7 +15,7 @@
           alt="{{ animal.name }}"
         />
         <button
-          class="adoption"
+          class="greenBtn"
           [disabled]="animal.isAdopted"
           (click)="adoptionConfirm = animal"
         >
@@ -24,12 +24,12 @@
         <div class="modal-container" *ngIf="adoptionConfirm === animal">
           <div class="modal">
             <div class="modal-header">
-              Are you sure you'd like to adopt the animal: {{ animal.name }}
+              You are submitting a request to adopt an animal: {{ animal.name }}
             </div>
-            <p class="modal-desc">Please remember you are promising a forever home!</p>
+            <p class="modal-desc">Press yes if you would like to be further contacted about the adoption process.</p>
 
             <div class="modal-btns">
-              <button class="greenBtn close-button" (click)="adopt(animal)">
+              <button class="greenBtn close-button" (click)="holdConfirm = animal">
                 Yes
               </button>
               <button
@@ -37,6 +37,21 @@
                 (click)="adoptionConfirm = null"
               >
                 No
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-container" *ngIf="holdConfirm === animal">
+          <div class="modal">
+            <div class="modal-header">
+              Thank you for considering being a forever home! 
+            </div>
+            <p class="modal-desc"> Be on the lookout for further communication about the adoption process for {{ animal.name }}. They will be placed on a temporary hold</p>
+
+            <div class="modal-btns" style="justify-content: center;">
+              <button class="greenBtn close-button" (click)="adopt(animal)">
+                Okay!
               </button>
             </div>
           </div>

@@ -55,6 +55,7 @@ export class CupboardComponent implements OnInit {
   addToBasket(need: Need): void {
     if (!need) return;
     this.basketService.addToBasket(need);
+
     setTimeout(() => {
       this.fundingbasketService
         .getBasket(this.auth.getUsername())

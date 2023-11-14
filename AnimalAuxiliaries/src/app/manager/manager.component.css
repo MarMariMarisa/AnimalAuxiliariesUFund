@@ -13,6 +13,7 @@
 }
 .Savbutton {
   background-color: #6d5d6e;
+  color: #f4eee0;
 }
 #header {
   width: 100vw;
@@ -63,8 +64,14 @@ h2 {
   text-align: right;
   list-style: none;
 }
+
 .labelStyles {
   background-color: white;
+  width: 175px;
+}
+
+label{
+  color: #f4eee0;
 }
 
 #searchList {
@@ -81,9 +88,14 @@ h2 {
   border-radius: 10px;
   min-width: 300px;
 }
+li{
+  color: #f4eee0;
+  margin: 5px;
+}
 
 .btn-font {
   font-size: 25px;
+  color: #f4eee0;
 }
 
 .btn {
@@ -93,10 +105,10 @@ h2 {
   border-radius: 5px;
   border-width: 1px;
   size: 5px;
-  color: black;
   transition: all 0.2s ease-in-out;
   margin-top: 0.75rem;
   padding: 0.2rem 0.25rem 0.2rem 0.25rem;
+  color: #f4eee0;
 }
 
 .btn {
@@ -108,6 +120,7 @@ h2 {
   transition: all 0.2s ease-in-out;
   padding: 0.25rem 0.4rem 0.25rem 0.4rem;
   margin: 0 1rem;
+  color: #f4eee0;
 }
 .btn:hover {
   opacity: 0.8;
@@ -176,6 +189,7 @@ h2 {
   font-weight: bold;
   display: flex;
   align-items: center;
+
 }
 .modal-container {
   position: fixed;
@@ -185,6 +199,8 @@ h2 {
   bottom: 0;
   display: block;
   background-color: rgba(0, 0, 0, 0.5);
+  align-content: center;
+  text-align: center;
 }
 .modal-desc {
   padding: 1rem 2rem;

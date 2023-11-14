@@ -12,7 +12,7 @@
   <div *ngIf="searchBox.value == ''; else searchNeeds" class="need-container">
     <div *ngFor="let need of currentNeeds" class="list-format">
       <h2 class="badge">{{ need.name }}</h2>
-      <h4 class="badge">Description: {{ need.description }}</h4>
+      <h4 class="badge"> {{ need.description }}</h4>
       <h4 class="badge">Price: ${{ need.price }}</h4>
       <h4 class="badge">Quantity: {{ need.quantity - need.quantityFunded }}</h4>
       <img style="max-width: 200px; margin: 0.5rem 0" [src]="need.imgSrc" />
@@ -25,7 +25,7 @@
     <div class="need-container">
       <div *ngFor="let need of needs$ | async" class="list-format">
         <h2 class="badge">{{ need.name }}</h2>
-        <h4 class="badge">Description: {{ need.description }}</h4>
+        <h4 class="badge"> {{ need.description }}</h4>
         <h4 class="badge">Price: ${{ need.price }}</h4>
         <h4 class="badge">
           Quantity: {{ need.quantity - need.quantityFunded }}

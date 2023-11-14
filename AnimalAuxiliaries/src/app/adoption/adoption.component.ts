@@ -17,6 +17,7 @@ export class AdoptionComponent {
   ) {}
   animals: Animal[] = [];
   adoptionConfirm: Animal | null = null;
+  holdConfirm: Animal | null = null;
   ngOnInit(): void {
     this.adoptionService
       .getAnimals()
@@ -33,6 +34,7 @@ export class AdoptionComponent {
     }, 45);
   }
   adopt(animal: Animal) {
+
     this.adoptionService.adopt(animal.id).subscribe((res) => res);
     setTimeout(() => {
       this.adoptionService

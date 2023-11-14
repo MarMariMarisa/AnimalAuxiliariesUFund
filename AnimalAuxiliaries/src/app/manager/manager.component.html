@@ -9,6 +9,7 @@
         placeholder="Search here"
         (input)="search(searchBox.value)"
       />
+      <h3 style="text-align: center" style="margin-top:5px">Current Needs</h3>
 
       <ul *ngIf="searchBox.value == ''; else searchNeeds">
         <li class="needItem" *ngFor="let need of needs">
@@ -45,11 +46,16 @@
               </div>
               <div class="need-align">
                 <label for="need-Type">Type: </label>
-                <input
-                  id="need-type"
-                  [(ngModel)]="need.type"
-                  placeholder="need type"
-                />
+                <select id="need-type" [(ngModel)]="need.type" placeholder = "need type" class="labelStyles" data-default="need.type" >
+                  <option value="Cleaning" class="labelStyles">Cleaning</option>
+                  <option value="Large Equipment" class="labelStyles">Equipment</option>
+                  <option value="Food" class="labelStyles">Food</option>
+                  <option value="Large Equipment" class="labelStyles">Large Equipment</option>
+                  <option value="Medicine" class="labelStyles">Medicine</option>
+                  <option value="Tool" class="labelStyles">Tool</option>
+                  <option value="Vanity Item" class="labelStyles">Vanity Item</option>
+                  <option value="Other" class="labelStyles">Other</option>
+                  </select>
               </div>
 
               <div class="need-align">
@@ -110,6 +116,7 @@
       </ul>
     </div>
     <ng-template #searchNeeds id="searchList">
+      
       <ul>
         <li *ngFor="let need of needs$ | async">
           <h2 class="badge">{{ need.name }}</h2>
@@ -222,7 +229,17 @@
           </li>
           <li>
             <label for="new-need">Type: </label
-            ><input id="new-need" #needType class="labelStyles" />
+            ><select id="new-need" #needType class="labelStyles" >
+              <option disabled selected value> -- select an option -- </option>
+              <option value="Cleaning" class="labelStyles">Cleaning</option>
+              <option value="Large Equipment" class="labelStyles">Equipment</option>
+              <option value="Food" class="labelStyles">Food</option>
+              <option value="Large Equipment" class="labelStyles">Large Equipment</option>
+              <option value="Medicine" class="labelStyles">Medicine</option>
+              <option value="Tool" class="labelStyles">Tool</option>
+              <option value="Vanity Item" class="labelStyles">Vanity Item</option>
+              <option value="Other" class="labelStyles">Other</option>
+              </select>
           </li>
           <li>
             <label for="new-need">Price: </label
@@ -307,9 +324,10 @@
         >
           Add Animal
         </button>
-        <ul style="margin-top: 0.5rem">
+        <h3 style="text-align: center">Current Animals</h3>
+        <ul id="inputStyles">
           <li *ngFor="let animal of animals">
-            {{ animal.name }}
+            Name: {{ animal.name }}
             <button
               type="button"
               class="deleteBtn"
@@ -368,9 +386,10 @@
       >
         Add Post
       </button>
-      <ul style="margin-top: 0.5rem">
+      <h3 style="text-align: center" style="margin-top:5px">Current Posts</h3>
+      <ul style="margin-top: 0.5rem" id="inputStyles">
         <li *ngFor="let post of posts">
-          {{ post.title }}
+          Title: {{ post.title }}
           <button
             type="button"
             class="deleteBtn"
