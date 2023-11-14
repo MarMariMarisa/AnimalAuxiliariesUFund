@@ -12,7 +12,8 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Sarah Payne
 
 # Sprint 3 Release 
-We do not believe there are any bugs with the program. We want to note that the pull requests from this sprint do not contain comments as all of the discussion regarding the merging of code was done in slack. We felt it was easier for communication to stay in once place - so we did not add comments to our pull requests, but we did both communicate about the pull requests, as well as make use of their merge feature.
+This is our submission for sprint 3 - which has all of the mvp user stories implemented, as well as our two enhancements. We do not believe there are any bugs with the program. 
+We want to note that the pull requests from this sprint do not contain comments as all of the discussion regarding the merging of code was done in slack. We felt it was easier for communication to stay in once place - so we did not add comments to our pull requests, but we did both communicate about the pull requests, as well as make use of their merge feature.
 
 ## Prerequisites
 
