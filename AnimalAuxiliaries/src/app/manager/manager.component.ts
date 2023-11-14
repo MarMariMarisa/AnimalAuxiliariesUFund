@@ -22,6 +22,7 @@ export class ManagerComponent implements OnInit {
   deleteConfirm: Need | null = null;
   deleteConfirmPost: Post | null = null;
   deleteConfirmAnimal: Animal | null = null;
+  adoptionConfirm: Animal | null = null;
   needs$!: Observable<Need[]>;
   posts$!: Observable<Post[]>;
   animals$!: Observable<Animal[]>;
@@ -99,9 +100,6 @@ export class ManagerComponent implements OnInit {
     imgSrc: string
   ): void {
     name = name.trim();
-    if (!name) {
-      return;
-    }
     const errorMessage = document.getElementById('errorMessage');
     let aPrice = parseInt(price);
     let aQuant = parseInt(quantity);
@@ -198,9 +196,6 @@ export class ManagerComponent implements OnInit {
   }
   addPost(title: string, content: string): void {
     title = title.trim();
-    if (!title) {
-      return;
-    }
     const errorMessagePost = document.getElementById('errorMessagePost');
     console.log(content);
     if (title == '' || content == '') {
@@ -240,9 +235,7 @@ export class ManagerComponent implements OnInit {
     isAdopted: boolean
   ): void {
     name = name.trim();
-    if (!name) {
-      return;
-    }
+
     const errorMessageAnimal = document.getElementById('errorMessageAnimal');
     console.log(name);
     if (

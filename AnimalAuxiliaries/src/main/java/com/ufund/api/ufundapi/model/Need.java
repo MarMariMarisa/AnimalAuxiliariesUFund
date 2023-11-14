@@ -36,6 +36,8 @@ public class Need {
     private int numInBaskets;
     @JsonProperty("quantityFunded")
     private int quantityFunded;
+    @JsonProperty("imgSrc")
+    private String imgSrc;
 
     // Default Values
     private static final String DEFAULT_NAME = "Need";
@@ -45,6 +47,7 @@ public class Need {
     private static final int DEFAULT_QUANTITY = 1;
     //private static final int DEFAULT_NUM_IN_BASKETS = 0;
     private static final int DEFAULT_QUANTITY_FUNDED = 0;
+    private static final String DEFAULT_IMAGE = "https://as2.ftcdn.net/v2/jpg/02/49/36/69/1000_F_249366935_I9VGnZkzZRf6rku16cix3ITgjThFUaac.jpg";
 
     /**
      * Create a need with all default values
@@ -58,6 +61,7 @@ public class Need {
         this.quantity = DEFAULT_QUANTITY;
         //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
+        this.imgSrc = DEFAULT_IMAGE;
     }
 
     /**
@@ -92,6 +96,7 @@ public class Need {
         //this.numInBaskets = DEFAULT_NUM_IN_BASKETS;
         this.quantityFunded = DEFAULT_QUANTITY_FUNDED;
     }
+   
 
     public Need(Need otherNeed) {
         this.id = otherNeed.getId();
@@ -102,8 +107,10 @@ public class Need {
         this.quantity = otherNeed.getQuantity();
         //this.numInBaskets = otherNeed.getNumInBaskets();
         this.quantityFunded = otherNeed.getQuantityFunded();
+        this.imgSrc = otherNeed.getImgSrc();
     }
         
+
 
     // Methods
     @Override
@@ -167,6 +174,9 @@ public class Need {
     public String getId() {
         return this.id;
     }
+    public void setImgSrc(String src){
+        this.imgSrc = src;
+    }
 
     /**
      * Retrieves the name of the need
@@ -193,6 +203,10 @@ public class Need {
      */
     public String getType() {
         return this.type;
+    }
+
+    public String getImgSrc(){
+        return this.imgSrc;
     }
 
     /**

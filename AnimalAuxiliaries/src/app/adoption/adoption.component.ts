@@ -16,6 +16,7 @@ export class AdoptionComponent {
     private router: Router
   ) {}
   animals: Animal[] = [];
+  adoptionConfirm: Animal | null = null;
   ngOnInit(): void {
     this.adoptionService
       .getAnimals()

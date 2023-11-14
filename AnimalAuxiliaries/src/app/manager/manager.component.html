@@ -6,7 +6,7 @@
       <input
         #searchBox
         id="search-box"
-        placeholder="Search here!"
+        placeholder="Search here"
         (input)="search(searchBox.value)"
       />
 
@@ -68,14 +68,6 @@
                   placeholder="need quantity"
                 />
               </div>
-              <!-- <div class="need-align">
-                <label for="need-quantiy-funded">Quantity Funded: </label>
-                <input
-                  id="need-quantityFunded"
-                  [(ngModel)]="need.quantityFunded"
-                  placeholder="need quantity funded"
-                />
-              </div> -->
               <div class="need-align">
                 <label for="need-image-link">Image Link: </label>
                 <input
@@ -99,17 +91,17 @@
               <div class="modal-header">
                 Are you sure you'd like to delete the need: {{ need.name }}
               </div>
-              <p class="modal-desc">This action is irreversable!!</p>
+              <p class="modal-desc">This action is irreversable</p>
 
               <div class="modal-btns">
                 <button class="deleteBtn close-button" (click)="delete(need)">
-                  Yes!
+                  Yes
                 </button>
                 <button
                   class="greenBtn close-button"
                   (click)="deleteConfirm = null"
                 >
-                  No!
+                  No
                 </button>
               </div>
             </div>
@@ -199,16 +191,16 @@
               <div class="modal-header">
                 Are you sure you'd like to delete the need: {{ need.name }}
               </div>
-              <p class="modal-desc">This action is irreversable!!</p>
+              <p class="modal-desc">This action is irreversable</p>
               <div class="modal-btns">
                 <button class="deleteBtn close-button" (click)="delete(need)">
-                  Yes!
+                  Yes
                 </button>
                 <button
                   class="greenBtn close-button"
                   (click)="deleteConfirm = null"
                 >
-                  No!
+                  No
                 </button>
               </div>
             </div>
@@ -250,6 +242,14 @@
               type="number"
             />
           </li>
+          <li>
+            <label for="new-need">Image URL: </label
+            ><input
+              id="new-need"
+              #needImageURL
+              class="labelStyles"
+            />
+          </li>
         </ul>
         <p class="center" id="errorMessage"></p>
         <button
@@ -262,7 +262,7 @@
               needType.value,
               needPrice.value,
               needQuantity.value,
-              ''
+              needImageURL.value
             )
           "
           style="font-family: Poppins; align-self: flex-end"
@@ -290,6 +290,7 @@
             ><input id="new-animal" #animalImage class="labelStyles" />
           </li>
         </ul>
+        <p class="center" id="errorMessageAnimal"></p>
         <button
           type="button"
           class="btn center"
@@ -323,24 +324,23 @@
                   Are you sure you'd like to delete the animal:
                   {{ animal.name }}
                 </div>
-                <p class="modal-desc">This action is irreversable!!</p>
+                <p class="modal-desc">This action is irreversable</p>
                 <div class="modal-btns">
                   <button
                     class="deleteBtn close-button"
                     (click)="deleteAnimal(animal)"
                   >
-                    Yes!
+                    Yes
                   </button>
                   <button
                     class="greenBtn close-button"
                     (click)="deleteConfirmAnimal = null"
                   >
-                    No!
+                    No
                   </button>
                 </div>
               </div>
             </div>
-            <p class="center" id="errorMessageAnimal"></p>
           </li>
         </ul>
       </div>
@@ -359,6 +359,7 @@
         </li>
       </ul>
       <p class="center" id="errorMessage"></p>
+      
       <button
         type="button"
         class="btn center"
@@ -383,24 +384,24 @@
               <div class="modal-header">
                 Are you sure you'd like to delete the post: {{ post.title }}
               </div>
-              <p class="modal-desc">This action is irreversable!!</p>
+              <p class="modal-desc">This action is irreversable</p>
               <div class="modal-btns">
                 <button
                   class="deleteBtn close-button"
                   (click)="deletePost(post)"
                 >
-                  Yes!
+                  Yes
                 </button>
                 <button
                   class="greenBtn close-button"
                   (click)="deleteConfirmPost = null"
                 >
-                  No!
+                  No
                 </button>
               </div>
             </div>
           </div>
-          <p class="center" id="errorMessagePost"></p>
+          
         </li>
       </ul>
     </div>
