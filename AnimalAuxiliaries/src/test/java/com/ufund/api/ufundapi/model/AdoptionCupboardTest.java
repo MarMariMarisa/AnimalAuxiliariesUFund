@@ -20,7 +20,7 @@ public class AdoptionCupboardTest {
     AdoptableAnimal[] testAnimals;
 
     private static final boolean ADOPTED = true; 
-    private static final boolean NOT_ADOPTED = false; 
+    //private static final boolean NOT_ADOPTED = false; 
     @BeforeEach
     public void setUp(){
         adoptioncupboard = new AdoptionCupboard();
