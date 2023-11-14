@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -149,13 +150,15 @@ public class NeedFileDAOTest {
 
         Helper[] helpers = new Helper[1];
         helpers[0] = new Helper();
+
         when(helperFileDAO.getHelpers()).thenReturn(helpers);
         when(helperFileDAO.getBasketNeeds(helpers[0].getUsername())).thenReturn(testNeeds);
-        assertNotNull(needFileDAO.updateNeed(testNeeds[0]));
-        testNeeds[0].setQuantity(0);
-        assertNotNull(needFileDAO.updateNeed(testNeeds[0]));
-    }
+        NeedFileDAO needFileDAO2 = new NeedFileDAO("doesnt_matter.txt", "doesnt_matter.txt","doesnt_matter.txt", mockObjectMapper, helperFileDAO);
+        assertNotNull(needFileDAO2.updateNeed(testNeeds[0]));
 
+        testNeeds[0].setQuantity(0);
+        assertNotNull(needFileDAO2.updateNeed(testNeeds[0]));
+    }
 
     @Test
     public void testSaveException() throws IOException {
