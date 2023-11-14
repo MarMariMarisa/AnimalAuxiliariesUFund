@@ -15,11 +15,27 @@ export class AdoptionComponent {
     private router: Router
   ) {}
   animals: Animal[] = [];
-  animal: Animal;
   ngOnInit(): void {
     this.adoptionService
       .getAnimals()
       .subscribe((animals) => (this.animals = [...animals]));
-    console.log(this.animals);
+
+    setTimeout(() => {
+      const desc = document.getElementsByClassName('description');
+      for (let x = 0; x < desc.length; x++) {
+        desc[x].addEventListener('click', (e) => {
+          console.log('expand');
+          desc[x].classList.toggle('toggle-elip');
+        });
+      }
+    }, 45);
+  }
+  adopt(animal: Animal) {
+    this.adoptionService.adopt(animal.id).subscribe((res) => res);
+    setTimeout(() => {
+      this.adoptionService
+        .getAnimals()
+        .subscribe((animals) => (this.animals = [...animals]));
+    }, 30);
   }
 }

@@ -25,6 +25,13 @@ export class AdoptionService {
       catchError(this.handleError('getFunded', []))
     );
   }
+  adopt(id: string): Observable<Boolean> {
+    const url = `http://localhost:8080/funding-basket/${id}`;
+    return this.http.put<boolean>(url, this.httpOptions).pipe(
+      tap((_) => this.log('fetched funded')),
+      catchError(this.handleError<boolean>('getFunded'))
+    );
+  }
 
   constructor(private http: HttpClient) {}
   private handleError<T>(operation = 'operation', result?: T) {
