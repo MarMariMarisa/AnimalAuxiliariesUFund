@@ -79,7 +79,7 @@ h2 {
   padding-top: 10px;
   height: fit-content;
   border-radius: 10px;
- 
+  min-width: 300px;
 }
 
 .btn-font {
