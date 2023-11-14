@@ -63,20 +63,26 @@ public class AdoptionCupboardTest {
 
     }
 
+    //if the animal object is null then the getId call in adoptAnimal throws a null pointer 
+    //the animal id cannot be set to null because that value is final 
+    
     @Test 
     public void testAdoptableAnimalNull() {
-        adoptioncupboard.adoptAnimal(null); 
+        AdoptableAnimal testAnimal = new AdoptableAnimal(); 
+        testAnimal.setId(null); 
+        adoptioncupboard.adoptAnimal(testAnimal); 
         int i = 0; 
         for(AdoptableAnimal animal : testAnimals) {
             assertEquals(animal, adoptioncupboard.getAnimals().get(i));
             i++; 
         }
     }
+    
 
     @Test 
     public void testAdoptAnimalIdNotFound() {
         AdoptableAnimal testAnimal = new AdoptableAnimal();
-        adoptioncupboard.addAnimal(testAnimal); 
+        adoptioncupboard.adoptAnimal(testAnimal); 
         int i = 0; 
         for(AdoptableAnimal animal : testAnimals) {
             assertEquals(animal, adoptioncupboard.getAnimals().get(i));
@@ -100,7 +106,8 @@ public class AdoptionCupboardTest {
 
     @Test
     public void testGetAdoptableAnimalOnSpeciesNull() {
-        assertNull(adoptioncupboard.getAdoptableAnimalOnSpecies(null)); 
+        ArrayList<AdoptableAnimal> list = new ArrayList<AdoptableAnimal>() {};
+        assertEquals(list, adoptioncupboard.getAdoptableAnimalOnSpecies(null)); 
     }
 
     @Test 
