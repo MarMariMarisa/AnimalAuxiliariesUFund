@@ -20,8 +20,8 @@ h2 {
   font-weight: bold;
 }
 
-h4{
-  color: #f4eee0;;
+h4 {
+  color: #f4eee0;
 }
 
 p {
@@ -32,7 +32,7 @@ p {
 
 .box {
   background-color: #393646;
-  padding: 2rem;
+  padding: 1rem;
   margin: 1rem;
   text-align: center;
   border-radius: 10px;
