@@ -38,6 +38,7 @@ public class NeedFileDAOTest {
     @BeforeEach
     public void setupNeedFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
+        helperFileDAO = mock(HelperFileDAO.class);
         testNeeds = new Need[3];
         testNeeds[0] = new Need("dog leash", "a dog leash", "leashes", 25, 5);
         testNeeds[0].setID("need1");
@@ -98,13 +99,16 @@ public class NeedFileDAOTest {
         assertEquals(testNeeds[1].getId(), need.getId());
     }
 
-    // @Test
-    // public void testDeleteNeed() throws IOException {
-    //     boolean result = assertDoesNotThrow(() -> needFileDAO.deleteNeed("need1"), "Unexpected exception thrown");
+    @Test
+    public void testDeleteNeed() throws IOException {
+        Helper[] helpers = new Helper[1];
+        helpers[0] = new Helper();
+        when(helperFileDAO.getHelpers()).thenReturn(helpers);
+        boolean result = assertDoesNotThrow(() -> needFileDAO.deleteNeed("need1"), "Unexpected exception thrown");
 
-    //     assertEquals( true, result);
-    //     assertEquals( testNeeds.length - 1, needFileDAO.cupboard.getEntireCupboard().size());
-    // }
+        assertEquals( true, result);
+        assertEquals( testNeeds.length - 1, needFileDAO.cupboard.getEntireCupboard().size());
+    }
 
     @Test
     public void testCreateNeed() throws IOException {
@@ -117,6 +121,11 @@ public class NeedFileDAOTest {
         Need actual = needFileDAO.getNeed("need4");
         assertEquals(need.getId(), actual.getId());
         assertEquals(need.getName(), actual.getName());
+    }
+
+    @Test
+    public void testCreateNeedNull() throws IOException {
+        assertNull(needFileDAO.createNeed(null));
     }
 
     @Test
@@ -136,6 +145,15 @@ public class NeedFileDAOTest {
         assertNotNull(result);
         Need actual = needFileDAO.getNeed("need2");
         assertEquals(need, actual);
+
+
+        Helper[] helpers = new Helper[1];
+        helpers[0] = new Helper();
+        when(helperFileDAO.getHelpers()).thenReturn(helpers);
+        when(helperFileDAO.getBasketNeeds(helpers[0].getUsername())).thenReturn(testNeeds);
+        assertNotNull(needFileDAO.updateNeed(testNeeds[0]));
+        testNeeds[0].setQuantity(0);
+        assertNotNull(needFileDAO.updateNeed(testNeeds[0]));
     }
 
 
@@ -197,4 +215,5 @@ public class NeedFileDAOTest {
         needFileDAO.addToSurplus((float) 2.00);
         assertEquals((float)3.56, needFileDAO.getSurplus());
     }
+
 }

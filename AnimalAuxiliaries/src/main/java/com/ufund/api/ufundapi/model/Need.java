@@ -133,20 +133,20 @@ public class Need {
         this.id = id;
     }
 
-    /**
-     * 
-     * @param quantity
-     * @return
-     */
-    public boolean fund(int quantity) {
-        if(quantity <= getQuantityAvailable()) {
-            setQuantityFunded(getQuantityFunded());
-            return true; 
-        } else {
-            return false; 
-        }
+    // /**
+    //  * 
+    //  * @param quantity
+    //  * @return
+    //  */
+    // public boolean fund(int quantity) {
+    //     if(quantity <= getQuantityAvailable()) {
+    //         setQuantityFunded(getQuantityFunded());
+    //         return true; 
+    //     } else {
+    //         return false; 
+    //     }
 
-    }
+    // }
 
     /**
      * Returns true if the full quantity of needs has been funded, false otherwise

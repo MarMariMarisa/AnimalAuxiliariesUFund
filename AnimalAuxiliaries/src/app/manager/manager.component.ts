@@ -8,6 +8,8 @@ import { Observable, Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { CommunityBoardService } from '../community-board.service';
 import { Post } from '../post';
+import { AdoptionService } from '../adoption.service';
+import { Animal } from '../animal';
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -16,14 +18,18 @@ import { Post } from '../post';
 export class ManagerComponent implements OnInit {
   needs: Need[] = [];
   posts: Post[] = [];
+  animals: Animal[] = [];
   deleteConfirm: Need | null = null;
   deleteConfirmPost: Post | null = null;
+  deleteConfirmAnimal: Animal | null = null;
   needs$!: Observable<Need[]>;
   posts$!: Observable<Post[]>;
+  animals$!: Observable<Animal[]>;
   private searchTerms = new Subject<string>();
   constructor(
     private needService: CupboardService,
     private communityBoardService: CommunityBoardService,
+    private adoptionService: AdoptionService,
     private router: Router,
     private auth: AuthService,
     private basket: FundingBasketService
@@ -33,6 +39,9 @@ export class ManagerComponent implements OnInit {
     this.getNeeds();
     this.getCommunityBoard();
     this.posts$ = this.communityBoardService.getCommunityBoard();
+    this.adoptionService
+      .getAnimals()
+      .subscribe((animals) => (this.animals = [...animals]));
     this.needs$ = this.searchTerms.pipe(
       distinctUntilChanged(),
       switchMap((term: string) => this.needService.searchNeeds(term))
@@ -56,6 +65,11 @@ export class ManagerComponent implements OnInit {
     this.communityBoardService
       .getCommunityBoard()
       .subscribe((posts) => (this.posts = posts));
+  }
+  getAnimals(): void {
+    this.adoptionService
+      .getAnimals()
+      .subscribe((animals) => (this.animals = animals));
   }
   save(need: Need): void {
     if (need) {
@@ -209,6 +223,57 @@ export class ManagerComponent implements OnInit {
     );
     this.communityBoardService.createPost(a).subscribe((post) => {
       this.posts.push(post);
+    });
+  }
+
+  deleteAnimal(animal: Animal): void {
+    this.adoptionService.deleteAnimal(animal.id).subscribe(() => {});
+    setTimeout(() => {
+      this.animals = [...this.animals.filter((h) => h.id != animal.id)];
+    }, 50);
+  }
+  addAnimal(
+    name: string,
+    description: string,
+    species: string,
+    image: string,
+    isAdopted: boolean
+  ): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    const errorMessageAnimal = document.getElementById('errorMessageAnimal');
+    console.log(name);
+    if (
+      name == '' ||
+      description == '' ||
+      species == '' ||
+      isAdopted == null ||
+      image == ''
+    ) {
+      if (errorMessageAnimal) {
+        errorMessageAnimal.textContent = 'Fields cannot be empty.';
+        errorMessageAnimal.style.color = '#c91d06';
+        return;
+      }
+    } else {
+      if (errorMessageAnimal) {
+        errorMessageAnimal.textContent = '';
+      }
+    }
+    let a = JSON.parse(
+      JSON.stringify({
+        id: '',
+        name: name,
+        description: description,
+        species: species,
+        image: image,
+        isAdopted: isAdopted,
+      } as Animal)
+    );
+    this.adoptionService.createAnimal(a).subscribe((animal) => {
+      this.animals.push(animal);
     });
   }
 }

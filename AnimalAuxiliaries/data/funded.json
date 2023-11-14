@@ -1,1 +1,28 @@
-[{"name":"1","description":"1","type":"1","price":1.0,"quantity":1,"allFunded":true,"quantityAvailable":0,"percentFunded":100.0,"id":"63d248e7-0943-4e22-a0b5-2c92fed4c24e","numInBaskets":0,"quantityFunded":1}]
+[
+  {
+    "name": "1",
+    "description": "1",
+    "type": "1",
+    "price": 1.0,
+    "quantity": 1,
+    "quantityAvailable": 0,
+    "allFunded": true,
+    "percentFunded": 100.0,
+    "id": "63d248e7-0943-4e22-a0b5-2c92fed4c24e",
+    "numInBaskets": 0,
+    "quantityFunded": 1
+  },
+  {
+    "name": "12",
+    "description": "12",
+    "type": "12",
+    "price": 12.0,
+    "quantity": 12,
+    "quantityAvailable": 0,
+    "allFunded": true,
+    "percentFunded": 100.0,
+    "id": "8a3ae179-28da-419c-ae8a-0913a74da8bf",
+    "numInBaskets": 0,
+    "quantityFunded": 12
+  }
+]

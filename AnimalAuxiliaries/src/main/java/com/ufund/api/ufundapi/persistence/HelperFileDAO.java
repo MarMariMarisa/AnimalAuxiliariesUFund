@@ -1,5 +1,6 @@
 package com.ufund.api.ufundapi.persistence;
 
+import com.ufund.api.ufundapi.model.AdoptableAnimal;
 import com.ufund.api.ufundapi.model.Helper;
 import com.ufund.api.ufundapi.model.Need;
 
@@ -22,10 +23,12 @@ public class HelperFileDAO implements UserDAO {
     private ObjectMapper objectMapper; 
     private String filename; 
     private NeedFileDAO needDao;
+    private AdoptableAnimalDAO adoptableAnimalDAO;
 
 
-    public HelperFileDAO(@Value("${helpers.file}") String filename, ObjectMapper objectMapper, NeedFileDAO needFileDAO) throws IOException {
+    public HelperFileDAO(@Value("${helpers.file}") String filename, ObjectMapper objectMapper, NeedFileDAO needFileDAO, AdoptableAnimalDAO adoptableAnimalDAO) throws IOException {
         this.needDao = needFileDAO;
+        this.adoptableAnimalDAO = adoptableAnimalDAO;
         this.filename = filename;
         this.objectMapper = objectMapper;
         load(); 
@@ -210,12 +213,13 @@ public class HelperFileDAO implements UserDAO {
                 for(Need n : helper.getBasketNeeds()){
                     // Find need in cupboard, increment quantity, updated need 
                     Need cupboardNeed = needDao.getNeed(n.getId());
-                    int updatedQuantity = cupboardNeed.getQuantityFunded() + n.getQuantity();
-                    cupboardNeed.setQuantityFunded(updatedQuantity);
+                    //int updatedQuantity = cupboardNeed.getQuantityFunded() + n.getQuantity();
+                    //cupboardNeed.setQuantityFunded(updatedQuantity);
+                    cupboardNeed.setQuantity(cupboardNeed.getQuantity() - n.getQuantity());
                     needDao.updateNeed(cupboardNeed);
 
                     // If fully funded - send need to funded list 
-                    if(cupboardNeed.getAllFunded()){
+                    if(cupboardNeed.getQuantity() <= 0){
                         toBeFunded.add(cupboardNeed);
                     }
                 }
@@ -226,6 +230,14 @@ public class HelperFileDAO implements UserDAO {
                 return helper.checkout();      
             }
             return false;
+        }
+    }
+
+    public boolean adoptAnimal(String animalId) throws IOException{
+        synchronized(helpers){
+            //Helper helper = helpers.get(username);
+            AdoptableAnimal animal = adoptableAnimalDAO.getAnimal(animalId);
+            return adoptableAnimalDAO.adoptAnimal(animal);
         }
     }
 }

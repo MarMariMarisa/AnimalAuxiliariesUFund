@@ -67,6 +67,13 @@ export class CupboardService {
       catchError(this.handleError<any>('addToSurplus'))
     );
   }
+  getSurplus() {
+    const url = `${this.cupboardUrl}/surplus`;
+    return this.http.get(url, this.httpOptions).pipe(
+      tap((_) => this.log(`get surplus`)),
+      catchError(this.handleError<any>('getSurplus'))
+    );
+  }
 
   searchNeeds(term: string): Observable<Need[]> {
     if (!term.trim()) {

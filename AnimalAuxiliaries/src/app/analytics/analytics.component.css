@@ -23,3 +23,15 @@
   display: flex;
   align-items: center;
 }
+.funded {
+  display: flex;
+}
+
+.main {
+  display: grid;
+  place-items: center;
+  padding-top: 2rem;
+}
+.fundedContainer {
+  padding: 0.5rem 2rem;
+}

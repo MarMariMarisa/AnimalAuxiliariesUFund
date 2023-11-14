@@ -1,26 +1,31 @@
 <div class="analytics-container">
   <app-manager-nav></app-manager-nav>
-  <div class="fundedContaienr">
-    <h2>Funded Needs:</h2>
-    <li class="needItem" *ngFor="let need of funded">
-      <h1>{{ need.name }}</h1>
-      <div class="progress-bar">
-        <div class="progress"></div>
+  <div class="main">
+    <h1 id="surplus"></h1>
+    <div class="funded">
+      <div class="fundedContainer">
+        <h2 id="fundedTitle"></h2>
+        <li class="needItem" *ngFor="let need of funded">
+          <h1>{{ need.name }}</h1>
+          <!-- <div class="progress-bar">
+            <div class="progress"></div>
+          </div> -->
+        </li>
       </div>
-    </li>
-  </div>
-  <div class="fundedContaienr">
-    <h2>Unfunded Needs:</h2>
-    <li class="needItem" *ngFor="let need of needs">
-      <h1>{{ need.name }}</h1>
-      <div class="alt-progress-bar">
-        <div
-          class="alt-progress"
-          style="width:  {{ (need.quantityFunded * 100) / need.quantity }}%"
-        >
-          {{ ((need.quantityFunded * 100) / need.quantity).toFixed(2) }}%
-        </div>
+      <div class="fundedContainer">
+        <h2 id="unfundedTitle"></h2>
+        <li class="needItem" *ngFor="let need of needs">
+          <h1>{{ need.name }} - Remaining: {{ need.quantity }}</h1>
+          <!-- <div class="alt-progress-bar">
+            <div
+              class="alt-progress"
+              style="width:  {{ (need.quantityFunded * 100) / need.quantity }}%"
+            >
+              {{ ((need.quantityFunded * 100) / need.quantity).toFixed(2) }}%
+            </div>
+          </div> -->
+        </li>
       </div>
-    </li>
+    </div>
   </div>
 </div>
