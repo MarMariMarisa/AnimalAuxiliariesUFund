@@ -102,7 +102,7 @@ public class AdoptableAnimalDAOTest {
     }
 
     @Test 
-    public void testUpdateAnimalNotFound() throws IOExcpetion {
+    public void testUpdateAnimalNotFound() throws IOException {
         AdoptableAnimal animal = new AdoptableAnimal("Uh oh doesn't exist", "Description", "Species"); 
 
         AdoptableAnimal result = assertDoesNotThrow(() -> animalDAO.updateAnimal(animal), "Unexpected exception thrown"); 

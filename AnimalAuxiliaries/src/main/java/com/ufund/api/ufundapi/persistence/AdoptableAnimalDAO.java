@@ -84,7 +84,7 @@ public class AdoptableAnimalDAO {
                 save(); 
                 return animal; 
             }
-            return animal; 
+            return null; 
         }
     }
 
