@@ -32,6 +32,19 @@ export class AdoptionComponent {
         });
       }
     }, 45);
+    setTimeout(() => {
+      const adoptionBtns = <HTMLCollectionOf<HTMLButtonElement>>(
+        document.getElementsByClassName('adoptionBtn')
+      );
+      for (let x = 0; x < adoptionBtns.length; x++) {
+        if (this.animals[x].isAdopted) {
+          adoptionBtns[x].textContent = 'Pending Review...';
+          adoptionBtns[x].disabled = true;
+          adoptionBtns[x].style.background = 'rgb(129, 3, 3)';
+          adoptionBtns[x].classList.add('noHover');
+        }
+      }
+    }, 50);
   }
   adopt(animal: Animal) {
     this.adoptionService.adopt(animal.id).subscribe((res) => res);

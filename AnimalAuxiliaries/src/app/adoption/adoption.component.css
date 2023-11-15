@@ -153,3 +153,6 @@
   background-position: left bottom;
   transform: scale(1.05);
 }
+.noHover:hover {
+  transform: none;
+}
