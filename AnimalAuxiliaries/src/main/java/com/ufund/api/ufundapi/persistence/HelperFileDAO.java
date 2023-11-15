@@ -221,6 +221,9 @@ public class HelperFileDAO implements UserDAO {
                     // If fully funded - send need to funded list 
                     if(cupboardNeed.getQuantity() <= 0){
                         toBeFunded.add(cupboardNeed);
+                        for(Helper h : getHelpers()){
+                            removeFromBasket(h.getUsername(), n.getId());
+                        }
                     }
                 }
                 //Fund Needs
