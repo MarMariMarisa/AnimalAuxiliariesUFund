@@ -15,6 +15,13 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 This is our submission for sprint 3 - which has all of the mvp user stories implemented, as well as our two enhancements. We do not believe there are any bugs with the program. 
 We want to note that the pull requests from this sprint do not contain comments as all of the discussion regarding the merging of code was done in slack. We felt it was easier for communication to stay in once place - so we did not add comments to our pull requests, but we did both communicate about the pull requests, as well as make use of their merge feature.
 
+# Notes on rerelease
+With the granted rerelease for 11/14, the team made some changes. These changes are not reflected in the video demo.
+A majority of the changes were style/visual, the rest are as follows:
+Fixed error where need would not be deleted from basket if it was fully funded by another helper.
+Added drop down menu for need type.
+Altered adopt button to display form about adoption process and tell helper the managers will be in contact with them, which places an animal on "hold". Animals now appear as being reviewed after helper chooses to adopt. Only one helper can start the adoption process for an animal. The new format essentially has it setup so that a helper may start the adoption process, and that animal will now be on hold. We assume the actual adoption process would be beyond the website.
+
 ## Prerequisites
 
 - Java 11=>17 (Make sure to have correct JAVA_HOME setup in your environment)
