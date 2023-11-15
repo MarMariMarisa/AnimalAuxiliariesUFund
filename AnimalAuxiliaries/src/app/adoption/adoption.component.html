@@ -14,11 +14,7 @@
           style="max-width: 200px"
           alt="{{ animal.name }}"
         />
-        <button
-          class="greenBtn adoptionBtn"
-          [disabled]="animal.isAdopted"
-          (click)="adoptionConfirm = animal"
-        >
+        <button class="greenBtn adoptionBtn" (click)="adoptionConfirm = animal">
           Adopt
         </button>
         <div class="modal-container" *ngIf="adoptionConfirm === animal">
