@@ -117,4 +117,41 @@ export class BasketComponent {
           '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
     }, 1000);
   }
+  increment(need: Need): void {
+    this.cupboardService
+      .getEntireCupboard()
+      .subscribe((need) => (this.currentNeeds = [...need]));
+    for (let x = 0; x < this.currentNeeds.length; x++) {
+      if (this.currentNeeds[x].id == need.id) {
+        this.basketService.addToBasket(this.currentNeeds[x]);
+        break;
+      }
+    }
+    setTimeout(() => {
+      this.fundingbasketService
+        .getBasket(this.auth.getUsername())
+        .subscribe((basket) => (this.basket = basket));
+    }, 30);
+  }
+  decrement(need: Need): void {
+    this.basketService.decrementBasket(need);
+    setTimeout(() => {
+      this.fundingbasketService
+        .getBasket(this.auth.getUsername())
+        .subscribe((basket) => (this.basket = basket));
+    }, 30);
+    setTimeout(() => {
+      this.fundingbasketService
+        .getBasket(this.auth.getUsername())
+        .subscribe((basket) => (this.basket = basket));
+    }, 30);
+    setTimeout(() => {
+      if (this.basket.length == 0) {
+        let container = document.getElementById('basketContainer');
+        if (container)
+          container.innerHTML =
+            '<h2 style="padding:0.5rem 1rem 0.5rem 1rem">Your basket is empty!</h2>';
+      }
+    }, 50);
+  }
 }

@@ -29,6 +29,13 @@ export class BasketService {
         this.basket = [...this.basket, basket];
       });
   }
+  decrementBasket(need: Need): void {
+    if (need.quantity <= 0 || !need) return;
+
+    this.fundingbasketService
+      .decrementBasket(need, this.auth.getUsername())
+      .subscribe((res) => res);
+  }
   removeFromBasket(need: Need): number {
     let res: number = need.quantity;
     this.fundingbasketService

@@ -34,6 +34,13 @@ export class FundingBasketService {
       catchError(this.handleError('authenicate', []))
     );
   }
+  decrementBasket(need: Need, username: string) {
+    const url = `${this.basketUrl}/${username}/${need.id}`;
+    return this.http.post<Need>(url, this.httpOptions).pipe(
+      tap((newNeed: Need) => this.log(`decremented need w/ id=${newNeed.id}`)),
+      catchError(this.handleError<Need>('decrementBasket'))
+    );
+  }
   getBasket(username: string): Observable<Need[]> {
     const url = `${this.basketUrl}/${username}`;
 
