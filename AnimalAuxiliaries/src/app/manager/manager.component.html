@@ -9,7 +9,7 @@
         placeholder="Search here"
         (input)="search(searchBox.value)"
       />
-      <h3 style="text-align: center" style="margin-top:5px">Current Needs</h3>
+      <h3 style="text-align: center" style="margin-top: 5px">Current Needs</h3>
 
       <ul *ngIf="searchBox.value == ''; else searchNeeds">
         <li class="needItem" *ngFor="let need of needs">
@@ -46,16 +46,28 @@
               </div>
               <div class="need-align">
                 <label for="need-Type">Type: </label>
-                <select id="need-type" [(ngModel)]="need.type" placeholder = "need type" class="labelStyles" data-default="need.type" >
+                <select
+                  id="need-type"
+                  [(ngModel)]="need.type"
+                  placeholder="need type"
+                  class="labelStyles"
+                  data-default="need.type"
+                >
                   <option value="Cleaning" class="labelStyles">Cleaning</option>
-                  <option value="Large Equipment" class="labelStyles">Equipment</option>
+                  <option value="Large Equipment" class="labelStyles">
+                    Equipment
+                  </option>
                   <option value="Food" class="labelStyles">Food</option>
-                  <option value="Large Equipment" class="labelStyles">Large Equipment</option>
+                  <option value="Large Equipment" class="labelStyles">
+                    Large Equipment
+                  </option>
                   <option value="Medicine" class="labelStyles">Medicine</option>
                   <option value="Tool" class="labelStyles">Tool</option>
-                  <option value="Vanity Item" class="labelStyles">Vanity Item</option>
+                  <option value="Vanity Item" class="labelStyles">
+                    Vanity Item
+                  </option>
                   <option value="Other" class="labelStyles">Other</option>
-                  </select>
+                </select>
               </div>
 
               <div class="need-align">
@@ -85,7 +97,7 @@
             </div>
             <button
               type="button"
-              (click)="save(need)"
+              (click)="save(need); need.display = false"
               class="btn left-zero-marg"
               style="margin-left: 0; margin-top: 0.5rem"
             >
@@ -116,7 +128,6 @@
       </ul>
     </div>
     <ng-template #searchNeeds id="searchList">
-      
       <ul>
         <li *ngFor="let need of needs$ | async">
           <h2 class="badge">{{ need.name }}</h2>
@@ -186,7 +197,7 @@
             </div>
             <button
               type="button"
-              (click)="save(need)"
+              (click)="save(need); need.display = false"
               class="btn left-zero-marg"
               style="margin-left: 0; margin-top: 0.5rem"
             >
@@ -229,17 +240,23 @@
           </li>
           <li>
             <label for="new-need">Type: </label
-            ><select id="new-need" #needType class="labelStyles" >
-              <option disabled selected value> -- select an option -- </option>
+            ><select id="new-need" #needType class="labelStyles">
+              <option disabled selected value>-- select an option --</option>
               <option value="Cleaning" class="labelStyles">Cleaning</option>
-              <option value="Large Equipment" class="labelStyles">Equipment</option>
+              <option value="Large Equipment" class="labelStyles">
+                Equipment
+              </option>
               <option value="Food" class="labelStyles">Food</option>
-              <option value="Large Equipment" class="labelStyles">Large Equipment</option>
+              <option value="Large Equipment" class="labelStyles">
+                Large Equipment
+              </option>
               <option value="Medicine" class="labelStyles">Medicine</option>
               <option value="Tool" class="labelStyles">Tool</option>
-              <option value="Vanity Item" class="labelStyles">Vanity Item</option>
+              <option value="Vanity Item" class="labelStyles">
+                Vanity Item
+              </option>
               <option value="Other" class="labelStyles">Other</option>
-              </select>
+            </select>
           </li>
           <li>
             <label for="new-need">Price: </label
@@ -261,11 +278,7 @@
           </li>
           <li>
             <label for="new-need">Image URL: </label
-            ><input
-              id="new-need"
-              #needImageURL
-              class="labelStyles"
-            />
+            ><input id="new-need" #needImageURL class="labelStyles" />
           </li>
         </ul>
         <p class="center" id="errorMessage"></p>
@@ -280,7 +293,13 @@
               needPrice.value,
               needQuantity.value,
               needImageURL.value
-            )
+            );
+            needName.value = '';
+            needDescription.value = '';
+            needType.value = '';
+            needPrice.value = '';
+            needQuantity.value = '';
+            needImageURL.value = ''
           "
           style="font-family: Poppins; align-self: flex-end"
         >
@@ -318,7 +337,11 @@
               animalSpecies.value,
               animalImage.value,
               false
-            )
+            );
+            animalName.value = '';
+            animalDescription.value = '';
+            animalSpecies.value = '';
+            animalImage.value = ''
           "
           style="font-family: Poppins; align-self: flex-end"
         >
@@ -377,16 +400,20 @@
         </li>
       </ul>
       <p class="center" id="errorMessage"></p>
-      
+
       <button
         type="button"
         class="btn center"
-        (click)="addPost(postTitle.value, postContent.value)"
+        (click)="
+          addPost(postTitle.value, postContent.value);
+          postTitle.value = '';
+          postContent.value = ''
+        "
         style="font-family: Poppins; align-self: flex-end"
       >
         Add Post
       </button>
-      <h3 style="text-align: center" style="margin-top:5px">Current Posts</h3>
+      <h3 style="text-align: center" style="margin-top: 5px">Current Posts</h3>
       <ul style="margin-top: 0.5rem" id="inputStyles">
         <li *ngFor="let post of posts">
           Title: {{ post.title }}
@@ -420,7 +447,6 @@
               </div>
             </div>
           </div>
-          
         </li>
       </ul>
     </div>
