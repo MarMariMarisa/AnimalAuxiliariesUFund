@@ -9,8 +9,12 @@
       <h4 class="badge">Price: ${{ need.price }}</h4>
       <h4 class="badge">Quantity: {{ need.quantity }}</h4>
       <div class="basket-buttons">
-        <button (click)="increment(need)">+</button>
-        <button (click)="decrement(need)">-</button>
+        <button class="checkBtn" style="width: 35px" (click)="increment(need)">
+          +
+        </button>
+        <button class="redBtn" style="width: 35px" (click)="decrement(need)">
+          -
+        </button>
       </div>
       <button class="redBtn" (click)="removeFromBasket(need)">Remove</button>
     </div>

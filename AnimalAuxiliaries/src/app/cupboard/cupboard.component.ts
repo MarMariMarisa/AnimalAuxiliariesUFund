@@ -55,13 +55,51 @@ export class CupboardComponent implements OnInit {
   addToBasket(need: Need): void {
     if (!need) return;
     this.basketService.addToBasket(need);
-
     setTimeout(() => {
       this.fundingbasketService
         .getBasket(this.auth.getUsername())
         .subscribe((basket) => (this.basket = basket));
     }, 30);
     this.changeDetection.detectChanges();
+    const msg = document.getElementById(need.id);
+    this.basketService
+      .getBasket()
+      .subscribe((basket) => (this.basket = basket));
+    let flag: boolean = false;
+    for (let x = 0; x < this.basket.length; x++) {
+      if (this.basket[x].id == need.id) {
+        if (this.basket[x].quantity == need.quantity) {
+          if (msg) {
+            if (msg.innerText == '')
+              setTimeout(() => {
+                msg.innerText = '';
+              }, 750);
+            msg.innerText = 'You have added the max quantity of this need!';
+            msg.style.color = 'rgb(129, 3, 3)';
+            return;
+          }
+        }
+        if (msg) {
+          if (msg.innerText == '')
+            setTimeout(() => {
+              msg.innerText = '';
+            }, 750);
+          msg.innerText = `Thank you for the support. \nYou have added this need ${
+            this.basket[x].quantity + 1
+          } times`;
+          msg.style.color = 'green';
+          return;
+        }
+      }
+    }
+    if (msg) {
+      if (msg.innerText == '')
+        setTimeout(() => {
+          msg.innerText = '';
+        }, 750);
+      msg.innerText = `Thank you for the support. \nYou have added this need 1 time`;
+      msg.style.color = 'green';
+    }
   }
 
   getNeedsImage(need: Need): string {
