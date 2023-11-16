@@ -13,10 +13,10 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 
 # Sprint 3 Release 
 This is our submission for sprint 3 - which has all of the mvp user stories implemented, as well as our two enhancements. We do not believe there are any bugs with the program. 
-We want to note that the pull requests from this sprint do not contain comments as all of the discussion regarding the merging of code was done in slack. We felt it was easier for communication to stay in once place - so we did not add comments to our pull requests, but we did both communicate about the pull requests, as well as make use of their merge feature.
+We want to note that the pull requests from this sprint do not contain comments as all of the discussion regarding the merging of code was done in slack. We felt it was easier for communication to stay in once place - so we did not add comments to our pull requests, but we did both communicate about the pull requests, as well as make use of their merge feature. To run the website, run the exec.bat file from the root directory, 'Animal Auxiliaries'. 
 
 # Notes on rerelease
-With the granted rerelease for 11/14, the team made some changes. These changes are not reflected in the video demo.
+With the granted rerelease for 11/16, the team made some changes. These changes are not reflected in the video demo.
 A majority of the changes were style/visual, the rest are as follows:
 Fixed error where need would not be deleted from basket if it was fully funded by another helper.
 Added drop down menu for need type.
@@ -32,6 +32,10 @@ Altered adopt button to display form about adoption process and tell helper the 
 ## How to run it
 
 1. Clone the repository and go to the root directory.
+
+Either:
+2. Execute '.\exec.bat'
+Or:
 2. Execute `mvn compile exec:java`
 3. Open in your browser `http://localhost:8080/` to view the sprint server
 4. In another powershell, from the root directory, run ng serve
