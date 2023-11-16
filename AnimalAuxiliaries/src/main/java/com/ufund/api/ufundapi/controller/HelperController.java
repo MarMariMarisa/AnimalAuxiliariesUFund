@@ -98,6 +98,25 @@ public class HelperController {
             }
         }
 
+    @PostMapping("/{username}/{needID}")
+    public ResponseEntity<Need> decrementNeedQuantity(@PathVariable String username, @PathVariable String needID){
+        LOG.info("POST /funding-basket/" + username + "/" + needID);
+        try{
+            Need need = helperDAO.decrementNeedInBasket(username, needID);
+            if(need != null){
+                return new ResponseEntity<>(need, HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>(need, HttpStatus.CONFLICT);
+            }
+            
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @DeleteMapping("/{username}/{needID}")
     public ResponseEntity<Need> removeFromBasket(@PathVariable String username, @PathVariable String needID) {
         LOG.info("DELETE /funding-basket/" + username + "/" + needID);

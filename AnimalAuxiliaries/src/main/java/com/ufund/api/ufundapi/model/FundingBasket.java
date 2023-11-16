@@ -24,13 +24,37 @@ public class FundingBasket {
     public boolean addToBasket(Need need) {
         // Check is real need that needs funding
         if (need != null && need.getAllFunded() == false) {
-            return needs.add(need);
+            if(needs.contains(need)){
+                // If in basket already, update quantity 
+                for(Need toUpdate : needs){
+                    if(toUpdate.equals(need)){
+                        toUpdate.setQuantity(need.getQuantity());
+                        return true;
+                    }
+                }
+            }
+            else{
+                return needs.add(need);
+            }
+            
         }
         return false;
     }
 
     public boolean removeFromBasket(Need need) {
         return needs.remove(need);
+    }
+
+    public boolean decrementNeedInBasket(Need helperNeed){
+        if(needs.contains(helperNeed)){
+            for(Need toUpdate : needs){
+                if(toUpdate.equals(helperNeed)){
+                    toUpdate.setQuantity(helperNeed.getQuantity());
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     // Purely empties the shopping cart

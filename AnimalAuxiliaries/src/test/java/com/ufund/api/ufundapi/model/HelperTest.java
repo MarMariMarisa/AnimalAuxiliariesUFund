@@ -87,6 +87,20 @@ public class HelperTest {
         assertFalse(helper.removeFromFundingBasket(null)); 
     }
 
+    @Test 
+    public void testDecrementNoNeed() {
+        assertFalse(helper.decrementNeedInBasket(null)); 
+    }
+
+    @Test 
+    public void testDecrement() {
+        Need need = new Need("need 4", "", "", 1.00f, 2); 
+        helper.addToFundingBasket(need);
+        need.setQuantity(1);
+        assertTrue(helper.decrementNeedInBasket(need)); 
+    }
+
+
     @Test
     public void testCheckout(){
         Need[] needs = {new Need("need 1", "", "", 1.00f, 1), 

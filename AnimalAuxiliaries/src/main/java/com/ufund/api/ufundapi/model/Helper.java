@@ -47,6 +47,10 @@ public class Helper implements User {
         return fundingBasket.removeFromBasket(need);
     }
 
+    public boolean decrementNeedInBasket(Need need){
+        return fundingBasket.decrementNeedInBasket(need);
+    }
+
     @JsonIgnore
     public Need[] getBasketNeeds() {
         return fundingBasket.getNeeds();

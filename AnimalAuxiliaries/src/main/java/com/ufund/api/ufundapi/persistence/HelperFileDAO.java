@@ -129,15 +129,10 @@ public class HelperFileDAO implements UserDAO {
 
                             // Add updated need to basket 
                             helperNeed.setQuantity(helperNeed.getQuantity()+1);
-                            if(h.removeFromFundingBasket(n)){
-                                if(h.addToFundingBasket(helperNeed)){
-                                    // cupboardNeed.setQuantity(cupboardNeed.getQuantity());
-                                    // needDao.updateNeed(cupboardNeed); 
-                                    save();   
-                                    return need;          
-                                }
-                            }
-                            return null;
+                            h.addToFundingBasket(helperNeed);
+                            save();   
+                            return need;          
+
                         }   
                     }
 
@@ -187,6 +182,34 @@ public class HelperFileDAO implements UserDAO {
                         }                       
                     }
                 }     
+            }
+            return null;
+        }
+    }
+
+    public Need decrementNeedInBasket(String username, String needID) throws IOException{
+        synchronized(helpers){
+            if(helpers.containsKey(username)){
+                Helper h = helpers.get(username);
+                Need need = needDao.getNeed(needID);
+     
+                if(need != null){
+                    for(Need helperNeed : h.getBasketNeeds()){
+                        if(helperNeed.getId().equals(needID)){
+                            int helperQuantity = helperNeed.getQuantity();
+                            helperNeed.setQuantity(helperQuantity - 1);
+                            if(helperNeed.getQuantity() > 0){
+                                    if(h.decrementNeedInBasket(helperNeed)){
+                                    save();
+                                    return helperNeed;
+                                }
+                            }
+                            else{
+                                h.removeFromFundingBasket(helperNeed);
+                            }        
+                        }                       
+                    }
+                }   
             }
             return null;
         }

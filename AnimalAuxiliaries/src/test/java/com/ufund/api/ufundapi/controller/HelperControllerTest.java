@@ -144,6 +144,22 @@ public class HelperControllerTest {
     }
 
     @Test
+    public void testDecrement() throws IOException {
+        // Setup
+        String username = "user1";
+        String needID = "need1";
+        Need removedNeed = new Need("Removed Need", "Description", "Category", 10, 2);
+        when(mockHelperDAO.decrementNeedInBasket(username, needID)).thenReturn(removedNeed);
+
+        // Invoke
+        ResponseEntity<Need> response = helperController.decrementNeedQuantity(username, needID);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(removedNeed, response.getBody());
+    }
+
+    @Test
     public void testRemoveFromBasketNeedNotExists() throws IOException {
         // Setup
         String username = "user1";
@@ -156,6 +172,21 @@ public class HelperControllerTest {
         // Analyze
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
     }
+
+    @Test
+    public void testDecrementNeedNotExists() throws IOException {
+        // Setup
+        String username = "user1";
+        String needID = "nonexistent";
+        when(mockHelperDAO.decrementNeedInBasket(username, needID)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Need> response = helperController.decrementNeedQuantity(username, needID);
+
+        // Analyze
+        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+    }
+
     @Test
     public void testGetHelpersBasketException() throws IOException {
         when(mockHelperDAO.getBasketNeeds("user1")).thenThrow(new IOException("Simulated Exception"));
@@ -188,6 +219,15 @@ public class HelperControllerTest {
         when(mockHelperDAO.removeFromBasket("user1", "need1")).thenThrow(new IOException("Simulated Exception"));
 
         ResponseEntity<Need> response = helperController.removeFromBasket("user1", "need1");
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    @Test
+    public void testDecrementException() throws IOException {
+        when(mockHelperDAO.decrementNeedInBasket("user1", "need1")).thenThrow(new IOException("Simulated Exception"));
+
+        ResponseEntity<Need> response = helperController.decrementNeedQuantity("user1", "need1");
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
