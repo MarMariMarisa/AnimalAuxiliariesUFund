@@ -21,6 +21,11 @@ A majority of the changes were style/visual, the rest are as follows:
 Fixed error where need would not be deleted from basket if it was fully funded by another helper.
 Added drop down menu for need type.
 Altered adopt button to display form about adoption process and tell helper the managers will be in contact with them, which places an animal on "hold". Animals now appear as being reviewed after helper chooses to adopt. Only one helper can start the adoption process for an animal. The new format essentially has it setup so that a helper may start the adoption process, and that animal will now be on hold. We assume the actual adoption process would be beyond the website.
+Added increment and decrement from inside of the basket (backend and frontend updates made for this)
+Flipped the order of the announcements list
+Set it to clear fields when objects are created
+Closed the drop down menu when a need is updated
+Added message when adding a need/when need in basket is at max quantity
 
 ## Prerequisites
 
