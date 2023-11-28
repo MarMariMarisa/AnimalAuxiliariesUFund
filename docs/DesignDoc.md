@@ -19,7 +19,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This project is a U-Fund website that is to be used by a local animal shelter/humane society. This website provides tools for a welcoming and supportive community with the purpose of helping homeless animals. Managers run the needs page, indicating the current needs of the organization. This may include funding equipment purchases, purchasing food, etc. Helpers may view these needs and contribute through funding. We hope that our product will enable members of our community to help these innocent animals and provide them with the things they need, or even a home. The websites backend is built in Java-Spring, the frontend with Angular. 
+This project is a U-Fund website that is to be used by a local animal shelter/humane society. This website provides tools for a welcoming and supportive community with the purpose of helping homeless animals. Managers run the needs page, indicating the current needs of the organization. This may include funding equipment purchases, purchasing food, etc. Helpers may view these needs and contribute through funding. Helpers can also view an adoption board (created/updated by a manager) and start the process of adoptiong an available animal. We hope that our product will enable members of our community to help these innocent animals and provide them with the things they need, or even a home. The websites backend is built in Java-Spring, the frontend with Angular. 
 
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
@@ -42,16 +42,24 @@ The Animal Auxiliaries U-Fund website exists to allow an animal shelter to virtu
 Webpage displaying and enabling all of the following things:
 
 Authentication for Helper/U-fund Manager login & logout will enable necessary privledges for a user. 
+Login page displays community updates posted by the managers.
 
 Helpers have the following abilities:
-  Helper can see list of needs
-  Helper can search for a need
-  Helper can add/remove an need to their funding basket
-  Helper can proceed to check-out and fund all needs they are supporting
+  Helper can see list of needs.
+  Helper can search for a need.
+  Helper can add/remove a need to their funding basket.
+  Helper can contribute money to a general surplus.
+  Helper can checkout their funding basket.
+  Helper can view an adoption board.
+  Helper can view whether or not an animal is adoptable.
+  Helper can start the adoption process for an animal.  
+
 
 Managers have the following abilities:
-  Manager(s) can add, remove and edit the data of all their needs stored in their needs cupboard
-  U-fund Manager cannot see contents of funding basket(s)
+  Manager(s) can add, remove and edit the data of all their needs stored in their needs cupboard.
+  Manager(s) can add and remove animals to the adoption board.
+  Manager(s) can post and delete updates on the community board.
+  U-fund Manager cannot see contents of funding basket(s).
 
 Data Persistence
   The system saves all information to files so that changes are reflected for all users. 
@@ -65,9 +73,7 @@ Your 10% additional feature enchantment(s)
 > maybe Epics and critical Stories._
 
 ### Definition of MVP
-> _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
-
-- **Minimal Authentication** --> Minimal Authentication allows any user to login to the webisite without creating an account. Any user attempting to login with the **admin** username will be logged in as a *Manger*. Any user attempting to login with any other username will be logged in as a *Helper*. 
+- **Minimal Authentication** --> Minimal Authentication allows any user to login to the website without creating an account. Any user attempting to login with the **admin** username will be logged in as a *Manger*. Any user attempting to login with any other username will be logged in as a *Helper*. 
 
 - **Helper Functionality** --> Minimal Helper Functionality allows the *Helper* to **search** for a *need*. As well as **Add** and **Remove** *Needs* from their *Funding Basket*. 
 
@@ -77,7 +83,11 @@ Your 10% additional feature enchantment(s)
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
 
 ### Enhancements
-> _**[Sprint 4]** Describe what enhancements you have implemented for the project._
+**Community Board**   
+The Community Board displays text posts that are posted/deleted by managers. This is viewed on the login page. The hope is for managers to use this to communicate important/timely information and create a tight-knit environment.  
+  
+**Adoption Board** 
+The Adoption Board displays a board of adoptable animals that helpers can view. The animals on the board are managed by a manager. Helpers see the board and can elect to start the adoption process on an animal if it is available. If the process is started on an animal, that animal will be labeled as on hold and will be unadoptable by other users. We assume the actual adoption process would be in person/not on the website, so this board is more of a means to research the animal and begin that process of adoption. This enhancement creates a strong identity for our site and provides the ultimate means to help the non-profit.
 
 
 ## Application Domain
