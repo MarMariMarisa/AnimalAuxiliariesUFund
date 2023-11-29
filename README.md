@@ -1,7 +1,7 @@
 # U-Fund: Animal Shelter/Humane Society
 This project is a U-Fund website that is to be used by a local animal shelter/humane society. This website provides tools for a welcoming and supportive community with the purpose of helping homeless animals.  
   
-An online U-Fund system built in Java 17=>, Angular 16.2.3, Springframework 2.6.2, and maven 3.0.
+An online U-Fund system built in Java 17=>, Angular 16.2.3, Springframework 2.6.2, and Maven 3.0.
   
 ## Team
 
@@ -25,16 +25,16 @@ This sprint was essentially just design doc updates, but we did make a very smal
 
 ## How to run it
 
-1. Clone the repository and go to the root directory.
+1. Clone the repository and go to the root directory.  
 
-Either:
-2. Execute '.\exec.bat'
-Or:
-2. Execute `mvn compile exec:java`
-3. Open in your browser `http://localhost:8080/` to view the sprint server
-4. In another powershell, from the root directory, run ng serve
-5. Open in your browser `http://localhost:4200/` to view the actual page
-6. Login and use site as you please
+Either:  
+2. Execute '.\exec.bat'  
+Or:  
+2. Execute `mvn compile exec:java`  
+3. Open in your browser `http://localhost:8080/` to view the sprint server  
+4. In another powershell, from the root directory, run ng serve  
+5. Open in your browser `http://localhost:4200/` to view the actual page  
+6. Login and use site as you please  
 
 
 
