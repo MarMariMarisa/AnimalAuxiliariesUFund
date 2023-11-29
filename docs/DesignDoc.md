@@ -139,7 +139,7 @@ The View Tier UI of our architecture uses two key components. Those being the UF
 > As these can span multiple tiers, be sure to include an relevant HTTP requests from the client-side to the server-side 
 > to help illustrate the end-to-end flow._
 
-![Sequence Diagram One](.png)
+![Sequence Diagram One](ViewUISequenceDiagramOne.png)
 
 > _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
  >* _Class diagrams only apply to the **ViewModel** and **Model** Tier_
