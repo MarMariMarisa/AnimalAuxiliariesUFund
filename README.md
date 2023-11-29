@@ -1,5 +1,6 @@
 # U-Fund: Animal Shelter/Humane Society
-
+This project is a U-Fund website that is to be used by a local animal shelter/humane society. This website provides tools for a welcoming and supportive community with the purpose of helping homeless animals.  
+  
 An online U-Fund system built in Java 17=>, Angular 16.2.3, Springframework 2.6.2, and maven 3.0.
   
 ## Team
