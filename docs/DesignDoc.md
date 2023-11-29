@@ -131,16 +131,15 @@ Once on the manager page the user sees a 'logout' button at the top of the page 
 Once on the helper page the user sees a 'logout' button above a search box with all of the cupboard needs listed below displaying yhe need name, description, price, and quantity propoerties as well as a '+' button that when clicked will add the need to the helper's funding-basket. Below the list of all needs in the cupboard is a list of all needs inside of the helpers funding-basket where the needs are displayed in the same way as they are in the cupboard except with a '-' button which will remove the need from the helper's funding-basket. 
 
 ### View Tier
-> _**[Sprint 4]** Provide a summary of the View Tier UI of your architecture.
-> Describe the types of components in the tier and describe their
-> responsibilities.  This should be a narrative description, i.e. it has
-> a flow or "story line" that the reader can follow._
+The View Tier UI of our architecture uses two key components. Those being the UFundAPIApplication and our WebConfig. As the user interacts with our UI the API acts as the interpreter for those requests. Then if the API requests any changes be made to the UI it calls upon the WebConfig to make those modifications on the fly allowing flexability and a quick response time.
 
 > _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
 > of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
 > sequence diagram of a customer searching for an item and adding to their cart.)
 > As these can span multiple tiers, be sure to include an relevant HTTP requests from the client-side to the server-side 
 > to help illustrate the end-to-end flow._
+
+![Sequence Diagram One](.png)
 
 > _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
  >* _Class diagrams only apply to the **ViewModel** and **Model** Tier_
