@@ -1,7 +1,6 @@
 # U-Fund: Animal Shelter/Humane Society
-# Modify this document to expand any and all sections that are applicable for a better understanding from your users/testers/collaborators (remove this comment and other instructions areas for your FINAL release)
 
-An online U-Fund system built in Java 17=> and ___ _replace with other platform requirements_ ___
+An online U-Fund system built in Java 17=>, Angular 16.2.3, Springframework 2.6.2, and maven 3.0.
   
 ## Team
 
@@ -11,27 +10,16 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Tyler Combs
 - Sarah Payne
 
-# Sprint 3 Release 
-This is our submission for sprint 3 - which has all of the mvp user stories implemented, as well as our two enhancements. We do not believe there are any bugs with the program. 
-We want to note that the pull requests from this sprint do not contain comments as all of the discussion regarding the merging of code was done in slack. We felt it was easier for communication to stay in once place - so we did not add comments to our pull requests, but we did both communicate about the pull requests, as well as make use of their merge feature. To run the website, run the exec.bat file from the root directory, 'Animal Auxiliaries'. 
-
-# Notes on rerelease
-With the granted rerelease for 11/16, the team made some changes. These changes are not reflected in the video demo.
-A majority of the changes were style/visual, the rest are as follows:
-Fixed error where need would not be deleted from basket if it was fully funded by another helper.
-Added drop down menu for need type.
-Altered adopt button to display form about adoption process and tell helper the managers will be in contact with them, which places an animal on "hold". Animals now appear as being reviewed after helper chooses to adopt. Only one helper can start the adoption process for an animal. The new format essentially has it setup so that a helper may start the adoption process, and that animal will now be on hold. We assume the actual adoption process would be beyond the website.
-Added increment and decrement from inside of the basket (backend and frontend updates made for this).
-Flipped the order of the announcements list.
-Set it to clear fields when objects are created.
-Closed the drop down menu when a need is updated.
-Added message when adding a need/when need in basket is at max quantity.
+# Sprint 4 Release
+This sprint was essentially just design doc updates, but we did make a very small change to the adoptable animal class to add a hashcode method. This was done because without it our static code analysis was failing.  
 
 ## Prerequisites
 
-- Java 11=>17 (Make sure to have correct JAVA_HOME setup in your environment)
-- Maven
--  _add any other tech stack requirements_
+- Java 11=>17 
+- Maven 3
+- Npm
+- Node.js
+- SpringFramework 2
 
 
 ## How to run it
@@ -84,10 +72,11 @@ To run tests on all the tiers in isolation do this:
 
 ## How to setup/run/test program 
 1. Tester, first obtain the Acceptance Test plan
-2. IP address of target machine running the app
-3. Execute ________
-4. ...
-5. ...
+2. Obtain the IP address of the target machine running the app.
+3. Execute the predefined test cases outlined in the Acceptance Test plan.
+4. Analyze the application's behavior and performance during test execution.
+5. Document and report any deviations from expected outcomes, providing detailed information on encountered issues, if any.
+
 
 ## Design Principles 
 **Sprint 1 Champion Principles**
