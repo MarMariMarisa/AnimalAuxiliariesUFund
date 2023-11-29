@@ -216,10 +216,12 @@ This issue is regarding a lack of including a generic font. Multiple of our css 
 
 ## Software architecture and usability principles
 **Cohesion**
+
 Our cohesion wasn't perfect on the frontend as there were elements we deemed too insignificant for us to create it's own individual componenet class. For example, we decided not to break down various the homepage into too many parts. We decided not to break down the homepages' components such as the community board, the brief description and the login section as weren't going to reuse it in other sections of our website.
 
 ## Front-End Changes
 **Helper**
+
 - Set the need boxes to uniform sizes
 - Set the need text to white
   
