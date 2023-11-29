@@ -42,23 +42,16 @@ The Animal Auxiliaries U-Fund website exists to allow an animal shelter to virtu
 Webpage displaying and enabling all of the following things:
 
 Authentication for Helper/U-fund Manager login & logout will enable necessary privledges for a user. 
-Login page displays community updates posted by the managers.
 
 Helpers have the following abilities:
   Helper can see list of needs.
   Helper can search for a need.
   Helper can add/remove a need to their funding basket.
-  Helper can contribute money to a general surplus.
   Helper can checkout their funding basket.
-  Helper can view an adoption board.
-  Helper can view whether or not an animal is adoptable.
-  Helper can start the adoption process for an animal.  
 
 
 Managers have the following abilities:
   Manager(s) can add, remove and edit the data of all their needs stored in their needs cupboard.
-  Manager(s) can add and remove animals to the adoption board.
-  Manager(s) can post and delete updates on the community board.
   U-fund Manager cannot see contents of funding basket(s).
 
 Data Persistence
