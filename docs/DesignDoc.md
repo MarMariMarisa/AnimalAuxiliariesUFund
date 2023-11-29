@@ -224,9 +224,11 @@ Our cohesion wasn't perfect on the frontend as there were elements we deemed too
 
 - Set the need boxes to uniform sizes
 - Set the need text to white
-  
+  ![image](https://github.com/RIT-SWEN-261-05/team-project-2231-swen-261-05-2b-animal-auxiliaries/assets/146098070/3c0cb9dd-1c97-4625-b205-dd09c957bc56)
+
 **Manager**
   - Add text to indicate that you are on the admin page
+![image](https://github.com/RIT-SWEN-261-05/team-project-2231-swen-261-05-2b-animal-auxiliaries/assets/146098070/6206e05f-6217-4ea9-aca5-cc3f0414a7e1)
 
 ## Future Refactoring
 If the team had additional time for improvement, there would definitely be some changes made. When it comes to the logic of our code, we are very pleased and proud of the product we put out. We feel we met the requirements and had logic that functioned at intended. This in saying the changes on the backend we would like to make are not logic focused, rather simplification and efficiency based. There are defintely some methods that could use streamlining or refactoring to make code more readable and efficient(see static code analysis issue 1). We also would like to have been able to scrub through the code and update comments, remove things that no longer are needed or relevant, and polish the classes.   
