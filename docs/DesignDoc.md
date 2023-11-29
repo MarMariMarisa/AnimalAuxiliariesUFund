@@ -36,7 +36,11 @@ The Animal Auxiliaries U-Fund website exists to allow an animal shelter to virtu
 | Cupboard | Virtual storage for the many needs of the non-profit. The cupboard is **edited** by *Managers* and **viewed** by *Helpers*. | 
 | Funding Basket | Virtual shopping basket. Each *Helper* has a personal Funding Basket, they can **add** and **remove** *Needs* from their Funding Basket as well as **Check-out** or buy those *Needs*. | 
 | Manager | A website User that represents a person who is responsible for the needs of a non-profit. The Manager has the ability to **edit** the *Cupboard*. | 
-| Helper | A website User that represents a person who is donating to the non-profit. The Helper has the ability to **search** the *Cupboard* and **fund** *Needs*. | 
+| Helper | A website User that represents a person who is donating to the non-profit. The Helper has the ability to **search** the *Cupboard* and **fund** *Needs*. They also have the ability to view both community board posts and adoptable animals, and **adopt** animals not on hold| 
+| Adoptable Animal | A single animal that is in the adoption cupboard, who is either adoptable or on hold(not adoptabke) |
+| Adoption Cupboard | Virtual board of adoptable animals |
+| Community Board | Virtual list of text pagraphs **posted** by managers for helpers to view |
+| Post | Individal text paragraph posted in community board by a manager |
 
 ## Requirements
 Webpage displaying and enabling all of the following things:
