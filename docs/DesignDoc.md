@@ -214,6 +214,18 @@ This issue appears because we have a list item outside of a list container. This
 This issue is regarding a lack of including a generic font. Multiple of our css sections for font styles do not include a generic font to fall back on. This results in a situation where if a browser does not support the fonts listed, the css will fall back on the browsers default font. This could cause a worse outcome if this situation were to occur. It would be suggested to include generic fonts to fall back on where we would still be pleased with the stlye if this situation were to occur. 
 
 
+## Software architecture and usability principles
+**Cohesion**
+Our cohesion wasn't perfect on the frontend as there were elements we deemed too insignificant for us to create it's own individual componenet class. For example, we decided not to break down various the homepage into too many parts. We decided not to break down the homepages' components such as the community board, the brief description and the login section as weren't going to reuse it in other sections of our website.
+
+## Front-End Changes
+**Helper**
+- Set the need boxes to uniform sizes
+- Set the need text to white
+  
+**Manager**
+  - Add text to indicate that you are on the admin page
+
 ## Future Refactoring
 If the team had additional time for improvement, there would definitely be some changes made. When it comes to the logic of our code, we are very pleased and proud of the product we put out. We feel we met the requirements and had logic that functioned at intended. This in saying the changes on the backend we would like to make are not logic focused, rather simplification and efficiency based. There are defintely some methods that could use streamlining or refactoring to make code more readable and efficient(see static code analysis issue 1). We also would like to have been able to scrub through the code and update comments, remove things that no longer are needed or relevant, and polish the classes.   
 In regards to the front end, we are also happy with the look and feel. Some comments from other teams indicated some minor inconsistencies with margins and white space. It was also suggested to us in the usability review that we update some of the small button animations and polish the look of the manager page and need page. These fixes are not focused on the way it works, rather the spacing and locations on the page. These suggested fixes are pretty small, but they are definitely things we would like to implement.   
