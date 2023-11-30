@@ -145,10 +145,8 @@ The View Tier UI of our architecture uses two key components. Those being the UF
 ### ViewModel Tier
 The View Model tier of our architecture consists of 10 components. They are NeedDAO, NeedFileDAO, PostDAO, PostFileDAO, UserFileDAO, AdoptableAnimalDAO, HelperController, CupboardController, CommunityBoardController, and AdoptionCupboardController. This diagram has a repeating sequence among the DAOs, FileDAO, and Controller. The FileDAOs are all based on the architecture of their respective DAOs. Then once created the DAOs parse their respective JSON files into values that can be passed to their respective controllers. Essentially the DAOs act as the bridge between the data stored in the JSONs and the controller which is in charge of changing this data and keeping track of it.
 
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as critical attributes and methods._
-> 
-![Replace with your ViewModel Tier class diagram 1, etc.](viewmodel-class-diagram.png)
+![Model View First Half](modelViewOne.png)
+![Model View First Half](modelViewTwo.png)
 
 ### Model Tier
 Our model tier consists of 7 main elements; Cupboard, Need, Helper, Adoptable Animal, Funding Basket, Post, and User. Starting at the beginning if a user is a Helper or manager they have access to a few different things. Helper's may add Needs to their funding basket from the cupboard to be checked out and funded. Helpers may also view and adopt animals and also view posts. If a user is a manager they have access to create these things. Managers may create posts, needs, and adoptable animals.
