@@ -223,6 +223,7 @@ To wrap up these thoughts, we were very happy with our project, but would like t
 ## Recommendations for Improvement 
 # Software Architecture 
 Our cohesion wasn't perfect on the frontend as there were elements we deemed too insignificant for us to create it's own individual componenet class. For example, we decided not to break down various the homepage into too many parts. We decided not to break down the homepages' components such as the community board, the brief description and the login section as weren't going to reuse it in other sections of our website.  
+When given the chance, we would like to focus on adopting a component-based architecture, breaking down UI elements into reusable components irrespective of immediate use or reusability which will ensure scalability and assist with maintenance. 
 
 
 # Usability [Front End] Changes
