@@ -22,7 +22,6 @@ This project is a U-Fund website that is to be used by a local animal shelter/hu
 Our U-Fund website exists to serve small local animal shelters that are in need of a low-cost accessible form of fundraising. Our top goal is to create a website that is accessible and easily navigable to an average community in order to crowd fund for a non-profit through the average person. 
 
 ### Glossary and Acronyms
-> _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
 
 | Term | Definition |
 |------|------------|
@@ -121,12 +120,6 @@ The View Tier UI of our architecture uses two key components. Those being the UF
 
 ![Sequence Diagram One](ViewUISequenceDiagramOne.png)
 ![Sequence Diagram One](sequence-diagram-two.png)
-
-> _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
- >* _Class diagrams only apply to the **ViewModel** and **Model** Tier_
->* _A single class diagram of the entire system will not be effective. You may start with one, but will be need to break it down into smaller sections to account for requirements of each of the Tier static models below._
- >* _Correct labeling of relationships with proper notation for the relationship type, multiplicities, and navigation information will be important._
- >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
 ### ViewModel Tier
 The View Model tier of our architecture consists of 10 components. They are NeedDAO, NeedFileDAO, PostDAO, PostFileDAO, UserFileDAO, AdoptableAnimalDAO, HelperController, CupboardController, CommunityBoardController, and AdoptionCupboardController. This diagram has a repeating sequence among the DAOs, FileDAO, and Controller. The FileDAOs are all based on the architecture of their respective DAOs. Then once created the DAOs parse their respective JSON files into values that can be passed to their respective controllers. Essentially the DAOs act as the bridge between the data stored in the JSONs and the controller which is in charge of changing this data and keeping track of it.
