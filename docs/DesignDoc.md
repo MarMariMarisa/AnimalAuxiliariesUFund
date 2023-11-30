@@ -134,13 +134,8 @@ Once on the helper page the user sees a 'logout' button above a search box with 
 ### View Tier
 The View Tier UI of our architecture uses two key components. Those being the UFundAPIApplication and our WebConfig. As the user interacts with our UI the API acts as the interpreter for those requests. Then if the API requests any changes be made to the UI it calls upon the WebConfig to make those modifications on the fly allowing flexability and a quick response time.
 
-> _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
-> of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
-> sequence diagram of a customer searching for an item and adding to their cart.)
-> As these can span multiple tiers, be sure to include an relevant HTTP requests from the client-side to the server-side 
-> to help illustrate the end-to-end flow._
-
 ![Sequence Diagram One](ViewUISequenceDiagramOne.png)
+![Sequence Diagram One](sequence-diagram-two.png)
 
 > _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
  >* _Class diagrams only apply to the **ViewModel** and **Model** Tier_
@@ -159,9 +154,7 @@ The View Tier UI of our architecture uses two key components. Those being the UF
 ![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
-> _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
+The View Model tier of our architecture consists of 11 components. They are NeedDAO, NeedFileDAO, PostDAO, PostFileDAO, UserDAO, UserFileDAO, AdoptableAnimalDAO, HelperController, CupboardController, CommunityBoardController, and AdoptionCupboardController. This diagram has a repeating sequence among the DAOs, FileDAO, and Controller. The FileDAOs are all based on the architecture of their respective DAOs. Then once created the DAOs parse their respective JSON files into values that can be passed to their respective controllers. Essentially the DAOs act as the bridge between the data stored in the JSONs and the controller which is in charge of changing this data and keeping track of it.
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
