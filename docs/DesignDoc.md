@@ -37,27 +37,27 @@ Our U-Fund website exists to serve small local animal shelters that are in need 
 | Adoption Cupboard | Secondary cupboard viewable by Helpers and editable by Managers containing Adoptable Animals | 
 
 ## Requirements
-Webpage displaying and enabling all of the following things:
+Implementation and Adequate Display of the following features:
 
-Authentication for Helper/U-fund Manager login & logout will enable necessary privledges for a user. 
+- Authentication for Helper/U-fund Manager login/logout & grants the correct user abilities based on the status of the logged in user
 
 Helpers have the following abilities:
-  Helper can see list of needs.
-  Helper can search for a need.
-  Helper can add/remove a need to their funding basket.
-  Helper can checkout their funding basket.
+  - Helper can see list of needs.
+  - Helper can search for a need.
+  - Helper can add/remove a need to their funding basket.
+  - Helper can checkout their funding basket.
 
 
 Managers have the following abilities:
-  Manager(s) can add, remove and edit the data of all their needs stored in their needs cupboard.
-  U-fund Manager cannot see contents of funding basket(s).
+  - Manager(s) can add, remove and edit the data of all their needs stored in their needs cupboard.
+  - Manager cannot see contents of funding basket(s).
 
 Data Persistence
-  The system saves all information to files so that changes are reflected for all users. 
+  - The system saves all information to files so that changes are reflected for all users. 
 
 Your 10% additional feature enchantment(s)
-  Adoption Site 
-  Community Board
+  - Adoption Page
+  - Community Board
 
 
 ### Definition of MVP
@@ -76,11 +76,10 @@ Your 10% additional feature enchantment(s)
 | Frontend Angular | Home Page, Manager Page, Helper Page, Basket Page | 
 ### Enhancements
 **Community Board**   
-The Community Board displays text posts that are posted/deleted by managers. This is viewed on the login page. The hope is for managers to use this to communicate important/timely information and create a tight-knit environment.  
+The Community Board displays chronological text posts on the home page of the website. Posts can be created and deleted by managers. The purpose of the community board is to act as an engagement tool for Managers to share progress and upcoming events with their helpers as well as potential helpers that have not yet committed to creating a profile on the website. As well as to foster a sense of community among the website users and grant the Helpers insight into the good their donations are doing for the animal shelter. 
   
-**Adoption Board** 
-The Adoption Board displays a board of adoptable animals that helpers can view. The animals on the board are managed by a manager. Helpers see the board and can elect to start the adoption process on an animal if it is available. If the process is started on an animal, that animal will be labeled as on hold and will be unadoptable by other users. We assume the actual adoption process would be in person/not on the website, so this board is more of a means to research the animal and begin that process of adoption. This enhancement creates a strong identity for our site and provides the ultimate means to help the non-profit.
-
+**Adoption Page** 
+The Adoption Page stores a collection of adoptable animals. The page can be edited by the Manager and viewed by the Helpers. Using the adoption page, Helpers can view profiles for each of the available adoptable animals as well as begin the adoption process through the U-Fund website. When a Helper begins the adoption process, that animal is placed on a hold for the Helper and no other website user will be able to begin the adoption process on that same animal. The primary purpose of the Adoption Page is not to provide an entirely online adoption process, but to better engage potential adopters and allow them to view the profiles of many avialable adoptable animals at a given time. The formal adoption process will take place outside of the U-Fund website, but the website provides an accessible means of beginning the process. 
 
 ## Application Domain
 
@@ -168,7 +167,8 @@ Our model tier consists of 7 main elements; Cupboard, Need, Helper, Adoptable An
 - In the persistance tier, we made interfaces to be implemented into classes in order to help outline everything the class needed to complete. While these DAO interfaces weren't directly tied to the domain, they served as helpers to help connect classes together 
 
 ## Static Code Analysis/Future Design Improvements
-![Static Code Analysis](static-code-analysis.pdf)  
+
+![Static Code Analysis](static-code-analysis.png)  
 
 **Issue 1 - Cognitive Complexity**
 ![Issue 1](issue1.png)
@@ -203,11 +203,11 @@ Based on usability feedback, the website needs some fixes on the strategic use o
 **Helper Page**
 - Set the need boxes to uniform sizes
 - Set the need text to white
-  ![image](https://github.com/RIT-SWEN-261-05/team-project-2231-swen-261-05-2b-animal-auxiliaries/assets/146098070/3c0cb9dd-1c97-4625-b205-dd09c957bc56)
+  ![image](improvement-one.png)
 
 **Manager Page**
   - Add text to indicate that you are on the admin page
-![image](https://github.com/RIT-SWEN-261-05/team-project-2231-swen-261-05-2b-animal-auxiliaries/assets/146098070/6206e05f-6217-4ea9-aca5-cc3f0414a7e1)
+![image](improvement-two.png)
 
 
 ## Testing
