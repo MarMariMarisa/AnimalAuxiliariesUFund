@@ -94,7 +94,7 @@ The Adoption Board displays a board of adoptable animals that helpers can view. 
 
 This section describes the application domain.
 
-![Domain Model](domain-model.png)
+![Domain Model](domain-model-final.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
@@ -151,11 +151,7 @@ The View Model tier of our architecture consists of 11 components. They are Need
 ![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
->>descripton of model tier
-
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as critical attributes and methods._
-> 
+Our model tier consists of 7 main elements; Cupboard, Need, Helper, Adoptable Animal, Funding Basket, Post, and User. Starting at the beginning if a user is a Helper or manager they have access to a few different things. Helper's may add Needs to their funding basket from the cupboard to be checked out and funded. Helpers may also view and adopt animals and also view posts. If a user is a manager they have access to create these things. Managers may create posts, needs, and adoptable animals.
 ![The Model Tier Class Diagram](modelTier.png)
 
 ## OO Design Principles
