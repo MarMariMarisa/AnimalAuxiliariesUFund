@@ -108,7 +108,7 @@ This section describes the application architecture.
 
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
 
-![The Tiers & Layers of the Architecture](TiersAndLayers.png)
+![The Tiers & Layers of the Architecture](UpdatedTiersLayers.png)
 
 The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
@@ -143,7 +143,7 @@ The View Tier UI of our architecture uses two key components. Those being the UF
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
 ### ViewModel Tier
-The View Model tier of our architecture consists of 11 components. They are NeedDAO, NeedFileDAO, PostDAO, PostFileDAO, UserDAO, UserFileDAO, AdoptableAnimalDAO, HelperController, CupboardController, CommunityBoardController, and AdoptionCupboardController. This diagram has a repeating sequence among the DAOs, FileDAO, and Controller. The FileDAOs are all based on the architecture of their respective DAOs. Then once created the DAOs parse their respective JSON files into values that can be passed to their respective controllers. Essentially the DAOs act as the bridge between the data stored in the JSONs and the controller which is in charge of changing this data and keeping track of it.
+The View Model tier of our architecture consists of 10 components. They are NeedDAO, NeedFileDAO, PostDAO, PostFileDAO, UserFileDAO, AdoptableAnimalDAO, HelperController, CupboardController, CommunityBoardController, and AdoptionCupboardController. This diagram has a repeating sequence among the DAOs, FileDAO, and Controller. The FileDAOs are all based on the architecture of their respective DAOs. Then once created the DAOs parse their respective JSON files into values that can be passed to their respective controllers. Essentially the DAOs act as the bridge between the data stored in the JSONs and the controller which is in charge of changing this data and keeping track of it.
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
@@ -151,11 +151,7 @@ The View Model tier of our architecture consists of 11 components. They are Need
 ![Replace with your ViewModel Tier class diagram 1, etc.](viewmodel-class-diagram.png)
 
 ### Model Tier
->>descripton of model tier
-
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as critical attributes and methods._
-> 
+Our model tier consists of 7 main elements; Cupboard, Need, Helper, Adoptable Animal, Funding Basket, Post, and User. Starting at the beginning if a user is a Helper or manager they have access to a few different things. Helper's may add Needs to their funding basket from the cupboard to be checked out and funded. Helpers may also view and adopt animals and also view posts. If a user is a manager they have access to create these things. Managers may create posts, needs, and adoptable animals.
 ![The Model Tier Class Diagram](modelTier.png)
 
 ## OO Design Principles
@@ -223,6 +219,7 @@ To wrap up these thoughts, we were very happy with our project, but would like t
 ## Recommendations for Improvement 
 # Software Architecture 
 Our cohesion wasn't perfect on the frontend as there were elements we deemed too insignificant for us to create it's own individual componenet class. For example, we decided not to break down various the homepage into too many parts. We decided not to break down the homepages' components such as the community board, the brief description and the login section as weren't going to reuse it in other sections of our website.  
+When given the chance, we would like to focus on adopting a component-based architecture, breaking down UI elements into reusable components irrespective of immediate use or reusability which will ensure scalability and assist with maintenance. 
 
 
 # Usability [Front End] Changes
