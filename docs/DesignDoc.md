@@ -148,7 +148,7 @@ The View Model tier of our architecture consists of 11 components. They are Need
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
+![Replace with your ViewModel Tier class diagram 1, etc.](viewmodel-class-diagram.png)
 
 ### Model Tier
 >>descripton of model tier
