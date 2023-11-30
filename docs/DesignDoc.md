@@ -22,10 +22,8 @@ geometry: margin=1in
 This project is a U-Fund website that is to be used by a local animal shelter/humane society. This website provides tools for a welcoming and supportive community with the purpose of helping homeless animals. Managers run the needs page, indicating the current needs of the organization. This may include funding equipment purchases, purchasing food, etc. Helpers may view these needs and contribute through funding. Helpers can also view an adoption board (created/updated by a manager) and start the process of adoptiong an available animal. We hope that our product will enable members of our community to help these innocent animals and provide them with the things they need, or even a home. The websites backend is built in Java-Spring, the frontend with Angular. 
 
 ### Purpose
->  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
-> important user group and user goals._
 
-The Animal Auxiliaries U-Fund website exists to allow an animal shelter to virtually fundraise for their non-profit by making the process of donating to the animal shelter simple and easy. 
+Our U-Fund website exists to serve small local animal shelters that are in need of a low-cost accessible form of fundraising. Our top goal is to create a website that is accessible and easily navigable to an average community in order to crowd fund for a non-profit through the average person. 
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
@@ -36,7 +34,12 @@ The Animal Auxiliaries U-Fund website exists to allow an animal shelter to virtu
 | Cupboard | Virtual storage for the many needs of the non-profit. The cupboard is **edited** by *Managers* and **viewed** by *Helpers*. | 
 | Funding Basket | Virtual shopping basket. Each *Helper* has a personal Funding Basket, they can **add** and **remove** *Needs* from their Funding Basket as well as **Check-out** or buy those *Needs*. | 
 | Manager | A website User that represents a person who is responsible for the needs of a non-profit. The Manager has the ability to **edit** the *Cupboard*. | 
-| Helper | A website User that represents a person who is donating to the non-profit. The Helper has the ability to **search** the *Cupboard* and **fund** *Needs*. | 
+| Helper | A website User that represents a person who is donating to the non-profit. The Helper has the ability to **search** the *Cupboard* and **fund** *Needs*. They also have the ability to view both community board posts and adoptable animals, and **adopt** animals not on hold| 
+| Adoptable Animal | A single animal that is in the adoption cupboard, who is either adoptable or on hold(not adoptabke) |
+| Adoption Cupboard | Virtual board of adoptable animals |
+| Community Board | Virtual list of text pagraphs **posted** by managers for helpers to view |
+| Post | Individal text paragraph posted in community board by a manager |
+| Adoption Cupboard | Secondary cupboard viewable by Helpers and editable by Managers containing Adoptable Animals | 
 
 ## Requirements
 Webpage displaying and enabling all of the following things:
@@ -73,8 +76,12 @@ Your 10% additional feature enchantment(s)
 - **U-fund Manager Functionality** --> Minimal Manager Functionality allows a *Manager* to **add**, **remove**, and **edit** the *needs* in the *cupboard*. And prevent the *Manager* from viewing the *funding baskets*. 
 
 ### MVP Features
->  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
 
+| Epic | User Stories | 
+|------|--------------|
+| User Management | User Authentication, Manager Abilities, Helper Abilities | 
+| Funding Basket | Add need to basket, Remove need from basket, checkout funding basket | 
+| Frontend Angular | Home Page, Manager Page, Helper Page, Basket Page | 
 ### Enhancements
 **Community Board**   
 The Community Board displays text posts that are posted/deleted by managers. This is viewed on the login page. The hope is for managers to use this to communicate important/timely information and create a tight-knit environment.  
@@ -100,9 +107,8 @@ This section describes the application architecture.
 ### Summary
 
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
-**NOTE**: detailed diagrams are required in later sections of this document.
 
-![The Tiers & Layers of the Architecture](architecutre-tiers-layers.png)
+![The Tiers & Layers of the Architecture](TiersAndLayers.png)
 
 The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
@@ -116,8 +122,6 @@ Both the ViewModel and Model are built using Java and Spring Framework. Details 
 
 This section describes the web interface flow; this is how the user views and interacts with the web application.
 
-> _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
-
 The application opens on a login page 'http://localhost:4200/login', logging in as an admin will take the user to the manager page 'http://localhost:4200/manager'; logging in as a helper takes you to the helper page 'http://localhost:4200/helper'
 
 > TO DO update this line after bug fixes 
@@ -127,16 +131,10 @@ Once on the manager page the user sees a 'logout' button at the top of the page 
 Once on the helper page the user sees a 'logout' button above a search box with all of the cupboard needs listed below displaying yhe need name, description, price, and quantity propoerties as well as a '+' button that when clicked will add the need to the helper's funding-basket. Below the list of all needs in the cupboard is a list of all needs inside of the helpers funding-basket where the needs are displayed in the same way as they are in the cupboard except with a '-' button which will remove the need from the helper's funding-basket. 
 
 ### View Tier
-> _**[Sprint 4]** Provide a summary of the View Tier UI of your architecture.
-> Describe the types of components in the tier and describe their
-> responsibilities.  This should be a narrative description, i.e. it has
-> a flow or "story line" that the reader can follow._
+The View Tier UI of our architecture uses two key components. Those being the UFundAPIApplication and our WebConfig. As the user interacts with our UI the API acts as the interpreter for those requests. Then if the API requests any changes be made to the UI it calls upon the WebConfig to make those modifications on the fly allowing flexability and a quick response time.
 
-> _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
-> of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
-> sequence diagram of a customer searching for an item and adding to their cart.)
-> As these can span multiple tiers, be sure to include an relevant HTTP requests from the client-side to the server-side 
-> to help illustrate the end-to-end flow._
+![Sequence Diagram One](ViewUISequenceDiagramOne.png)
+![Sequence Diagram One](sequence-diagram-two.png)
 
 > _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
  >* _Class diagrams only apply to the **ViewModel** and **Model** Tier_
@@ -145,9 +143,7 @@ Once on the helper page the user sees a 'logout' button above a search box with 
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
 ### ViewModel Tier
-> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
+The View Model tier of our architecture consists of 11 components. They are NeedDAO, NeedFileDAO, PostDAO, PostFileDAO, UserDAO, UserFileDAO, AdoptableAnimalDAO, HelperController, CupboardController, CommunityBoardController, and AdoptionCupboardController. This diagram has a repeating sequence among the DAOs, FileDAO, and Controller. The FileDAOs are all based on the architecture of their respective DAOs. Then once created the DAOs parse their respective JSON files into values that can be passed to their respective controllers. Essentially the DAOs act as the bridge between the data stored in the JSONs and the controller which is in charge of changing this data and keeping track of it.
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
@@ -155,14 +151,12 @@ Once on the helper page the user sees a 'logout' button above a search box with 
 ![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
-> _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
+>>descripton of model tier
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
-![The Model Tier Class Diagram](model-tier-class-diagram.png)
+![The Model Tier Class Diagram](modelTier.png)
 
 ## OO Design Principles
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
@@ -224,7 +218,25 @@ This issue is regarding a lack of including a generic font. Multiple of our css 
 ## Future Refactoring
 If the team had additional time for improvement, there would definitely be some changes made. When it comes to the logic of our code, we are very pleased and proud of the product we put out. We feel we met the requirements and had logic that functioned at intended. This in saying the changes on the backend we would like to make are not logic focused, rather simplification and efficiency based. There are defintely some methods that could use streamlining or refactoring to make code more readable and efficient(see static code analysis issue 1). We also would like to have been able to scrub through the code and update comments, remove things that no longer are needed or relevant, and polish the classes.   
 In regards to the front end, we are also happy with the look and feel. Some comments from other teams indicated some minor inconsistencies with margins and white space. It was also suggested to us in the usability review that we update some of the small button animations and polish the look of the manager page and need page. These fixes are not focused on the way it works, rather the spacing and locations on the page. These suggested fixes are pretty small, but they are definitely things we would like to implement.   
-To wrap up these thoughts, we were very happy with our project, but would like to make finishing touches on some aspects of the site and really add a final polish.  
+To wrap up these thoughts, we were very happy with our project, but would like to make finishing touches on some aspects of the site and really add a final polish. 
+
+## Recommendations for Improvement 
+# Software Architecture 
+Our cohesion wasn't perfect on the frontend as there were elements we deemed too insignificant for us to create it's own individual componenet class. For example, we decided not to break down various the homepage into too many parts. We decided not to break down the homepages' components such as the community board, the brief description and the login section as weren't going to reuse it in other sections of our website.  
+
+
+# Usability [Front End] Changes
+Based on usability feedback, the website needs some fixes on the strategic use of color and texture. Our reviewers suggested changing all text colors to white (currently black) to make the text more readable. This is a good suggestion and would likely increase the readability. Another area of usability we could work on is the purposefulness of page layout. It appears that in some locations on the helper and manager page the margins are not always consistent. We could work on developing the spacial relationships and placing emphasis on the more important areas of each page. Another suggestion from our testers was including a message to indicate if a user is a helper or manager; this would mshow the system communicating what has happened after a login. Below are some example fixes we could make to increase our usability. 
+
+**Helper Page**
+- Set the need boxes to uniform sizes
+- Set the need text to white
+  ![image](https://github.com/RIT-SWEN-261-05/team-project-2231-swen-261-05-2b-animal-auxiliaries/assets/146098070/3c0cb9dd-1c97-4625-b205-dd09c957bc56)
+
+**Manager Page**
+  - Add text to indicate that you are on the admin page
+![image](https://github.com/RIT-SWEN-261-05/team-project-2231-swen-261-05-2b-animal-auxiliaries/assets/146098070/6206e05f-6217-4ea9-aca5-cc3f0414a7e1)
+
 
 ## Testing
 All aspects of our testing for sprint 3/4 were fantastic. All acceptance tests were passed and both instructions and branches were above 90% coverage. This was a big step up from sprint 2, where our branch percentage was below 90% and not all acceptance tests passed. The team worked very hard to put a stamp of approval and have our tests reflect our confidence. 
