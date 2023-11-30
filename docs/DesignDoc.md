@@ -25,7 +25,7 @@ This project is a U-Fund website that is to be used by a local animal shelter/hu
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
 
-The Animal Auxiliaries U-Fund website exists to allow an animal shelter to virtually fundraise for their non-profit by making the process of donating to the animal shelter simple and easy. 
+Our U-Fund website exists to serve small local animal shelters that are in need of a low-cost accessible form of fundraising. Our top goal is to create a website that is accessible and easily navigable to an average community in order to crowd fund for a non-profit through the average person. 
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
