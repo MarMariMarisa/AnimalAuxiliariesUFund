@@ -215,7 +215,7 @@ All aspects of our testing for sprint 3/4 were fantastic. All acceptance tests w
 
 ### Acceptance Testing
 **Sprint 4 Summary**
-![Acceptance Testing Summary](s4-at.png)
+![Acceptance Testing Summary](sprint4-at.png)
 Every single user story passed all of its acceptance criteria tests(11). Our application works exactly as we expected and planned for. We did not find any bugs in design during our testing.  
 
 **Sprint 2 Summary**
