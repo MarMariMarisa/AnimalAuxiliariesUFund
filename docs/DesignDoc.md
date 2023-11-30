@@ -22,8 +22,6 @@ geometry: margin=1in
 This project is a U-Fund website that is to be used by a local animal shelter/humane society. This website provides tools for a welcoming and supportive community with the purpose of helping homeless animals. Managers run the needs page, indicating the current needs of the organization. This may include funding equipment purchases, purchasing food, etc. Helpers may view these needs and contribute through funding. Helpers can also view an adoption board (created/updated by a manager) and start the process of adoptiong an available animal. We hope that our product will enable members of our community to help these innocent animals and provide them with the things they need, or even a home. The websites backend is built in Java-Spring, the frontend with Angular. 
 
 ### Purpose
->  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
-> important user group and user goals._
 
 Our U-Fund website exists to serve small local animal shelters that are in need of a low-cost accessible form of fundraising. Our top goal is to create a website that is accessible and easily navigable to an average community in order to crowd fund for a non-profit through the average person. 
 
@@ -41,6 +39,7 @@ Our U-Fund website exists to serve small local animal shelters that are in need 
 | Adoption Cupboard | Virtual board of adoptable animals |
 | Community Board | Virtual list of text pagraphs **posted** by managers for helpers to view |
 | Post | Individal text paragraph posted in community board by a manager |
+| Adoption Cupboard | Secondary cupboard viewable by Helpers and editable by Managers containing Adoptable Animals | 
 
 ## Requirements
 Webpage displaying and enabling all of the following things:
@@ -77,8 +76,12 @@ Your 10% additional feature enchantment(s)
 - **U-fund Manager Functionality** --> Minimal Manager Functionality allows a *Manager* to **add**, **remove**, and **edit** the *needs* in the *cupboard*. And prevent the *Manager* from viewing the *funding baskets*. 
 
 ### MVP Features
->  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
 
+| Epic | User Stories | 
+|------|--------------|
+| User Management | User Authentication, Manager Abilities, Helper Abilities | 
+| Funding Basket | Add need to basket, Remove need from basket, checkout funding basket | 
+| Frontend Angular | Home Page, Manager Page, Helper Page, Basket Page | 
 ### Enhancements
 **Community Board**   
 The Community Board displays text posts that are posted/deleted by managers. This is viewed on the login page. The hope is for managers to use this to communicate important/timely information and create a tight-knit environment.  
@@ -119,8 +122,6 @@ Both the ViewModel and Model are built using Java and Spring Framework. Details 
 ### Overview of User Interface
 
 This section describes the web interface flow; this is how the user views and interacts with the web application.
-
-> _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
 The application opens on a login page 'http://localhost:4200/login', logging in as an admin will take the user to the manager page 'http://localhost:4200/manager'; logging in as a helper takes you to the helper page 'http://localhost:4200/helper'
 
