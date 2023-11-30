@@ -94,7 +94,7 @@ The Adoption Board displays a board of adoptable animals that helpers can view. 
 
 This section describes the application domain.
 
-![Domain Model](domain-model.png)
+![Domain Model](domain-model-final.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
