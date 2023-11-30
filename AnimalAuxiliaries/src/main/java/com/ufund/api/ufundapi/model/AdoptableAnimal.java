@@ -83,6 +83,12 @@ public class AdoptableAnimal {
         return id.equals(other.id);
     }
 
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+
     /**
      * 
      * @return animal id

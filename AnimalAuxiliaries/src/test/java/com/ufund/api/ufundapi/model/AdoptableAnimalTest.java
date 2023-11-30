@@ -144,4 +144,11 @@ public class AdoptableAnimalTest {
 
         assertEquals(imageUrl, animal1.getImageUrl());
     }
+
+    @Test
+    public void testHashCode(){
+        AdoptableAnimal animal1 = new AdoptableAnimal();
+        int code = animal1.hashCode();
+        assertEquals(animal1.getId().hashCode(), code);
+    }
 }
