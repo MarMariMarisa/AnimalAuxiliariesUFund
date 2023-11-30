@@ -156,7 +156,7 @@ The View Model tier of our architecture consists of 11 components. They are Need
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
-![The Model Tier Class Diagram](model-tier-class-diagram.png)
+![The Model Tier Class Diagram](modelTier.png)
 
 ## OO Design Principles
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
